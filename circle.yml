@@ -1,0 +1,16 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  override:
+    - docker info
+
+test:
+  override:
+    - ./testall:
+        parallel: true
+        files:
+          - test1
+          - test2
+          - test3

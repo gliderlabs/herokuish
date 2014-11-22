@@ -1,0 +1,5 @@
+#!/bin/bash
+echo "Test 2..."
+sleep 10
+echo "FAILED 2"
+exit 127
