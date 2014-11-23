@@ -3,6 +3,8 @@ machine:
     - docker
 
 dependencies:
+  pre:
+    - go get github.com/jteeuwen/go-bindata/...
   override:
     - make build
 
