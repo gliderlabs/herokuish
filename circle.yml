@@ -4,12 +4,13 @@ machine:
 
 dependencies:
   override:
-    - docker info
+    - make build
 
 test:
+  pre:
+    - docker pull progrium/cedarish
   override:
-    - ./testall:
+    - tests/shunit2:
         parallel: true
         files:
-          - test*
-          - test3
+          - tests/**/tests.sh

@@ -1,4 +1,0 @@
-#!/bin/bash
-echo "Test 3..."
-sleep 10
-echo "DONE 3"
