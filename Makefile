@@ -3,6 +3,7 @@ HARDWARE=$(shell uname -m)
 VERSION=0.1.0
 
 build:
+	go get || true
 	go-bindata bash
 	rm -rf build
 	mkdir -p build/linux && GOOS=linux go build -o build/linux/$(NAME)
