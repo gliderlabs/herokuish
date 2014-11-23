@@ -9,8 +9,6 @@ dependencies:
     - make build
 
 test:
-  pre:
-    - docker pull progrium/cedarish
   override:
     - tests/shunit2:
         parallel: true
