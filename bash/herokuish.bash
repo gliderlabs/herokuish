@@ -11,6 +11,9 @@ readonly build_path="${BUILD_PATH:-/tmp/build}"
 readonly cache_path="${CACHE_PATH:-/tmp/cache}"
 readonly buildpack_path="${BUILDPACK_PATH:-/tmp/buildpacks}"
 
+declare unprivileged_user="nobody"
+declare unprivileged_group="nogroup"
+
 ensure-paths() {
 	mkdir -p \
 		"$app_path" \
@@ -30,7 +33,8 @@ paths() {
 }
 
 version() {
-	declare desc="todo: show version and supported version info"
+	declare desc="Show version and supported version info"
+	echo "dev"
 }
 
 title() {
@@ -48,7 +52,7 @@ indent() {
 }
 
 unprivileged() {
-	setuidgid nobody $@
+	setuidgid "$unprivileged_user" $@
 }
 
 main() {

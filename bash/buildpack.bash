@@ -1,5 +1,6 @@
 
-declare selected_path selected_name
+declare selected_path
+declare selected_name
 
 buildpack-build() {
 	declare desc="Build an application using installed buildpacks"
@@ -83,6 +84,7 @@ buildpack-select() {
 }
 
 buildpack-compile() {
+	# TODO: test if this is necessary or if we can always pass $env_path without issue
 	if [[ "$(ls -A $env_path)" ]]; then
 		unprivileged "$selected_path/bin/compile" "$build_path" "$cache_path" "$env_path"
 	else
