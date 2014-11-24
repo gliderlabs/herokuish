@@ -30,7 +30,7 @@ paths() {
 }
 
 version() {
-	echo "todo: show version and supported version info"
+	declare desc="todo: show version and supported version info"
 }
 
 title() {
@@ -54,8 +54,6 @@ unprivileged() {
 main() {
 	set -eo pipefail; [[ "$TRACE" ]] && set -x
 	export BASH_ENV=
-
-	ensure-paths
 
 	cmd-export paths
 	cmd-export version

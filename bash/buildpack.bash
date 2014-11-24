@@ -3,6 +3,7 @@ declare selected_path selected_name
 
 buildpack-build() {
 	declare desc="Build an application using installed buildpacks"
+	ensure-paths
 	buildpack-setup > /dev/null
 	buildpack-select | indent
 	buildpack-compile | indent
@@ -12,6 +13,7 @@ buildpack-build() {
 buildpack-install() {
 	declare desc="Install buildpack from Git URL and optional committish"
 	declare url="$1" commit="$2" name="${3:-$(basename $1)}"
+	ensure-paths
 	local target_path="$buildpack_path/$name"
 	if [[ -n "$commit" ]]; then
 		git clone "$url" "$target_path"
