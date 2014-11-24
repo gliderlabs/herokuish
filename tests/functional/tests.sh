@@ -5,15 +5,13 @@ cedarish-run() {
 		echo "!! and Linux build needs to exist."
 		exit 127
 	}
-	declare -f $1 | tail -n +2 | docker run --rm -i -v "$PWD:/src" progrium/cedarish bash
+	declare -f $1 | tail -n +2 | docker run --rm -i -v "$PWD:/test" progrium/cedarish bash
 }
 
-testFoobar() {
-	_testFoobar() {
-		echo "test"
-		sleep 2
-		echo "done"
+testBinary() {
+	_testBinary() {
+		/test/build/linux/herokuish
 		exit
 	}
-	cedarish-run _testFoobar
+	cedarish-run _testBinary
 }
