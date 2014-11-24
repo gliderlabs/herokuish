@@ -7,7 +7,7 @@ buildpack-build() {
 	buildpack-setup > /dev/null
 	buildpack-select | indent
 	buildpack-compile | indent
-	procfile-show-types | indent
+	procfile-types | indent
 }
 
 buildpack-install() {
@@ -26,6 +26,11 @@ buildpack-install() {
 	rm -rf "$target_path/.git"
 }
 
+buildpack-list() {
+	declare desc="List installed buildpacks"
+	ls -1 "$buildpack_path"
+}
+
 buildpack-setup() {
 	# Buildpack expectations
 	export APP_DIR="$app_path"
@@ -33,6 +38,8 @@ buildpack-setup() {
 	export REQUEST_ID="build-$RANDOM"
 	export STACK="cedar-14"
 	cp -r "$app_path/." "$build_path"
+	
+	# Dropped privileges
 	usermod --home $HOME nobody
 	chown -R nobody:nogroup \
 		"$app_path" \
@@ -42,7 +49,7 @@ buildpack-setup() {
 	# Useful settings / features
 	export CURL_CONNECT_TIMEOUT="30"
 
-	# For buildstep backwards compatibility
+	# Buildstep backwards compatibility
 	if [[ -f "$app_path/.env" ]]; then
 		source "$app_path/.env"
 	fi

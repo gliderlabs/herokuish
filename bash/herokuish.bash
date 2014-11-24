@@ -53,7 +53,6 @@ unprivileged() {
 
 main() {
 	set -eo pipefail; [[ "$TRACE" ]] && set -x
-	export BASH_ENV=
 
 	cmd-export paths
 	cmd-export version
@@ -61,6 +60,7 @@ main() {
 	cmd-export-ns buildpack "Use and install buildpacks"
 	cmd-export buildpack-build
 	cmd-export buildpack-install
+	cmd-export buildpack-list
 
 	cmd-export-ns slug "Manage application slugs"
 	cmd-export slug-import
