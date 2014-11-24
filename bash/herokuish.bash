@@ -76,5 +76,9 @@ main() {
 	cmd-export procfile-exec
 	cmd-export procfile-parse
 	
-	cmd-ns "" "$@"
+	case "$SELF" in 
+		/start)		procfile-start "$@";;
+		/exec)		procfile-exec "$@";;
+		*)			cmd-ns "" "$@";
+	esac
 }

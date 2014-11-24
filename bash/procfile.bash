@@ -14,8 +14,9 @@ procfile-start() {
 procfile-exec() {
 	declare desc="Run command as random, unprivileged user with .profile.d sourced"
 	procfile-randomize-user
-	procfile-rehome
-	procfile-profile
+	procfile-set-home
+	procfile-load-env
+	procfile-load-profile
 	unprivileged $@
 }
 
@@ -37,7 +38,15 @@ procfile-types() {
 	echo "No process types found"
 }
 
-procfile-profile() {
+procfile-load-env() {
+	if [[ -d "$env_path" ]]; then
+		for e in $(ls $env_path); do
+			export "$e=$(cat $env_path/$e)"
+		done
+	fi
+}
+
+procfile-load-profile() {
 	shopt -s nullglob
 	mkdir -p "$app_path/.profile.d"
 	for file in $app_path/.profile.d/*.sh; do
@@ -46,10 +55,10 @@ procfile-profile() {
 	hash -r
 }
 
-procfile-rehome() {
+procfile-set-home() {
 	export HOME="$app_path"
-	usermod --home "$HOME" "$unprivileged_user"
-	chown -R "$unprivileged_user:$unprivileged_group" "$HOME"
+	usermod --home "$app_path" "$unprivileged_user"
+	chown -R "$unprivileged_user:$unprivileged_group" "$app_path"
 }
 
 procfile-randomize-user() {
