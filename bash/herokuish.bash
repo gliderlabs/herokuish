@@ -71,7 +71,7 @@ main() {
 	cmd-export slug-generate
 	cmd-export slug-export
 
-	cmd-export-ns procfile "Parse and execute Procfiles"
+	cmd-export-ns procfile "Use Procfiles and run app commands"
 	cmd-export procfile-start
 	cmd-export procfile-exec
 	cmd-export procfile-parse
