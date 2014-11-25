@@ -1,8 +1,10 @@
 # herokuish
 
-A command line tool for emulating Heroku build and runtime operations. It pairs excellently with [cedarish](https://github.com/progrium/cedarish), though you can likely use it anywhere.
+A command line tool for emulating Heroku build and runtime processes. It is the sister project of [progrium/cedarish](https://github.com/progrium/cedarish), which reproduces the base Heroku system image or "stack".
 
-Target users for herokuish are platform authors. The project consolidates and decouples Heroku "emulation" logic from specific platform images like those used by Dokku/Buildstep, Deis, Flynn, etc. The goal is to be the definitive, well maintained, heavily tested Heroku emulation utility for any project needing Heroku compatibility.
+Herokuish is for platform authors. The project consolidates and decouples Heroku compatibility *logic* and supporting workflow from specific platform images like those used by Dokku/Buildstep, Deis, Flynn, etc.
+
+The goal is to be the definitive, well maintained and heavily tested Heroku emulation utility.
 
 [![Circle CI](https://circleci.com/gh/gliderlabs/herokuish.png?style=shield)](https://circleci.com/gh/gliderlabs/herokuish)
 
