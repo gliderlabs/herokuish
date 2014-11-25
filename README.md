@@ -2,11 +2,7 @@
 
 A command line tool for emulating Heroku build and runtime operations. It pairs excellently with [cedarish](https://github.com/progrium/cedarish), though you can likely use it anywhere.
 
-The project consolidates and decouples Heroku "emulation" logic from specific platform images like those used by Dokku/Buildstep, Deis, Flynn, etc with the intention of being *the* versioned and heavily tested shared Heroku emulation utility for all communities.
-
-Target users for herokuish are platform authors, like those of Dokku, Deis, and Flynn. Herokuish was designed based on the experience developing and re-developing Heroku compatibility in all three of those projects. As such, Herokuish was made possible by contributors of all three projects. 
-
-In fact, since I hope this is the final implementation of Heroku emulation I'm involved with, I'd like to finally thank Matt Freeman ([@nonuby](https://twitter.com/nonuby)). I've been more or less copy-and-pasting code he originally wrote for the now defunct [OpenRoku](https://github.com/openruko) since 2012.
+Target users for herokuish are platform authors. The project consolidates and decouples Heroku "emulation" logic from specific platform images like those used by Dokku/Buildstep, Deis, Flynn, etc. The goal is to be the definitive, well maintained, heavily tested Heroku emulation utility for any project needing Heroku compatibility.
 
 [![Circle CI](https://circleci.com/gh/gliderlabs/herokuish.png?style=shield)](https://circleci.com/gh/gliderlabs/herokuish)
 
@@ -108,9 +104,13 @@ Pull requests are welcome! Herokuish is written in Bash and Go. Please conform t
 
 Developers should have Go installed with cross-compile support for Darwin and Linux. Tests will require Docker to be available. If you have OS X, we recommend boot2docker.
 
-## Sponsor
+## Acknowledgements
 
-This project was made possible by the [Deis Project](http://deis.io).
+This project was sponsored and made possible by the [Deis Project](http://deis.io).
+
+That said, herokuish was designed based on the experience developing and re-developing Heroku compatibility in Dokku, Deis, and Flynn. Herokuish is based on code from all three projects, as such, thank you to all the contributors of those projects.
+
+In fact, since I hope this is the final implementation of Heroku emulation I'm involved with, I'd like to finally thank Matt Freeman ([@nonuby](https://twitter.com/nonuby)). I've been more or less copy-and-pasting code he originally wrote for the now defunct [OpenRoku](https://github.com/openruko) since 2012.
 
 ## License
 
