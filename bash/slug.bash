@@ -33,7 +33,7 @@ slug-generate() {
 }
 
 slug-export() {
-	declare desc="Export generated slug tarball to URL (via PUT) or STDOUT"
+	declare desc="Export generated slug tarball to URL (PUT) or STDOUT"
 	declare url="$1"
 	if [[ ! -f "$slug_path" ]]; then
 		return 1

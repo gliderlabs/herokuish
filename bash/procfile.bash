@@ -1,6 +1,6 @@
 
 procfile-parse() {
-	declare desc="Look up command string for particular process type from Procfile"
+	declare desc="Get command string for a process type from Procfile"
 	declare type="$1"
 	cat "$app_path/Procfile" | yaml-get "$type"
 }
@@ -12,7 +12,7 @@ procfile-start() {
 }
 
 procfile-exec() {
-	declare desc="Run command as random, unprivileged user with .profile.d sourced"
+	declare desc="Run as random, unprivileged user with Heroku-like env"
 	procfile-randomize-user
 	procfile-set-home
 	procfile-load-env

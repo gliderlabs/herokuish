@@ -25,11 +25,12 @@ ensure-paths() {
 
 paths() {
 	declare desc="Shows path settings"
-	echo "APP_PATH=$app_path"
-	echo "ENV_PATH=$env_path"
-	echo "BUILD_PATH=$build_path"
-	echo "CACHE_PATH=$cache_path"
-	echo "BUILDPACK_PATH=$buildpack_path"
+	printf "%-32s # %s\n" \
+		"APP_PATH=$app_path" 		"Application path during runtime" \
+		"ENV_PATH=$env_path" 		"Path to files for defining base environment" \
+		"BUILD_PATH=$build_path" 	"Working directory during builds" \
+		"CACHE_PATH=$cache_path" 	"Buildpack cache location" \
+		"BUILDPACK_PATH=$buildpack_path" "Path to installed buildpacks"
 }
 
 version() {
@@ -79,6 +80,7 @@ main() {
 	case "$SELF" in 
 		/start)		procfile-start "$@";;
 		/exec)		procfile-exec "$@";;
+		/build)		buildpack-build;;
 		*)			cmd-ns "" "$@";
 	esac
 }
