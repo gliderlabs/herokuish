@@ -1,10 +1,10 @@
 # herokuish
 
-A command line tool for emulating Heroku build and runtime processes. It is the sister project of [progrium/cedarish](https://github.com/progrium/cedarish), which reproduces the base Heroku system image or "stack".
+A command line tool for emulating Heroku build and runtime tasks in containers. 
 
-Herokuish is for platform authors. The project consolidates and decouples Heroku compatibility *logic* and supporting workflow from specific platform images like those used by Dokku/Buildstep, Deis, Flynn, etc.
+Herokuish is for platform authors. The project consolidates and decouples Heroku compatibility logic (running buildpacks, parsing Procfile) and supporting workflow (importing/exporting slugs) from specific platform images like those in Dokku/Buildstep, Deis, Flynn, etc.
 
-The goal is to be the definitive, well maintained and heavily tested Heroku emulation utility.
+The goal is to be the definitive, well maintained and heavily tested Heroku emulation utility shared by all. It is complemented by [progrium/cedarish](https://github.com/progrium/cedarish), which focuses on reproducing the base Heroku system image.
 
 [![Circle CI](https://circleci.com/gh/gliderlabs/herokuish.png?style=shield)](https://circleci.com/gh/gliderlabs/herokuish)
 
@@ -23,7 +23,7 @@ It depends on Bash (4.0 or newer) and a handful of standard GNU utilties you pro
 
 ## Using herokuish
 
-Herokuish is meant to work behind the scenes inside a container. It makes little assumptions about how you construct those containers or the operational decisions behind them. It focuses on neatly emulating Heroku, letting you design and orchestrate containers around it.
+Herokuish is meant to work behind the scenes inside a container. It tries not to force decisions about how you construct and operate containers. In fact, there's nothing that even ties it specifically to Docker. It focuses on neatly emulating Heroku, letting you design and orchestrate containers around it.
 
 ```
 $ herokuish
