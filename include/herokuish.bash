@@ -35,7 +35,7 @@ paths() {
 
 version() {
 	declare desc="Show version and supported version info"
-	echo "dev"
+	echo "${VERSION:-dev}"
 }
 
 title() {

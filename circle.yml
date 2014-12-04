@@ -4,7 +4,7 @@ machine:
 
 dependencies:
   pre:
-    - go get github.com/jteeuwen/go-bindata/...
+    - make deps
   override:
     - make build
 
@@ -14,3 +14,9 @@ test:
         parallel: true
         files:
           - tests/**/tests.sh
+
+deployment:
+  release:
+    branch: release
+    commands:
+      - make release

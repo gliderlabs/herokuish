@@ -5,23 +5,23 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
-	"strings"
 
 	"github.com/progrium/go-basher"
 	"gopkg.in/yaml.v2"
 )
 
-func assert(err error) {
-	if err != nil {
-		log.Fatal(err)
-	}
-}
+var Version string
 
 func YamlKeys(args []string) int {
 	bytes, err := ioutil.ReadAll(os.Stdin)
-	assert(err)
+	if err != nil {
+		log.Fatal(err)
+	}
 	var m interface{}
-	assert(yaml.Unmarshal(bytes, &m))
+	err = yaml.Unmarshal(bytes, &m)
+	if err != nil {
+		log.Fatal(err)
+	}
 	for _, arg := range args {
 		if m == nil {
 			break
@@ -39,9 +39,14 @@ func YamlKeys(args []string) int {
 
 func YamlGet(args []string) int {
 	bytes, err := ioutil.ReadAll(os.Stdin)
-	assert(err)
+	if err != nil {
+		log.Fatal(err)
+	}
 	var m interface{}
-	assert(yaml.Unmarshal(bytes, &m))
+	err = yaml.Unmarshal(bytes, &m)
+	if err != nil {
+		log.Fatal(err)
+	}
 	for _, arg := range args {
 		if m == nil {
 			break
@@ -64,26 +69,16 @@ func YamlGet(args []string) int {
 }
 
 func main() {
-	var bashPath string
-	if strings.Contains(os.Getenv("SHELL"), "bash") {
-		bashPath = os.Getenv("SHELL")
-	} else {
-		bashPath = "/bin/bash"
-	}
-	bash, err := basher.NewContext(bashPath, os.Getenv("DEBUG") != "")
-	assert(err)
-	bash.ExportFunc("yaml-keys", YamlKeys)
-	bash.ExportFunc("yaml-get", YamlGet)
-	bash.HandleFuncs(os.Args)
-
-	bash.Source("bash/herokuish.bash", Asset)
-	bash.Source("bash/fn.bash", Asset)
-	bash.Source("bash/cmd.bash", Asset)
-	bash.Source("bash/buildpack.bash", Asset)
-	bash.Source("bash/procfile.bash", Asset)
-	bash.Source("bash/slug.bash", Asset)
-	bash.CopyEnv()
-	status, err := bash.Run("main", os.Args[1:])
-	assert(err)
-	os.Exit(status)
+	os.Setenv("VERSION", Version)
+	basher.Application(map[string]func([]string) int{
+		"yaml-keys": YamlKeys,
+		"yaml-get":  YamlGet,
+	}, []string{
+		"include/herokuish.bash",
+		"include/fn.bash",
+		"include/cmd.bash",
+		"include/buildpack.bash",
+		"include/procfile.bash",
+		"include/slug.bash",
+	}, Asset, true)
 }
