@@ -53,9 +53,22 @@ For example, build processes that produce Docker images without producing interm
 
 #### Buildpacks
 
-Herokuish does not come with any buildpacks, but it is tested against recent versions of Heroku supported buildpacks. You can see this information (soon) with `herokuish version`. 
+Herokuish does not come with any buildpacks, but it is tested against recent versions of Heroku supported buildpacks. You can see this information with `herokuish version`. Example output:
 
-Although you can manually install buildpacks individually with `herokuish buildpack install`, it's better to mount a directory containing your platform's supported buildpacks. Alternatively, you could bake your supported buildpacks into an image. These are the types of decisions that are up to you.
+```
+$ herokuish version
+herokuish version: 0.1.0
+compatible cedarish: v2
+compatible buildpacks:
+  heroku-buildpack-multi     cddec34
+  heroku-buildpack-nodejs    v60
+  heroku-buildpack-php       v43
+  heroku-buildpack-python    v52
+  heroku-buildpack-ruby      v127
+  ...
+```
+
+You can install all supported buildpacks with `herokuish buildpack install`, or you can manually install buildpacks individually with `herokuish buildpack install <url> [committish]`. You can also mount a directory containing your platform's supported buildpacks (see Paths, next section), or you could bake your supported buildpacks into an image. These are the types of decisions that are up to you.
 
 #### Paths
 
