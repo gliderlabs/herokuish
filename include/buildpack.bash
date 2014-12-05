@@ -68,6 +68,12 @@ buildpack-select() {
 
 		selected_name="$(unprivileged $selected_path/bin/detect $build_path)"
 	else
+		# force heroku-buildpack-multi to detect first if exists
+		if ls "$buildpack_path/heroku-buildpack-multi" > /dev/null 2>&1; then
+			selected_name="$(unprivileged $buildpack_path/heroku-buildpack-multi/bin/detect $build_path)" \
+				&& selected_path="$buildpack_path/heroku-buildpack-multi" \
+				&& return
+		fi
 		local buildpacks=($buildpack_path/*)
 		for buildpack in "${buildpacks[@]}"; do
 			selected_name="$(unprivileged $buildpack/bin/detect $build_path)" \

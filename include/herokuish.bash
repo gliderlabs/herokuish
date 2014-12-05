@@ -11,6 +11,8 @@ readonly build_path="${BUILD_PATH:-/tmp/build}"
 readonly cache_path="${CACHE_PATH:-/tmp/cache}"
 readonly buildpack_path="${BUILDPACK_PATH:-/tmp/buildpacks}"
 
+readonly cedarish_version="v2"
+
 declare unprivileged_user="nobody"
 declare unprivileged_group="nogroup"
 
@@ -35,7 +37,10 @@ paths() {
 
 version() {
 	declare desc="Show version and supported version info"
-	echo "${VERSION:-dev}"
+	echo "herokuish version: ${VERSION:-dev}"
+	echo "compatible cedarish: $cedarish_version"
+	echo "compatible buildpacks:"
+	asset-cat include/buildpacks.txt | sed 's/.*heroku\///' | xargs printf "  %-26s %s\n"
 }
 
 title() {

@@ -68,11 +68,23 @@ func YamlGet(args []string) int {
 	return 0
 }
 
+func AssetCat(args []string) int {
+	for _, asset := range args {
+		data, err := Asset(asset)
+		if err != nil {
+			return 2
+		}
+		os.Stdout.Write(data)
+	}
+	return 0
+}
+
 func main() {
 	os.Setenv("VERSION", Version)
 	basher.Application(map[string]func([]string) int{
 		"yaml-keys": YamlKeys,
 		"yaml-get":  YamlGet,
+		"asset-cat": AssetCat,
 	}, []string{
 		"include/herokuish.bash",
 		"include/fn.bash",
