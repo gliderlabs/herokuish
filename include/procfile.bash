@@ -8,29 +8,30 @@ procfile-parse() {
 procfile-start() {
 	declare desc="Run process type command from Procfile through exec"
 	declare type="$1"
-	procfile-exec $(procfile-parse "$type")
+	procfile-exec "$(procfile-parse "$type")"
 }
 
 procfile-exec() {
 	declare desc="Run as random, unprivileged user with Heroku-like env"
+	cd "$app_path"
 	procfile-randomize-user
 	procfile-set-home
 	procfile-load-env
 	procfile-load-profile
-	unprivileged $@
+	unprivileged /bin/bash -c "$(eval echo $@)"
 }
 
 procfile-types() {
 	title "Discovering process types"
-	if [[ -f "$build_path/Procfile" ]]; then
+	if [[ -f "$app_path/Procfile" ]]; then
 		local types
-		types="$(cat $build_path/Procfile | yaml-keys | xargs echo)"
+		types="$(cat $app_path/Procfile | yaml-keys | xargs echo)"
 		echo "Procfile declares types -> ${types// /, }"
 		return
 	fi
-	if [[ -s "$build_path/.release" ]]; then
+	if [[ -s "$app_path/.release" ]]; then
 		local default_types
-		default_types="$(cat $build_path/.release | yaml-keys default_process_types | xargs echo)"
+		default_types="$(cat $app_path/.release | yaml-keys default_process_types | xargs echo)"
 		[[ "$default_types" ]] && \
 			echo "Default process types for $selected_name -> ${default_types// /, }"
 		return
@@ -52,12 +53,13 @@ procfile-load-profile() {
 	for file in $app_path/.profile.d/*.sh; do
 		source "$file"
 	done
+	shopt -u nullglob
 	hash -r
 }
 
 procfile-set-home() {
 	export HOME="$app_path"
-	usermod --home "$app_path" "$unprivileged_user"
+	usermod --home "$app_path" "$unprivileged_user" > /dev/null 2>&1
 	chown -R "$unprivileged_user:$unprivileged_group" "$app_path"
 }
 

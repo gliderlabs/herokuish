@@ -55,7 +55,7 @@ func YamlGet(args []string) int {
 	}
 	switch val := m.(type) {
 	case string:
-		println(val)
+		fmt.Println(val)
 	case map[interface{}]interface{}:
 		for key := range val {
 			fmt.Printf("%s=%s\n", key, val[key])

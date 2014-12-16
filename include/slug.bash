@@ -20,12 +20,12 @@ slug-generate() {
 		pigz_option="--use-compress-program=pigz"
 	fi
 	local slugignore_option
-	if [[ -f "$build_path/.slugignore" ]]; then
-		slugignore_option="-X $build_path/.slugignore"
+	if [[ -f "$app_path/.slugignore" ]]; then
+		slugignore_option="-X $app_path/.slugignore"
 	fi
 	tar $pigz_option $slugignore_option \
 		--exclude='.git' \
-		-C "$build_path" \
+		-C "$app_path" \
 		-cf "$slug_path" \
     	.
 	local slug_size="$(du -Sh $slug_path | cut -f1)"

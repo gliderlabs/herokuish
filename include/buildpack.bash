@@ -1,13 +1,9 @@
 
-declare selected_path
-declare selected_name
-
 buildpack-build() {
 	declare desc="Build an application using installed buildpacks"
 	ensure-paths
 	buildpack-setup > /dev/null
-	buildpack-select | indent
-	buildpack-compile | indent
+	buildpack-execute | indent
 	procfile-types | indent
 }
 
@@ -29,6 +25,7 @@ buildpack-install() {
 
 buildpack-list() {
 	declare desc="List installed buildpacks"
+	ensure-paths
 	ls -1 "$buildpack_path"
 }
 
@@ -41,7 +38,7 @@ buildpack-setup() {
 	cp -r "$app_path/." "$build_path"
 	
 	# Dropped privileges
-	usermod --home $HOME nobody
+	usermod --home $HOME nobody > /dev/null 2>&1
 	chown -R nobody:nogroup \
 		"$app_path" \
 		"$build_path" \
@@ -56,7 +53,7 @@ buildpack-setup() {
 	fi
 }
 
-buildpack-select() {
+buildpack-execute() {
 	if [[ -n "$BUILDPACK_URL" ]]; then
 		title "Fetching custom buildpack"
 		
@@ -87,9 +84,7 @@ buildpack-select() {
 		title "Unable to select a buildpack"
 		exit 1
 	fi
-}
 
-buildpack-compile() {
 	# TODO: test if this is necessary or if we can always pass $env_path without issue
 	if [[ "$(ls -A $env_path)" ]]; then
 		unprivileged "$selected_path/bin/compile" "$build_path" "$cache_path" "$env_path"
@@ -97,4 +92,9 @@ buildpack-compile() {
 		unprivileged "$selected_path/bin/compile" "$build_path" "$cache_path"
 	fi
 	unprivileged "$selected_path/bin/release" "$build_path" "$cache_path" > "$build_path/.release"
+
+	shopt -s dotglob nullglob
+	rm -rf $app_path/*
+	mv $build_path/* $app_path
+	shopt -u dotglob nullglob
 }

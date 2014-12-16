@@ -58,7 +58,7 @@ indent() {
 }
 
 unprivileged() {
-	setuidgid "$unprivileged_user" $@
+	setuidgid "$unprivileged_user" "$@"
 }
 
 main() {
