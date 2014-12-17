@@ -1,6 +1,7 @@
 #!/bin/bash
 
 readonly cedarish_version="v2"
+readonly cedarish_image="progrium/cedarish:$cedarish_version"
 readonly herokuish_root="$(dirname $(dirname $(dirname $PWD/${BASH_SOURCE/\.\//})))"
 
 check-cedarish() {
@@ -10,7 +11,7 @@ check-cedarish() {
 download-cedarish() {
 	docker import \
 		"https://github.com/progrium/cedarish/releases/download/$cedarish_version/cedarish-cedar14_$cedarish_version.tar.gz" \
-		"progrium/cedarish:$cedarish_version"
+		"$cedarish_image"
 }
 
 check-buildpacks() {
@@ -18,7 +19,7 @@ check-buildpacks() {
 }
 
 download-buildpacks() {
-	docker run --name herokuish-buildpacks -v /tmp/buildpacks -v "$herokuish_root:/mnt" progrium/cedarish /mnt/build/linux/herokuish buildpack install
+	docker run --name herokuish-buildpacks -v /tmp/buildpacks -v "$herokuish_root:/mnt" "$cedarish_image" /mnt/build/linux/herokuish buildpack install
 }
 
 main() {
@@ -26,7 +27,7 @@ main() {
 	set -eo pipefail
 	check-cedarish || download-cedarish
 	check-buildpacks || download-buildpacks
-	docker run --rm -v "$app_abspath:/tmp/app" --volumes-from herokuish-buildpacks "progrium/cedarish:$cedarish_version" bash -c "\
+	docker run --rm -v "$app_abspath:/tmp/app" --volumes-from herokuish-buildpacks "$cedarish_image" bash -c "\
 		rm -rf /app && cp -r /tmp/app /app
 		/mnt/build/linux/herokuish buildpack build
 		PORT=5678 /mnt/build/linux/herokuish procfile start web &
