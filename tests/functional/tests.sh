@@ -8,7 +8,7 @@ cedarish-run() {
 	declare -f $1 | tail -n +2 | docker run --rm -i -v "$PWD:/test" progrium/cedarish bash
 }
 
-testBinary() {
+test-binary() {
 	_testBinary() {
 		/test/build/linux/herokuish
 		exit

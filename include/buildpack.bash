@@ -9,10 +9,16 @@ buildpack-build() {
 
 buildpack-install() {
 	declare desc="Install buildpack from Git URL and optional committish"
-	declare url="$1" commit="$2" name="${3:-$(basename $1)}"
+	declare url="$1" commit="$2" name="$3"
 	ensure-paths
-	local target_path="$buildpack_path/$name"
-	if [[ -n "$commit" ]]; then
+	if [[ ! "$url" ]]; then
+		asset-cat include/buildpacks.txt | while read url commit; do
+			buildpack-install "$url" "$commit"
+		done
+		return
+	fi
+	local target_path="$buildpack_path/${name:-$(basename $url)}"
+	if [[ "$commit" ]]; then
 		git clone "$url" "$target_path"
 		cd "$target_path"
 		git checkout --quiet "$commit"
@@ -42,7 +48,8 @@ buildpack-setup() {
 	chown -R nobody:nogroup \
 		"$app_path" \
 		"$build_path" \
-		"$cache_path"
+		"$cache_path" \
+		"$buildpack_path"
 
 	# Useful settings / features
 	export CURL_CONNECT_TIMEOUT="30"
@@ -68,17 +75,18 @@ buildpack-execute() {
 		# force heroku-buildpack-multi to detect first if exists
 		if ls "$buildpack_path/heroku-buildpack-multi" > /dev/null 2>&1; then
 			selected_name="$(unprivileged $buildpack_path/heroku-buildpack-multi/bin/detect $build_path)" \
-				&& selected_path="$buildpack_path/heroku-buildpack-multi" \
-				&& return
+				&& selected_path="$buildpack_path/heroku-buildpack-multi"
 		fi
-		local buildpacks=($buildpack_path/*)
-		for buildpack in "${buildpacks[@]}"; do
-			selected_name="$(unprivileged $buildpack/bin/detect $build_path)" \
-				&& selected_path="$buildpack" \
-				&& break
-		done
+		if [[ ! "$selected_path" ]]; then
+			local buildpacks=($buildpack_path/*)
+			for buildpack in "${buildpacks[@]}"; do
+				selected_name="$(unprivileged $buildpack/bin/detect $build_path)" \
+					&& selected_path="$buildpack" \
+					&& break
+			done
+		fi
 	fi
-	if [[ -n "$selected_path" ]]; then
+	if [[ "$selected_path" ]]; then
 		title "$selected_name app detected"
 	else
 		title "Unable to select a buildpack"

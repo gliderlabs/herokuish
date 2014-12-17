@@ -13,7 +13,7 @@ deps:
 	go get || true
 
 test: build
-	tests/shunit2 tests/**/tests.sh
+	tests/shunit2 tests/*/tests.sh tests/*/*/tests.sh
 
 release: build
 	rm -rf release && mkdir release
