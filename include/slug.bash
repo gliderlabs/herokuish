@@ -7,7 +7,7 @@ slug-import() {
 	if [[ "$(ls -A $app_path)" ]]; then
 		return 1
 	elif [[ "$url" ]]; then
-		curl -s -o /dev/null --retry 2 "$src" | tar -xzC "$app_path"
+		curl -s --retry 2 "$url" | tar -xzC "$app_path"
 	else
 		cat | tar -xzC "$app_path"
 	fi
