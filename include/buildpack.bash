@@ -6,7 +6,8 @@ buildpack-build() {
 	declare desc="Build an application using installed buildpacks"
 	ensure-paths
 	buildpack-setup > /dev/null
-	buildpack-select | indent
+	# use "process substitution" so buildpack-select can set variables in this shell
+	buildpack-select > >(indent)
 	buildpack-compile | indent
 	procfile-types | indent
 }
