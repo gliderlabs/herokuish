@@ -4,6 +4,7 @@ machine:
 
 dependencies:
   pre:
+    - docker version
     - make deps
   override:
     - make build

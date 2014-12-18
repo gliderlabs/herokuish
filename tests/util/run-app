@@ -1,0 +1,34 @@
+#!/bin/bash
+
+source "$(dirname $BASH_SOURCE)/../cedarish.sh"
+
+readonly herokuish_root="$(dirname $(dirname $(dirname $PWD/${BASH_SOURCE/\.\//})))"
+readonly image="$cedarish_image:$cedarish_version"
+
+check-buildpacks() {
+	[[ "$(docker ps -qaf name=herokuish-buildpacks)" ]]
+}
+
+download-buildpacks() {
+	docker run --name herokuish-buildpacks -v /tmp/buildpacks -v "$herokuish_root:/mnt" "$image" /mnt/build/linux/herokuish buildpack install
+}
+
+main() {
+	declare app_abspath="$1" expected_output="$2"
+	set -eo pipefail
+	check-cedarish || download-cedarish
+	check-buildpacks || download-buildpacks
+	docker run --rm -v "$app_abspath:/tmp/app" --volumes-from herokuish-buildpacks "$image" bash -c "\
+		rm -rf /app && cp -r /tmp/app /app
+		/mnt/build/linux/herokuish buildpack build
+		PORT=5678 /mnt/build/linux/herokuish procfile start web &
+		for retry in \$(seq 1 10); do sleep 1 && nc -z -w 5 localhost 5678 && break; done
+		output=\"\$(curl --retry 3 -v -s localhost:5678)\"
+		sleep 1
+		echo '=== APP OUTPUT ==='
+		echo -e \"\$output\"
+		echo '=== END OUTPUT ==='
+		[[ \"\$output\" == \"$expected_output\" ]]"
+}
+
+main "$@"
