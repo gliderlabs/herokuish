@@ -24,7 +24,8 @@ main() {
 	set -eo pipefail; [[ "$TRACE" ]] && set -x
 	check-cedarish || download-cedarish
 	check-buildpacks || download-buildpacks
-	docker run --rm -v "$app_abspath:/tmp/app" --volumes-from herokuish-buildpacks "$cedarish_image:$cedarish_version" bash -c "\
+	[[ "$CI" ]] || rmflag="--rm"
+	docker run $rmflag -v "$app_abspath:/tmp/app" --volumes-from herokuish-buildpacks "$cedarish_image:$cedarish_version" bash -c "\
 		rm -rf /app && cp -r /tmp/app /app
 		/mnt/build/linux/herokuish buildpack build
 		PORT=5678 /mnt/build/linux/herokuish procfile start web &
