@@ -19,8 +19,13 @@ deps: .cache/cedarish_$(CEDARISH).tgz
 	curl -L https://github.com/progrium/cedarish/releases/download/$(CEDARISH)/cedarish-cedar14_$(CEDARISH).tar.gz \
 		> .cache/cedarish_$(CEDARISH).tgz
 
-test: build
-	tests/shunit2 tests/*/tests.sh tests/*/*/tests.sh
+test: test-functional test-apps
+
+test-functional: build
+	tests/shunit2 tests/*/tests.sh
+
+test-apps: build
+	tests/shunit2 tests/apps/*/tests.sh
 
 release: build
 	rm -rf release && mkdir release
@@ -28,4 +33,4 @@ release: build
 	tar -zcf release/$(NAME)_$(VERSION)_darwin_$(HARDWARE).tgz -C build/darwin $(NAME)
 	gh-release create gliderlabs/$(NAME) $(VERSION) $(shell git rev-parse --abbrev-ref HEAD)
 
-.PHONY: build test release deps
+.PHONY: build test test-functional test-apps release deps

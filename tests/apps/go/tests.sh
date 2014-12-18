@@ -1,6 +1,6 @@
 
 source "$(dirname $BASH_SOURCE)/../runner.sh"
 
-test-x-app-go() {
+test-z2-app-go() {
 	run-app-test go "go"
 }

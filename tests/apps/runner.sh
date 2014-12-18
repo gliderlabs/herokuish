@@ -6,6 +6,6 @@ run-app-test() {
 		echo "!! and Linux build needs to exist."
 		exit 127
 	}
-	$PWD/tests/util/run-app $PWD/tests/apps/$app "$expected" \
+	time $PWD/tests/util/run-app $PWD/tests/apps/$app "$expected" \
 		|| fail "Unable to build app or app output not: $expected"
 }

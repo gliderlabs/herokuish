@@ -1,31 +1,36 @@
 
 source "$(dirname $BASH_SOURCE)/../cedarish.sh"
 
-cedarish-run() {
+fn-source() {
+	# use this if you want to write tests 
+	# in functions instead of strings.
+	# see test-binary for trivial example
+	declare fn="$1"
+	declare -f $fn | tail -n +2
+}
+
+run-cedarish() {
+	declare name="$1" script="$2"
 	[[ -x "$PWD/build/linux/herokuish" ]] || {
 		echo "!! Tests need to be run from project root,"
 		echo "!! and Linux build needs to exist."
 		exit 127
 	}
 	check-cedarish || import-cedarish
-	declare -f $1 | tail -n +2 | docker run --rm -i -v "$PWD:/test" "$cedarish_image:$cedarish_version" bash
-	assertTrue "$1 failed" "$?"
+	docker run $([[ "$CI" ]] || echo "--rm") -v "$PWD:/mnt" \
+		"$cedarish_image:$cedarish_version" bash -c "$script" \
+		|| fail "$name exited non-zero"
 }
 
 test-binary() {
-	_testBinary() {
-		/test/build/linux/herokuish
-		exit
+	_test-binary() {
+		/mnt/build/linux/herokuish
 	}
-	cedarish-run _testBinary
+	run-cedarish "test-binary" "$(fn-source _test-binary)"
 }
 
 test-generate() {
-	_testGenerate() {
-		mkdir /app
-		/test/build/linux/herokuish slug generate
-		tar tzf /tmp/slug.tgz
-		exit
-	}
-	cedarish-run _testGenerate
+	run-cedarish "test-generate" "
+		/mnt/build/linux/herokuish slug generate
+		tar tzf /tmp/slug.tgz"
 }

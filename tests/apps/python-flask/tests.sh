@@ -1,6 +1,6 @@
 
 source "$(dirname $BASH_SOURCE)/../runner.sh"
 
-test-x-app-python-flask() {
+test-z1-app-python-flask() {
 	run-app-test python-flask "python-flask"
 }

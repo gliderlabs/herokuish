@@ -4,6 +4,7 @@ readonly slug_path="/tmp/slug.tgz"
 slug-import() {
 	declare desc="Import a gzipped slug tarball from URL or STDIN "
 	declare url="$1"
+	ensure-paths
 	if [[ "$(ls -A $app_path)" ]]; then
 		return 1
 	elif [[ "$url" ]]; then
@@ -15,6 +16,7 @@ slug-import() {
 
 slug-generate() {
 	declare desc="Generate a gzipped slug tarball from the current app"
+	ensure-paths
 	local compress_option="-z"
 	if which pigz > /dev/null; then
 		compress_option="--use-compress-program=pigz"
@@ -35,6 +37,7 @@ slug-generate() {
 slug-export() {
 	declare desc="Export generated slug tarball to URL (PUT) or STDOUT"
 	declare url="$1"
+	ensure-paths
 	if [[ ! -f "$slug_path" ]]; then
 		return 1
 	fi

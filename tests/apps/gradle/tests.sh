@@ -1,6 +1,6 @@
 
 source "$(dirname $BASH_SOURCE)/../runner.sh"
 
-test-x-app-gradle() {
+test-z2-app-gradle() {
 	run-app-test gradle "gradle"
 }
