@@ -1,12 +1,10 @@
-# herokuish
+# herokuish [![Circle CI](https://circleci.com/gh/gliderlabs/herokuish.png?style=shield)](https://circleci.com/gh/gliderlabs/herokuish)
 
 A command line tool for emulating Heroku build and runtime tasks in containers. 
 
 Herokuish is made for platform authors. The project consolidates and decouples Heroku compatibility logic (running buildpacks, parsing Procfile) and supporting workflow (importing/exporting slugs) from specific platform images like those in Dokku/Buildstep, Deis, Flynn, etc.
 
 The goal is to be the definitive, well maintained and heavily tested Heroku emulation utility shared by all. It is complemented by [progrium/cedarish](https://github.com/progrium/cedarish), which focuses on reproducing the base Heroku system image. Together they form a toolkit for achieving Heroku compatibility.
-
-[![Circle CI](https://circleci.com/gh/gliderlabs/herokuish.png?style=shield)](https://circleci.com/gh/gliderlabs/herokuish)
 
 ## Getting herokuish
 
@@ -19,7 +17,7 @@ RUN curl https://github.com/gliderlabs/herokuish/releases/download/v0.1.0/heroku
 		--silent -L | tar -xzC /bin
 ```
 
-It depends on Bash (4.0 or newer) and a handful of standard GNU utilties you probably have. It likely won't work on Busybox, though neither will any Heroku buildpacks.
+Herokuish depends on Bash (4.0 or newer) and a handful of standard GNU utilties you probably have. It likely won't work on Busybox, though neither will any Heroku buildpacks.
 
 ## Using herokuish
 
