@@ -33,6 +33,6 @@ cedarish-test() {
 	}
 	check-cedarish || import-cedarish
 	docker run $([[ "$CI" ]] || echo "--rm") -v "$PWD:/mnt" \
-		"$cedarish_image:$cedarish_version" bash -c "$script" \
+		"$cedarish_image:$cedarish_version" bash -c "set -e; $script" \
 		|| fail "$name exited non-zero"
 }
