@@ -15,15 +15,15 @@ slug-import() {
 
 slug-generate() {
 	declare desc="Generate a gzipped slug tarball from the current app"
-	local pigz_option
+	local compress_option="-z"
 	if which pigz > /dev/null; then
-		pigz_option="--use-compress-program=pigz"
+		compress_option="--use-compress-program=pigz"
 	fi
 	local slugignore_option
 	if [[ -f "$app_path/.slugignore" ]]; then
 		slugignore_option="-X $app_path/.slugignore"
 	fi
-	tar $pigz_option $slugignore_option \
+	tar $compress_option $slugignore_option \
 		--exclude='.git' \
 		-C "$app_path" \
 		-cf "$slug_path" \
