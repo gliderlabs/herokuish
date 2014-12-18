@@ -7,16 +7,16 @@ check-cedarish() {
 }
 
 download-cedarish() {
-	local version image
+	local version imagetag
 	version="$(docker version | head -1 | cut -d' ' -f 3)"
 	# CircleCI is running a fork of Docker 1.2
 	if [[ "${version:0:3}" == "1.2" ]]; then
-		image="$cedarish_image $cedarish_version"
+		imagetag="$cedarish_image $cedarish_version"
 	else
-		image="$cedarish_image:$cedarish_version"
+		imagetag="$cedarish_image:$cedarish_version"
 	fi
 	docker import \
 		"https://github.com/progrium/cedarish/releases/download/$cedarish_version/cedarish-cedar14_$cedarish_version.tar.gz" \
-		$image
+		$imagetag
 	echo
 }
