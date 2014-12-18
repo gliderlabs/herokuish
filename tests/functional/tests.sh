@@ -7,7 +7,7 @@ cedarish-run() {
 		echo "!! and Linux build needs to exist."
 		exit 127
 	}
-	check-cedarish || download-cedarish
+	check-cedarish || import-cedarish
 	declare -f $1 | tail -n +2 | docker run --rm -i -v "$PWD:/test" "$cedarish_image:$cedarish_version" bash
 }
 

@@ -11,7 +11,7 @@ readonly build_path="${BUILD_PATH:-/tmp/build}"
 readonly cache_path="${CACHE_PATH:-/tmp/cache}"
 readonly buildpack_path="${BUILDPACK_PATH:-/tmp/buildpacks}"
 
-readonly cedarish_version="v2"
+readonly cedarish_version="$(asset-cat include/cedarish.txt)"
 
 declare unprivileged_user="nobody"
 declare unprivileged_group="nogroup"

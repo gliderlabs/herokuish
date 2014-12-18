@@ -3,6 +3,8 @@ machine:
     - docker
 
 dependencies:
+  cache_directories:
+    - .cache
   pre:
     - docker version
     - make deps

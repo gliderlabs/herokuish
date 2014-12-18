@@ -22,7 +22,7 @@ main() {
 		exit 127
 	}
 	set -eo pipefail; [[ "$TRACE" ]] && set -x
-	check-cedarish || download-cedarish
+	check-cedarish || import-cedarish
 	check-buildpacks || download-buildpacks
 	[[ "$CI" ]] || rmflag="--rm"
 	docker run $rmflag -v "$app_abspath:/tmp/app" --volumes-from herokuish-buildpacks "$cedarish_image:$cedarish_version" bash -c "\
