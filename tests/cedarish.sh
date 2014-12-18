@@ -1,6 +1,6 @@
 
-declare cedarish_version="v2"
-declare cedarish_image="progrium/cedarish"
+readonly cedarish_version="v2"
+readonly cedarish_image="progrium/cedarish"
 
 check-cedarish() {
 	docker images | grep "$cedarish_image" | grep "$cedarish_version" > /dev/null

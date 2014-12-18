@@ -2,24 +2,29 @@
 
 source "$(dirname $BASH_SOURCE)/../cedarish.sh"
 
-readonly herokuish_root="$(dirname $(dirname $(dirname $PWD/${BASH_SOURCE/\.\//})))"
-readonly image="$cedarish_image:$cedarish_version"
-
 check-buildpacks() {
 	[[ "$(docker ps -qaf name=herokuish-buildpacks)" ]]
 }
 
 download-buildpacks() {
-	echo "$herokuish_root"
-	docker run --name herokuish-buildpacks -v /tmp/buildpacks -v "$herokuish_root:/mnt" "$image" /mnt/build/linux/herokuish buildpack install
+	docker run --name herokuish-buildpacks \
+		-v /tmp/buildpacks \
+		-v "$PWD:/mnt" \
+		"$cedarish_image:$cedarish_version" \
+		/mnt/build/linux/herokuish buildpack install
 }
 
 main() {
 	declare app_abspath="$1" expected_output="$2"
-	set -eo pipefail
+	[[ -x "$PWD/build/linux/herokuish" ]] || {
+		echo "!! Needs to be run from project root,"
+		echo "!! and Linux build needs to exist."
+		exit 127
+	}
+	set -eo pipefail; [[ "$TRACE" ]] && set -x
 	check-cedarish || download-cedarish
 	check-buildpacks || download-buildpacks
-	docker run --rm -v "$app_abspath:/tmp/app" --volumes-from herokuish-buildpacks "$image" bash -c "\
+	docker run --rm -v "$app_abspath:/tmp/app" --volumes-from herokuish-buildpacks "$cedarish_image:$cedarish_version" bash -c "\
 		rm -rf /app && cp -r /tmp/app /app
 		/mnt/build/linux/herokuish buildpack build
 		PORT=5678 /mnt/build/linux/herokuish procfile start web &
