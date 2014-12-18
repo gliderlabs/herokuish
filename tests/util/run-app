@@ -10,6 +10,7 @@ check-buildpacks() {
 }
 
 download-buildpacks() {
+	echo "$herokuish_root"
 	docker run --name herokuish-buildpacks -v /tmp/buildpacks -v "$herokuish_root:/mnt" "$image" /mnt/build/linux/herokuish buildpack install
 }
 
