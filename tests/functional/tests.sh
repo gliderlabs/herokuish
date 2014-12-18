@@ -9,6 +9,7 @@ cedarish-run() {
 	}
 	check-cedarish || import-cedarish
 	declare -f $1 | tail -n +2 | docker run --rm -i -v "$PWD:/test" "$cedarish_image:$cedarish_version" bash
+	assertTrue "$1 failed" "$?"
 }
 
 test-binary() {
@@ -17,4 +18,14 @@ test-binary() {
 		exit
 	}
 	cedarish-run _testBinary
+}
+
+test-generate() {
+	_testGenerate() {
+		mkdir /app
+		/test/build/linux/herokuish slug generate
+		tar tzf /tmp/slug.tgz
+		exit
+	}
+	cedarish-run _testGenerate
 }
