@@ -23,3 +23,16 @@ import-cedarish() {
 	fi
 	echo
 }
+
+cedarish-test() {
+	declare name="$1" script="$2"
+	[[ -x "$PWD/build/linux/herokuish" ]] || {
+		echo "!! Tests need to be run from project root,"
+		echo "!! and Linux build needs to exist."
+		exit 127
+	}
+	check-cedarish || import-cedarish
+	docker run $([[ "$CI" ]] || echo "--rm") -v "$PWD:/mnt" \
+		"$cedarish_image:$cedarish_version" bash -c "$script" \
+		|| fail "$name exited non-zero"
+}

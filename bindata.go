@@ -116,7 +116,7 @@ func include_cedarish_txt() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindata_file_info{name: "include/cedarish.txt", size: 3, mode: os.FileMode(420), modTime: time.Unix(1418873613, 0)}
+	info := bindata_file_info{name: "include/cedarish.txt", size: 3, mode: os.FileMode(420), modTime: time.Unix(1418874202, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }

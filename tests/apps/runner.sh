@@ -8,4 +8,5 @@ run-app-test() {
 	}
 	time $PWD/tests/util/run-app $PWD/tests/apps/$app "$expected" \
 		|| fail "Unable to build app or app output not: $expected"
+	echo
 }
