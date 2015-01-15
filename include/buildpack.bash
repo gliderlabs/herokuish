@@ -2,6 +2,7 @@
 buildpack-build() {
 	declare desc="Build an application using installed buildpacks"
 	ensure-paths
+	[[ "$USER" ]] || randomize-unprivileged
 	buildpack-setup > /dev/null
 	buildpack-execute | indent
 	procfile-types | indent
@@ -43,9 +44,9 @@ buildpack-setup() {
 	export STACK="cedar-14"
 	cp -r "$app_path/." "$build_path"
 	
-	# Dropped privileges
-	usermod --home $HOME nobody > /dev/null 2>&1
-	chown -R nobody:nogroup \
+	# Prepare dropped privileges
+	usermod --home "$HOME" "$unprivileged_user" > /dev/null 2>&1
+	chown -R "$unprivileged_user:$unprivileged_group" \
 		"$app_path" \
 		"$build_path" \
 		"$cache_path" \

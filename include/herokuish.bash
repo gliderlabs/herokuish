@@ -13,8 +13,8 @@ readonly buildpack_path="${BUILDPACK_PATH:-/tmp/buildpacks}"
 
 readonly cedarish_version="$(asset-cat include/cedarish.txt)"
 
-declare unprivileged_user="nobody"
-declare unprivileged_group="nogroup"
+declare unprivileged_user="$USER"
+declare unprivileged_group="${USER/nobody/nogroup}"
 
 ensure-paths() {
 	mkdir -p \
@@ -59,6 +59,32 @@ indent() {
 
 unprivileged() {
 	setuidgid "$unprivileged_user" "$@"
+}
+
+detect-unprivileged() {
+	unprivileged_user="$(stat -c %U "$app_path")"
+	unprivileged_group="${unprivileged_user/nobody/nogroup}"
+}
+
+randomize-unprivileged() {
+	local userid="$((RANDOM+1000))"
+	local username="u${userid}"
+
+	addgroup --quiet --gid "$userid" "$username"
+	adduser \
+		--shell /bin/bash \
+		--disabled-password \
+		--force-badname \
+		--no-create-home \
+		--uid "$userid" \
+		--gid "$userid" \
+		--gecos '' \
+		--quiet \
+		--home "$app_path" \
+		"$username"
+	
+	unprivileged_user="$username"
+	unprivileged_group="$username"
 }
 
 main() {

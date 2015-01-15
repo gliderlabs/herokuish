@@ -12,12 +12,12 @@ procfile-start() {
 }
 
 procfile-exec() {
-	declare desc="Run as random, unprivileged user with Heroku-like env"
-	cd "$app_path"
-	procfile-randomize-user
-	procfile-set-home
+	declare desc="Run as unprivileged user with Heroku-like env"
+	[[ "$USER" ]] || detect-unprivileged
+	procfile-setup-home
 	procfile-load-env
 	procfile-load-profile
+	cd "$app_path"
 	unprivileged /bin/bash -c "$(eval echo $@)"
 }
 
@@ -57,29 +57,8 @@ procfile-load-profile() {
 	hash -r
 }
 
-procfile-set-home() {
+procfile-setup-home() {
 	export HOME="$app_path"
 	usermod --home "$app_path" "$unprivileged_user" > /dev/null 2>&1
 	chown -R "$unprivileged_user:$unprivileged_group" "$app_path"
-}
-
-procfile-randomize-user() {
-	local userid="$((RANDOM+1000))"
-	local username="u${userid}"
-
-	addgroup --quiet --gid "$userid" "$username"
-	adduser \
-		--shell /bin/bash \
-		--disabled-password \
-		--force-badname \
-		--no-create-home \
-		--uid "$userid" \
-		--gid "$userid" \
-		--gecos '' \
-		--quiet \
-		--home "$app_path" \
-		"$username"
-	
-	unprivileged_user="$username"
-	unprivileged_group="$username"
 }
