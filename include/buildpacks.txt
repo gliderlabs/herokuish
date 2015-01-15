@@ -1,7 +1,7 @@
 https://github.com/heroku/heroku-buildpack-clojure        bc2bfd8
 https://github.com/heroku/heroku-buildpack-go             b261aab
 https://github.com/heroku/heroku-buildpack-gradle         743f73c
-https://github.com/heroku/heroku-buildpack-java           v28
+https://github.com/heroku/heroku-buildpack-java           v33
 https://github.com/heroku/heroku-buildpack-multi          cddec34
 https://github.com/heroku/heroku-buildpack-nodejs         v60
 https://github.com/heroku/heroku-buildpack-php            v43
