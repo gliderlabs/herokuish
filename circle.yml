@@ -6,6 +6,8 @@ dependencies:
   cache_directories:
     - .cache
   pre:
+    # CircleCI replaces all github url, which breaks go get
+    - echo "" > ~/.gitconfig
     - docker version
     - make deps
   override:

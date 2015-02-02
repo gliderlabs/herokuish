@@ -1,0 +1,22 @@
+{
+	"ImportPath": "github.com/gliderlabs/herokuish",
+	"GoVersion": "go1.4.1",
+	"Packages": [
+		"./..."
+	],
+	"Deps": [
+		{
+			"ImportPath": "bitbucket.org/kardianos/osext",
+			"Comment": "null-15",
+			"Rev": "44140c5fc69ecf1102c5ef451d73cd98ef59b178"
+		},
+		{
+			"ImportPath": "github.com/progrium/go-basher",
+			"Rev": "ed7ac329f1a48b8c26cdf924cb1a2d797737b050"
+		},
+		{
+			"ImportPath": "gopkg.in/yaml.v2",
+			"Rev": "5d6f7e02b7cdad63b06ab3877915532cd30073b4"
+		}
+	]
+}

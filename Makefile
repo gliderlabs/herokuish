@@ -6,13 +6,13 @@ CEDARISH=v2
 build:
 	echo "$(CEDARISH)" > include/cedarish.txt
 	go-bindata include
-	mkdir -p build/linux  && GOOS=linux  go build -ldflags "-X main.Version $(VERSION)" -o build/linux/$(NAME)
-	mkdir -p build/darwin && GOOS=darwin go build -ldflags "-X main.Version $(VERSION)" -o build/darwin/$(NAME)
+	mkdir -p build/linux  && GOOS=linux  godep go build -ldflags "-X main.Version $(VERSION)" -o build/linux/$(NAME)
+	mkdir -p build/darwin && GOOS=darwin godep go build -ldflags "-X main.Version $(VERSION)" -o build/darwin/$(NAME)
 
 deps: .cache/cedarish_$(CEDARISH).tgz
+	go get github.com/tools/godep
 	go get -u github.com/jteeuwen/go-bindata/...
 	go get -u github.com/progrium/gh-release/...
-	go get || true
 
 .cache/cedarish_$(CEDARISH).tgz:
 	mkdir -p .cache
