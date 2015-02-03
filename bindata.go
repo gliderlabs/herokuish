@@ -76,12 +76,12 @@ func include_buildpack_bash() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindata_file_info{name: "include/buildpack.bash", size: 3008, mode: os.FileMode(420), modTime: time.Unix(1421346661, 0)}
+	info := bindata_file_info{name: "include/buildpack.bash", size: 3008, mode: os.FileMode(420), modTime: time.Unix(1423000598, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
 
-var _include_buildpacks_txt = []byte("\x1f\x8b\x08\x00\x00\x09\x6e\x88\x00\xff\x94\x90\x31\x92\x85\x20\x10\x44\x73\x4f\xe1\x05\x5c\x57\x70\xd5\xda\xdb\x0c\xc3\x28\x2a\x0a\x85\x40\x95\xb7\xff\x89\xf5\x25\x9d\x4e\x88\xde\xeb\x66\x4c\x8c\xfe\xfa\x6f\xdb\x65\x8d\x26\xa9\x1f\x74\x47\x6b\x28\xb8\x3d\x3d\x4f\xa3\xd2\x6a\xb5\x07\xdc\x1b\xb4\x6e\x4b\x81\xea\x27\x0a\x85\x9a\xf5\x54\x31\x0c\x8b\xab\xcb\x28\x31\x74\x00\x8a\x65\x08\xa0\xed\x77\x42\x3d\xf6\x72\x1e\x25\x72\x0c\x1b\x64\x28\x36\x64\x29\x39\xf4\x91\x6c\x5c\x5f\x1a\xb5\x26\x94\x3d\xc7\x70\x3a\x4d\xdb\xf5\xf6\x0f\xbf\x1c\xda\x1b\x5f\x5e\x30\xf7\xac\xf5\xde\xc2\x5d\xd0\x48\xa4\x69\x1a\x58\x86\x3b\x1a\x77\xbe\xfd\x7f\x82\x43\x87\xa4\xca\xfe\xdc\x89\x91\x83\x5f\x08\x16\xca\xcf\x77\xd5\x27\x00\x00\xff\xff\x18\xb8\xea\x1e\xbf\x02\x00\x00")
+var _include_buildpacks_txt = []byte("\x1f\x8b\x08\x00\x00\x09\x6e\x88\x00\xff\x94\xd0\x41\x12\x83\x20\x0c\x05\xd0\xbd\xa7\xf0\x02\xd6\x0a\x56\x3b\xbd\x4d\x12\x50\x54\x14\x06\xc1\x19\x6f\xdf\x8d\x53\xe9\x32\xd9\xb0\x7a\x3f\x9f\x98\x18\xfd\xfe\xa9\xeb\x71\x8a\x26\xe1\x83\xdc\x5a\x1b\x1d\xdc\x92\xae\xa7\xc2\x34\x59\xe5\x81\x96\x8a\xac\x9b\x53\xd0\xe5\x35\x48\x02\x07\xf5\x2e\x18\x09\xa3\x2b\xf3\x41\xd1\x35\x00\xc8\x4a\x08\xa0\xec\xaf\x42\xd9\xb7\x72\xe8\x25\x71\x12\x66\x38\x20\xeb\x70\x48\xc9\xd1\x6b\xb2\x71\xba\x35\x29\xa5\x49\xb6\x9c\x84\xcd\x29\x3d\xef\xf7\xfe\xee\xc9\xd1\xde\xf8\xfc\x82\x47\xcb\x6a\xef\x2d\x9c\xb9\x16\x3c\x7d\x46\xe3\xb6\x5b\xbf\x04\x47\x87\x84\x7f\xbb\x1b\xd1\x73\xf8\x4e\x60\x21\xff\x78\x53\x7c\x03\x00\x00\xff\xff\x0f\x7a\x75\xda\xbb\x02\x00\x00")
 
 func include_buildpacks_txt_bytes() ([]byte, error) {
 	return bindata_read(
@@ -96,7 +96,7 @@ func include_buildpacks_txt() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindata_file_info{name: "include/buildpacks.txt", size: 703, mode: os.FileMode(420), modTime: time.Unix(1421340737, 0)}
+	info := bindata_file_info{name: "include/buildpacks.txt", size: 699, mode: os.FileMode(420), modTime: time.Unix(1423000598, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -116,7 +116,7 @@ func include_cedarish_txt() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindata_file_info{name: "include/cedarish.txt", size: 3, mode: os.FileMode(420), modTime: time.Unix(1422986651, 0)}
+	info := bindata_file_info{name: "include/cedarish.txt", size: 3, mode: os.FileMode(420), modTime: time.Unix(1423000602, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -136,7 +136,7 @@ func include_cmd_bash() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindata_file_info{name: "include/cmd.bash", size: 1604, mode: os.FileMode(420), modTime: time.Unix(1416876705, 0)}
+	info := bindata_file_info{name: "include/cmd.bash", size: 1604, mode: os.FileMode(420), modTime: time.Unix(1422884875, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -156,7 +156,7 @@ func include_fn_bash() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindata_file_info{name: "include/fn.bash", size: 547, mode: os.FileMode(420), modTime: time.Unix(1416714978, 0)}
+	info := bindata_file_info{name: "include/fn.bash", size: 547, mode: os.FileMode(420), modTime: time.Unix(1422884875, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -176,7 +176,7 @@ func include_herokuish_bash() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindata_file_info{name: "include/herokuish.bash", size: 2774, mode: os.FileMode(420), modTime: time.Unix(1421351057, 0)}
+	info := bindata_file_info{name: "include/herokuish.bash", size: 2774, mode: os.FileMode(420), modTime: time.Unix(1422999670, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -196,7 +196,7 @@ func include_procfile_bash() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindata_file_info{name: "include/procfile.bash", size: 1580, mode: os.FileMode(420), modTime: time.Unix(1421347263, 0)}
+	info := bindata_file_info{name: "include/procfile.bash", size: 1580, mode: os.FileMode(420), modTime: time.Unix(1422999670, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
@@ -216,7 +216,7 @@ func include_slug_bash() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindata_file_info{name: "include/slug.bash", size: 1139, mode: os.FileMode(420), modTime: time.Unix(1418873487, 0)}
+	info := bindata_file_info{name: "include/slug.bash", size: 1139, mode: os.FileMode(420), modTime: time.Unix(1422884875, 0)}
 	a := &asset{bytes: bytes, info:  info}
 	return a, nil
 }
