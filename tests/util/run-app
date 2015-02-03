@@ -7,7 +7,7 @@ check-buildpacks() {
 }
 
 download-buildpacks() {
-	docker run --name herokuish-buildpacks \
+	time docker run --name herokuish-buildpacks \
 		-v /tmp/buildpacks \
 		-v "$PWD:/mnt" \
 		"$cedarish_image:$cedarish_version" \
