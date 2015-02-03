@@ -12,7 +12,7 @@ import (
 
 var Version string
 
-func YamlKeys(args []string) int {
+func YamlKeys(args []string) {
 	bytes, err := ioutil.ReadAll(os.Stdin)
 	if err != nil {
 		log.Fatal(err)
@@ -34,10 +34,9 @@ func YamlKeys(args []string) int {
 			fmt.Printf("%s\n", key)
 		}
 	}
-	return 0
 }
 
-func YamlGet(args []string) int {
+func YamlGet(args []string) {
 	bytes, err := ioutil.ReadAll(os.Stdin)
 	if err != nil {
 		log.Fatal(err)
@@ -65,23 +64,21 @@ func YamlGet(args []string) int {
 			fmt.Printf("%s\n", v)
 		}
 	}
-	return 0
 }
 
-func AssetCat(args []string) int {
+func AssetCat(args []string) {
 	for _, asset := range args {
 		data, err := Asset(asset)
 		if err != nil {
-			return 2
+			os.Exit(2)
 		}
 		os.Stdout.Write(data)
 	}
-	return 0
 }
 
 func main() {
 	os.Setenv("VERSION", Version)
-	basher.Application(map[string]func([]string) int{
+	basher.Application(map[string]func([]string){
 		"yaml-keys": YamlKeys,
 		"yaml-get":  YamlGet,
 		"asset-cat": AssetCat,
