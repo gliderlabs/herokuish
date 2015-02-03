@@ -7,7 +7,7 @@ dependencies:
     - .cache
   pre:
     - docker version
-    - > ~/.gitconfig
+    - rm ~/.gitconfig
     - make deps
   override:
     - make build
