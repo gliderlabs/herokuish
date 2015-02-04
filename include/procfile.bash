@@ -33,7 +33,10 @@ procfile-types() {
 		local default_types
 		default_types="$(cat $app_path/.release | yaml-keys default_process_types | xargs echo)"
 		[[ "$default_types" ]] && \
-			echo "Default process types for $selected_name -> ${default_types// /, }"
+			echo "Default types for $selected_name -> ${default_types// /, }"
+		for type in $default_types; do
+			echo "$type: $(cat $app_path/.release | yaml-get default_process_types $type)" >> "$app_path/Procfile"
+		done
 		return
 	fi
 	echo "No process types found"
