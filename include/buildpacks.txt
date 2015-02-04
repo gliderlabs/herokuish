@@ -5,7 +5,7 @@ https://github.com/heroku/heroku-buildpack-java           v33
 https://github.com/heroku/heroku-buildpack-multi          cddec34
 https://github.com/heroku/heroku-buildpack-nodejs         v60
 https://github.com/heroku/heroku-buildpack-php            v43
-https://github.com/heroku/heroku-buildpack-play           ceede86
+https://github.com/heroku/heroku-buildpack-play           v23
 https://github.com/heroku/heroku-buildpack-python         v52
 https://github.com/heroku/heroku-buildpack-ruby           v127
 https://github.com/heroku/heroku-buildpack-scala          v41
