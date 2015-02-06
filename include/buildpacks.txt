@@ -1,6 +1,7 @@
 https://github.com/heroku/heroku-buildpack-clojure        v63
 https://github.com/heroku/heroku-buildpack-go             b261aab
 https://github.com/heroku/heroku-buildpack-gradle         v12
+https://github.com/heroku/heroku-buildpack-grails         1ef927d
 https://github.com/heroku/heroku-buildpack-java           v33
 https://github.com/heroku/heroku-buildpack-multi          cddec34
 https://github.com/heroku/heroku-buildpack-nodejs         v64

@@ -43,7 +43,7 @@ buildpack-setup() {
 	export REQUEST_ID="build-$RANDOM"
 	export STACK="cedar-14"
 	cp -r "$app_path/." "$build_path"
-	
+
 	# Prepare dropped privileges
 	usermod --home "$HOME" "$unprivileged_user" > /dev/null 2>&1
 	chown -R "$unprivileged_user:$unprivileged_group" \
@@ -64,7 +64,7 @@ buildpack-setup() {
 buildpack-execute() {
 	if [[ -n "$BUILDPACK_URL" ]]; then
 		title "Fetching custom buildpack"
-		
+
 		selected_path="$buildpack_path/custom"
 		rm -rf "$selected_path"
 
@@ -94,6 +94,7 @@ buildpack-execute() {
 		exit 1
 	fi
 
+	cd "$build_path"
 	# TODO: test if this is necessary or if we can always pass $env_path without issue
 	if [[ "$(ls -A $env_path)" ]]; then
 		unprivileged "$selected_path/bin/compile" "$build_path" "$cache_path" "$env_path"
@@ -101,6 +102,7 @@ buildpack-execute() {
 		unprivileged "$selected_path/bin/compile" "$build_path" "$cache_path"
 	fi
 	unprivileged "$selected_path/bin/release" "$build_path" "$cache_path" > "$build_path/.release"
+	cd - > /dev/null
 
 	shopt -s dotglob nullglob
 	rm -rf $app_path/*
