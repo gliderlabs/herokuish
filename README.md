@@ -13,8 +13,8 @@ Download and uncompress the latest binary tarball from [releases](https://github
 For example, you can do this directly in your Dockerfiles installing into `/bin` as one step:
 
 ```
-RUN curl http://dl.gliderlabs.com/herokuish/latest/linux_x86_64.tgz \
-		--silent -L | tar -xzC /bin
+RUN curl --silent http://dl.gliderlabs.com/herokuish/latest/linux_x86_64.tgz \
+		  | tar -xzC /bin
 ```
 
 Herokuish depends on Bash (4.0 or newer) and a handful of standard GNU utilties you probably have. It likely won't work on Busybox, though neither will any Heroku buildpacks.
@@ -116,6 +116,8 @@ slug-export ()
 Pull requests are welcome! Herokuish is written in Bash and Go. Please conform to the [Bash styleguide](https://github.com/progrium/bashstyle) used for this project when writing Bash.
 
 Developers should have Go installed with cross-compile support for Darwin and Linux. Tests will require Docker to be available. If you have OS X, we recommend boot2docker.
+
+For help and discussion beyond Github Issues, join us on Freenode in `#gliderlabs`.
 
 ## Releases
 
