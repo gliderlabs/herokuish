@@ -20,10 +20,16 @@ buildpack-install() {
 	fi
 	local target_path="$buildpack_path/${name:-$(basename $url)}"
 	if [[ "$commit" ]]; then
-		git clone "$url" "$target_path"
-		cd "$target_path"
-		git checkout --quiet "$commit"
-		cd - > /dev/null
+		if ! git clone --branch "$commit" --quiet --depth 1 "$url" "$target_path" &>/dev/null; then
+			# if the shallow clone failed partway through, clean up and try a full clone
+			rm -rf "$target_path"
+			git clone "$url" "$target_path"
+			cd "$target_path"
+			git checkout --quiet "$commit"
+			cd - > /dev/null
+		else
+			echo "Cloned into '$target_path'..."
+		fi
 	else
 		git clone --depth=1 "$url" "$target_path"
 	fi
