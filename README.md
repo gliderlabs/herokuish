@@ -117,6 +117,10 @@ Pull requests are welcome! Herokuish is written in Bash and Go. Please conform t
 
 Developers should have Go installed with cross-compile support for Darwin and Linux. Tests will require Docker to be available. If you have OS X, we recommend boot2docker.
 
+## Releases
+
+Anybody can propose a release. First bump the version in `Makefile`, make sure `CHANGELOG.md` is up to date, and make sure tests are passing. Then open a Pull Request from `master` into the `release` branch. Once a maintainer approves and merges, CircleCI will build a release and upload it to Github.
+
 ## Acknowledgements
 
 This project was sponsored and made possible by the [Deis Project](http://deis.io).

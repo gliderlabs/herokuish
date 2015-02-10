@@ -1,6 +1,6 @@
 NAME=herokuish
 HARDWARE=$(shell uname -m)
-VERSION=0.1.0
+VERSION=0.2.0
 CEDARISH=v2
 
 build:
@@ -33,4 +33,4 @@ release: build
 	tar -zcf release/$(NAME)_$(VERSION)_darwin_$(HARDWARE).tgz -C build/darwin $(NAME)
 	gh-release create gliderlabs/$(NAME) $(VERSION) $(shell git rev-parse --abbrev-ref HEAD)
 
-.PHONY: build test test-functional test-apps release deps
+.PHONY: build

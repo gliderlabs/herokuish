@@ -28,7 +28,7 @@ buildpack-install() {
 			git checkout --quiet "$commit"
 			cd - > /dev/null
 		else
-			echo "Cloned into '$target_path'..."
+			echo "Cloning into '$target_path'..."
 		fi
 	else
 		git clone --depth=1 "$url" "$target_path"
