@@ -9,9 +9,8 @@ check-buildpacks() {
 download-buildpacks() {
 	time docker run --name herokuish-buildpacks \
 		-v /tmp/buildpacks \
-		-v "$PWD:/mnt" \
-		"$cedarish_image:$cedarish_version" \
-		/mnt/build/linux/herokuish buildpack install
+		gliderlabs/herokuish \
+		herokuish buildpack install
 }
 
 main() {
@@ -22,13 +21,12 @@ main() {
 		exit 127
 	}
 	set -eo pipefail; [[ "$TRACE" ]] && set -x
-	check-cedarish || import-cedarish
 	check-buildpacks || download-buildpacks
 	[[ "$CI" ]] || rmflag="--rm"
-	docker run $rmflag -v "$app_abspath:/tmp/app" --volumes-from herokuish-buildpacks "$cedarish_image:$cedarish_version" bash -c "\
+	docker run $rmflag -v "$app_abspath:/tmp/app" --volumes-from herokuish-buildpacks gliderlabs/herokuish bash -c "\
 		rm -rf /app && cp -r /tmp/app /app
-		/mnt/build/linux/herokuish buildpack build
-		PORT=5678 /mnt/build/linux/herokuish procfile start web &
+		herokuish buildpack build
+		PORT=5678 herokuish procfile start web &
 		for retry in \$(seq 1 10); do sleep 1 && nc -z -w 5 localhost 5678 && break; done
 		output=\"\$(curl --retry 3 -v -s localhost:5678)\"
 		sleep 1

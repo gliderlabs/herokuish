@@ -31,8 +31,7 @@ cedarish-test() {
 		echo "!! and Linux build needs to exist."
 		exit 127
 	}
-	check-cedarish || import-cedarish
-	docker run $([[ "$CI" ]] || echo "--rm") -v "$PWD:/mnt" \
-		"$cedarish_image:$cedarish_version" bash -c "set -e; $script" \
+	docker run $([[ "$CI" ]] || echo "--rm") \
+		gliderlabs/herokuish bash -c "set -e; $script" \
 		|| fail "$name exited non-zero"
 }

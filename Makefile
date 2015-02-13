@@ -9,10 +9,16 @@ build:
 	mkdir -p build/linux  && GOOS=linux  go build -ldflags "-X main.Version $(VERSION)" -o build/linux/$(NAME)
 	mkdir -p build/darwin && GOOS=darwin go build -ldflags "-X main.Version $(VERSION)" -o build/darwin/$(NAME)
 
-deps: .cache/cedarish_$(CEDARISH).tgz
+deps: .cache/cedarish_$(CEDARISH).tgz import-cedarish
 	go get -u github.com/jteeuwen/go-bindata/...
 	go get -u github.com/progrium/gh-release/...
 	go get || true
+
+build-container: build
+	docker build -t gliderlabs/herokuish .
+
+import-cedarish:
+	cat .cache/cedarish_$(CEDARISH).tgz | docker import - "progrium/cedarish:cedar14"
 
 .cache/cedarish_$(CEDARISH).tgz:
 	mkdir -p .cache
@@ -21,10 +27,10 @@ deps: .cache/cedarish_$(CEDARISH).tgz
 
 test: test-functional test-apps
 
-test-functional: build
+test-functional: build-container
 	tests/shunit2 tests/*/tests.sh
 
-test-apps: build
+test-apps: build-container
 	tests/shunit2 tests/apps/*/tests.sh
 
 release: build
