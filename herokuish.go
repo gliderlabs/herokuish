@@ -77,7 +77,7 @@ func AssetCat(args []string) {
 }
 
 func main() {
-	os.Setenv("VERSION", Version)
+	os.Setenv("HEROKUISH_VERSION", Version)
 	basher.Application(map[string]func([]string){
 		"yaml-keys": YamlKeys,
 		"yaml-get":  YamlGet,
