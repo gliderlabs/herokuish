@@ -1,13 +1,15 @@
-import com.typesafe.startscript.StartScriptPlugin
+import NativePackagerKeys._
 
-seq(StartScriptPlugin.startScriptForClassesSettings: _*)
+packageArchetype.java_application
 
 name := "hello"
 
 version := "1.0"
 
-scalaVersion := "2.11.1"
+scalaVersion := "2.10.4"
 
-resolvers += "twitter-repo" at "http://maven.twttr.com"
+mainClass in Compile := Some("Web")
 
-libraryDependencies ++= Seq("com.twitter" % "finagle-core" % "1.9.0", "com.twitter" % "finagle-http" % "1.9.0")
+libraryDependencies ++= Seq(
+  "com.twitter" % "finagle-http_2.10" % "6.18.0"
+)

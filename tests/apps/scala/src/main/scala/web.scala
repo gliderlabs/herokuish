@@ -1,21 +1,17 @@
-import org.jboss.netty.handler.codec.http.{HttpRequest, HttpResponse}
-import com.twitter.finagle.builder.ServerBuilder
-import com.twitter.finagle.http.{Http, Response}
-import com.twitter.finagle.Service
-import com.twitter.util.Future
+import com.twitter.finagle.{Http, Service}
+import com.twitter.util.{Await, Future}
+import com.twitter.finagle.http.Response
 import java.net.InetSocketAddress
+import org.jboss.netty.handler.codec.http._
 import util.Properties
 
 object Web {
   def main(args: Array[String]) {
     val port = Properties.envOrElse("PORT", "8080").toInt
     println("Starting on port:"+port)
-    ServerBuilder()
-      .codec(Http())
-      .name("hello-server")
-      .bindTo(new InetSocketAddress(port))
-      .build(new Hello)
-    println("Started.")
+
+    val server = Http.serve(":" + port, new Hello)
+    Await.ready(server)
   }
 }
 
