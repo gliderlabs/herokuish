@@ -1,5 +1,5 @@
 
-readonly cedarish_version="v3"
+readonly cedarish_version="$(cat $PWD/upstream/cedarish)"
 readonly cedarish_image="progrium/cedarish"
 readonly cedarish_url="https://github.com/progrium/cedarish/releases/download/$cedarish_version/cedarish-cedar14_$cedarish_version.tar.gz"
 

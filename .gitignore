@@ -2,4 +2,5 @@ release
 build
 .cache
 include/cedarish.txt
+include/buildpacks.txt
 bindata.go

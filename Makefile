@@ -1,10 +1,13 @@
 NAME=herokuish
 HARDWARE=$(shell uname -m)
+CEDARISH=$(shell cat upstream/cedarish)
 VERSION=0.2.0
-CEDARISH=v3
 
 build:
 	echo "$(CEDARISH)" > include/cedarish.txt
+	cd upstream && grep "" buildpack-* \
+		| awk -F":" '{print "https://github.com/heroku/heroku-"$$1" "$$2}' \
+		> ../include/buildpacks.txt
 	go-bindata include
 	mkdir -p build/linux  && GOOS=linux  go build -ldflags "-X main.Version $(VERSION)" -o build/linux/$(NAME)
 	mkdir -p build/darwin && GOOS=darwin go build -ldflags "-X main.Version $(VERSION)" -o build/darwin/$(NAME)
