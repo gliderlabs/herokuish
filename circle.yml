@@ -10,7 +10,7 @@ dependencies:
     - rm ~/.gitconfig
     - make deps
   override:
-    - make build
+    - make build-container
 
 test:
   override:
