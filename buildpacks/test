@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# called by test.sh stub in app tests
+app-test() {
+  declare app="$1"
+  eval "
+    T_$app() {
+      run-test $app
+    }
+  "
+}
+
+# runs the generic app test
+run-test() {
+  declare app="$1"
+  local buildpack="buildpack-${1%%-*}"
+  cd "$(dirname $BASH_SOURCE)"
+  local app_path="$PWD/$buildpack/tests/$app"
+  cd - &> /dev/null
+	[[ "$CI" ]] || rmflag="--rm"
+	docker run $rmflag -v "$app_path:/tmp/app" herokuish:dev /bin/herokuish test / "$app"
+}
+
+main() {
+  case "$#" in
+    0)  # no args, run all the tests!
+        cd "$(dirname $BASH_SOURCE)"
+        basht $PWD/buildpack*/tests/*/test.sh
+        ;;
+
+    1)  # one arg, expect name of buildpack to test
+        cd "$(dirname $BASH_SOURCE)"
+        basht $PWD/$1/tests/*/test.sh
+        ;;
+
+    *)  # more args, pass directly to basht
+        basht "$@"
+        ;;
+  esac
+}
+
+[[ "$0" == "$BASH_SOURCE" ]] && main "$@"
