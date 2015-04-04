@@ -1,34 +1,32 @@
 NAME=herokuish
 HARDWARE=$(shell uname -m)
-CEDARISH=$(shell cat upstream/cedarish)
 VERSION=0.2.0
 
 build:
-	echo "$(CEDARISH)" > include/cedarish.txt
-	cd upstream && grep "" buildpack-* \
-		| awk -F":" '{print "https://github.com/heroku/heroku-"$$1" "$$2}' \
-		> ../include/buildpacks.txt
+	cat buildpacks/*/buildpack* | sed 'N;s/\n/ /' > include/buildpacks.txt
 	go-bindata include
 	mkdir -p build/linux  && GOOS=linux  go build -ldflags "-X main.Version $(VERSION)" -o build/linux/$(NAME)
 	mkdir -p build/darwin && GOOS=darwin go build -ldflags "-X main.Version $(VERSION)" -o build/darwin/$(NAME)
+ifeq ($(CIRCLECI),true)
+	docker build -t $(NAME):dev .
+else
+	docker build -f Dockerfile.dev -t $(NAME):dev .
+endif
 
-deps: .cache/cedarish_$(CEDARISH).tgz
+deps:
+	docker pull progrium/cedarish:latest
 	go get -u github.com/jteeuwen/go-bindata/...
 	go get -u github.com/progrium/gh-release/...
+	go get -u github.com/progrium/basht/...
 	go get || true
 
-.cache/cedarish_$(CEDARISH).tgz:
-	mkdir -p .cache
-	curl -L https://github.com/progrium/cedarish/releases/download/$(CEDARISH)/cedarish-cedar14_$(CEDARISH).tar.gz \
-		> .cache/cedarish_$(CEDARISH).tgz
+test:
+	basht tests/*/tests.sh
 
-test: test-functional test-apps
-
-test-functional: build
-	tests/shunit2 tests/*/tests.sh
-
-test-apps: build
-	tests/shunit2 tests/apps/*/tests.sh
+circleci:
+	docker version
+	rm ~/.gitconfig
+	mv Dockerfile.dev Dockerfile
 
 release: build
 	rm -rf release && mkdir release
