@@ -99,17 +99,19 @@ herokuish-test() {
 	for retry in $(seq 1 10); do
 		sleep 1 && nc -z -w 5 localhost $PORT && break
 	done
-	echo "::: CURLING APP :::"
+	echo "::: CHECKING APP :::"
 	local output
 	output="$(curl --fail --retry 3 -v -s localhost:${PORT}$path)"
-	sleep 1
-	echo "::: APP OUTPUT :::"
-	echo -e "$output"
-	if [[ "$expected" && "$output" != "$expected" ]]; then
-		echo "::: TEST FAILED :::"
-		exit 2
+	if [[ "$expected" ]]; then
+		sleep 1
+		echo "::: APP OUTPUT :::"
+		echo -e "$output"
+		if [[ "$output" != "$expected" ]]; then
+			echo "::: TEST FAILED :::"
+			exit 2
+		fi
 	fi
-	echo "::: TEST SUCCESS :::"
+	echo "::: TEST FINISHED :::"
 }
 
 

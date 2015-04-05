@@ -3,7 +3,7 @@ herokuish-test() {
 	declare name="$1" script="$2"
 	docker run $([[ "$CI" ]] || echo "--rm") -v "$PWD:/mnt" \
 		"herokuish:dev" bash -c "set -e; $script" \
-		|| fail "$name exited non-zero"
+		|| $T_fail "$name exited non-zero"
 }
 
 fn-source() {
