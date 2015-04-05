@@ -121,10 +121,19 @@ issue or an issue with Dokku. Buildpack issues should be filed against Herokuish
 #### Running an app against Herokuish
 
 ```
-$ docker run --rm -v /abs/path/to/app:/tmp/app gliderlabs/herokuish /bin/herokuish test
+$ docker run --rm -v /abs/app/path:/tmp/app gliderlabs/herokuish /bin/herokuish test
 ```
 
 Mounting your local app source directory to `/tmp/app` and running `/bin/herokuish test` will run your app through the buildpack compile process. Then it starts your `web` process and attempts to connect to the web root path. If it runs into a problem, it should exit non-zero.
+
+```
+::: BUILDING APP :::
+-----> Ruby app detected
+-----> Compiling Ruby/Rack
+-----> Using Ruby version: ruby-1.9.3
+  ...
+	
+```
 
 You can use this output when you submit issues.
 
