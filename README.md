@@ -6,6 +6,8 @@ Herokuish is made for platform authors. The project consolidates and decouples H
 
 The goal is to be the definitive, well maintained and heavily tested Heroku emulation utility shared by all. It is complemented by [progrium/cedarish](https://github.com/progrium/cedarish), which focuses on reproducing the base Heroku system image. Together they form a toolkit for achieving Heroku compatibility.
 
+Herokuish is a community project and is in no way affiliated with Heroku.
+
 ## Getting herokuish
 
 Download and uncompress the latest binary tarball from [releases](https://github.com/gliderlabs/herokuish/releases).
@@ -156,6 +158,8 @@ This project was sponsored and made possible by the [Deis Project](http://deis.i
 That said, herokuish was designed based on the experience developing and re-developing Heroku compatibility in Dokku, Deis, and Flynn. Herokuish is based on code from all three projects, as such, thank you to all the contributors of those projects.
 
 In fact, since I hope this is the final implementation of Heroku emulation I'm involved with, I'd like to finally thank Matt Freeman ([@nonuby](https://twitter.com/nonuby)). I've been more or less copy-and-pasting code he originally wrote for the now defunct [OpenRoku](https://github.com/openruko) since 2012.
+
+Lastly, thank you Heroku for pioneering such a great platform and inspiring all of us to try and take it further.
 
 ## License
 
