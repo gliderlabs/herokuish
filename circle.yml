@@ -3,21 +3,22 @@ machine:
     - docker
 
 dependencies:
-  cache_directories:
-    - .cache
   pre:
-    - docker version
-    - rm ~/.gitconfig
+    - make circleci
     - make deps
   override:
     - make build
 
 test:
   override:
-    - tests/shunit2:
+    - basht:
         parallel: true
         files:
           - tests/**/tests.sh
+    - basht:
+        parallel: true
+        files:
+          - buildpacks/*/tests/*/test.sh
 
 deployment:
   release:

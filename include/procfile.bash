@@ -52,6 +52,9 @@ procfile-load-env() {
 
 procfile-load-profile() {
 	shopt -s nullglob
+	for file in /etc/profile.d/*.sh; do
+		source "$file"
+	done
 	mkdir -p "$app_path/.profile.d"
 	for file in $app_path/.profile.d/*.sh; do
 		source "$file"

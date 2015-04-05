@@ -1,6 +1,6 @@
 # herokuish [![Circle CI](https://circleci.com/gh/gliderlabs/herokuish.png?style=shield)](https://circleci.com/gh/gliderlabs/herokuish)
 
-A command line tool for emulating Heroku build and runtime tasks in containers. 
+A command line tool for emulating Heroku build and runtime tasks in containers.
 
 Herokuish is made for platform authors. The project consolidates and decouples Heroku compatibility logic (running buildpacks, parsing Procfile) and supporting workflow (importing/exporting slugs) from specific platform images like those in Dokku/Buildstep, Deis, Flynn, etc.
 
@@ -8,13 +8,13 @@ The goal is to be the definitive, well maintained and heavily tested Heroku emul
 
 ## Getting herokuish
 
-Download and uncompress the latest binary tarball from [releases](https://github.com/gliderlabs/herokuish/releases). 
+Download and uncompress the latest binary tarball from [releases](https://github.com/gliderlabs/herokuish/releases).
 
 For example, you can do this directly in your Dockerfiles installing into `/bin` as one step:
 
 ```
-RUN curl http://dl.gliderlabs.com/herokuish/latest/linux_x86_64.tgz \
-		--silent -L | tar -xzC /bin
+RUN curl --silent http://dl.gliderlabs.com/herokuish/latest/linux_x86_64.tgz \
+		  | tar -xzC /bin
 ```
 
 Herokuish depends on Bash (4.0 or newer) and a handful of standard GNU utilties you probably have. It likely won't work on Busybox, though neither will any Heroku buildpacks.
@@ -34,18 +34,19 @@ Available commands:
   help                     Shows help information for a command
   paths                    Shows path settings
   procfile                 Use Procfiles and run app commands
-    exec                     Run as random, unprivileged user with Heroku-like env
+    exec                     Run as unprivileged user with Heroku-like env
     parse                    Get command string for a process type from Procfile
     start                    Run process type command from Procfile through exec
   slug                     Manage application slugs
     export                   Export generated slug tarball to URL (PUT) or STDOUT
     generate                 Generate a gzipped slug tarball from the current app
     import                   Import a gzipped slug tarball from URL or STDIN
+  test                     Test running an app through Herokuish
   version                  Show version and supported version info
 
 ```
 
-Main functionality revolves around buildpack commands, procfile/exec commands, and slug commands. They are made to work together, but can be used independently or not at all. 
+Main functionality revolves around buildpack commands, procfile/exec commands, and slug commands. They are made to work together, but can be used independently or not at all.
 
 For example, build processes that produce Docker images without producing intermediary slugs can ignore slug commands. Similarly, non-buildpack runtime images such as [google/python-runtime](https://github.com/GoogleCloudPlatform/python-docker/tree/master/runtime) might find procfile commands useful just to support Procfiles.
 
@@ -55,9 +56,8 @@ Herokuish does not come with any buildpacks, but it is tested against recent ver
 
 ```
 $ herokuish version
-herokuish version: 0.1.0
-compatible cedarish: v2
-compatible buildpacks:
+herokuish: 0.3.0
+buildpacks:
   heroku-buildpack-multi     cddec34
   heroku-buildpack-nodejs    v60
   heroku-buildpack-php       v43
@@ -78,6 +78,7 @@ APP_PATH=/app                    # Application path during runtime
 ENV_PATH=/tmp/env                # Path to files for defining base environment
 BUILD_PATH=/tmp/build            # Working directory during builds
 CACHE_PATH=/tmp/cache            # Buildpack cache location
+IMPORT_PATH=/tmp/app             # Mounted path to copy to app path
 BUILDPACK_PATH=/tmp/buildpacks   # Path to installed buildpacks
 
 ```
@@ -92,11 +93,11 @@ Don't be afraid of the help command. It actually tells you exactly what a comman
 
 ```
 $ herokuish help slug export
-slug-export <url> 
+slug-export <url>
   Export generated slug tarball to URL (PUT) or STDOUT
 
-slug-export () 
-{ 
+slug-export ()
+{
     declare desc="Export generated slug tarball to URL (PUT) or STDOUT";
     declare url="$1";
     if [[ ! -f "$slug_path" ]]; then
@@ -111,11 +112,38 @@ slug-export ()
 
 ```
 
+## Using Herokuish to test Heroku/Dokku apps
+
+Having trouble pushing an app to Dokku or Heroku? Use Herokuish with a local Docker
+instance to debug. This is especially helpful with Dokku to help determine if it's a buildpack
+issue or an issue with Dokku. Buildpack issues should be filed against Herokuish.
+
+#### Running an app against Herokuish
+
+```
+$ docker run --rm -v /abs/app/path:/tmp/app gliderlabs/herokuish /bin/herokuish test
+```
+
+Mounting your local app source directory to `/tmp/app` and running `/bin/herokuish test` will run your app through the buildpack compile process. Then it starts your `web` process and attempts to connect to the web root path. If it runs into a problem, it should exit non-zero.
+
+```
+::: BUILDING APP :::
+-----> Ruby app detected
+-----> Compiling Ruby/Rack
+-----> Using Ruby version: ruby-1.9.3
+  ...
+	
+```
+
+You can use this output when you submit issues.
+
 ## Contributing
 
 Pull requests are welcome! Herokuish is written in Bash and Go. Please conform to the [Bash styleguide](https://github.com/progrium/bashstyle) used for this project when writing Bash.
 
 Developers should have Go installed with cross-compile support for Darwin and Linux. Tests will require Docker to be available. If you have OS X, we recommend boot2docker.
+
+For help and discussion beyond Github Issues, join us on Freenode in `#gliderlabs`.
 
 ## Releases
 

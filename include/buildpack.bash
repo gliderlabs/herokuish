@@ -101,12 +101,7 @@ buildpack-execute() {
 	fi
 
 	cd "$build_path"
-	# TODO: test if this is necessary or if we can always pass $env_path without issue
-	if [[ "$(ls -A $env_path)" ]]; then
-		unprivileged "$selected_path/bin/compile" "$build_path" "$cache_path" "$env_path"
-	else
-		unprivileged "$selected_path/bin/compile" "$build_path" "$cache_path"
-	fi
+	unprivileged "$selected_path/bin/compile" "$build_path" "$cache_path" "$env_path"
 	unprivileged "$selected_path/bin/release" "$build_path" "$cache_path" > "$build_path/.release"
 	cd - > /dev/null
 

@@ -1,22 +1,27 @@
 
-source "$(dirname $BASH_SOURCE)/../cedarish.sh"
+herokuish-test() {
+	declare name="$1" script="$2"
+	docker run $([[ "$CI" ]] || echo "--rm") -v "$PWD:/mnt" \
+		"herokuish:dev" bash -c "set -e; $script" \
+		|| $T_fail "$name exited non-zero"
+}
 
 fn-source() {
-	# use this if you want to write tests 
+	# use this if you want to write tests
 	# in functions instead of strings.
 	# see test-binary for trivial example
 	declare -f $1 | tail -n +2
 }
 
-test-binary() {
+T_binary() {
 	_test-binary() {
-		/mnt/build/linux/herokuish
+		herokuish
 	}
-	cedarish-test "test-binary" "$(fn-source _test-binary)"
+	herokuish-test "test-binary" "$(fn-source _test-binary)"
 }
 
-test-slug-generate() {
-	cedarish-test "test-slug-generate" "
-		/mnt/build/linux/herokuish slug generate
+T_slug-generate() {
+	herokuish-test "test-slug-generate" "
+		herokuish slug generate
 		tar tzf /tmp/slug.tgz"
 }
