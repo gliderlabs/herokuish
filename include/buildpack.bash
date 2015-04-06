@@ -102,7 +102,9 @@ buildpack-execute() {
 
 	cd "$build_path"
 	unprivileged "$selected_path/bin/compile" "$build_path" "$cache_path" "$env_path"
-	unprivileged "$selected_path/bin/release" "$build_path" "$cache_path" > "$build_path/.release"
+	if [[ -f "$selected_path/bin/release" ]]; then
+		unprivileged "$selected_path/bin/release" "$build_path" "$cache_path" > "$build_path/.release"
+	fi
 	cd - > /dev/null
 
 	shopt -s dotglob nullglob
