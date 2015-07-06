@@ -1,0 +1,2 @@
+FROM golang:1.4-cross
+RUN curl -s -o - https://get.docker.com/builds/Linux/x86_64/docker-1.6.2 > /usr/local/bin/docker && chmod +x /usr/local/bin/docker
