@@ -1,6 +1,8 @@
-NAME=herokuish
-HARDWARE=$(shell uname -m)
-VERSION=0.3.0
+NAME = herokuish
+HARDWARE = $(shell uname -m)
+VERSION ?= 0.3.0
+IMAGE_NAME ?= $(NAME)
+BUILD_TAG ?= dev
 
 build:
 	cat buildpacks/*/buildpack* | sed 'N;s/\n/ /' > include/buildpacks.txt
@@ -8,10 +10,18 @@ build:
 	mkdir -p build/linux  && GOOS=linux  go build -ldflags "-X main.Version $(VERSION)" -o build/linux/$(NAME)
 	mkdir -p build/darwin && GOOS=darwin go build -ldflags "-X main.Version $(VERSION)" -o build/darwin/$(NAME)
 ifeq ($(CIRCLECI),true)
-	docker build -t $(NAME):dev .
+	docker build -t $(IMAGE_NAME):dev .
 else
-	docker build -f Dockerfile.dev -t $(NAME):dev .
+	docker build -f Dockerfile.dev -t $(IMAGE_NAME):$(BUILD_TAG) .
 endif
+
+build-in-docker:
+	docker build -f Dockerfile.build -t $(NAME)-build .
+	docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
+		-v ${PWD}:/usr/src/myapp -w /usr/src/myapp \
+		-e IMAGE_NAME=$(IMAGE_NAME) -e BUILD_TAG=$(BUILD_TAG) -e VERSION=master \
+		$(NAME)-build make -e deps build
+	docker rmi $(NAME)-build || true
 
 deps:
 	docker pull heroku/cedar:14
