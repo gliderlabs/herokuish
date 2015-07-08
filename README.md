@@ -1,6 +1,6 @@
 # herokuish
 
-[![Circle CI](https://circleci.com/gh/gliderlabs/herokuish.png?style=shield)](https://circleci.com/gh/gliderlabs/herokuish) [![IRC Channel](https://img.shields.io/badge/irc-%23gliderlabs-blue.svg)][irc]
+[![Circle CI](https://circleci.com/gh/gliderlabs/herokuish.png?style=shield)](https://circleci.com/gh/gliderlabs/herokuish) [![IRC Channel](https://img.shields.io/badge/irc-%23gliderlabs-blue.svg)](irc)
 
 A command line tool for emulating Heroku build and runtime tasks in containers.
 
