@@ -10,7 +10,7 @@ build:
 	mkdir -p build/linux  && GOOS=linux  go build -ldflags "-X main.Version $(VERSION)" -o build/linux/$(NAME)
 	mkdir -p build/darwin && GOOS=darwin go build -ldflags "-X main.Version $(VERSION)" -o build/darwin/$(NAME)
 ifeq ($(CIRCLECI),true)
-	docker build -t $(IMAGE_NAME):dev .
+	docker build -t $(IMAGE_NAME):$(BUILD_TAG) .
 else
 	docker build -f Dockerfile.dev -t $(IMAGE_NAME):$(BUILD_TAG) .
 endif
@@ -35,7 +35,7 @@ test:
 
 circleci:
 	docker version
-	rm ~/.gitconfig
+	rm -f ~/.gitconfig
 	mv Dockerfile.dev Dockerfile
 
 release: build
