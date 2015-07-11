@@ -76,6 +76,8 @@ buildpack-execute() {
 
 		IFS='#' read url commit <<< "$BUILDPACK_URL"
 		buildpack-install "$url" "$commit" custom &> /dev/null
+		
+		chown -R "$unprivileged_user:$unprivileged_group" "$buildpack_path/custom"
 
 		selected_name="$(unprivileged $selected_path/bin/detect $build_path)"
 	else
@@ -102,7 +104,9 @@ buildpack-execute() {
 
 	cd "$build_path"
 	unprivileged "$selected_path/bin/compile" "$build_path" "$cache_path" "$env_path"
-	unprivileged "$selected_path/bin/release" "$build_path" "$cache_path" > "$build_path/.release"
+	if [[ -f "$selected_path/bin/release" ]]; then
+		unprivileged "$selected_path/bin/release" "$build_path" "$cache_path" > "$build_path/.release"
+	fi
 	cd - > /dev/null
 
 	shopt -s dotglob nullglob

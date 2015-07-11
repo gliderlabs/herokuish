@@ -1,4 +1,4 @@
-FROM progrium/cedarish:latest
+FROM heroku/cedar:14
 COPY ./build/linux/herokuish /bin/herokuish
 RUN /bin/herokuish buildpack install \
 	&& ln -s /bin/herokuish /build \

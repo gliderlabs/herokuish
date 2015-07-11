@@ -1,4 +1,4 @@
-FROM progrium/cedarish:latest
+FROM heroku/cedar:14
 RUN curl https://github.com/gliderlabs/herokuish/releases/download/v0.3.0/herokuish_0.3.0_linux_x86_64.tgz \
 		--silent -L | tar -xzC /bin
 RUN /bin/herokuish buildpack install \
