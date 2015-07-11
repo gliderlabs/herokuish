@@ -10,6 +10,21 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+## [0.3.1] - 2015-07-09
+### Fixed
+- Fixed directory permission for custom buildpacks
+
+### Added
+- Added ability to build in docker container
+
+### Removed
+- Remove testing play-v1 from play buildpack
+
+### Changed
+- Build from mainline heroku/cedar:14 docker images
+- Bump nodejs/scala buildpack versions
+
+
 ## [0.3.0] - 2015-04-04
 ### Fixed
 - Fixed Scala buildpack and app test
