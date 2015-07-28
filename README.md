@@ -167,3 +167,4 @@ Lastly, thank you Heroku for pioneering such a great platform and inspiring all 
 ## License
 
 BSD
+<img src="https://ga-beacon.appspot.com/UA-58928488-2/herokuish/readme?pixel" />

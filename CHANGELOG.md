@@ -10,6 +10,22 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+## [0.3.2] - 2015-07-28
+### Added
+- Repo Analytics to README
+
+### Changed
+- Bumped golang buildpack to fa0679c
+- Bumped php buildpack to version 70
+- Bumped clojure buildpack to version 67
+- Bumped grails to version 19
+- Bumped java buildpack to version 38
+- Bumped multi buildpack to 26fa21a
+- Bumped play buildpack to version 24
+- Bumped python buildpack to version 61
+- Bumped ruby buildpack to version 138
+
+
 ## [0.3.1] - 2015-07-09
 ### Fixed
 - Fixed directory permission for custom buildpacks
@@ -68,6 +84,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.0...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.2...HEAD
+[0.3.2]: https://github.com/gliderlabs/herokuish/compare/v0.3.1...v0.3.2
+[0.3.1]: https://github.com/gliderlabs/herokuish/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/gliderlabs/herokuish/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/gliderlabs/herokuish/compare/v0.1.0...v0.2.0
