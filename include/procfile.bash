@@ -18,7 +18,7 @@ procfile-exec() {
 	procfile-load-env
 	procfile-load-profile
 	cd "$app_path"
-	unprivileged /bin/bash -c "$(eval echo $@)"
+	unprivileged /bin/bash -c "exec $(eval echo $@)"
 }
 
 procfile-types() {
