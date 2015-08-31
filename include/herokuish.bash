@@ -59,7 +59,7 @@ indent() {
 }
 
 unprivileged() {
-	exec setuidgid "$unprivileged_user" "$@"
+	setuidgid "$unprivileged_user" "$@"
 }
 
 detect-unprivileged() {

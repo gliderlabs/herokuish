@@ -18,7 +18,7 @@ procfile-exec() {
 	procfile-load-env
 	procfile-load-profile
 	cd "$app_path"
-	unprivileged /bin/bash -c "exec $(eval echo $@)"
+	exec setuidgid "$unprivileged_user" $(eval echo $@)
 }
 
 procfile-types() {
