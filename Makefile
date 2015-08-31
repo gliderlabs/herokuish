@@ -23,6 +23,11 @@ build-in-docker:
 		$(NAME)-build make -e deps build
 	docker rmi $(NAME)-build || true
 
+clean:
+	rm -rf build/*
+	docker rm $(shell docker ps -aq) || true
+	docker rmi herokuish:dev || true
+
 deps:
 	docker pull heroku/cedar:14
 	go get -u github.com/jteeuwen/go-bindata/...
