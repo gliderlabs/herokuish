@@ -9,4 +9,14 @@ app.get('/', function(req, res){
 var port = process.env.PORT || 5000;
 server = app.listen(port);
 
+process.on( "SIGINT", function() {
+  console.log('CLOSING [SIGINT]');
+  process.exit();
+} );
+
+process.on( "SIGTERM", function() {
+  console.log('CLOSING [SIGTERM]');
+  process.exit();
+} );
+
 console.log('Server listening on port %d in %s mode', server.address().port, app.settings.env);
