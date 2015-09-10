@@ -1,6 +1,6 @@
 NAME = herokuish
 HARDWARE = $(shell uname -m)
-VERSION ?= 0.3.2
+VERSION ?= 0.3.3
 IMAGE_NAME ?= $(NAME)
 BUILD_TAG ?= dev
 
@@ -22,6 +22,11 @@ build-in-docker:
 		-e IMAGE_NAME=$(IMAGE_NAME) -e BUILD_TAG=$(BUILD_TAG) -e VERSION=master \
 		$(NAME)-build make -e deps build
 	docker rmi $(NAME)-build || true
+
+clean:
+	rm -rf build/*
+	docker rm $(shell docker ps -aq) || true
+	docker rmi herokuish:dev || true
 
 deps:
 	docker pull heroku/cedar:14
