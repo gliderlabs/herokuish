@@ -137,10 +137,40 @@ Mounting your local app source directory to `/tmp/app` and running `/bin/herokui
 -----> Compiling Ruby/Rack
 -----> Using Ruby version: ruby-1.9.3
   ...
-	
+
 ```
 
 You can use this output when you submit issues.
+
+#### Troubleshooting
+
+If you run into an issue and looking for more insight into what `herokuish` is doing, you can set the `$TRACE` environment variable.
+
+```
+$ docker run --rm -e TRACE=true -v /abs/app/path:/tmp/app gliderlabs/herokuish /bin/herokuish test
++ [[ -d /tmp/app ]]
++ rm -rf /app
++ cp -r /tmp/app /app
++ cmd-export paths
++ declare 'desc=Exports a function as a command'
++ declare fn=paths as=paths
++ local ns=
+++ cmd-list-ns
+++ sort
+++ grep -v :
+++ for k in '"${!CMDS[@]}"'
+++ echo :help
+...
+++ unprivileged /tmp/buildpacks/custom/bin/detect /tmp/build
+++ setuidgid u33467 /tmp/buildpacks/custom/bin/detect /tmp/build
+++ true
++ selected_name=
++ [[ -n /tmp/buildpacks/custom ]]
++ [[ -n '' ]]
++ title 'Unable to select a buildpack'
+----->' Unable to select a buildpack
++ exit 1
+```
 
 ## Contributing
 

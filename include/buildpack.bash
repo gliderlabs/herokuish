@@ -76,10 +76,10 @@ buildpack-execute() {
 
 		IFS='#' read url commit <<< "$BUILDPACK_URL"
 		buildpack-install "$url" "$commit" custom &> /dev/null
-		
+
 		chown -R "$unprivileged_user:$unprivileged_group" "$buildpack_path/custom"
 
-		selected_name="$(unprivileged $selected_path/bin/detect $build_path)"
+		selected_name="$(unprivileged $selected_path/bin/detect $build_path || true)"
 	else
 		# force heroku-buildpack-multi to detect first if exists
 		if ls "$buildpack_path/heroku-buildpack-multi" > /dev/null 2>&1; then
@@ -95,7 +95,7 @@ buildpack-execute() {
 			done
 		fi
 	fi
-	if [[ "$selected_path" ]]; then
+	if [[ "$selected_path" ]] && [[ "$selected_name" ]]; then
 		title "$selected_name app detected"
 	else
 		title "Unable to select a buildpack"
