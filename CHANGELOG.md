@@ -10,6 +10,14 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+## [0.3.3] - 2015-09-10
+### Added
+- Use exec to run procfile entries
+
+### Changed
+- Bumped scala buildpack to v60
+
+
 ## [0.3.2] - 2015-07-28
 ### Added
 - Repo Analytics to README
@@ -84,7 +92,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.2...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.3...HEAD
+[0.3.3]: https://github.com/gliderlabs/herokuish/compare/v0.3.2...v0.3.3
 [0.3.2]: https://github.com/gliderlabs/herokuish/compare/v0.3.1...v0.3.2
 [0.3.1]: https://github.com/gliderlabs/herokuish/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/gliderlabs/herokuish/compare/v0.2.0...v0.3.0
