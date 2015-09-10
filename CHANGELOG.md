@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 ## [0.3.3] - 2015-09-10
 ### Added
 - Use exec to run procfile entries
+- Throw error when detect fails in custom buildpack
 
 ### Changed
 - Bumped scala buildpack to v60
