@@ -10,6 +10,17 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+## [0.3.4] - 2015-10-23
+### Changed
+- Upgrade clojure buildpack to version 70
+- Update go buildpack to version 18
+- Update java buildpack to version 40
+- Update nodejs buildpack to version 86
+- Update php buildpack to version 80
+- Update python buildpack to version 68
+- Update ruby buildpack to version 140
+- Update scala buildpack to version 63
+
 ## [0.3.3] - 2015-09-10
 ### Added
 - Use exec to run procfile entries
