@@ -1,6 +1,6 @@
 NAME = herokuish
 HARDWARE = $(shell uname -m)
-VERSION ?= 0.3.4
+VERSION ?= 0.3.5
 IMAGE_NAME ?= $(NAME)
 BUILD_TAG ?= dev
 
@@ -16,8 +16,9 @@ else
 endif
 
 build-in-docker:
-	docker build -f Dockerfile.build -t $(NAME)-build .
-	docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
+	docker build --rm -f Dockerfile.build -t $(NAME)-build .
+	docker run --rm -v /var/run/docker.sock:/var/run/docker.sock:ro \
+		-v /var/lib/docker:/var/lib/docker \
 		-v ${PWD}:/usr/src/myapp -w /usr/src/myapp \
 		-e IMAGE_NAME=$(IMAGE_NAME) -e BUILD_TAG=$(BUILD_TAG) -e VERSION=master \
 		$(NAME)-build make -e deps build

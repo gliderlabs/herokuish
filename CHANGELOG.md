@@ -10,6 +10,18 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+
+## [0.3.5] - 2015-11-25
+### Added
+- Add static buildpack and test
+
+### Changed
+ - Increased CURL_TIMEOUT env var in buildpacks from the default 30 to 180
+ - Update python buildpack to v70
+ - Update static buildpack to v5
+ - Update local build env to docker 1.9.1
+
+
 ## [0.3.4] - 2015-10-23
 ### Changed
 - Upgrade clojure buildpack to version 70
@@ -20,6 +32,7 @@ All notable changes to this project will be documented in this file.
 - Update python buildpack to version 68
 - Update ruby buildpack to version 140
 - Update scala buildpack to version 63
+
 
 ## [0.3.3] - 2015-09-10
 ### Added
@@ -104,7 +117,9 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.3...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.5...HEAD
+[0.3.5]: https://github.com/gliderlabs/herokuish/compare/v0.3.4...v0.3.5
+[0.3.4]: https://github.com/gliderlabs/herokuish/compare/v0.3.3...v0.3.4
 [0.3.3]: https://github.com/gliderlabs/herokuish/compare/v0.3.2...v0.3.3
 [0.3.2]: https://github.com/gliderlabs/herokuish/compare/v0.3.1...v0.3.2
 [0.3.1]: https://github.com/gliderlabs/herokuish/compare/v0.3.0...v0.3.1
