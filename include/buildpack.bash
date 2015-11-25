@@ -60,6 +60,8 @@ buildpack-setup() {
 
 	# Useful settings / features
 	export CURL_CONNECT_TIMEOUT="30"
+	export CURL_TIMEOUT="180"
+
 
 	# Buildstep backwards compatibility
 	if [[ -f "$app_path/.env" ]]; then
