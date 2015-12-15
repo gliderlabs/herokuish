@@ -10,6 +10,18 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+## [0.3.6] - 2015-12-14
+### Changed
+- Update php buildpack to version 87
+- Update clojure buildpack to version 73
+- Update golang buildpack to version 22
+- Update gradle buildpack to version 16
+- Update java buildpack to version 41
+- Update nodejs buildpack to version 87
+- Update python buildpack to version 73
+- Update ruby buildpack to version 141
+- Update multi buildpack to version v1.0.0
+
 
 ## [0.3.5] - 2015-11-25
 ### Added
@@ -117,7 +129,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.5...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.6...HEAD
+[0.3.6]: https://github.com/gliderlabs/herokuish/compare/v0.3.5...v0.3.6
 [0.3.5]: https://github.com/gliderlabs/herokuish/compare/v0.3.4...v0.3.5
 [0.3.4]: https://github.com/gliderlabs/herokuish/compare/v0.3.3...v0.3.4
 [0.3.3]: https://github.com/gliderlabs/herokuish/compare/v0.3.2...v0.3.3
