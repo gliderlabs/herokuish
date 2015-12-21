@@ -2,7 +2,6 @@
 yaml-esque-keys() {
 	declare desc="Get process type keys from colon-separated structure"
 	while read line || [[ -n "$line" ]]; do
-		[[ -z "$line" ]] && continue
 		[[ "$line" =~ ^#.* ]] && continue
 		key=${line%%:*}
 		echo $key
@@ -15,7 +14,6 @@ yaml-esque-get() {
 	local inputkey
 	local cmd
 	while read line || [[ -n "$line" ]]; do
-		[[ -z "$line" ]] && continue
 		[[ "$line" =~ ^#.* ]] && continue
 		inputkey=${line%%:*}
 		cmd=${line#*:}
