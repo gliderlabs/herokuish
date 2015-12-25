@@ -41,7 +41,7 @@ version() {
 	declare desc="Show version and supported version info"
 	echo "herokuish: ${HEROKUISH_VERSION:-dev}"
 	echo "buildpacks:"
-	asset-cat include/buildpacks.txt | sed 's/.*heroku\///' | xargs printf "  %-26s %s\n"
+	asset-cat include/buildpacks.txt | sed -e 's/.*heroku\///' -e 's/.*dokku\///' | xargs printf "  %-26s %s\n"
 }
 
 title() {
