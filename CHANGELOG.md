@@ -10,6 +10,19 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+## [0.3.7] - 2015-12-31
+### Fixed
+- @michaelshobbs force rebuild of packages that are already up to date
+- @michaelshobbs fix buildpack version output after adding dokku/buildpack-nginx
+
+### Removed
+- @michaelshobbs remove unnecessary null line check
+
+### Changed
+- @michaelshobbs re-implement yaml-get and yaml-keys in bash
+- @CEikermann Updated buildpack-php to v90
+- @josegonzalez Upgrade python buildpack to v74
+
 ## [0.3.6] - 2015-12-14
 ### Changed
 - Update php buildpack to version 87
@@ -129,7 +142,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.6...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.7...HEAD
+[0.3.7]: https://github.com/gliderlabs/herokuish/compare/v0.3.6...v0.3.7
 [0.3.6]: https://github.com/gliderlabs/herokuish/compare/v0.3.5...v0.3.6
 [0.3.5]: https://github.com/gliderlabs/herokuish/compare/v0.3.4...v0.3.5
 [0.3.4]: https://github.com/gliderlabs/herokuish/compare/v0.3.3...v0.3.4
