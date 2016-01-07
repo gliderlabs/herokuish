@@ -10,6 +10,12 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+## [0.3.8] - 2016-01-06
+### Changed
+- @josegonzalez Upgrade gradle buildpack version to 17
+- @josegonzalez Update java buildpack version to 42
+- @josegonzalez Update scala buildpack version to 64
+
 ## [0.3.7] - 2015-12-31
 ### Fixed
 - @michaelshobbs force rebuild of packages that are already up to date
@@ -142,7 +148,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.7...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.8...HEAD
+[0.3.8]: https://github.com/gliderlabs/herokuish/compare/v0.3.7...v0.3.8
 [0.3.7]: https://github.com/gliderlabs/herokuish/compare/v0.3.6...v0.3.7
 [0.3.6]: https://github.com/gliderlabs/herokuish/compare/v0.3.5...v0.3.6
 [0.3.5]: https://github.com/gliderlabs/herokuish/compare/v0.3.4...v0.3.5
