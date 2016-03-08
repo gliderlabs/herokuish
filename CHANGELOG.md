@@ -10,11 +10,35 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+
+## [0.3.9] - 2016-03-08
+### Fixed
+- @graphaelli clean up link warning
+
+### Added
+- @michaelshobbs extract config_vars from .release
+
+### Changed
+- @singlow singlow use find to identify only files not already owned by user
+- @michaelshobbs Update clojure to version v75
+- @michaelshobbs Update grails to version v20
+- @michaelshobbs Update java to version v44
+- @michaelshobbs Update nodejs to version v88
+- @michaelshobbs Update play to version v26
+- @michaelshobbs Update python to version v77
+- @michaelshobbs Update ruby to version v145
+- @michaelshobbs Update scala to version v66
+- @michaelshobbs Update php to version v95
+- @michaelshobbs Update go to version v31
+- @michaelshobbs upgrade to go1.6
+
+
 ## [0.3.8] - 2016-01-06
 ### Changed
 - @josegonzalez Upgrade gradle buildpack version to 17
 - @josegonzalez Update java buildpack version to 42
 - @josegonzalez Update scala buildpack version to 64
+
 
 ## [0.3.7] - 2015-12-31
 ### Fixed
@@ -28,6 +52,7 @@ All notable changes to this project will be documented in this file.
 - @michaelshobbs re-implement yaml-get and yaml-keys in bash
 - @CEikermann Updated buildpack-php to v90
 - @josegonzalez Upgrade python buildpack to v74
+
 
 ## [0.3.6] - 2015-12-14
 ### Changed
@@ -148,7 +173,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.8...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.9...HEAD
+[0.3.9]: https://github.com/gliderlabs/herokuish/compare/v0.3.8...v0.3.9
 [0.3.8]: https://github.com/gliderlabs/herokuish/compare/v0.3.7...v0.3.8
 [0.3.7]: https://github.com/gliderlabs/herokuish/compare/v0.3.6...v0.3.7
 [0.3.6]: https://github.com/gliderlabs/herokuish/compare/v0.3.5...v0.3.6
