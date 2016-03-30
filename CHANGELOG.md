@@ -11,6 +11,15 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 
+## [0.3.10] - 2016-03-30
+### Changed
+- @michaelshobbs Update nodejs to version v89
+- @michaelshobbs Update php to version v99
+- @michaelshobbs Update python to version v79
+- @michaelshobbs Update ruby to version v146
+- @michaelshobbs Update scala to version v67
+
+
 ## [0.3.9] - 2016-03-08
 ### Fixed
 - @graphaelli clean up link warning
@@ -173,7 +182,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.9...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.10...HEAD
+[0.3.10]: https://github.com/gliderlabs/herokuish/compare/v0.3.9...v0.3.10
 [0.3.9]: https://github.com/gliderlabs/herokuish/compare/v0.3.8...v0.3.9
 [0.3.8]: https://github.com/gliderlabs/herokuish/compare/v0.3.7...v0.3.8
 [0.3.7]: https://github.com/gliderlabs/herokuish/compare/v0.3.6...v0.3.7
