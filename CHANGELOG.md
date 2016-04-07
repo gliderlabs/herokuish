@@ -11,6 +11,12 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 
+## [0.3.11] - 2016-04-07
+### Changed
+- @michaelshobbs Update php to version v100 (#140)
+- @michaelshobbs Update python to version v80 (#141)
+
+
 ## [0.3.10] - 2016-03-30
 ### Changed
 - @michaelshobbs Update nodejs to version v89
@@ -182,7 +188,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.10...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.11...HEAD
+[0.3.11]: https://github.com/gliderlabs/herokuish/compare/v0.3.10...v0.3.11
 [0.3.10]: https://github.com/gliderlabs/herokuish/compare/v0.3.9...v0.3.10
 [0.3.9]: https://github.com/gliderlabs/herokuish/compare/v0.3.8...v0.3.9
 [0.3.8]: https://github.com/gliderlabs/herokuish/compare/v0.3.7...v0.3.8
