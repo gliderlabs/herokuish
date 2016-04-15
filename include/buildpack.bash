@@ -19,19 +19,42 @@ buildpack-install() {
 		return
 	fi
 	local target_path="$buildpack_path/${name:-$(basename $url)}"
-	if [[ "$commit" ]]; then
-		if ! git clone --branch "$commit" --quiet --depth 1 "$url" "$target_path" &>/dev/null; then
-			# if the shallow clone failed partway through, clean up and try a full clone
-			rm -rf "$target_path"
-			git clone "$url" "$target_path"
-			cd "$target_path"
-			git checkout --quiet "$commit"
-			cd - > /dev/null
+	if [[ "$(git ls-remote "$url" &> /dev/null; echo $?)" -eq 0 ]]; then
+		if [[ "$commit" ]]; then
+			if ! git clone --branch "$commit" --quiet --depth 1 "$url" "$target_path" &>/dev/null; then
+				# if the shallow clone failed partway through, clean up and try a full clone
+				rm -rf "$target_path"
+				git clone "$url" "$target_path"
+				cd "$target_path"
+				git checkout --quiet "$commit"
+				cd - > /dev/null
+			else
+				echo "Cloning into '$target_path'..."
+			fi
 		else
-			echo "Cloning into '$target_path'..."
+			git clone --depth=1 "$url" "$target_path"
 		fi
 	else
-		git clone --depth=1 "$url" "$target_path"
+		local tar_args
+		case "$url" in
+			*.tgz|*.tar.gz)
+				target_path="${target_path//.tgz}"
+				target_path="${target_path//.tar.gz}"
+				tar_args="-xzC"
+			;;
+			*.tbz|*.tar.bz)
+				target_path="${target_path//.tbz}"
+				target_path="${target_path//.tar.bz}"
+				tar_args="-xjC"
+			;;
+			*.tar)
+				target_path="${target_path//.tar}"
+				tar_args="-xC"
+			;;
+		esac
+		echo "Downloading '$url' into '$target_path'..."
+		mkdir -p "$target_path"
+		curl -s --retry 2 "$url" | tar "$tar_args" "$target_path"
 	fi
 	rm -rf "$target_path/.git"
 }
@@ -56,6 +79,7 @@ buildpack-setup() {
 		"$app_path" \
 		"$build_path" \
 		"$cache_path" \
+		"$env_path" \
 		"$buildpack_path"
 
 	# Useful settings / features
