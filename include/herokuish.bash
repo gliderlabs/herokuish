@@ -101,7 +101,7 @@ herokuish-test() {
 	done
 	echo "::: CHECKING APP :::"
 	local output
-	output="$(curl --fail --retry 3 -v -s localhost:${PORT}$path)"
+	output="$(curl --fail --retry 5 --retry-delay 2 -v -s localhost:${PORT}$path | html2text -ascii | xargs)"
 	if [[ "$expected" ]]; then
 		sleep 1
 		echo "::: APP OUTPUT :::"
