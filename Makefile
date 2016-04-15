@@ -5,7 +5,7 @@ IMAGE_NAME ?= $(NAME)
 BUILD_TAG ?= dev
 
 build:
-	cat buildpacks/*/buildpack* | sed 'N;s/\n/ /' > include/buildpacks.txt
+	cat buildpacks/*/buildpack* | sed 'N;s/\n/ /' | sort > include/buildpacks.txt
 	go-bindata include
 	mkdir -p build/linux  && GOOS=linux  go build -a -ldflags "-X main.Version=$(VERSION)" -o build/linux/$(NAME)
 	mkdir -p build/darwin && GOOS=darwin go build -a -ldflags "-X main.Version=$(VERSION)" -o build/darwin/$(NAME)
