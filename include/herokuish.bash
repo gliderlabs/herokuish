@@ -96,8 +96,13 @@ herokuish-test() {
 	buildpack-build
 	echo "::: STARTING WEB :::"
 	procfile-start web &
-	for retry in $(seq 1 10); do
-		sleep 1 && nc -z -w 5 localhost $PORT && break
+	for retry in $(seq 1 30); do
+		sleep 1
+		if ! nc -z -w 5 localhost $PORT; then
+			echo "::: RETRYING LISTENER ($retry) :::"
+		else
+			echo "::: FOUND LISTENER :::" && break
+		fi
 	done
 	echo "::: CHECKING APP :::"
 	local output
