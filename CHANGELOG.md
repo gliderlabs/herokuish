@@ -11,6 +11,21 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 
+## [0.3.12] - 2016-04-27
+### Fixed
+- @michaelshobbs try testing port more times before continuing. add output when testing for a listener
+- @michaelshobbs increase retry in an attempt to allow the (ember specifially) app to fully startup
+
+### Added
+- @michaelshobbs support compressed tarball buildpacks (#144)
+
+### Changed
+- @michaelshobbs Update go to version v34
+- @michaelshobbs Update nodejs to version v90
+- @michaelshobbs Update php to version v101
+- @michaelshobbs Update scala to version v70
+
+
 ## [0.3.11] - 2016-04-07
 ### Changed
 - @michaelshobbs Update php to version v100 (#140)
@@ -188,7 +203,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.11...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.12...HEAD
+[0.3.12]: https://github.com/gliderlabs/herokuish/compare/v0.3.11...v0.3.12
 [0.3.11]: https://github.com/gliderlabs/herokuish/compare/v0.3.10...v0.3.11
 [0.3.10]: https://github.com/gliderlabs/herokuish/compare/v0.3.9...v0.3.10
 [0.3.9]: https://github.com/gliderlabs/herokuish/compare/v0.3.8...v0.3.9
