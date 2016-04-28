@@ -10,6 +10,116 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+
+## [0.3.12] - 2016-04-27
+### Fixed
+- @michaelshobbs try testing port more times before continuing. add output when testing for a listener
+- @michaelshobbs increase retry in an attempt to allow the (ember specifially) app to fully startup
+
+### Added
+- @michaelshobbs support compressed tarball buildpacks (#144)
+
+### Changed
+- @michaelshobbs Update go to version v34
+- @michaelshobbs Update nodejs to version v90
+- @michaelshobbs Update php to version v101
+- @michaelshobbs Update scala to version v70
+
+
+## [0.3.11] - 2016-04-07
+### Changed
+- @michaelshobbs Update php to version v100 (#140)
+- @michaelshobbs Update python to version v80 (#141)
+
+
+## [0.3.10] - 2016-03-30
+### Changed
+- @michaelshobbs Update nodejs to version v89
+- @michaelshobbs Update php to version v99
+- @michaelshobbs Update python to version v79
+- @michaelshobbs Update ruby to version v146
+- @michaelshobbs Update scala to version v67
+
+
+## [0.3.9] - 2016-03-08
+### Fixed
+- @graphaelli clean up link warning
+
+### Added
+- @michaelshobbs extract config_vars from .release
+
+### Changed
+- @singlow singlow use find to identify only files not already owned by user
+- @michaelshobbs Update clojure to version v75
+- @michaelshobbs Update grails to version v20
+- @michaelshobbs Update java to version v44
+- @michaelshobbs Update nodejs to version v88
+- @michaelshobbs Update play to version v26
+- @michaelshobbs Update python to version v77
+- @michaelshobbs Update ruby to version v145
+- @michaelshobbs Update scala to version v66
+- @michaelshobbs Update php to version v95
+- @michaelshobbs Update go to version v31
+- @michaelshobbs upgrade to go1.6
+
+
+## [0.3.8] - 2016-01-06
+### Changed
+- @josegonzalez Upgrade gradle buildpack version to 17
+- @josegonzalez Update java buildpack version to 42
+- @josegonzalez Update scala buildpack version to 64
+
+
+## [0.3.7] - 2015-12-31
+### Fixed
+- @michaelshobbs force rebuild of packages that are already up to date
+- @michaelshobbs fix buildpack version output after adding dokku/buildpack-nginx
+
+### Removed
+- @michaelshobbs remove unnecessary null line check
+
+### Changed
+- @michaelshobbs re-implement yaml-get and yaml-keys in bash
+- @CEikermann Updated buildpack-php to v90
+- @josegonzalez Upgrade python buildpack to v74
+
+
+## [0.3.6] - 2015-12-14
+### Changed
+- Update php buildpack to version 87
+- Update clojure buildpack to version 73
+- Update golang buildpack to version 22
+- Update gradle buildpack to version 16
+- Update java buildpack to version 41
+- Update nodejs buildpack to version 87
+- Update python buildpack to version 73
+- Update ruby buildpack to version 141
+- Update multi buildpack to version v1.0.0
+
+
+## [0.3.5] - 2015-11-25
+### Added
+- Add static buildpack and test
+
+### Changed
+ - Increased CURL_TIMEOUT env var in buildpacks from the default 30 to 180
+ - Update python buildpack to v70
+ - Update static buildpack to v5
+ - Update local build env to docker 1.9.1
+
+
+## [0.3.4] - 2015-10-23
+### Changed
+- Upgrade clojure buildpack to version 70
+- Update go buildpack to version 18
+- Update java buildpack to version 40
+- Update nodejs buildpack to version 86
+- Update php buildpack to version 80
+- Update python buildpack to version 68
+- Update ruby buildpack to version 140
+- Update scala buildpack to version 63
+
+
 ## [0.3.3] - 2015-09-10
 ### Added
 - Use exec to run procfile entries
@@ -93,7 +203,16 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.3...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.12...HEAD
+[0.3.12]: https://github.com/gliderlabs/herokuish/compare/v0.3.11...v0.3.12
+[0.3.11]: https://github.com/gliderlabs/herokuish/compare/v0.3.10...v0.3.11
+[0.3.10]: https://github.com/gliderlabs/herokuish/compare/v0.3.9...v0.3.10
+[0.3.9]: https://github.com/gliderlabs/herokuish/compare/v0.3.8...v0.3.9
+[0.3.8]: https://github.com/gliderlabs/herokuish/compare/v0.3.7...v0.3.8
+[0.3.7]: https://github.com/gliderlabs/herokuish/compare/v0.3.6...v0.3.7
+[0.3.6]: https://github.com/gliderlabs/herokuish/compare/v0.3.5...v0.3.6
+[0.3.5]: https://github.com/gliderlabs/herokuish/compare/v0.3.4...v0.3.5
+[0.3.4]: https://github.com/gliderlabs/herokuish/compare/v0.3.3...v0.3.4
 [0.3.3]: https://github.com/gliderlabs/herokuish/compare/v0.3.2...v0.3.3
 [0.3.2]: https://github.com/gliderlabs/herokuish/compare/v0.3.1...v0.3.2
 [0.3.1]: https://github.com/gliderlabs/herokuish/compare/v0.3.0...v0.3.1

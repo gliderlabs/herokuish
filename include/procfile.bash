@@ -1,8 +1,30 @@
 
+yaml-esque-keys() {
+	declare desc="Get process type keys from colon-separated structure"
+	while read line || [[ -n "$line" ]]; do
+		[[ "$line" =~ ^#.* ]] && continue
+		key=${line%%:*}
+		echo $key
+	done <<< "$(cat)"
+}
+
+yaml-esque-get() {
+	declare desc="Get key value from colon-separated structure"
+	declare key="$1"
+	local inputkey
+	local cmd
+	while read line || [[ -n "$line" ]]; do
+		[[ "$line" =~ ^#.* ]] && continue
+		inputkey=${line%%:*}
+		cmd=${line#*:}
+		[[ "$inputkey" == "$key" ]] && echo "$cmd"
+	done <<< "$(cat)"
+}
+
 procfile-parse() {
 	declare desc="Get command string for a process type from Procfile"
 	declare type="$1"
-	cat "$app_path/Procfile" | yaml-get "$type"
+	cat "$app_path/Procfile" | yaml-esque-get "$type"
 }
 
 procfile-start() {
@@ -25,7 +47,7 @@ procfile-types() {
 	title "Discovering process types"
 	if [[ -f "$app_path/Procfile" ]]; then
 		local types
-		types="$(cat $app_path/Procfile | yaml-keys | xargs echo)"
+		types="$(cat $app_path/Procfile | yaml-esque-keys | xargs echo)"
 		echo "Procfile declares types -> ${types// /, }"
 		return
 	fi
@@ -66,5 +88,5 @@ procfile-load-profile() {
 procfile-setup-home() {
 	export HOME="$app_path"
 	usermod --home "$app_path" "$unprivileged_user" > /dev/null 2>&1
-	chown -R "$unprivileged_user:$unprivileged_group" "$app_path"
+	find $app_path \( \! -user $unprivileged_user -o \! -group $unprivileged_group \) -print0 | xargs -0 -r chown "$unprivileged_user:$unprivileged_group"
 }

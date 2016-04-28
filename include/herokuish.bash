@@ -41,7 +41,7 @@ version() {
 	declare desc="Show version and supported version info"
 	echo "herokuish: ${HEROKUISH_VERSION:-dev}"
 	echo "buildpacks:"
-	asset-cat include/buildpacks.txt | sed 's/.*heroku\///' | xargs printf "  %-26s %s\n"
+	asset-cat include/buildpacks.txt | sed -e 's/.*heroku\///' -e 's/.*dokku\///' | xargs printf "  %-26s %s\n"
 }
 
 title() {
@@ -96,12 +96,17 @@ herokuish-test() {
 	buildpack-build
 	echo "::: STARTING WEB :::"
 	procfile-start web &
-	for retry in $(seq 1 10); do
-		sleep 1 && nc -z -w 5 localhost $PORT && break
+	for retry in $(seq 1 30); do
+		sleep 1
+		if ! nc -z -w 5 localhost $PORT; then
+			echo "::: RETRYING LISTENER ($retry) :::"
+		else
+			echo "::: FOUND LISTENER :::" && break
+		fi
 	done
 	echo "::: CHECKING APP :::"
 	local output
-	output="$(curl --fail --retry 3 -v -s localhost:${PORT}$path)"
+	output="$(curl --fail --retry 10 --retry-delay 2 -v -s localhost:${PORT}$path | html2text -ascii | xargs)"
 	if [[ "$expected" ]]; then
 		sleep 1
 		echo "::: APP OUTPUT :::"

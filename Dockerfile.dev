@@ -1,5 +1,10 @@
 FROM heroku/cedar:14
+ENV LC_ALL C
+ENV DEBIAN_FRONTEND noninteractive
+ENV DEBCONF_NONINTERACTIVE_SEEN true
 COPY ./build/linux/herokuish /bin/herokuish
+RUN apt-get -qq update
+RUN apt-get -qq -y install html2text
 RUN /bin/herokuish buildpack install \
 	&& ln -s /bin/herokuish /build \
 	&& ln -s /bin/herokuish /start \
