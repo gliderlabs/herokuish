@@ -55,6 +55,8 @@ buildpack-install() {
 		echo "Downloading '$url' into '$target_path'..."
 		mkdir -p "$target_path"
 		curl -s --retry 2 "$url" | tar "$tar_args" "$target_path"
+		chown -R root:root "$target_path"
+		chmod 755 "$target_path"
 	fi
 	rm -rf "$target_path/.git"
 }
