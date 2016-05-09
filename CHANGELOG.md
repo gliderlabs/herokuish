@@ -11,6 +11,15 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 
+## [0.3.13] - 2016-05-09
+### Fixed
+- @michaelshobbs ensure correct permissions on tgz buildpack directories
+
+### Changed
+- @michaelshobbs Update php to version v102
+- @michaelshobbs Update go to version v36
+
+
 ## [0.3.12] - 2016-04-27
 ### Fixed
 - @michaelshobbs try testing port more times before continuing. add output when testing for a listener
@@ -203,7 +212,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.12...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.13...HEAD
+[0.3.13]: https://github.com/gliderlabs/herokuish/compare/v0.3.12...v0.3.13
 [0.3.12]: https://github.com/gliderlabs/herokuish/compare/v0.3.11...v0.3.12
 [0.3.11]: https://github.com/gliderlabs/herokuish/compare/v0.3.10...v0.3.11
 [0.3.10]: https://github.com/gliderlabs/herokuish/compare/v0.3.9...v0.3.10
