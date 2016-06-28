@@ -12,13 +12,15 @@ app-test() {
 
 # runs the generic app test
 run-test() {
+  [[ "$TRACE" ]] && set -x
   declare app="$1"
   local buildpack="buildpack-${1%%-*}"
   cd "$(dirname $BASH_SOURCE)"
   local app_path="$PWD/$buildpack/tests/$app"
   cd - &> /dev/null
 	[[ "$CI" ]] || rmflag="--rm"
-	docker run $rmflag -v "$app_path:/tmp/app" herokuish:dev /bin/herokuish test / "$app"
+  [[ "$TRACE" ]] && debug_flag="-e TRACE=true"
+  docker run $rmflag $debug_flag -v "$app_path:/tmp/app" herokuish:dev /bin/herokuish test / "$app"
 }
 
 main() {

@@ -11,6 +11,19 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 
+## [0.3.14] - 2016-06-27
+### Added
+- @michaelshobbs implement heroku-like buildpack detect order and output. closes #133
+
+### Fixed
+- @michaelshobbs because nodejs matches before ember, manually set the ember buildpack
+
+### Changed
+- @michaelshobbs Update go to version v41
+- @michaelshobbs Update grails to version v21
+- @michaelshobbs Update php to version v107
+
+
 ## [0.3.13] - 2016-05-09
 ### Fixed
 - @michaelshobbs ensure correct permissions on tgz buildpack directories
@@ -212,7 +225,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.13...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.14...HEAD
+[0.3.14]: https://github.com/gliderlabs/herokuish/compare/v0.3.13...v0.3.14
 [0.3.13]: https://github.com/gliderlabs/herokuish/compare/v0.3.12...v0.3.13
 [0.3.12]: https://github.com/gliderlabs/herokuish/compare/v0.3.11...v0.3.12
 [0.3.11]: https://github.com/gliderlabs/herokuish/compare/v0.3.10...v0.3.11

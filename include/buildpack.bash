@@ -13,8 +13,8 @@ buildpack-install() {
 	declare url="$1" commit="$2" name="$3"
 	ensure-paths
 	if [[ ! "$url" ]]; then
-		asset-cat include/buildpacks.txt | while read url commit; do
-			buildpack-install "$url" "$commit"
+		asset-cat include/buildpacks.txt | while read name url commit; do
+			buildpack-install "$url" "$commit" "$name"
 		done
 		return
 	fi
@@ -109,18 +109,19 @@ buildpack-execute() {
 
 		selected_name="$(unprivileged $selected_path/bin/detect $build_path || true)"
 	else
-		# force heroku-buildpack-multi to detect first if exists
-		if ls "$buildpack_path/heroku-buildpack-multi" > /dev/null 2>&1; then
-			selected_name="$(unprivileged $buildpack_path/heroku-buildpack-multi/bin/detect $build_path)" \
-				&& selected_path="$buildpack_path/heroku-buildpack-multi"
+		local buildpacks=($buildpack_path/*)
+		local valid_buildpacks=()
+		for buildpack in "${buildpacks[@]}"; do
+			unprivileged $buildpack/bin/detect $build_path &> /dev/null \
+				&& valid_buildpacks+=("$buildpack")
+		done
+		if [[ ${#valid_buildpacks[@]} -gt 1 ]]; then
+			title "Warning: Multiple default buildpacks reported the ability to handle this app. The first buildpack in the list below will be used."
+			echo "Detected buildpacks: $(sed -e "s:/tmp/buildpacks/[0-9][0-9]_buildpack-::g" <<< "${valid_buildpacks[@]}")" | indent
 		fi
-		if [[ ! "$selected_path" ]]; then
-			local buildpacks=($buildpack_path/*)
-			for buildpack in "${buildpacks[@]}"; do
-				selected_name="$(unprivileged $buildpack/bin/detect $build_path)" \
-					&& selected_path="$buildpack" \
-					&& break
-			done
+		if [[ ${#valid_buildpacks[@]} -gt 0 ]]; then
+			selected_path="${valid_buildpacks[0]}"
+			selected_name=$(unprivileged $selected_path/bin/detect $build_path)
 		fi
 	fi
 	if [[ "$selected_path" ]] && [[ "$selected_name" ]]; then

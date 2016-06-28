@@ -1,11 +1,20 @@
 NAME = herokuish
 HARDWARE = $(shell uname -m)
-VERSION ?= 0.3.13
+VERSION ?= 0.3.14
 IMAGE_NAME ?= $(NAME)
 BUILD_TAG ?= dev
 
+BUILDPACK_ORDER := multi ruby nodejs clojure python java gradle grails scala play php go erlang static emberjs
+SHELL := /bin/bash
+
 build:
-	cat buildpacks/*/buildpack* | sed 'N;s/\n/ /' | sort > include/buildpacks.txt
+	@count=0; \
+	for i in $(BUILDPACK_ORDER); do \
+		bp_count=$$(printf '%02d' $$count) ; \
+		echo -n "$${bp_count}_buildpack-$$i "; \
+		cat buildpacks/*-$$i/buildpack* | sed 'N;s/\n/ /'; \
+		count=$$((count + 1)) ; \
+	done > include/buildpacks.txt
 	go-bindata include
 	mkdir -p build/linux  && GOOS=linux  go build -a -ldflags "-X main.Version=$(VERSION)" -o build/linux/$(NAME)
 	mkdir -p build/darwin && GOOS=darwin go build -a -ldflags "-X main.Version=$(VERSION)" -o build/darwin/$(NAME)
