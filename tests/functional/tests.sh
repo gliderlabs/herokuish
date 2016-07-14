@@ -25,3 +25,10 @@ T_slug-generate() {
 		herokuish slug generate
 		tar tzf /tmp/slug.tgz"
 }
+
+T_default-user() {
+	_test-user() {
+		id herokuishuser
+	}
+	herokuish-test "test-user" "$(fn-source _test-user)"
+}
