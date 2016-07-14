@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-addgroup --quiet --gid "32767" "herokuishgroup" && \
+addgroup --quiet --gid "32767" "herokuishuser" && \
 adduser \
     --shell /bin/bash \
     --disabled-password \

@@ -11,6 +11,11 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 
+## [0.3.17] - 2016-07-14
+### Fixed
+- @michaelshobbs set unprivileged user/group to same name and test with this user
+
+
 ## [0.3.16] - 2016-07-14
 ### Added
 - @michaelshobbs add named unprivileged user
@@ -242,7 +247,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.16...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.17...HEAD
+[0.3.17]: https://github.com/gliderlabs/herokuish/compare/v0.3.16...v0.3.17
 [0.3.16]: https://github.com/gliderlabs/herokuish/compare/v0.3.15...v0.3.16
 [0.3.15]: https://github.com/gliderlabs/herokuish/compare/v0.3.14...v0.3.15
 [0.3.14]: https://github.com/gliderlabs/herokuish/compare/v0.3.13...v0.3.14
