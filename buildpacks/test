@@ -20,7 +20,7 @@ run-test() {
   cd - &> /dev/null
 	[[ "$CI" ]] || rmflag="--rm"
   [[ "$TRACE" ]] && debug_flag="-e TRACE=true"
-  docker run $rmflag $debug_flag -v "$app_path:/tmp/app" herokuish:dev /bin/herokuish test / "$app"
+  docker run $rmflag $debug_flag --env=USER=herokuishuser -v "$app_path:/tmp/app" herokuish:dev /bin/herokuish test / "$app"
 }
 
 main() {
