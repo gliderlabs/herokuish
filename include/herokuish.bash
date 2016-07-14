@@ -123,7 +123,7 @@ herokuish-test() {
 main() {
 	set -eo pipefail; [[ "$TRACE" ]] && set -x
 
-	if [[ -d "$import_path" ]] && [ -n "$(ls -A $import_path)" ]; then
+	if [[ -d "$import_path" ]] && [[ -n "$(ls -A $import_path)" ]]; then
 		rm -rf "$app_path" && cp -r "$import_path" "$app_path"
 	fi
 
