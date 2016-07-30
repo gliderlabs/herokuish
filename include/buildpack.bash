@@ -137,7 +137,6 @@ buildpack-execute() {
 		unprivileged "$selected_path/bin/release" "$build_path" "$cache_path" > "$build_path/.release"
 	fi
 	if [[ -f "$build_path/.release" ]]; then
-		cat "$build_path/.release"
 		config_vars="$(cat $build_path/.release | yaml-get config_vars)"
 		if [[ "$config_vars" ]]; then
 			mkdir -p $build_path/.profile.d
