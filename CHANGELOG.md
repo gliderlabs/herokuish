@@ -11,6 +11,14 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 
+## [0.3.18] - 2016-07-29
+### Changed
+- @xtian Don't print .release file during build
+- @michaelshobbs Update php to version v109
+- @michaelshobbs michaelshobbs   Update go to version v44
+- @michaelshobbs Update scala to version v72
+
+
 ## [0.3.17] - 2016-07-14
 ### Fixed
 - @michaelshobbs set unprivileged user/group to same name and test with this user
