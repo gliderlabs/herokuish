@@ -11,11 +11,20 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 
+## [0.3.19] - 2016-09-20
+### Changed
+- @josegonzalez Update static buildpack to v6
+- @michaelshobbs Update gradle to version v18
+- @michaelshobbs Update java to version v46
+- @michaelshobbs Update php to version v110
+- @michaelshobbs Update python to version v82
+
+
 ## [0.3.18] - 2016-07-29
 ### Changed
 - @xtian Don't print .release file during build
 - @michaelshobbs Update php to version v109
-- @michaelshobbs michaelshobbs   Update go to version v44
+- @michaelshobbs Update go to version v44
 - @michaelshobbs Update scala to version v72
 
 
@@ -255,7 +264,9 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.17...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.19...HEAD
+[0.3.19]: https://github.com/gliderlabs/herokuish/compare/v0.3.18...v0.3.19
+[0.3.18]: https://github.com/gliderlabs/herokuish/compare/v0.3.17...v0.3.18
 [0.3.17]: https://github.com/gliderlabs/herokuish/compare/v0.3.16...v0.3.17
 [0.3.16]: https://github.com/gliderlabs/herokuish/compare/v0.3.15...v0.3.16
 [0.3.15]: https://github.com/gliderlabs/herokuish/compare/v0.3.14...v0.3.15
