@@ -1,4 +1,25 @@
 
+_envfile-parse() {
+    declare desc="Parse input into shell export commands"
+    local key
+    local value
+    while read line || [[ -n "$line" ]]; do
+        [[ "$line" =~ ^#.* ]] && continue
+        key=${line%%=*}
+        key=${key#*export }
+        value=${line#*=}
+        case "$value" in
+            \'*|\"*)
+                value=${value}
+                ;;
+            *)
+                value=\"${value}\"
+                ;;
+        esac
+        echo "export ${key}=${value}"
+    done <<< "$(cat)"
+}
+
 buildpack-build() {
 	declare desc="Build an application using installed buildpacks"
 	ensure-paths
@@ -88,10 +109,9 @@ buildpack-setup() {
 	export CURL_CONNECT_TIMEOUT="30"
 	export CURL_TIMEOUT="180"
 
-
 	# Buildstep backwards compatibility
 	if [[ -f "$app_path/.env" ]]; then
-		source "$app_path/.env"
+		eval $(cat "$app_path/.env" | _envfile-parse)
 	fi
 }
 

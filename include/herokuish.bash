@@ -119,7 +119,6 @@ herokuish-test() {
 	echo "::: TEST FINISHED :::"
 }
 
-
 main() {
 	set -eo pipefail; [[ "$TRACE" ]] && set -x
 

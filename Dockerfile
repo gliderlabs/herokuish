@@ -1,5 +1,5 @@
 FROM heroku/cedar:14
-RUN curl https://github.com/gliderlabs/herokuish/releases/download/v0.3.19/herokuish_0.3.19_linux_x86_64.tgz \
+RUN curl https://github.com/gliderlabs/herokuish/releases/download/v0.3.20/herokuish_0.3.20_linux_x86_64.tgz \
 		--silent -L | tar -xzC /bin
 RUN /bin/herokuish buildpack install \
 	&& ln -s /bin/herokuish /build \
