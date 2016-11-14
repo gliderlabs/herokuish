@@ -5,6 +5,7 @@ _envfile-parse() {
     local value
     while read line || [[ -n "$line" ]]; do
         [[ "$line" =~ ^#.* ]] && continue
+        [[ "$line" =~ ^$ ]] && continue
         key=${line%%=*}
         key=${key#*export }
         value=${line#*=}
