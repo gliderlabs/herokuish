@@ -12,9 +12,11 @@ All notable changes to this project will be documented in this file.
 
 
 ## [0.3.21] - 2016-11-14
-### Changed
-- @michaelshobbs remove emberjs buildpack from default set
+### Fixed
 - @michaelshobbs skip blank lines in .env. closes #195
+
+### Removed
+- @michaelshobbs remove emberjs buildpack from default set
 
 
 ## [0.3.20] - 2016-11-13
