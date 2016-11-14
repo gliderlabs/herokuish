@@ -1,10 +1,10 @@
 NAME = herokuish
 HARDWARE = $(shell uname -m)
-VERSION ?= 0.3.20
+VERSION ?= 0.3.21
 IMAGE_NAME ?= $(NAME)
 BUILD_TAG ?= dev
 
-BUILDPACK_ORDER := multi ruby nodejs clojure python java gradle grails scala play php go erlang static emberjs
+BUILDPACK_ORDER := multi ruby nodejs clojure python java gradle grails scala play php go erlang static
 SHELL := /bin/bash
 
 build:

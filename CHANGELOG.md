@@ -11,13 +11,19 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 
+## [0.3.21] - 2016-11-14
+### Changed
+- @michaelshobbs remove emberjs buildpack from default set
+- @michaelshobbs skip blank lines in .env. closes #195
+
+
 ## [0.3.20] - 2016-11-13
 ### Changed
-- @michaelshobbs michaelshobbs   new .env parser that handles spaces
-- @michaelshobbs michaelshobbs   change readme instructions to use github releases
-- @michaelshobbs michaelshobbs   Update go to version v52
-- @michaelshobbs michaelshobbs   Update php to version v114
-- @michaelshobbs michaelshobbs   Update python to version v83
+- @michaelshobbs new .env parser that handles spaces
+- @michaelshobbs change readme instructions to use github releases
+- @michaelshobbs Update go to version v52
+- @michaelshobbs Update php to version v114
+- @michaelshobbs Update python to version v83
 
 
 ## [0.3.19] - 2016-09-20
@@ -273,7 +279,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.20...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.21...HEAD
+[0.3.21]: https://github.com/gliderlabs/herokuish/compare/v0.3.20...v0.3.21
 [0.3.20]: https://github.com/gliderlabs/herokuish/compare/v0.3.19...v0.3.20
 [0.3.19]: https://github.com/gliderlabs/herokuish/compare/v0.3.18...v0.3.19
 [0.3.18]: https://github.com/gliderlabs/herokuish/compare/v0.3.17...v0.3.18
