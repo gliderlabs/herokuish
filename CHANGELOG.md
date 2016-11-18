@@ -11,6 +11,17 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 
+## [0.3.22] - 2016-11-18
+### Removed
+- @michaelshobbs remove html2text dependency
+
+### Changed
+- @michaelshobbs changelog header correction for 0.3.21
+- @michaelshobbs Update java to version v48
+- @michaelshobbs Update ruby to version v148
+- @michaelshobbs Update python to version v85
+
+
 ## [0.3.21] - 2016-11-14
 ### Fixed
 - @michaelshobbs skip blank lines in .env. closes #195
