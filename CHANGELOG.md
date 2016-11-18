@@ -11,6 +11,17 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 
+## [0.3.22] - 2016-11-18
+### Removed
+- @michaelshobbs remove html2text dependency
+
+### Changed
+- @michaelshobbs changelog header correction for 0.3.21
+- @michaelshobbs Update java to version v48
+- @michaelshobbs Update ruby to version v148
+- @michaelshobbs Update python to version v85
+
+
 ## [0.3.21] - 2016-11-14
 ### Fixed
 - @michaelshobbs skip blank lines in .env. closes #195
@@ -281,7 +292,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.21...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.22...HEAD
+[0.3.22]: https://github.com/gliderlabs/herokuish/compare/v0.3.21...v0.3.22
 [0.3.21]: https://github.com/gliderlabs/herokuish/compare/v0.3.20...v0.3.21
 [0.3.20]: https://github.com/gliderlabs/herokuish/compare/v0.3.19...v0.3.20
 [0.3.19]: https://github.com/gliderlabs/herokuish/compare/v0.3.18...v0.3.19
