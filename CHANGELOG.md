@@ -11,6 +11,13 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 
+## [0.3.24] - 2017-01-02
+### Changed
+- @michaelshobbs Update static to version v8
+- @michaelshobbs Update python to version v97
+- @michaelshobbs Update ruby to version v150
+
+
 ## [0.3.23] - 2016-12-16
 ### Changed
 - @joshmanders Update nodejs version v93
@@ -301,7 +308,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.23...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.24...HEAD
+[0.3.24]: https://github.com/gliderlabs/herokuish/compare/v0.3.23...v0.3.24
 [0.3.23]: https://github.com/gliderlabs/herokuish/compare/v0.3.22...v0.3.23
 [0.3.22]: https://github.com/gliderlabs/herokuish/compare/v0.3.21...v0.3.22
 [0.3.21]: https://github.com/gliderlabs/herokuish/compare/v0.3.20...v0.3.21
