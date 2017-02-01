@@ -11,6 +11,18 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 
+## [0.3.25] - 2017-02-01
+### Changed
+- @fjorgemota Update buildpack-php to v119
+- @michaelshobbs Update clojure to version v76
+- @michaelshobbs Update go to version v60
+- @michaelshobbs Update gradle to version v21
+- @michaelshobbs Update nodejs to version v98
+- @michaelshobbs Update ruby to version v153
+- @michaelshobbs Update scala to version v75
+- @michaelshobbs Update java to version v50
+
+
 ## [0.3.24] - 2017-01-02
 ### Changed
 - @michaelshobbs Update static to version v8
@@ -308,7 +320,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.24...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.25...HEAD
+[0.3.25]: https://github.com/gliderlabs/herokuish/compare/v0.3.24...v0.3.25
 [0.3.24]: https://github.com/gliderlabs/herokuish/compare/v0.3.23...v0.3.24
 [0.3.23]: https://github.com/gliderlabs/herokuish/compare/v0.3.22...v0.3.23
 [0.3.22]: https://github.com/gliderlabs/herokuish/compare/v0.3.21...v0.3.22
