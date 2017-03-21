@@ -11,6 +11,11 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 
+## [0.3.27] - 2017-03-21
+### Changed
+- @michaelshobbs Update ruby to version v155
+
+
 ## [0.3.26] - 2017-02-28
 ### Changed
 - @wfarr Update go buildpack to v62
@@ -329,7 +334,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.26...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.27...HEAD
+[0.3.27]: https://github.com/gliderlabs/herokuish/compare/v0.3.26...v0.3.27
 [0.3.26]: https://github.com/gliderlabs/herokuish/compare/v0.3.25...v0.3.26
 [0.3.25]: https://github.com/gliderlabs/herokuish/compare/v0.3.24...v0.3.25
 [0.3.24]: https://github.com/gliderlabs/herokuish/compare/v0.3.23...v0.3.24
