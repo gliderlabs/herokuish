@@ -3,18 +3,18 @@ _envfile-parse() {
     declare desc="Parse input into shell export commands"
     local key
     local value
-    while read line || [[ -n "$line" ]]; do
+    while read -r line || [[ -n "$line" ]]; do
         [[ "$line" =~ ^#.* ]] && continue
         [[ "$line" =~ ^$ ]] && continue
         key=${line%%=*}
         key=${key#*export }
-        value=${line#*=}
+        value="${line#*=}"
         case "$value" in
             \'*|\"*)
-                value=${value}
+                value="${value}"
                 ;;
             *)
-                value=\"${value}\"
+                value=\""${value}"\"
                 ;;
         esac
         echo "export ${key}=${value}"

@@ -11,6 +11,14 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 
+## [0.3.29] - 2017-05-03
+### Fixed
+- @alexquick [build] fix old .env parsing to handle quotes and escapes better      cce259c
+
+### Changed
+- @michaelshobbs Update ruby to version v159
+
+
 ## [0.3.28] - 2017-04-19
 ### Fixed
 - @dmgr bugfix: curl may fail to fetch not quoted url if behind proxy
@@ -346,7 +354,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.28...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.29...HEAD
+[0.3.29]: https://github.com/gliderlabs/herokuish/compare/v0.3.28...v0.3.29
 [0.3.28]: https://github.com/gliderlabs/herokuish/compare/v0.3.27...v0.3.28
 [0.3.27]: https://github.com/gliderlabs/herokuish/compare/v0.3.26...v0.3.27
 [0.3.26]: https://github.com/gliderlabs/herokuish/compare/v0.3.25...v0.3.26
