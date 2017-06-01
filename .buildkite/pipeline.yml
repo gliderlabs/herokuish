@@ -1,0 +1,5 @@
+  - name: 'Build Herokuish'
+    command: pipa build -x --push -- .buildkite/make.sh $PIPA_IMAGE_FULL_NAME
+    label: ":heroku: Build Herokuish"
+    agents:
+      - queue=${BUILDKITE_AGENT_META_DATA_QUEUE}
