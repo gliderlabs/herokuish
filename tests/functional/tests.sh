@@ -54,7 +54,7 @@ T_invalid_proc_process() {
  	
 	if [[ $err_msg != $expected_err_msg ]]; then
 		echo "procfile-start did not throw error for invalid procfile"
-    	exit 1
+		exit 1
   	fi
 }
 
