@@ -13,6 +13,16 @@ fn-source() {
 	declare -f $1 | tail -n +2
 }
 
+function cleanup {
+  echo "Tests cleanup"
+  local procfile="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/Procfile"
+ 	if [ -f $procfile ]; then
+	 	rm -f $procfile
+	fi
+}
+
+trap cleanup EXIT
+
 T_binary() {
 	_test-binary() {
 		herokuish
@@ -34,10 +44,17 @@ T_default-user() {
 }
 
 T_invalid_proc_process() {
-  local expected_err_msg="Proc entrypoint invalid-proc does not exist. Please check your Procfile"
-  local err_msg=$(herokuish-test "inavlid-proc" "herokuish procfile start invalid-proc")
-  if [[ $err_msg != $expected_err_msg ]]; then
-    echo "procfile-start did not throw error for invalid procfile"
-    exit 1
-  fi
+	local dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+	
+	echo "Creating Procfile"
+	echo "web:" > $dir/"Procfile"
+	
+	local expected_err_msg="Proc entrypoint invalid-proc does not exist. Please check your Procfile"
+  	local err_msg="$(docker run $rmflag $debug_flag --env=USER=herokuishuser -v "$dir:/tmp/app" herokuish:dev /start invalid-proc)"
+ 	
+	if [[ $err_msg != $expected_err_msg ]]; then
+		echo "procfile-start did not throw error for invalid procfile"
+    	exit 1
+  	fi
 }
+
