@@ -20,18 +20,7 @@ run-test() {
   cd - &> /dev/null
 	[[ "$CI" ]] || rmflag="--rm"
   [[ "$TRACE" ]] && debug_flag="-e TRACE=true"
-  run-invalid-proc-test
   docker run $rmflag $debug_flag --env=USER=herokuishuser -v "$app_path:/tmp/app" herokuish:dev /bin/herokuish test / "$app"
-}
-
-run-invalid-proc-test() {
-  echo "Running /start with invalid Proc Process"
-  local expected_err_msg="Proc entrypoint invalid-proc does not exist. Please check your Procfile"
-  local err_msg="$(docker run $rmflag $debug_flag --env=USER=herokuishuser -v "$app_path:/tmp/app" herokuish:dev /start invalid-proc)"
-  if [[ $err_msg != $expected_err_msg ]]; then
-    echo "/start did not throw error for invalid procfile"
-    exit 1
-  fi
 }
 
 main() {
