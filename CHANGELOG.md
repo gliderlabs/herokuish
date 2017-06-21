@@ -10,7 +10,16 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
-## [0.3.30] - 2017-06-08
+## [0.3.31] - 2017-06-21
+### Changed
+- @michaelshobbs Update go to version v69
+- @michaelshobbs Update ruby to version v163
+- @michaelshobbs Update java to version v52
+- @michaelshobbs Update gradle to version v22
+- @michaelshobbs use go 1.8.3 in dev
+
+
+## [0.3.30] - 2017-06-21
 ### Fixed
 - @karanthukral Added error handling for when Procfile does not define the process being used
 
@@ -362,7 +371,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.30...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.31...HEAD
+[0.3.31]: https://github.com/gliderlabs/herokuish/compare/v0.3.30...v0.3.31
 [0.3.30]: https://github.com/gliderlabs/herokuish/compare/v0.3.29...v0.3.30
 [0.3.29]: https://github.com/gliderlabs/herokuish/compare/v0.3.28...v0.3.29
 [0.3.28]: https://github.com/gliderlabs/herokuish/compare/v0.3.27...v0.3.28
