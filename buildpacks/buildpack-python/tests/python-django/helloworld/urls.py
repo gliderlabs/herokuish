@@ -1,12 +1,10 @@
-from django.conf.urls import patterns, include, url
+import helloworld.views
+from django.conf.urls import *
 
 from django.contrib import admin
 admin.autodiscover()
 
-urlpatterns = patterns('',
-    # Examples:
-    url(r'^$', 'helloworld.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
-
+urlpatterns = [
+    url(r'^$', helloworld.views.home, name='home'),
     url(r'^admin/', include(admin.site.urls)),
-)
+]
