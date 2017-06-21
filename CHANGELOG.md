@@ -10,6 +10,10 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+## [0.3.30] - 2017-06-08
+### Fixed
+- @karanthukral Added error handling for when Procfile does not define the process being used
+
 
 ## [0.3.29] - 2017-05-03
 ### Fixed
