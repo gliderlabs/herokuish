@@ -14,6 +14,10 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - @karanthukral Added error handling for when Procfile does not define the process being used
 
+### Changed
+- @webknjaz Upgrade python buildpack to v109
+- @michaelshobbs fix python tests with new buildpack
+
 
 ## [0.3.29] - 2017-05-03
 ### Fixed
@@ -358,7 +362,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.29...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.30...HEAD
+[0.3.30]: https://github.com/gliderlabs/herokuish/compare/v0.3.29...v0.3.30
 [0.3.29]: https://github.com/gliderlabs/herokuish/compare/v0.3.28...v0.3.29
 [0.3.28]: https://github.com/gliderlabs/herokuish/compare/v0.3.27...v0.3.28
 [0.3.27]: https://github.com/gliderlabs/herokuish/compare/v0.3.26...v0.3.27
