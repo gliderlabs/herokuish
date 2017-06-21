@@ -30,7 +30,13 @@ procfile-parse() {
 procfile-start() {
 	declare desc="Run process type command from Procfile through exec"
 	declare type="$1"
-	procfile-exec "$(procfile-parse "$type")"
+	local processcmd="$(procfile-parse "$type")"
+	if [[ -z "$processcmd" ]]; then
+		echo "Proc entrypoint ${type} does not exist. Please check your Procfile"
+		exit 1
+	else
+		procfile-exec $processcmd
+	fi
 }
 
 procfile-exec() {
