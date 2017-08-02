@@ -135,6 +135,7 @@ main() {
 	cmd-export buildpack-build
 	cmd-export buildpack-install
 	cmd-export buildpack-list
+	cmd-export buildpack-test
 
 	cmd-export-ns slug "Manage application slugs"
 	cmd-export slug-import
