@@ -129,38 +129,8 @@ buildpack-setup() {
 }
 
 buildpack-execute() {
-	if [[ -n "$BUILDPACK_URL" ]]; then
-		title "Fetching custom buildpack"
-		selected_path="$buildpack_path/custom"
-		rm -rf "$selected_path"
-		IFS='#' read -r url commit <<< "$BUILDPACK_URL"
-		buildpack-install "$url" "$commit" custom &> /dev/null
-		chown -R "$unprivileged_user:$unprivileged_group" "$buildpack_path/custom"
-		selected_name="$(unprivileged "$selected_path/bin/detect" "$build_path" || true)"
-	else
-		local buildpacks=($buildpack_path/*)
-		local valid_buildpacks=()
-		for buildpack in "${buildpacks[@]}"; do
-			unprivileged "$buildpack/bin/detect" "$build_path" &> /dev/null \
-				&& valid_buildpacks+=("$buildpack")
-		done
-		if [[ ${#valid_buildpacks[@]} -gt 1 ]]; then
-			title "Warning: Multiple default buildpacks reported the ability to handle this app. The first buildpack in the list below will be used."
-			echo "Detected buildpacks: $(sed -e "s:/tmp/buildpacks/[0-9][0-9]_buildpack-::g" <<< "${valid_buildpacks[@]}")" | indent
-		fi
-		if [[ ${#valid_buildpacks[@]} -gt 0 ]]; then
-			selected_path="${valid_buildpacks[0]}"
-			selected_name=$(unprivileged "$selected_path/bin/detect" "$build_path")
-		fi
-	fi
-	if [[ "$selected_path" ]] && [[ "$selected_name" ]]; then
-		title "$selected_name app detected"
-	else
-		title "Unable to select a buildpack"
-		exit 1
-	fi
-
-	cd "$build_path" || return 1
+	select-buildpack
+	cd "$build_path"
 	unprivileged "$selected_path/bin/compile" "$build_path" "$cache_path" "$env_path"
 	if [[ -f "$selected_path/bin/release" ]]; then
 		unprivileged "$selected_path/bin/release" "$build_path" "$cache_path" > "$build_path/.release"
@@ -187,12 +157,7 @@ buildpack-execute() {
 	shopt -u dotglob nullglob
 }
 
-buildpack-test() {
-	declare desc="Run an application tests using installed buildpacks"
-	ensure-paths
-	[[ "$USER" ]] || randomize-unprivileged
-	buildpack-setup > /dev/null
-
+select-buildpack() {
 	if [[ -n "$BUILDPACK_URL" ]]; then
 		title "Fetching custom buildpack"
 
@@ -227,6 +192,16 @@ buildpack-test() {
 		title "Unable to select a buildpack"
 		exit 1
 	fi
+}
+
+buildpack-test() {
+	declare desc="Run an application tests using installed buildpacks"
+	ensure-paths
+	[[ "$USER" ]] || randomize-unprivileged
+	buildpack-setup > /dev/null
+
+	select-buildpack
+
 	cd "$build_path"
 	unprivileged "$selected_path/bin/test-compile" "$build_path" "$cache_path" "$env_path"
 	unprivileged "$selected_path/bin/test" "$build_path" "$env_path"
