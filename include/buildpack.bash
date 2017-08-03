@@ -203,12 +203,8 @@ buildpack-test() {
 	select-buildpack
 
 	cd "$build_path"
+	chmod 755 "$selected_path/bin/test-compile" "$selected_path/bin/test"
 	unprivileged "$selected_path/bin/test-compile" "$build_path" "$cache_path" "$env_path"
 	unprivileged "$selected_path/bin/test" "$build_path" "$env_path"
 	cd - > /dev/null
-
-	shopt -s dotglob nullglob
-	rm -rf $app_path/*
-	mv $build_path/* $app_path
-	shopt -u dotglob nullglob
 }
