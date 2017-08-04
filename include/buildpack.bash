@@ -148,13 +148,7 @@ buildpack-execute() {
 		fi
 	fi
 	cd - > /dev/null || return 1
-
-	shopt -s dotglob nullglob
-	# shellcheck disable=SC2086
-	rm -rf ${app_path:?}/*
-	# shellcheck disable=SC2086
-	mv $build_path/* $app_path
-	shopt -u dotglob nullglob
+	move-build-to-app
 }
 
 select-buildpack() {
@@ -194,17 +188,35 @@ select-buildpack() {
 	fi
 }
 
+move-build-to-app() {
+	shopt -s dotglob nullglob
+	# shellcheck disable=SC2086
+	rm -rf ${app_path:?}/*
+	# shellcheck disable=SC2086
+	mv $build_path/* $app_path
+	shopt -u dotglob nullglob
+}
+
 buildpack-test() {
 	declare desc="Run an application tests using installed buildpacks"
 	ensure-paths
 	[[ "$USER" ]] || randomize-unprivileged
 	buildpack-setup > /dev/null
-
 	select-buildpack
 
+	if [[ ! -f "$selected_path/bin/test" ]]; then
+		echo "Selected buildpack does not support test feature"
+		return
+	fi
+
+	# Install all application dependencies and tools
 	cd "$build_path"
 	chmod 755 "$selected_path/bin/test-compile" "$selected_path/bin/test"
 	unprivileged "$selected_path/bin/test-compile" "$build_path" "$cache_path" "$env_path"
-	unprivileged "$selected_path/bin/test" "$build_path" "$env_path"
-	cd - > /dev/null
+
+	# Update environment and run tests
+	cd "$app_path"
+	move-build-to-app
+	procfile-load-profile
+	unprivileged "$selected_path/bin/test" "$app_path" "$env_path"
 }
