@@ -183,26 +183,44 @@ move-build-to-app() {
 	shopt -u dotglob nullglob
 }
 
+buildpack-test-compile() {
+	declare desc="Build an application for tests using installed buildpacks"
+	ensure-paths
+	[[ "$USER" ]] || randomize-unprivileged
+	buildpack-setup > /dev/null
+	select-buildpack
+
+	if [[ ! -f "$selected_path/bin/test-compile" ]]; then
+		echo "Selected buildpack does not support test feature"
+		return
+	fi
+
+	cd "$build_path"
+	chmod 755 "$selected_path/bin/test-compile"
+	unprivileged "$selected_path/bin/test-compile" "$build_path" "$cache_path" "$env_path"
+}
+
 buildpack-test() {
 	declare desc="Run an application tests using installed buildpacks"
 	ensure-paths
 	[[ "$USER" ]] || randomize-unprivileged
 	buildpack-setup > /dev/null
-	select-buildpack
+	[[ "$selected_path" ]] || select-buildpack
 
 	if [[ ! -f "$selected_path/bin/test" ]]; then
 		echo "Selected buildpack does not support test feature"
 		return
 	fi
 
-	# Install all application dependencies and tools
-	cd "$build_path"
-	chmod 755 "$selected_path/bin/test-compile" "$selected_path/bin/test"
-	unprivileged "$selected_path/bin/test-compile" "$build_path" "$cache_path" "$env_path"
-
-	# Update environment and run tests
 	cd "$app_path"
 	move-build-to-app
 	procfile-load-profile
+	chmod 755 "$selected_path/bin/test"
 	unprivileged "$selected_path/bin/test" "$app_path" "$env_path"
+}
+
+buildpack-test-with-compile() {
+	declare desc="Build and run tests for an application using installed buildpacks"
+	buildpack-test-compile
+	buildpack-test
 }
