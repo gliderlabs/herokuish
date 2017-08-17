@@ -33,12 +33,6 @@ T_binary() {
 	herokuish-test "test-binary" "$(fn-source _test-binary)"
 }
 
-T_generate_slug() {
-	herokuish-test "test-slug-generate" "
-		herokuish slug generate
-		tar tzf /tmp/slug.tgz"
-}
-
 T_default-user() {
 	_test-user() {
 		id herokuishuser
@@ -46,18 +40,8 @@ T_default-user() {
 	herokuish-test "test-user" "$(fn-source _test-user)"
 }
 
-T_invalid_proc_process() {
-	local dir expected_err_msg err_msg
-	dir="$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
-	echo "Creating Procfile"
-	echo "web:" > "$dir/Procfile"
-	expected_err_msg="Proc entrypoint invalid-proc does not exist. Please check your Procfile"
-	# debug_flag is defined in outer scope
-	# shellcheck disable=SC2046,SC2086,2154
-	err_msg="$(docker run $([[ "$CI" ]] || echo "--rm") $debug_flag --env=USER=herokuishuser -v "$dir:/tmp/app" herokuish:dev /start invalid-proc)"
-
-	if [[ $err_msg != "$expected_err_msg" ]]; then
-		echo "procfile-start did not throw error for invalid procfile"
-		exit 1
-	fi
+T_generate-slug() {
+	herokuish-test "test-slug-generate" "
+		herokuish slug generate
+		tar tzf /tmp/slug.tgz"
 }

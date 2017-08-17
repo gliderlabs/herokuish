@@ -79,12 +79,14 @@ procfile-types() {
 }
 
 procfile-load-env() {
+	local varname
 	# env_path is defined in outer scope
 	# shellcheck disable=SC2154
 	if [[ -d "$env_path" ]]; then
 		shopt -s nullglob
 		for e in $env_path/*; do
-			export "$e=$(cat "$env_path"/"$e")"
+			varname=$(basename "$e")
+			export "$varname=$(cat "$e")"
 		done
 	fi
 }
