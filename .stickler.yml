@@ -1,0 +1,9 @@
+linters:
+  shellcheck:
+    shell: bash
+  golint:
+ignore:
+  files:
+    - 'vendor/*'
+    - 'bower_components/*'
+    - 'node_modules/*'
