@@ -2,3 +2,9 @@ source 'http://rubygems.org'
 ruby '1.9.3'
 gem 'sinatra'
 gem 'rack'
+gem 'rake'
+
+group :test do
+  gem 'rack-test'
+  gem 'test-unit'
+end
