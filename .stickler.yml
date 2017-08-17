@@ -1,6 +1,7 @@
 linters:
   shellcheck:
     shell: bash
+    exclude: 'SC2002,SC2034'
   golint:
 ignore:
   files:

@@ -10,6 +10,8 @@ dependencies:
     - make build
 
 test:
+  pre:
+    - make lint
   override:
     - basht:
         parallel: true

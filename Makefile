@@ -53,6 +53,12 @@ circleci:
 	rm -f ~/.gitconfig
 	mv Dockerfile.dev Dockerfile
 
+lint:
+	# SC2002: Useless cat - https://github.com/koalaman/shellcheck/wiki/SC2002
+	# SC2034: VAR appears unused - https://github.com/koalaman/shellcheck/wiki/SC2034
+	@echo linting...
+	@$(QUIET) find . -not -path '*/\.*' -type f | xargs file | grep text | awk -F ':' '{ print $$1 }' | xargs head -n1 | egrep -B1 "bash" | grep "==>" | awk '{ print $$2 }' | xargs shellcheck -e SC2002,SC2034 -s bash
+
 release: build
 	rm -rf release && mkdir release
 	tar -zcf release/$(NAME)_$(VERSION)_linux_$(HARDWARE).tgz -C build/linux $(NAME)
