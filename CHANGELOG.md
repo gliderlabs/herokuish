@@ -5,7 +5,6 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 
 ### Added
-- @dzaporozhets Add support for `buildpack test` command
 
 ### Removed
 
