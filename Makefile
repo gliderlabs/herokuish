@@ -7,6 +7,16 @@ BUILD_TAG ?= dev
 BUILDPACK_ORDER := multi ruby nodejs clojure python java gradle grails scala play php go erlang static
 SHELL := /bin/bash
 
+shellcheck:
+ifneq ($(shell shellcheck --version > /dev/null 2>&1 ; echo $$?),0)
+ifeq ($(SYSTEM),Darwin)
+	brew install shellcheck
+else
+	sudo add-apt-repository 'deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted universe multiverse'
+	sudo apt-get update && sudo apt-get install -y shellcheck
+endif
+endif
+
 build:
 	@count=0; \
 	for i in $(BUILDPACK_ORDER); do \
@@ -52,6 +62,14 @@ circleci:
 	docker version
 	rm -f ~/.gitconfig
 	mv Dockerfile.dev Dockerfile
+
+lint:
+	# SC2002: Useless cat - https://github.com/koalaman/shellcheck/wiki/SC2002
+	# SC2030: Modification of name is local - https://github.com/koalaman/shellcheck/wiki/SC2030
+	# SC2031: Modification of name is local - https://github.com/koalaman/shellcheck/wiki/SC2031
+	# SC2034: VAR appears unused - https://github.com/koalaman/shellcheck/wiki/SC2034
+	@echo linting...
+	shellcheck -e SC2002,SC2030,SC2031,SC2034 -s bash include/*.bash tests/*/tests.sh
 
 release: build
 	rm -rf release && mkdir release
