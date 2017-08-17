@@ -32,26 +32,26 @@ cmd-export() {
 
 cmd-export-ns() {
 	declare ns="$1" desc="$2"
-	eval "$1() { 
+	eval "$1() {
 		declare desc=\"$desc\"
-		cmd-ns $1 \"\$@\"; 
+		cmd-ns $1 \"\$@\";
 	}"
 	cmd-export "$1"
 	CMDS["$1"]="$1"
 }
 
 cmd-ns() {
-	local ns="$1"; shift 
+	local ns="$1"; shift
 	local cmd="$1"; shift || true
 	local status=0
-	if cmd-list "$ns" | grep ^$cmd\$ &> /dev/null; then
+	if cmd-list "$ns" | grep ^"$cmd"\$ &> /dev/null; then
 		${CMDS["$ns:$cmd"]} "$@"
 	else
 		if [[ "$cmd" ]]; then
 			echo "No such command: $cmd"
 			status=2
 		elif [[ "$ns" ]]; then
-			echo "$(fn-desc "$ns")"
+			fn-desc "$ns"
 		fi
 		echo
 		echo "Available commands:"
@@ -68,7 +68,7 @@ cmd-ns() {
 
 cmd-help() {
 	declare desc="Shows help information for a command"
-	declare args="$@"
+	declare args="$*"
 	if [[ "$args" ]]; then
     	for cmd; do true; done # last arg
     	local ns="${args/%$cmd/}"; ns="${ns/% /}"; ns="${ns/ /-}"

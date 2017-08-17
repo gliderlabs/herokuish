@@ -1,5 +1,5 @@
 
-if [[ "$BASH_VERSINFO" -lt "4" ]]; then
+if [[ "${BASH_VERSINFO[0]}" -lt "4" ]]; then
 	echo "!! Your system Bash is out of date: $BASH_VERSION"
 	echo "!! Please upgrade to Bash 4 or greater."
 	exit 2
@@ -45,12 +45,13 @@ version() {
 }
 
 title() {
-	echo $'\e[1G----->' $*
+	echo $'\e[1G----->' "$@"
 }
 
 indent() {
-	while read line; do
+	while read -r line; do
 		if [[ "$line" == --* ]] || [[ "$line" == ==* ]]; then
+			# shellcheck disable=SC2086
 			echo $'\e[1G'$line
 		else
 			echo $'\e[1G      ' "$line"
@@ -106,7 +107,7 @@ herokuish-test() {
 	done
 	echo "::: CHECKING APP :::"
 	local output
-	output="$(curl --fail --retry 10 --retry-delay 2 -v -s localhost:${PORT}$path)"
+	output="$(curl --fail --retry 10 --retry-delay 2 -v -s localhost:${PORT}"$path")"
 	if [[ "$expected" ]]; then
 		sleep 1
 		echo "::: APP OUTPUT :::"
@@ -122,7 +123,7 @@ herokuish-test() {
 main() {
 	set -eo pipefail; [[ "$TRACE" ]] && set -x
 
-	if [[ -d "$import_path" ]] && [[ -n "$(ls -A $import_path)" ]]; then
+	if [[ -d "$import_path" ]] && [[ -n "$(ls -A "$import_path")" ]]; then
 		rm -rf "$app_path" && cp -r "$import_path" "$app_path"
 	fi
 
