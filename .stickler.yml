@@ -8,4 +8,4 @@ ignore:
     - 'vendor/*'
     - 'bower_components/*'
     - 'node_modules/*'
-    - 'buildpacks/*/tests/*/test.sh'
+    - 'tests/*/test.sh'
