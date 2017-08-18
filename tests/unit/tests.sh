@@ -71,7 +71,7 @@ T_procfile-types() {
     expected="Procfile declares types -> web, worker"
     actual="$(procfile-types invalid-proc | tail -1)"
 
-    if [[ $actual != $expected ]]; then
+    if [[ $actual != "$expected" ]]; then
         echo "$actual != $expected"
         return 1
     fi
@@ -87,7 +87,7 @@ T_procfile-load-env() {
     actual="$TEST_BUILDPACK_URL"
     expected="$(cat "$env_path/TEST_BUILDPACK_URL")"
 
-    if [[ $actual != $expected ]]; then
+    if [[ $actual != "$expected" ]]; then
         echo "$actual != $expected"
         return 1
     fi
@@ -104,7 +104,7 @@ T_procfile-load-profile() {
     actual="$TEST_APP_TYPE"
     expected="nodejs"
 
-    if [[ $actual != $expected ]]; then
+    if [[ $actual != "$expected" ]]; then
         echo "$actual != $expected"
         return 1
     fi

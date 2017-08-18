@@ -21,6 +21,54 @@ _envfile-parse() {
     done <<< "$(cat)"
 }
 
+_move-build-to-app() {
+	shopt -s dotglob nullglob
+	# shellcheck disable=SC2086
+	rm -rf ${app_path:?}/*
+	#  build_path defined in outer scope
+	# shellcheck disable=SC2086,SC2154
+	mv $build_path/* $app_path
+	shopt -u dotglob nullglob
+}
+
+_select-buildpack() {
+	if [[ -n "$BUILDPACK_URL" ]]; then
+		title "Fetching custom buildpack"
+		# buildpack_path defined in outer scope
+		# shellcheck disable=SC2154
+		selected_path="$buildpack_path/custom"
+		rm -rf "$selected_path"
+
+		IFS='#' read -r url commit <<< "$BUILDPACK_URL"
+		buildpack-install "$url" "$commit" custom &> /dev/null
+		# unprivileged_user & unprivileged_group defined in outer scope
+		# shellcheck disable=SC2154
+		chown -R "$unprivileged_user:$unprivileged_group" "$buildpack_path/custom"
+		selected_name="$(unprivileged "$selected_path/bin/detect" "$build_path" || true)"
+	else
+		local buildpacks=($buildpack_path/*)
+		local valid_buildpacks=()
+		for buildpack in "${buildpacks[@]}"; do
+			unprivileged "$buildpack/bin/detect" "$build_path" &> /dev/null \
+				&& valid_buildpacks+=("$buildpack")
+		done
+		if [[ ${#valid_buildpacks[@]} -gt 1 ]]; then
+			title "Warning: Multiple default buildpacks reported the ability to handle this app. The first buildpack in the list below will be used."
+			echo "Detected buildpacks: $(sed -e "s:/tmp/buildpacks/[0-9][0-9]_buildpack-::g" <<< "${valid_buildpacks[@]}")" | indent
+		fi
+		if [[ ${#valid_buildpacks[@]} -gt 0 ]]; then
+			selected_path="${valid_buildpacks[0]}"
+			selected_name=$(unprivileged "$selected_path/bin/detect" "$build_path")
+		fi
+	fi
+	if [[ "$selected_path" ]] && [[ "$selected_name" ]]; then
+		title "$selected_name app detected"
+	else
+		title "Unable to select a buildpack"
+		exit 1
+	fi
+}
+
 buildpack-build() {
 	declare desc="Build an application using installed buildpacks"
 	ensure-paths
@@ -129,37 +177,7 @@ buildpack-setup() {
 }
 
 buildpack-execute() {
-	if [[ -n "$BUILDPACK_URL" ]]; then
-		title "Fetching custom buildpack"
-		selected_path="$buildpack_path/custom"
-		rm -rf "$selected_path"
-		IFS='#' read -r url commit <<< "$BUILDPACK_URL"
-		buildpack-install "$url" "$commit" custom &> /dev/null
-		chown -R "$unprivileged_user:$unprivileged_group" "$buildpack_path/custom"
-		selected_name="$(unprivileged "$selected_path/bin/detect" "$build_path" || true)"
-	else
-		local buildpacks=($buildpack_path/*)
-		local valid_buildpacks=()
-		for buildpack in "${buildpacks[@]}"; do
-			unprivileged "$buildpack/bin/detect" "$build_path" &> /dev/null \
-				&& valid_buildpacks+=("$buildpack")
-		done
-		if [[ ${#valid_buildpacks[@]} -gt 1 ]]; then
-			title "Warning: Multiple default buildpacks reported the ability to handle this app. The first buildpack in the list below will be used."
-			echo "Detected buildpacks: $(sed -e "s:/tmp/buildpacks/[0-9][0-9]_buildpack-::g" <<< "${valid_buildpacks[@]}")" | indent
-		fi
-		if [[ ${#valid_buildpacks[@]} -gt 0 ]]; then
-			selected_path="${valid_buildpacks[0]}"
-			selected_name=$(unprivileged "$selected_path/bin/detect" "$build_path")
-		fi
-	fi
-	if [[ "$selected_path" ]] && [[ "$selected_name" ]]; then
-		title "$selected_name app detected"
-	else
-		title "Unable to select a buildpack"
-		exit 1
-	fi
-
+	_select-buildpack
 	cd "$build_path" || return 1
 	unprivileged "$selected_path/bin/compile" "$build_path" "$cache_path" "$env_path"
 	if [[ -f "$selected_path/bin/release" ]]; then
@@ -178,11 +196,28 @@ buildpack-execute() {
 		fi
 	fi
 	cd - > /dev/null || return 1
+	_move-build-to-app
+}
 
-	shopt -s dotglob nullglob
-	# shellcheck disable=SC2086
-	rm -rf ${app_path:?}/*
-	# shellcheck disable=SC2086
-	mv $build_path/* $app_path
-	shopt -u dotglob nullglob
+buildpack-test() {
+	declare desc="Build and run tests for an application using installed buildpacks"
+	ensure-paths
+	[[ "$USER" ]] || randomize-unprivileged
+	buildpack-setup > /dev/null
+	_select-buildpack
+
+	if [[ ! -f "$selected_path/bin/test-compile" ]] || [[ ! -f "$selected_path/bin/test" ]]; then
+		echo "Selected buildpack does not support test feature"
+		return
+	fi
+
+	cd "$build_path" || return 1
+	chmod 755 "$selected_path/bin/test-compile"
+	unprivileged "$selected_path/bin/test-compile" "$build_path" "$cache_path" "$env_path"
+
+	cd "$app_path" || return 1
+	_move-build-to-app
+	procfile-load-profile
+	chmod 755 "$selected_path/bin/test"
+	unprivileged "$selected_path/bin/test" "$app_path" "$env_path"
 }

@@ -8,3 +8,4 @@ ignore:
     - 'vendor/*'
     - 'bower_components/*'
     - 'node_modules/*'
+    - 'tests/*/test.sh'
