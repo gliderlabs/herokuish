@@ -15,24 +15,25 @@ run-test() {
   [[ "$TRACE" ]] && set -x
   declare app="$1"
   local buildpack="buildpack-${1%%-*}"
-  cd "$(dirname $BASH_SOURCE)"
+  cd "$(dirname "${BASH_SOURCE[0]}")" || return 1
   local app_path="$PWD/$buildpack/tests/$app"
-  cd - &> /dev/null
+  cd - &> /dev/null || return 1
 	[[ "$CI" ]] || rmflag="--rm"
   [[ "$TRACE" ]] && debug_flag="-e TRACE=true"
+  # shellcheck disable=SC2086
   docker run $rmflag $debug_flag --env=USER=herokuishuser -v "$app_path:/tmp/app" herokuish:dev /bin/herokuish test / "$app"
 }
 
 main() {
   case "$#" in
     0)  # no args, run all the tests!
-        cd "$(dirname $BASH_SOURCE)"
-        basht $PWD/buildpack*/tests/*/test.sh
+        cd "$(dirname "${BASH_SOURCE[0]}")" || return 1
+        basht "$PWD/buildpack*/tests/*/test.sh"
         ;;
 
     1)  # one arg, expect name of buildpack to test
-        cd "$(dirname $BASH_SOURCE)"
-        basht $PWD/$1/tests/*/test.sh
+        cd "$(dirname "${BASH_SOURCE[0]}")" || return 1
+        basht "$PWD/$1/tests/*/test.sh"
         ;;
 
     *)  # more args, pass directly to basht
@@ -41,4 +42,4 @@ main() {
   esac
 }
 
-[[ "$0" == "$BASH_SOURCE" ]] && main "$@"
+[[ "$0" == "${BASH_SOURCE[0]}" ]] && main "$@"

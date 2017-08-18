@@ -6,8 +6,11 @@ dependencies:
   pre:
     - make circleci
     - make deps
+    - make shellcheck
   override:
     - make build
+  post:
+    - make lint
 
 test:
   override:
