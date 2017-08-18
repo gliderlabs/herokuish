@@ -69,7 +69,7 @@ lint:
 	# SC2031: Modification of name is local - https://github.com/koalaman/shellcheck/wiki/SC2031
 	# SC2034: VAR appears unused - https://github.com/koalaman/shellcheck/wiki/SC2034
 	@echo linting...
-	shellcheck -e SC2002,SC2030,SC2031,SC2034 -s bash include/*.bash tests/*/tests.sh
+	shellcheck -e SC2002,SC2030,SC2031,SC2034 -s bash include/*.bash tests/**/tests.sh
 
 release: build
 	rm -rf release && mkdir release
