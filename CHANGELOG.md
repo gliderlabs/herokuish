@@ -10,6 +10,21 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+## [0.3.32] - 2017-08-28
+### Added
+- @dzaporozhets Add support for buildpack test command
+
+### Changed
+- @miyucy Update ruby to version v168
+- @michaelshobbs Update nodejs to version v110
+- @michaelshobbs Update clojure to version v77
+- @michaelshobbs Update go to version v72
+- @michaelshobbs Update java to version v53
+- @michaelshobbs Update php to version v122
+- @michaelshobbs Update python to version v99
+- @michaelshobbs Update scala to version v78
+- @michaelshobbs Update gradle to version v23
+
 ## [0.3.31] - 2017-06-21
 ### Changed
 - @michaelshobbs Update go to version v69
@@ -371,8 +386,9 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.31...HEAD
-[0.3.31]: https://github.com/gliderlabs/herokuish/compare/v0.3.30...v0.3.31
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.32...HEAD
+[0.3.32]: https://github.com/gliderlabs/herokuish/compare/v0.3.30...v0.3.32
+[0.3.31]: https://github.com/gliderlabs/herokuish/compare/v0.3.31...v0.3.31
 [0.3.30]: https://github.com/gliderlabs/herokuish/compare/v0.3.29...v0.3.30
 [0.3.29]: https://github.com/gliderlabs/herokuish/compare/v0.3.28...v0.3.29
 [0.3.28]: https://github.com/gliderlabs/herokuish/compare/v0.3.27...v0.3.28
