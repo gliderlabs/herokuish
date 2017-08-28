@@ -1,19 +1,10 @@
 #!/bin/bash
 
-# called by test.sh stub in app tests
-app-test() {
-  declare app="$1"
-  eval "
-    T_$app() {
-      run-test $app
-    }
-  "
-}
-
-# runs the generic app test
-run-test() {
+# runs the command on buildpack test application
+_run-cmd() {
   [[ "$TRACE" ]] && set -x
   declare app="$1"
+  local cmd="$2"
   local buildpack="buildpack-${1%%-*}"
   cd "$(dirname "${BASH_SOURCE[0]}")" || return 1
   local app_path="$PWD/$buildpack/tests/$app"
@@ -21,7 +12,30 @@ run-test() {
 	[[ "$CI" ]] || rmflag="--rm"
   [[ "$TRACE" ]] && debug_flag="-e TRACE=true"
   # shellcheck disable=SC2086
-  docker run $rmflag $debug_flag --env=USER=herokuishuser -v "$app_path:/tmp/app" herokuish:dev /bin/herokuish test / "$app"
+  docker run $rmflag $debug_flag --env=USER=herokuishuser -v "$app_path:/tmp/app" herokuish:dev /bin/herokuish $cmd / "$app"
+}
+
+
+# called by test.sh stub in app tests
+app-test() {
+  declare app="$1"
+
+  eval "
+    T_$app() {
+      _run-cmd $app test
+    }
+  "
+}
+
+# called by test.sh stub in app tests
+buildpack-test() {
+  declare app="$1"
+
+  eval "
+    T_test_$app() {
+      _run-cmd $app 'buildpack test'
+    }
+  "
 }
 
 main() {

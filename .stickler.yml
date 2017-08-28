@@ -3,8 +3,9 @@ linters:
     shell: bash
     exclude: 'SC2002,SC2030,SC2031,SC2034'
   golint:
-ignore:
-  files:
+files:
+  ignore:
     - 'vendor/*'
     - 'bower_components/*'
     - 'node_modules/*'
+    - 'buildpacks/*/tests/*/test.sh'
