@@ -208,7 +208,7 @@ buildpack-test() {
 
 	if [[ ! -f "$selected_path/bin/test-compile" ]] || [[ ! -f "$selected_path/bin/test" ]]; then
 		echo "Selected buildpack does not support test feature"
-		return
+		exit 1
 	fi
 
 	cd "$build_path" || return 1
