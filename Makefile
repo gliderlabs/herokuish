@@ -12,8 +12,8 @@ ifneq ($(shell shellcheck --version > /dev/null 2>&1 ; echo $$?),0)
 ifeq ($(SYSTEM),Darwin)
 	brew install shellcheck
 else
-	sudo add-apt-repository 'deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted universe multiverse'
-	sudo apt-get update && sudo apt-get install -y shellcheck
+	@sudo add-apt-repository 'deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted universe multiverse'
+	@sudo apt-get update && sudo apt-get install -y shellcheck
 endif
 endif
 
@@ -38,7 +38,7 @@ build-in-docker:
 	docker build --rm -f Dockerfile.build -t $(NAME)-build .
 	docker run --rm -v /var/run/docker.sock:/var/run/docker.sock:ro \
 		-v /var/lib/docker:/var/lib/docker \
-		-v ${PWD}:/usr/src/myapp -w /usr/src/myapp \
+		-v ${PWD}:/go/src/github.com/gliderlabs/herokuish -w /go/src/github.com/gliderlabs/herokuish \
 		-e IMAGE_NAME=$(IMAGE_NAME) -e BUILD_TAG=$(BUILD_TAG) -e VERSION=master \
 		$(NAME)-build make -e deps build
 	docker rmi $(NAME)-build || true
