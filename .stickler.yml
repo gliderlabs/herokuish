@@ -1,0 +1,11 @@
+linters:
+  shellcheck:
+    shell: bash
+    exclude: 'SC2002,SC2030,SC2031,SC2034'
+  golint:
+files:
+  ignore:
+    - 'vendor/*'
+    - 'bower_components/*'
+    - 'node_modules/*'
+    - 'buildpacks/*/tests/*/test.sh'

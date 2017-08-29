@@ -18,7 +18,7 @@ Download and uncompress the latest binary tarball from [releases](https://github
 For example, you can do this directly in your Dockerfiles installing into `/bin` as one step:
 
 ```
-RUN curl --location --silent https://github.com/gliderlabs/herokuish/releases/download/v0.3.31/herokuish_0.3.31_linux_x86_64.tgz \
+RUN curl --location --silent https://github.com/gliderlabs/herokuish/releases/download/v0.3.32/herokuish_0.3.32_linux_x86_64.tgz \
 		  | tar -xzC /bin
 ```
 
@@ -36,6 +36,7 @@ Available commands:
     build                    Build an application using installed buildpacks
     install                  Install buildpack from Git URL and optional committish
     list                     List installed buildpacks
+    test                     Build and run tests for an application using installed buildpacks
   help                     Shows help information for a command
   paths                    Shows path settings
   procfile                 Use Procfiles and run app commands
@@ -141,6 +142,26 @@ Mounting your local app source directory to `/tmp/app` and running `/bin/herokui
 ```
 
 You can use this output when you submit issues.
+
+#### Running an app tests using Heroku buildpacks
+
+```
+$ docker run --rm -v /abs/app/path:/tmp/app gliderlabs/herokuish /bin/herokuish buildpack test
+```
+
+Mounting your local app source directory to `/tmp/app` and running `/bin/herokuish buildpack test` will run your app through the buildpack test-compile process. Then it will run `test` command to execute application tests.
+
+```
+-----> Ruby app detected
+-----> Setting up Test for Ruby/Rack
+-----> Using Ruby version: ruby-2.3.3
+  ...
+-----> Detecting rake tasks
+-----> Running test: bundle exec rspec
+       .
+       Finished in 0.00239 seconds (files took 0.07525 seconds to load)
+       1 example, 0 failures
+```
 
 #### Troubleshooting
 

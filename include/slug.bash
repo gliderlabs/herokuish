@@ -5,7 +5,9 @@ slug-import() {
 	declare desc="Import a gzipped slug tarball from URL or STDIN "
 	declare url="$1"
 	ensure-paths
-	if [[ "$(ls -A $app_path)" ]]; then
+	# app_path defined in outer scope
+	# shellcheck disable=SC2154
+	if [[ "$(ls -A "$app_path")" ]]; then
 		return 1
 	elif [[ "$url" ]]; then
 		curl -s --retry 2 "$url" | tar -xzC "$app_path"
@@ -25,12 +27,15 @@ slug-generate() {
 	if [[ -f "$app_path/.slugignore" ]]; then
 		slugignore_option="-X $app_path/.slugignore"
 	fi
-	tar $compress_option $slugignore_option \
+	# slugignore_option may be empty
+	# shellcheck disable=SC2086
+	tar "$compress_option" $slugignore_option \
 		--exclude='.git' \
 		-C "$app_path" \
 		-cf "$slug_path" \
     	.
-	local slug_size="$(du -Sh $slug_path | cut -f1)"
+	local slug_size
+	slug_size="$(du -Sh "$slug_path" | cut -f1)"
 	title "Compiled slug size is $slug_size"
 }
 
