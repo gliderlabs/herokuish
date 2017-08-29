@@ -10,6 +10,36 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+## [0.3.32] - 2017-08-29
+### Changed
+- @miyucy Update ruby version to v168
+- @miyucy Update nodejs to version v110
+- @michaelshobbs Update clojure to version v77
+- @michaelshobbs Update go to version v72
+- @michaelshobbs Update java to version v53
+- @michaelshobbs Update nodejs to version v99
+- @michaelshobbs Update php to version v122
+- @michaelshobbs Update python to version v99
+- @michaelshobbs Update scala to version v78
+- @michaelshobbs Update gradle to version v23
+- @michaelshobbs exit 1 on incompatible buildpack for buildpack test command
+- @michaelshobbs use image GOPATH as working dir
+- @michaelshobbs use circleci 2.0 machine executor
+
+### Added
+- @dzaporozhets Add support for buildpack test command
+- @michaelshobbs add stickler-ci
+- @michaelshobbs add linting and fix lintballs
+- @michaelshobbs add procfile tests
+- @dzaporozhets Update clojure-ring test app to make lein test work
+- @dzaporozhets Add support for testing buildpack test on clojure project
+- @dzaporozhets Add support for testing buildpack test on ruby project
+- @dzaporozhets Add buildpack test to readme and changelog
+
+### Removed
+- @michaelshobbs drop grails 2 buildpack per heroku
+
+
 ## [0.3.31] - 2017-06-21
 ### Changed
 - @michaelshobbs Update go to version v69
@@ -371,7 +401,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.31...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.32...HEAD
+[0.3.32]: https://github.com/gliderlabs/herokuish/compare/v0.3.31...v0.3.32
 [0.3.31]: https://github.com/gliderlabs/herokuish/compare/v0.3.30...v0.3.31
 [0.3.30]: https://github.com/gliderlabs/herokuish/compare/v0.3.29...v0.3.30
 [0.3.29]: https://github.com/gliderlabs/herokuish/compare/v0.3.28...v0.3.29
