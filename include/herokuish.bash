@@ -99,7 +99,7 @@ herokuish-test() {
 	procfile-start web &
 	for retry in $(seq 1 30); do
 		sleep 1
-		if ! nc -z -w 5 localhost $PORT; then
+		if ! nc -z -w 5 localhost "$PORT"; then
 			echo "::: RETRYING LISTENER ($retry) :::"
 		else
 			echo "::: FOUND LISTENER :::" && break
@@ -107,7 +107,7 @@ herokuish-test() {
 	done
 	echo "::: CHECKING APP :::"
 	local output
-	output="$(curl --fail --retry 10 --retry-delay 2 -v -s localhost:${PORT}"$path")"
+	output="$(curl --fail --retry 10 --retry-delay 2 -v -s "localhost:${PORT}${path}")"
 	if [[ "$expected" ]]; then
 		sleep 1
 		echo "::: APP OUTPUT :::"
