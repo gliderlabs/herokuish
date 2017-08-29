@@ -92,8 +92,7 @@ randomize-unprivileged() {
 herokuish-test() {
 	declare desc="Test running an app through Herokuish"
 	declare path="${1:-/}" expected="$2"
-	PORT=$(awk 'BEGIN{ srand();print int(rand()*(15600-1000))+1000 }')
-	export PORT
+	export PORT=5678
 	echo "::: BUILDING APP :::"
 	buildpack-build
 	echo "::: STARTING WEB :::"
