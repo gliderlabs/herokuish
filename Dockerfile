@@ -6,4 +6,4 @@ RUN ln -s /bin/herokuish /build \
 	&& ln -s /bin/herokuish /exec
 COPY include/default_user.bash /tmp/default_user.bash
 RUN bash /tmp/default_user.bash && rm -f /tmp/default_user.bash
-RUN apt-get update && apt-get install -y daemontools
+RUN apt-get update && apt-get install -y daemontools ruby-dev
