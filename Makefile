@@ -86,8 +86,10 @@ bumpup:
 			echo v$$version > buildpacks/buildpack-$$i/buildpack-version ; \
 			git status -s buildpacks/buildpack-$$i/buildpack-version | fgrep ' M ' ; \
 			if [[ $$? -eq 0 ]] ; then \
+				git checkout -b $$(date +%Y%m%d)-update-$$i ; \
 				git add buildpacks/buildpack-$$i/buildpack-version ; \
 				git commit -m "Update $$i to version v$$version" ; \
+				git checkout - ; \
 			fi ; \
 		fi ; \
 	done
