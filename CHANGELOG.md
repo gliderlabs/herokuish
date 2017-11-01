@@ -10,6 +10,21 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+## [0.3.33] - 2017-11-01
+### Changed
+- @miyucy Update ruby version to v170
+- @Shelnutt2 Update go to v78 for go dep support
+- @michaelshobbs Update gradle to version v24
+- @michaelshobbs Update java to version v57
+- @michaelshobbs Update nodejs to version v111
+- @michaelshobbs Update php to version v126
+- @michaelshobbs Update python to version v120
+- @michaelshobbs Update scala to version v79
+
+### Added
+- @miyucy Add task to bump up buildpacks version
+
+
 ## [0.3.32] - 2017-08-29
 ### Changed
 - @miyucy Update ruby version to v168
@@ -401,7 +416,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.32...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.33...HEAD
+[0.3.33]: https://github.com/gliderlabs/herokuish/compare/v0.3.32...v0.3.33
 [0.3.32]: https://github.com/gliderlabs/herokuish/compare/v0.3.31...v0.3.32
 [0.3.31]: https://github.com/gliderlabs/herokuish/compare/v0.3.30...v0.3.31
 [0.3.30]: https://github.com/gliderlabs/herokuish/compare/v0.3.29...v0.3.30
