@@ -10,6 +10,21 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+## [0.3.34] - 2018-01-30
+### Added
+- @josegonzalez feat: update all installed service dependencies when building the docker image
+
+### Changed
+- @josegonzalez Update ruby to version v173
+- @josegonzalez Update python to version v123
+- @josegonzalez Update clojure to version v78
+- @josegonzalez Update gradle to version v25
+- @josegonzalez Update php to version v130
+- @josegonzalez Update static to version v9
+- @michaelshobbs Update go to version v81
+- @michaelshobbs Update java to version v59
+- @michaelshobbs Update nodejs to version v116
+
 ## [0.3.33] - 2017-11-01
 ### Changed
 - @miyucy Update ruby version to v170
@@ -416,7 +431,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.33...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.34...HEAD
+[0.3.34]: https://github.com/gliderlabs/herokuish/compare/v0.3.33...v0.3.34
 [0.3.33]: https://github.com/gliderlabs/herokuish/compare/v0.3.32...v0.3.33
 [0.3.32]: https://github.com/gliderlabs/herokuish/compare/v0.3.31...v0.3.32
 [0.3.31]: https://github.com/gliderlabs/herokuish/compare/v0.3.30...v0.3.31

@@ -1,6 +1,6 @@
 NAME = herokuish
 HARDWARE = $(shell uname -m)
-VERSION ?= 0.3.33
+VERSION ?= 0.3.34
 IMAGE_NAME ?= $(NAME)
 BUILD_TAG ?= dev
 
