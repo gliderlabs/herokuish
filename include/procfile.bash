@@ -52,7 +52,11 @@ procfile-exec() {
 	cd "$app_path" || return 1
 	# unprivileged_user is defined in outer scope
 	# shellcheck disable=SC2154,SC2046
-	exec setuidgid "$unprivileged_user" $(eval echo "$@")
+	if (( $(id -u) == 0 )); then
+		exec setuidgid "$unprivileged_user" $(eval echo "$@")
+	else
+		exec $(eval echo "$@")
+	fi
 }
 
 procfile-types() {
