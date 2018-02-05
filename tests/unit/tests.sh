@@ -109,3 +109,35 @@ T_procfile-load-profile() {
         return 1
     fi
 }
+
+#the following two tests needs to launch an invalid command,
+#or else shell is hijacked by suceeding exec, so rather than no test
+#it is better to pass a failing cmd, so that we can check we pass exec step
+T_procfile-exec() {
+    # shellcheck disable=SC1090
+    source "$(dirname "${BASH_SOURCE[0]}")/../../include/procfile.bash"
+    local expected actual
+
+    actual=procfile-exec invalid
+    expected=".*invalid: command not found.*"
+
+    if [[ "$actual" =~ $expected ]]; then
+        echo "$actual =~ $expected"
+        return 1
+    fi
+}
+
+T_procfile-exec-setuidgid-optout() {
+    # shellcheck disable=SC1090
+    source "$(dirname "${BASH_SOURCE[0]}")/../../include/procfile.bash"
+    local expected actual
+
+    HEROKUISH_SETUIDGUID=false
+    actual=procfile-exec invalid
+    expected=".*invalid: command not found.*"
+
+    if [[ "$actual" =~ $expected ]]; then
+        echo "$actual =~ $expected"
+        return 1
+    fi
+}
