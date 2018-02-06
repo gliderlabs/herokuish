@@ -109,3 +109,18 @@ T_procfile-load-profile() {
         return 1
     fi
 }
+
+T_procfile-exec() {
+    # shellcheck disable=SC1090
+    source "$(dirname "${BASH_SOURCE[0]}")/../../include/procfile.bash"
+    local expected actual
+
+    actual=procfile-exec invalid
+    expected=".*invalid: command not found.*"
+
+    if [[ "$actual" =~ $expected ]]; then
+        echo "$actual =~ $expected"
+        return 1
+    fi
+
+}
