@@ -18,7 +18,7 @@ Download and uncompress the latest binary tarball from [releases](https://github
 For example, you can do this directly in your Dockerfiles installing into `/bin` as one step:
 
 ```
-RUN curl --location --silent https://github.com/gliderlabs/herokuish/releases/download/v0.3.34/herokuish_0.3.34_linux_x86_64.tgz \
+RUN curl --location --silent https://github.com/gliderlabs/herokuish/releases/download/v0.3.35/herokuish_0.3.35_linux_x86_64.tgz \
 		  | tar -xzC /bin
 ```
 
@@ -55,6 +55,9 @@ Available commands:
 Main functionality revolves around buildpack commands, procfile/exec commands, and slug commands. They are made to work together, but can be used independently or not at all.
 
 For example, build processes that produce Docker images without producing intermediary slugs can ignore slug commands. Similarly, non-buildpack runtime images such as [google/python-runtime](https://github.com/GoogleCloudPlatform/python-docker/tree/master/runtime) might find procfile commands useful just to support Procfiles.
+
+`herokuish exec` will by default drop root privileges through use of [setuidgid](https://cr.yp.to/daemontools/setuidgid.html),
+but if already running as a non-root user setuidgid will fail, you can opt-out from this by setting the env-var `HEROKUISH_SETUIDGUID=false`.
 
 #### Buildpacks
 

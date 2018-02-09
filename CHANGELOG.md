@@ -10,6 +10,15 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+## [0.3.35] - 2018-02-09
+### Added
+- @davidkarlsen Be able to opt out from setuidgid - needed when not running as root initially
+
+### Changed
+- @michaelshobbs Update go to version v83
+- @michaelshobbs Update nodejs to version v118
+
+
 ## [0.3.34] - 2018-01-30
 ### Added
 - @josegonzalez feat: update all installed service dependencies when building the docker image
