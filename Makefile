@@ -3,6 +3,7 @@ HARDWARE = $(shell uname -m)
 VERSION ?= 0.3.35
 IMAGE_NAME ?= $(NAME)
 BUILD_TAG ?= dev
+DOCKER_VERSION ?= 17.12.0
 
 BUILDPACK_ORDER := multi ruby nodejs clojure python java gradle scala play php go erlang static
 SHELL := /bin/bash
@@ -35,7 +36,7 @@ else
 endif
 
 build-in-docker:
-	docker build --rm -f Dockerfile.build -t $(NAME)-build .
+	docker build --rm --build-arg DOCKER_VERSION=$(DOCKER_VERSION) -f Dockerfile.build -t $(NAME)-build .
 	docker run --rm -v /var/run/docker.sock:/var/run/docker.sock:ro \
 		-v /var/lib/docker:/var/lib/docker \
 		-v ${PWD}:/go/src/github.com/gliderlabs/herokuish -w /go/src/github.com/gliderlabs/herokuish \
