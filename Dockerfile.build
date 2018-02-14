@@ -1,2 +1,3 @@
 FROM golang:1.8.3
-RUN curl -s -o - https://get.docker.com/ | sed 's/docker-ce/docker-ce=17.12.0/' | sh
+ARG DOCKER_VERSION
+RUN curl -s -o - https://get.docker.com/ | sed 's/docker-ce/docker-ce=$DOCKER_VERSION/' | sh
