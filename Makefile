@@ -1,6 +1,6 @@
 NAME = herokuish
 HARDWARE = $(shell uname -m)
-VERSION ?= 0.3.32
+VERSION ?= 0.3.35
 IMAGE_NAME ?= $(NAME)
 BUILD_TAG ?= dev
 
@@ -77,5 +77,21 @@ release: build
 	tar -zcf release/$(NAME)_$(VERSION)_darwin_$(HARDWARE).tgz -C build/darwin $(NAME)
 	gh-release create gliderlabs/$(NAME) $(VERSION) \
 		$(shell git rev-parse --abbrev-ref HEAD) v$(VERSION)
+
+bumpup:
+	for i in $(BUILDPACK_ORDER); do \
+		url=$$(cat buildpacks/buildpack-$$i/buildpack-url) ; \
+		version=$$(git ls-remote --tags $$url | awk '{print $$2}' | sed 's/refs\/tags\///' | egrep 'v[0-9]+$$' | sed 's/v//' | sort -n | tail -n 1) ; \
+		if [[ "x$$version" != 'x' ]]; then \
+			echo v$$version > buildpacks/buildpack-$$i/buildpack-version ; \
+			git status -s buildpacks/buildpack-$$i/buildpack-version | fgrep ' M ' ; \
+			if [[ $$? -eq 0 ]] ; then \
+				git checkout -b $$(date +%Y%m%d)-update-$$i ; \
+				git add buildpacks/buildpack-$$i/buildpack-version ; \
+				git commit -m "Update $$i to version v$$version" ; \
+				git checkout - ; \
+			fi ; \
+		fi ; \
+	done
 
 .PHONY: build
