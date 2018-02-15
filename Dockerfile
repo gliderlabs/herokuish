@@ -1,9 +1,8 @@
-FROM heroku/heroku:16
+FROM heroku/heroku:16-build
 
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update -qq \
- && apt-get install -yy -q daemontools ruby-dev build-essential \
  && apt-get -qq -y \
     --allow-downgrades \
     --allow-remove-essential \
