@@ -147,7 +147,7 @@ buildpack-setup() {
 	# shellcheck disable=SC2154
 	export HOME="$app_path"
 	export REQUEST_ID="build-$RANDOM"
-	export STACK="cedar-14"
+	export STACK="${STACK:-cedar-14}"
 	# build_path defined in outer scope
 	# shellcheck disable=SC2154
 	cp -r "$app_path/." "$build_path"
