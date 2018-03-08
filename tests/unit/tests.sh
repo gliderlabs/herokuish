@@ -44,6 +44,28 @@ T_procfile-parse-valid() {
     done
 }
 
+T_procfile-parse-merge-conflict() {
+    # shellcheck disable=SC1090
+    source "$(dirname "${BASH_SOURCE[0]}")/../../include/procfile.bash"
+    local expected actual app_path
+    app_path="$(dirname "${BASH_SOURCE[0]}")/fixtures-merge-conflict"
+    for type in web worker; do
+        case "$type" in
+            web)
+                expected="npm start"
+                ;;
+            worker)
+                expected="npm worker"
+                ;;
+        esac
+        actual=$(procfile-parse "$type" | xargs)
+        if [[ "$actual" != "$expected" ]]; then
+            echo "$actual != $expected"
+            return 1
+        fi
+    done
+}
+
 T_procfile-parse-invalid() {
     # shellcheck disable=SC1090
     source "$(dirname "${BASH_SOURCE[0]}")/../../include/procfile.bash"
@@ -67,6 +89,24 @@ T_procfile-types() {
     source "$(dirname "${BASH_SOURCE[0]}")/../../include/procfile.bash"
     local expected actual app_path
     app_path="$(dirname "${BASH_SOURCE[0]}")/fixtures"
+
+    expected="Procfile declares types -> web, worker"
+    actual="$(procfile-types invalid-proc | tail -1)"
+
+    if [[ "$actual" != "$expected" ]]; then
+        echo "$actual != $expected"
+        return 1
+    fi
+}
+
+T_procfile-types-merge-conflict() {
+    title() {
+        :
+    }
+    # shellcheck disable=SC1090
+    source "$(dirname "${BASH_SOURCE[0]}")/../../include/procfile.bash"
+    local expected actual app_path
+    app_path="$(dirname "${BASH_SOURCE[0]}")/fixtures-merge-conflict"
 
     expected="Procfile declares types -> web, worker"
     actual="$(procfile-types invalid-proc | tail -1)"

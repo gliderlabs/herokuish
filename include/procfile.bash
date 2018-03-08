@@ -3,6 +3,7 @@ yaml-esque-keys() {
 	declare desc="Get process type keys from colon-separated structure"
 	while read -r line || [[ -n "$line" ]]; do
 		[[ "$line" =~ ^#.* ]] && continue
+		[[ "$line" == *:* ]] || continue
 		key=${line%%:*}
 		echo "$key"
 	done <<< "$(cat)"
@@ -18,6 +19,7 @@ yaml-esque-get() {
 		cmd=${line#*:}
 		if [[ "$inputkey" == "$key" ]]; then
 			echo "$cmd"
+			break
 		fi
 	done <<< "$(cat)"
 }
@@ -63,7 +65,7 @@ procfile-types() {
 	title "Discovering process types"
 	if [[ -f "$app_path/Procfile" ]]; then
 		local types
-		types="$(cat "$app_path/Procfile" | yaml-esque-keys | xargs echo)"
+		types="$(cat "$app_path/Procfile" | yaml-esque-keys | sort | uniq | xargs echo)"
 		echo "Procfile declares types -> ${types// /, }"
 		return
 	fi
