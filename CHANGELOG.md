@@ -15,6 +15,10 @@ All notable changes to this project will be documented in this file.
 - @michaelshobbs pin docker version for local build target
 - @iSDP move base image to heroku16
 - @miyucy Respect STACK envvar
+- @michaelshobbs use newer version of ruby compatible with heroku-16 in test apps
+
+### Removed
+- @michaelshobbs remove erlang from buildpack bundle
 
 **NOTE: v0.4.0 is now based on heroku-16**
 
