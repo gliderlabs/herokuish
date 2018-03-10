@@ -1,10 +1,10 @@
 NAME = herokuish
 HARDWARE = $(shell uname -m)
-VERSION ?= 0.3.36
+VERSION ?= 0.4.0
 IMAGE_NAME ?= $(NAME)
 BUILD_TAG ?= dev
 
-BUILDPACK_ORDER := multi ruby nodejs clojure python java gradle scala play php go erlang static
+BUILDPACK_ORDER := multi ruby nodejs clojure python java gradle scala play php go static
 SHELL := /bin/bash
 
 shellcheck:
@@ -49,7 +49,7 @@ clean:
 	docker rmi herokuish:dev || true
 
 deps:
-	docker pull heroku/cedar:14
+	docker pull heroku/heroku:16-build
 	go get -u github.com/jteeuwen/go-bindata/...
 	go get -u github.com/progrium/gh-release/...
 	go get -u github.com/progrium/basht/...

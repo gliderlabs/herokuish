@@ -10,6 +10,18 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+## [0.4.0] - 2018-03-10
+### Changed
+- @michaelshobbs pin docker version for local build target
+- @iSDP move base image to heroku16
+- @miyucy Respect STACK envvar
+- @michaelshobbs use newer version of ruby compatible with heroku-16 in test apps
+
+### Removed
+- @michaelshobbs remove erlang from buildpack bundle
+
+**NOTE: v0.4.0 is now based on heroku-16**
+
 ## [0.3.36] - 2018-03-10
 ### Changed
 - @josegonzalez fix: retrieve only valid process types
@@ -451,7 +463,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.3.36...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/gliderlabs/herokuish/compare/v0.3.36...v0.4.0
 [0.3.36]: https://github.com/gliderlabs/herokuish/compare/v0.3.35...v0.3.36
 [0.3.35]: https://github.com/gliderlabs/herokuish/compare/v0.3.34...v0.3.35
 [0.3.34]: https://github.com/gliderlabs/herokuish/compare/v0.3.33...v0.3.34
