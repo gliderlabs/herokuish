@@ -4,7 +4,7 @@ VERSION ?= 0.4.0
 IMAGE_NAME ?= $(NAME)
 BUILD_TAG ?= dev
 
-BUILDPACK_ORDER := multi ruby nodejs clojure python java gradle scala play php go erlang static
+BUILDPACK_ORDER := multi ruby nodejs clojure python java gradle scala play php go static
 SHELL := /bin/bash
 
 shellcheck:
