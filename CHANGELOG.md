@@ -10,6 +10,10 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+## [0.4.1] - 2018-04-23
+### Changed
+- @nolith Update java to version v60
+
 ## [0.4.0] - 2018-03-10
 ### Changed
 - @michaelshobbs pin docker version for local build target
@@ -463,7 +467,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.4.0...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.4.1...HEAD
+[0.4.1]: https://github.com/gliderlabs/herokuish/compare/v0.4.0...v0.4.1
 [0.4.0]: https://github.com/gliderlabs/herokuish/compare/v0.3.36...v0.4.0
 [0.3.36]: https://github.com/gliderlabs/herokuish/compare/v0.3.35...v0.3.36
 [0.3.35]: https://github.com/gliderlabs/herokuish/compare/v0.3.34...v0.3.35
