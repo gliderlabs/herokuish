@@ -130,7 +130,6 @@ buildpack-install() {
 		chown -R root:root "$target_path"
 		chmod 755 "$target_path"
 	fi
-	rm -rf "$target_path/.git"
 }
 
 buildpack-list() {
