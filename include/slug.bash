@@ -30,7 +30,7 @@ slug-generate() {
 	# slugignore_option may be empty
 	# shellcheck disable=SC2086
 	tar "$compress_option" $slugignore_option \
-		--exclude='.git' \
+		--exclude='./.git' \
 		-C "$app_path" \
 		-cf "$slug_path" \
     	.
