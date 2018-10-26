@@ -10,6 +10,14 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+## [0.4.5] - 2018-10-26
+### Changed
+- @michaelshobbs Update nodejs to version v130 fb65b5a
+- @michaelshobbs Update python to version v144 bfabe39
+- @michaelshobbs Update go to version v94 ccd7e67
+- @michaelshobbs Update php to version v145 eaa3ca7
+- @michaelshobbs Update ruby to version v195 f24f45f
+
 ## [0.4.4] - 2018-08-20
 ### Changed
 - @natanrolnik Remove .git directory deletion upon build pack installation
@@ -500,7 +508,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.4.4...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.4.5...HEAD
+[0.4.5]: https://github.com/gliderlabs/herokuish/compare/v0.4.4...v0.4.5
 [0.4.4]: https://github.com/gliderlabs/herokuish/compare/v0.4.3...v0.4.4
 [0.4.3]: https://github.com/gliderlabs/herokuish/compare/v0.4.2...v0.4.3
 [0.4.2]: https://github.com/gliderlabs/herokuish/compare/v0.4.1...v0.4.2
