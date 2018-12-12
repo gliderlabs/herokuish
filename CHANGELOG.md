@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 ### Removed
 
 ### Changed
+- update golang to 1.11.2 for docker build
 
 ## [0.4.5] - 2018-10-26
 ### Changed
