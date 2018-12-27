@@ -10,6 +10,19 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+## [0.4.6] - 2018-12-26
+### Fixed
+- @HillLiu update golang to 1.11.2 for docker build
+
+### Changed
+- @josegonzalez Update go to version v98
+- @josegonzalez Update nodejs to version v134
+- @josegonzalez Update python to version v146
+- @josegonzalez Update php to version v148
+- @josegonzalez Update ruby to version v197
+- @josegonzalez Update scala to version v83
+- @josegonzalez Update static to version v10
+
 ## [0.4.5] - 2018-10-26
 ### Changed
 - @michaelshobbs Update nodejs to version v130 fb65b5a
@@ -508,7 +521,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.4.5...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.4.6...HEAD
+[0.4.6]: https://github.com/gliderlabs/herokuish/compare/v0.4.5...v0.4.6
 [0.4.5]: https://github.com/gliderlabs/herokuish/compare/v0.4.4...v0.4.5
 [0.4.4]: https://github.com/gliderlabs/herokuish/compare/v0.4.3...v0.4.4
 [0.4.3]: https://github.com/gliderlabs/herokuish/compare/v0.4.2...v0.4.3
