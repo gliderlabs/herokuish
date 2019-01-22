@@ -15,7 +15,6 @@ All notable changes to this project will be documented in this file.
 - @michaelshobbs Update go to version v99
 - @michaelshobbs Update php to version v149
 - @michaelshobbs Update ruby to version v198
-- @michaelshobbs Update static to version v9
 
 ## [0.4.6] - 2018-12-26
 ### Fixed
