@@ -10,6 +10,16 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+## [0.4.8] - 2019-02-15
+### Changed
+- @nbyl Update gradle buildpack to v28
+- @eval Update clojure to version v83
+- @josegonzalez Update go to version v100
+- @josegonzalez Update python to version v147
+- @josegonzalez Update scala to version v84
+- @josegonzalez Update nodejs to version v137
+- @josegonzalez Update php to version v150
+
 ## [0.4.7] - 2019-01-22
 ### Changed
 - @michaelshobbs Update go to version v99
@@ -527,7 +537,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.4.7...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.4.8...HEAD
+[0.4.8]: https://github.com/gliderlabs/herokuish/compare/v0.4.7...v0.4.8
 [0.4.7]: https://github.com/gliderlabs/herokuish/compare/v0.4.6...v0.4.7
 [0.4.6]: https://github.com/gliderlabs/herokuish/compare/v0.4.5...v0.4.6
 [0.4.5]: https://github.com/gliderlabs/herokuish/compare/v0.4.4...v0.4.5
