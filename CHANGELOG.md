@@ -10,6 +10,11 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+## [0.5.0] - 2019-03-07
+### Changed
+- @swistaczek Update heroku base machine from heroku:16 to heroku:18
+
+
 ## [0.4.9] - 2019-03-07
 ### Changed
 - @tnir Update go to version v102 to support Go 1.12
@@ -545,7 +550,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.4.9...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.5.0...HEAD
+[0.5.0]: https://github.com/gliderlabs/herokuish/compare/v0.4.9...v0.5.0
 [0.4.9]: https://github.com/gliderlabs/herokuish/compare/v0.4.8...v0.4.9
 [0.4.8]: https://github.com/gliderlabs/herokuish/compare/v0.4.7...v0.4.8
 [0.4.7]: https://github.com/gliderlabs/herokuish/compare/v0.4.6...v0.4.7

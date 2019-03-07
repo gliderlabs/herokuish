@@ -1,2 +1,0 @@
-#!/bin/bash
-exec "$(dirname "${BASH_SOURCE[0]}")/build/$(uname | awk '{print tolower($0)}')/herokuish" "$@"
