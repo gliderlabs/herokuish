@@ -146,7 +146,7 @@ buildpack-setup() {
 	# shellcheck disable=SC2154
 	export HOME="$app_path"
 	export REQUEST_ID="build-$RANDOM"
-	export STACK="${STACK:-heroku-16}"
+	export STACK="${STACK:-heroku-18}"
 	# build_path defined in outer scope
 	# shellcheck disable=SC2154
 	cp -r "$app_path/." "$build_path"
