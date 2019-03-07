@@ -10,6 +10,14 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+## [0.4.9] - 2019-03-07
+### Changed
+- @tnir Update go to version v102 to support Go 1.12
+- @michaelshobbs Update java to version v63
+- @michaelshobbs Update nodejs to version v139
+- @michaelshobbs Update python to version v149
+- @michaelshobbs Update ruby to version v199
+
 ## [0.4.8] - 2019-02-15
 ### Changed
 - @nbyl Update gradle buildpack to v28
@@ -537,7 +545,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.4.8...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.4.9...HEAD
+[0.4.9]: https://github.com/gliderlabs/herokuish/compare/v0.4.8...v0.4.9
 [0.4.8]: https://github.com/gliderlabs/herokuish/compare/v0.4.7...v0.4.8
 [0.4.7]: https://github.com/gliderlabs/herokuish/compare/v0.4.6...v0.4.7
 [0.4.6]: https://github.com/gliderlabs/herokuish/compare/v0.4.5...v0.4.6
