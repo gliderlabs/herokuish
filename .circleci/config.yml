@@ -3,7 +3,7 @@ jobs:
   build:
     machine: true
     working_directory: ~/gliderlabs/herokuish
-    parallelism: 4
+    parallelism: 1
     steps:
       - checkout
       - run: |
