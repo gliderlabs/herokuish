@@ -29,7 +29,7 @@ _move-build-to-app() {
 	# shellcheck disable=SC2086,SC2154
 	mv $build_path/* $app_path
 	# shellcheck disable=SC2154
-	chown -R "$unprivileged_user:$unprivileged_group" "$app_path"
+	find "$app_path" \( \! -user "$unprivileged_user" -o \! -group "$unprivileged_group" \) -print0 | xargs -0 -r chown "$unprivileged_user:$unprivileged_group"
 	shopt -u dotglob nullglob
 }
 
