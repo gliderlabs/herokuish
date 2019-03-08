@@ -18,7 +18,7 @@ Download and uncompress the latest binary tarball from [releases](https://github
 For example, you can do this directly in your Dockerfiles installing into `/bin` as one step:
 
 ```
-RUN curl --location --silent https://github.com/swistaczek/herokuish/releases/download/v0.4.9/herokuish_0.4.9_linux_x86_64.tgz \
+RUN curl --location --silent https://github.com/gliderlabs/herokuish/releases/download/v0.4.9/herokuish_0.4.9_linux_x86_64.tgz \
 		  | tar -xzC /bin
 ```
 
@@ -130,7 +130,7 @@ issue or an issue with Dokku. Buildpack issues should be filed against Herokuish
 #### Running an app against Herokuish
 
 ```
-$ docker run --rm -v /abs/app/path:/tmp/app gi /bin/herokuish test
+$ docker run --rm -v /abs/app/path:/tmp/app gliderlabs/herokuish /bin/herokuish test
 ```
 
 Mounting your local app source directory to `/tmp/app` and running `/bin/herokuish test` will run your app through the buildpack compile process. Then it starts your `web` process and attempts to connect to the web root path. If it runs into a problem, it should exit non-zero.
