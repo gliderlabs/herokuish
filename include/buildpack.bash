@@ -28,6 +28,8 @@ _move-build-to-app() {
 	#  build_path defined in outer scope
 	# shellcheck disable=SC2086,SC2154
 	mv $build_path/* $app_path
+	# shellcheck disable=SC2154
+	chown -R "$unprivileged_user:$unprivileged_group" "$app_path"
 	shopt -u dotglob nullglob
 }
 

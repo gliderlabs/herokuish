@@ -10,6 +10,11 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+## [0.5.0] - 2019-03-08
+### Changed
+- @swistaczek Set app directory and files privalages during build to speed up boot time
+
+
 ## [0.5.0] - 2019-03-07
 ### Changed
 - @swistaczek Update heroku base machine from heroku:16 to heroku:18
