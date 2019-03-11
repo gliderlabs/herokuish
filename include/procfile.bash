@@ -117,5 +117,6 @@ procfile-setup-home() {
 	usermod --home "$app_path" "$unprivileged_user" > /dev/null 2>&1
 	# unprivileged_user & unprivileged_group are defined in outer scope
 	# shellcheck disable=SC2154
-	find "$app_path" \( \! -user "$unprivileged_user" -o \! -group "$unprivileged_group" \) -print0 | xargs -0 -r chown "$unprivileged_user:$unprivileged_group"
+	echo "DEBUG: $app_path $unprivileged_user $unprivileged_group"
+	find "$app_path" \( \! -user "$unprivileged_user" -o \! -group "$unprivileged_group" \) -print0 | xargs -0 -P 4 -r chown "$unprivileged_user:$unprivileged_group"
 }

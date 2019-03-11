@@ -18,7 +18,7 @@ Download and uncompress the latest binary tarball from [releases](https://github
 For example, you can do this directly in your Dockerfiles installing into `/bin` as one step:
 
 ```
-RUN curl --location --silent https://github.com/swistaczek/herokuish/releases/download/v0.5.2/herokuish_0.5.2_linux_x86_64.tgz \
+RUN curl --location --silent https://github.com/swistaczek/herokuish/releases/download/v0.5.3/herokuish_0.5.3_linux_x86_64.tgz \
 		  | tar -xzC /bin
 ```
 

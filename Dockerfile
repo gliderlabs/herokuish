@@ -11,7 +11,7 @@ RUN apt-get update -qq \
     dist-upgrade \
  && apt-get clean \
  && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/* /var/tmp/*
-RUN curl "https://github.com/swistaczek/herokuish/releases/download/v0.5.2/herokuish_0.5.2_linux_x86_64.tgz" \
+RUN curl "https://github.com/swistaczek/herokuish/releases/download/v0.5.3/herokuish_0.5.3_linux_x86_64.tgz" \
     --silent -L | tar -xzC /bin
 RUN /bin/herokuish buildpack install \
   && ln -s /bin/herokuish /build \
