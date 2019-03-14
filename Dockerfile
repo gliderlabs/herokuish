@@ -1,4 +1,4 @@
-FROM heroku/heroku:16-build
+FROM heroku/heroku:18-build
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -11,7 +11,7 @@ RUN apt-get update -qq \
     dist-upgrade \
  && apt-get clean \
  && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/* /var/tmp/*
-RUN curl "https://github.com/gliderlabs/herokuish/releases/download/v0.4.10/herokuish_0.4.10_linux_x86_64.tgz" \
+RUN curl "https://github.com/gliderlabs/herokuish/releases/download/v0.5.0/herokuish_0.5.0_linux_x86_64.tgz" \
     --silent -L | tar -xzC /bin
 RUN /bin/herokuish buildpack install \
   && ln -s /bin/herokuish /build \
