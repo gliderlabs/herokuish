@@ -78,16 +78,23 @@ func AssetCat(args []string) {
 
 func main() {
 	os.Setenv("HEROKUISH_VERSION", Version)
-	basher.Application(map[string]func([]string){
+	funcs := map[string]func([]string){
 		"yaml-keys": YamlKeys,
 		"yaml-get":  YamlGet,
 		"asset-cat": AssetCat,
-	}, []string{
+	}
+	scripts := []string{
 		"include/herokuish.bash",
 		"include/fn.bash",
 		"include/cmd.bash",
 		"include/buildpack.bash",
 		"include/procfile.bash",
 		"include/slug.bash",
-	}, Asset, true)
+	}
+
+	if os.Getenv("BASH_BIN") == "" {
+		basher.Application(funcs, scripts, Asset, true)
+	} else {
+		basher.ApplicationWithPath(funcs, scripts, Asset, true, os.Getenv("BASH_BIN"))
+	}
 }

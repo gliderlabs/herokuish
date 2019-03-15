@@ -38,7 +38,7 @@ build-in-docker:
 	docker build --rm -f Dockerfile.build -t $(NAME)-build .
 	docker run --rm -v /var/run/docker.sock:/var/run/docker.sock:ro \
 		-v /var/lib/docker:/var/lib/docker \
-		-v ${PWD}:/go/src/github.com/gliderlabs/herokuish -w /go/src/github.com/gliderlabs/herokuish \
+		-v ${PWD}:/src/github.com/gliderlabs/herokuish -w /src/github.com/gliderlabs/herokuish \
 		-e IMAGE_NAME=$(IMAGE_NAME) -e BUILD_TAG=$(BUILD_TAG) -e VERSION=master \
 		$(NAME)-build make -e deps build
 	docker rmi $(NAME)-build || true
