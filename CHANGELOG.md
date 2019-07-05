@@ -10,6 +10,22 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+## [0.5.1] - 2019-07-05
+### Added
+- @josegonzalez Use go modules
+
+### Changed
+- @josegonzalez Allow using an system bash via BASH_BIN
+- @josegonzalez Correct outdated dependencies
+- @josegonzalez Update go to version v119
+- @josegonzalez Update gradle to version v30
+- @josegonzalez Update nodejs to version v157
+- @josegonzalez Update php to version v158
+- @josegonzalez Update python to version v153
+- @josegonzalez Update ruby to version v201
+- @josegonzalez Update scala to version v85
+- @josegonzalez Update static to version v11
+
 ## [0.5.0] - 2019-03-14
 ### Changed
 - @swistaczek Bump heroku stack to Heroku:18
@@ -556,7 +572,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.5.0...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.5.1...HEAD
+[0.5.1]: https://github.com/gliderlabs/herokuish/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/gliderlabs/herokuish/compare/v0.4.10...v0.5.0
 [0.4.10]: https://github.com/gliderlabs/herokuish/compare/v0.4.9...v0.4.10
 [0.4.9]: https://github.com/gliderlabs/herokuish/compare/v0.4.8...v0.4.9
