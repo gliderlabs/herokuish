@@ -145,6 +145,7 @@ buildpack-list() {
 }
 
 buildpack-setup() {
+  # $import_path is defined in outer scope
   # shellcheck disable=SC2154
   if [[ -d "$import_path" ]] && [[ -n "$(ls -A "$import_path")" ]]; then
     rm -rf "$app_path" && cp -r "$import_path" "$app_path"
