@@ -10,6 +10,12 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+## [0.5.2] - 2019-07-29
+### Changed
+- @josegonzalez Update go to version v126
+- @josegonzalez Update nodejs to version v158
+- @josegonzalez Update php to version v154
+
 ## [0.5.1] - 2019-07-05
 ### Added
 - @josegonzalez Use go modules
@@ -572,7 +578,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.5.1...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.5.2...HEAD
+[0.5.2]: https://github.com/gliderlabs/herokuish/compare/v0.5.1...v0.5.2
 [0.5.1]: https://github.com/gliderlabs/herokuish/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/gliderlabs/herokuish/compare/v0.4.10...v0.5.0
 [0.4.10]: https://github.com/gliderlabs/herokuish/compare/v0.4.9...v0.4.10
