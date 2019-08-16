@@ -1,4 +1,4 @@
-FROM heroku/heroku:18-build
+FROM heroku/heroku:18-build.nightly
 
 ENV DEBIAN_FRONTEND noninteractive
 
