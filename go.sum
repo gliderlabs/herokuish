@@ -1,7 +1,13 @@
+github.com/jteeuwen/go-bindata v3.0.7+incompatible h1:91Uy4d9SYVr1kyTJ15wJsog+esAZZl7JmEfTkwmhJts=
+github.com/jteeuwen/go-bindata v3.0.7+incompatible/go.mod h1:JVvhzYOiGBnFSYRyV00iY8q7/0PThjIYav1p9h5dmKs=
 github.com/kardianos/osext v0.0.0-20190222173326-2bc1f35cddc0 h1:iQTw/8FWTuc7uiaSepXwyf3o52HaUYcV+Tu66S3F5GA=
 github.com/kardianos/osext v0.0.0-20190222173326-2bc1f35cddc0/go.mod h1:1NbS8ALrpOvjt0rHPNLyCIeMtbizbir8U//inJ+zuB8=
 github.com/mitchellh/go-homedir v1.1.0 h1:lukF9ziXFxDFPkA1vsr5zpc1XuPDn/wFntq5mG+4E0Y=
 github.com/mitchellh/go-homedir v1.1.0/go.mod h1:SfyaCUpYCn1Vlf4IUYiD9fPX4A5wJrkLzIz1N1q0pr0=
+github.com/progrium/basht v0.1.0 h1:cR8lgH8xdTAz3qrEYxQ4bTWeOpHH+MUUeterawqIPDE=
+github.com/progrium/basht v0.1.0/go.mod h1:WyMu2A6LM0IdSFAQfVgg0zmq7lBHo2kcaff8QdUqMgQ=
+github.com/progrium/gh-release v2.2.1+incompatible h1:4onGzyjKl4DHbIMOueT6xzRo79MNH5CG9MKwYHYnI7o=
+github.com/progrium/gh-release v2.2.1+incompatible/go.mod h1:RYwpy7vlkYFxs88MEizbUvh5iPkrJVoHZ+W9A+Z0EAA=
 github.com/progrium/go-basher v0.0.0-20170201215011-ad5de635edd1 h1:BC5AL7yOCJKQ1bGiBoJwdyHHBGSLQIdbU+l/E11j0HA=
 github.com/progrium/go-basher v0.0.0-20170201215011-ad5de635edd1/go.mod h1:Oiy7jZEU1mm+gI1dt5MKYwxptmD37q8/UupxnwhMHtI=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=

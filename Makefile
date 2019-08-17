@@ -50,6 +50,9 @@ clean:
 
 deps:
 	docker pull heroku/heroku:18-build
+	go get -u github.com/jteeuwen/go-bindata/
+	go get -u github.com/progrium/gh-release/
+	go get -u github.com/progrium/basht/
 	go get -u github.com/jteeuwen/go-bindata/...
 	go get -u github.com/progrium/gh-release/...
 	go get -u github.com/progrium/basht/...
