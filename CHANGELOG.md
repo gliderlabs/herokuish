@@ -10,6 +10,13 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+## [0.5.3] - 2019-08-19
+### Changed
+- @josegonzalez Update clojure to version v84
+- @josegonzalez Update nodejs to version v161
+- @josegonzalez Update php to version v159
+- @josegonzalez Update static to version v12
+
 ## [0.5.2] - 2019-07-29
 ### Changed
 - @josegonzalez Update go to version v126
@@ -578,7 +585,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.5.2...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.5.3...HEAD
+[0.5.3]: https://github.com/gliderlabs/herokuish/compare/v0.5.2...v0.5.3
 [0.5.2]: https://github.com/gliderlabs/herokuish/compare/v0.5.1...v0.5.2
 [0.5.1]: https://github.com/gliderlabs/herokuish/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/gliderlabs/herokuish/compare/v0.4.10...v0.5.0
