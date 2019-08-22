@@ -7,7 +7,7 @@ T_envfile-parse(){
     local bar_expected='te'\''st'
 
     fixture_filename="$(dirname "${BASH_SOURCE[0]}")/fixtures/complicated_envfile"
-    eval "$(cat "$fixture_filename" | _envfile-parse)"
+    cat "$fixture_filename" | _envfile-parse
 
     # shellcheck disable=2154
     if [[ ! "$foo_expected" == "$foo" ]]; then
