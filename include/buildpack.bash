@@ -17,7 +17,7 @@ _envfile-parse() {
                 value=\""${value}"\"
                 ;;
         esac
-        export ${key}=${value}
+        echo "export ${key}=${value}"
     done <<< "$(cat)"
 }
 
@@ -171,7 +171,7 @@ buildpack-setup() {
 	# Buildstep backwards compatibility
 	if [[ -f "$app_path/.env" ]]; then
 		# shellcheck disable=SC2046
-		cat "$app_path/.env" | _envfile-parse
+		eval $(cat "$app_path/.env" | _envfile-parse)
 	fi
 }
 
