@@ -10,6 +10,21 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+## [0.5.4] - 2019-12-04
+### Changed
+- @josegonzalez Update go to version v135
+- @josegonzalez Update gradle to version v31
+- @josegonzalez Update java to version v65
+- @josegonzalez Update nodejs to version v165
+- @josegonzalez Update php to version v164
+- @josegonzalez Update python to version v161
+- @josegonzalez Update ruby to version v206
+- @josegonzalez Update scala to version v86
+
+### Fixed
+- @michaelshobbs  Use ruby 2.6.2 with fixed bundler
+- dependabot: Update various test app dependencies
+
 ## [0.5.3] - 2019-08-19
 ### Changed
 - @josegonzalez Update clojure to version v84
@@ -585,7 +600,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.5.3...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.5.4...HEAD
+[0.5.4]: https://github.com/gliderlabs/herokuish/compare/v0.5.3...v0.5.4
 [0.5.3]: https://github.com/gliderlabs/herokuish/compare/v0.5.2...v0.5.3
 [0.5.2]: https://github.com/gliderlabs/herokuish/compare/v0.5.1...v0.5.2
 [0.5.1]: https://github.com/gliderlabs/herokuish/compare/v0.5.0...v0.5.1
