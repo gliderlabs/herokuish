@@ -10,6 +10,16 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+## [0.5.5] - 2019-12-20
+### Changed
+- @josegonzalez Update go to version v136
+- @josegonzalez Update java to version v66
+- @josegonzalez Update nodejs to version v166
+- @josegonzalez Update php to version v166
+- @josegonzalez Update python to version v162
+- @josegonzalez Update ruby to version v207
+- dependabot: Bump rack from 1.5.2 to 1.6.12
+
 ## [0.5.4] - 2019-12-04
 ### Changed
 - @josegonzalez Update go to version v135
@@ -600,7 +610,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.5.4...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.5.5...HEAD
+[0.5.5]: https://github.com/gliderlabs/herokuish/compare/v0.5.4...v0.5.5
 [0.5.4]: https://github.com/gliderlabs/herokuish/compare/v0.5.3...v0.5.4
 [0.5.3]: https://github.com/gliderlabs/herokuish/compare/v0.5.2...v0.5.3
 [0.5.2]: https://github.com/gliderlabs/herokuish/compare/v0.5.1...v0.5.2
