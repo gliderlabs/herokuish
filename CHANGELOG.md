@@ -12,6 +12,13 @@ All notable changes to this project will be documented in this file.
 
 ## [0.5.5] - 2019-12-20
 ### Changed
+- @josegonzalez Update nodejs to version v167
+- @josegonzalez Update php to version v169
+- @josegonzalez Update python to version v163
+- @josegonzalez Update scala to version v87
+
+## [0.5.5] - 2019-12-20
+### Changed
 - @josegonzalez Update go to version v136
 - @josegonzalez Update java to version v66
 - @josegonzalez Update nodejs to version v166
@@ -610,7 +617,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.5.5...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.5.6...HEAD
+[0.5.6]: https://github.com/gliderlabs/herokuish/compare/v0.5.5...v0.5.6
 [0.5.5]: https://github.com/gliderlabs/herokuish/compare/v0.5.4...v0.5.5
 [0.5.4]: https://github.com/gliderlabs/herokuish/compare/v0.5.3...v0.5.4
 [0.5.3]: https://github.com/gliderlabs/herokuish/compare/v0.5.2...v0.5.3

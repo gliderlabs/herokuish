@@ -13,7 +13,7 @@ RUN apt-get update -qq \
  && mv /etc/ImageMagick-6/policy.xml.custom /etc/ImageMagick-6/policy.xml \
  && apt-get clean \
  && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/* /var/tmp/*
-RUN curl "https://github.com/gliderlabs/herokuish/releases/download/v0.5.5/herokuish_0.5.5_linux_x86_64.tgz" \
+RUN curl "https://github.com/gliderlabs/herokuish/releases/download/v0.5.6/herokuish_0.5.6_linux_x86_64.tgz" \
     --silent -L | tar -xzC /bin
 RUN /bin/herokuish buildpack install \
   && ln -s /bin/herokuish /build \
