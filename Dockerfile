@@ -3,7 +3,7 @@ FROM heroku/heroku:18-build
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update -qq \
- && apt-get install -qq -y daemontools \
+ && apt-get install -qq -y daemontools libonig4 libonig-dev \
  && cp /etc/ImageMagick-6/policy.xml /etc/ImageMagick-6/policy.xml.custom \
  && apt-get -y -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confnew \
     --allow-downgrades \
