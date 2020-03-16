@@ -10,6 +10,12 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+## [0.5.8] - 2020-03-16
+### Changed
+- @josegonzalez Update go to version v138
+- @josegonzalez Update python to version v166
+- @josegonzalez Update ruby to version v211
+
 ## [0.5.7] - 2020-02-02
 ### Changed
 - @dependabot Bump django from 1.11.23 to 1.11.28
@@ -624,7 +630,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.5.7...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.5.8...HEAD
+[0.5.8]: https://github.com/gliderlabs/herokuish/compare/v0.5.7...v0.5.8
 [0.5.7]: https://github.com/gliderlabs/herokuish/compare/v0.5.6...v0.5.7
 [0.5.6]: https://github.com/gliderlabs/herokuish/compare/v0.5.5...v0.5.6
 [0.5.5]: https://github.com/gliderlabs/herokuish/compare/v0.5.4...v0.5.5
