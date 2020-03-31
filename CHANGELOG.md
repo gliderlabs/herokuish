@@ -10,6 +10,15 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+## [0.5.9] - 2020-03-31
+### Changed
+- @josegonzalez Update go to version v139
+- @josegonzalez Update nodejs to version v170
+- @josegonzalez Update php to version v173
+- @josegonzalez Update python to version v167
+- @josegonzalez Update ruby to version v212
+- @dependabot Bump symfony/http-foundation from 4.4.1 to 4.4.7
+
 ## [0.5.8] - 2020-03-16
 ### Changed
 - @josegonzalez Update go to version v138
@@ -630,7 +639,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.5.8...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.5.9...HEAD
+[0.5.9]: https://github.com/gliderlabs/herokuish/compare/v0.5.8...v0.5.9
 [0.5.8]: https://github.com/gliderlabs/herokuish/compare/v0.5.7...v0.5.8
 [0.5.7]: https://github.com/gliderlabs/herokuish/compare/v0.5.6...v0.5.7
 [0.5.6]: https://github.com/gliderlabs/herokuish/compare/v0.5.5...v0.5.6
