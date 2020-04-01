@@ -1,2 +1,4 @@
 foo='Hello'$'\n'' '\''world'\'' '
 bar='te'\''st'
+nested_foo=foo
+nested_bar=${nested_foo}
