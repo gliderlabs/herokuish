@@ -5,6 +5,8 @@ T_envfile-parse(){
     local fixture_filename
     local foo_expected='Hello'$'\n'' '\''world'\'' '
     local bar_expected='te'\''st'
+    local nested_foo_expected=foo
+    local nested_bar_expected=foo
 
     fixture_filename="$(dirname "${BASH_SOURCE[0]}")/fixtures/complicated_envfile"
     eval "$(cat "$fixture_filename" | _envfile-parse)"
@@ -19,6 +21,18 @@ T_envfile-parse(){
     if [[ ! "$bar_expected" == "$bar" ]]; then
         echo "Expected bar = $bar_expected got: $bar"
         return 2
+    fi
+
+    # shellcheck disable=2154
+    if [[ ! "$nested_foo_expected" == "$nested_foo" ]]; then
+        echo "Expected nested_foo = $nested_foo_expected got: $nested_foo"
+        return 3
+    fi
+
+    # shellcheck disable=2154
+    if [[ ! "$nested_bar_expected" == "$nested_bar" ]]; then
+        echo "Expected nested_bar = $nested_bar_expected got: $nested_bar"
+        return 4
     fi
 }
 
