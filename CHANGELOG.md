@@ -10,6 +10,11 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+## [0.5.11] - 2020-04-02
+
+### Changed
+- @josegonzalez Update ruby to version v214
+
 ## [0.5.10] - 2020-04-01
 
 ### Changed
@@ -644,7 +649,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.5.10...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.5.11...HEAD
+[0.5.11]: https://github.com/gliderlabs/herokuish/compare/v0.5.10...v0.5.11
 [0.5.10]: https://github.com/gliderlabs/herokuish/compare/v0.5.9...v0.5.10
 [0.5.9]: https://github.com/gliderlabs/herokuish/compare/v0.5.8...v0.5.9
 [0.5.8]: https://github.com/gliderlabs/herokuish/compare/v0.5.7...v0.5.8
