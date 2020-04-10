@@ -4,7 +4,9 @@
 [![IRC Channel](https://img.shields.io/badge/irc-%23gliderlabs-blue.svg)](https://kiwiirc.com/client/irc.freenode.net/#gliderlabs)
 [![Docker Hub](https://img.shields.io/badge/docker%20hub-v0.5.11-blue)](https://hub.docker.com/r/gliderlabs/herokuish)
 
-A command line tool for emulating Heroku build and runtime tasks in containers.
+A command line tool for emulating Heroku build and test tasks in containers.
+
+Note that you can not direcly use `herokuish` to run your project locally. Instead you can build a container with your project and run that container yourself.
 
 Herokuish is made for platform authors. The project consolidates and decouples Heroku compatibility logic (running buildpacks, parsing Procfile) and supporting workflow (importing/exporting slugs) from specific platform images like those in Dokku/Buildstep, Deis, Flynn, etc.
 
