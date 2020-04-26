@@ -2,7 +2,7 @@
 
 [![Circle CI](https://circleci.com/gh/gliderlabs/herokuish.png?style=shield)](https://circleci.com/gh/gliderlabs/herokuish)
 [![IRC Channel](https://img.shields.io/badge/irc-%23gliderlabs-blue.svg)](https://kiwiirc.com/client/irc.freenode.net/#gliderlabs)
-[![Docker Hub](https://img.shields.io/badge/docker%20hub-v0.5.11-blue)](https://hub.docker.com/r/gliderlabs/herokuish)
+[![Docker Hub](https://img.shields.io/badge/docker%20hub-v0.5.12-blue)](https://hub.docker.com/r/gliderlabs/herokuish)
 
 A command line tool for emulating Heroku build and runtime tasks in containers.
 
@@ -19,7 +19,7 @@ Download and uncompress the latest binary tarball from [releases](https://github
 For example, you can do this directly in your Dockerfiles installing into `/bin` as one step:
 
 ```
-RUN curl --location --silent https://github.com/gliderlabs/herokuish/releases/download/v0.5.11/herokuish_0.5.11_linux_x86_64.tgz \
+RUN curl --location --silent https://github.com/gliderlabs/herokuish/releases/download/v0.5.12/herokuish_0.5.12_linux_x86_64.tgz \
 		  | tar -xzC /bin
 ```
 
