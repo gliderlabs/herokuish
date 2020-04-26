@@ -10,6 +10,14 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+## [0.5.12] - 2020-04-25
+
+### Changed
+- @josegonzalez Update go to version v141
+- @josegonzalez Update python to version v169
+- @josegonzalez Update ruby to version v215
+- @josegonzalez Update static to version v13
+
 ## [0.5.11] - 2020-04-02
 
 ### Changed
@@ -649,7 +657,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.5.11...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.5.12...HEAD
+[0.5.12]: https://github.com/gliderlabs/herokuish/compare/v0.5.11...v0.5.12
 [0.5.11]: https://github.com/gliderlabs/herokuish/compare/v0.5.10...v0.5.11
 [0.5.10]: https://github.com/gliderlabs/herokuish/compare/v0.5.9...v0.5.10
 [0.5.9]: https://github.com/gliderlabs/herokuish/compare/v0.5.8...v0.5.9
