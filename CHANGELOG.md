@@ -10,6 +10,13 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+## [0.5.13] - 2020-05-07
+
+### Changed
+- @josegonzalez Update go to version v142
+- @josegonzalez Update nodejs to version v171
+- @josegonzalez Update php to version v174
+
 ## [0.5.12] - 2020-04-25
 
 ### Changed
