@@ -10,6 +10,20 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+## [0.5.15] - 2020-07-24
+
+### Changed
+- @cdmwebs Fix Typo in README
+- @josegonzalez Update python to version v173
+- @josegonzalez Update ruby to version v218
+- @josegonzalez Update static to version v14
+- @josegonzalez Update clojure to version v85
+- @josegonzalez Update go to version v144
+- @josegonzalez Update php to version v178
+- @josegonzalez Update nodejs to version v174
+- @dependabot Bump django from 1.11.28 to 1.11.29
+
+
 ## [0.5.14] - 2020-06-01
 
 ### Changed
@@ -670,7 +684,8 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.5.14...HEAD
+[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.5.15...HEAD
+[0.5.15]: https://github.com/gliderlabs/herokuish/compare/v0.5.14...v0.5.15
 [0.5.14]: https://github.com/gliderlabs/herokuish/compare/v0.5.13...v0.5.14
 [0.5.13]: https://github.com/gliderlabs/herokuish/compare/v0.5.12...v0.5.13
 [0.5.12]: https://github.com/gliderlabs/herokuish/compare/v0.5.11...v0.5.12
