@@ -2,7 +2,7 @@
 
 [![Circle CI](https://circleci.com/gh/gliderlabs/herokuish.png?style=shield)](https://circleci.com/gh/gliderlabs/herokuish)
 [![IRC Channel](https://img.shields.io/badge/irc-%23gliderlabs-blue.svg)](https://kiwiirc.com/client/irc.freenode.net/#gliderlabs)
-[![Docker Hub](https://img.shields.io/badge/docker%20hub-v0.5.14-blue)](https://hub.docker.com/r/gliderlabs/herokuish)
+[![Docker Hub](https://img.shields.io/badge/docker%20hub-v0.5.15-blue)](https://hub.docker.com/r/gliderlabs/herokuish)
 
 A command line tool for emulating Heroku build and runtime tasks in containers.
 
@@ -19,7 +19,7 @@ Download and uncompress the latest binary tarball from [releases](https://github
 For example, you can do this directly in your Dockerfiles installing into `/bin` as one step:
 
 ```
-RUN curl --location --silent https://github.com/gliderlabs/herokuish/releases/download/v0.5.14/herokuish_0.5.14_linux_x86_64.tgz \
+RUN curl --location --silent https://github.com/gliderlabs/herokuish/releases/download/v0.5.15/herokuish_0.5.15_linux_x86_64.tgz \
 		  | tar -xzC /bin
 ```
 
@@ -215,7 +215,7 @@ This project was sponsored and made possible by the [Deis Project](http://deis.i
 
 That said, herokuish was designed based on the experience developing and re-developing Heroku compatibility in Dokku, Deis, and Flynn. Herokuish is based on code from all three projects, as such, thank you to all the contributors of those projects.
 
-In fact, since I hope this is the final implementation of Heroku emulation I'm involved with, I'd like to finally thank Matt Freeman ([@nonuby](https://twitter.com/nonuby)). I've been more or less copy-and-pasting code he originally wrote for the now defunct [OpenRoku](https://github.com/openruko) since 2012.
+In fact, since I hope this is the final implementation of Heroku emulation I'm involved with, I'd like to finally thank Matt Freeman ([@nonuby](https://twitter.com/nonuby)). I've been more or less copy-and-pasting code he originally wrote for the now defunct [OpenRuko](https://github.com/openruko) since 2012.
 
 Lastly, thank you Heroku for pioneering such a great platform and inspiring all of us to try and take it further.
 
