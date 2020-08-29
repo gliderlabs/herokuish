@@ -10,10 +10,15 @@ jobs:
           case $CIRCLE_NODE_INDEX in 0) make shellcheck;; esac
       - run: |
           case $CIRCLE_NODE_INDEX in 0) make lint;; esac
+      - run:
+         name: Set ruby version to 2.3.4
+         command: |
+          rvm install 2.3.4
+          echo . $(rvm 2.3.4 do rvm env --path) >> $BASH_ENV
       - run: |
           make circleci
       - run: |
-          make deps
+          make deps fpm
       - run: |
           make build
       - run: |

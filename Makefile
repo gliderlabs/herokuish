@@ -19,6 +19,9 @@ else
 endif
 endif
 
+fpm:
+	command -v fpm >/dev/null || sudo gem install fpm --no-ri --no-rdoc
+
 build:
 	@count=0; \
 	for i in $(BUILDPACK_ORDER); do \
@@ -98,10 +101,6 @@ deps:
 	go get -u github.com/progrium/gh-release/...
 	go get -u github.com/progrium/basht/...
 	go get || true
-ifeq ($(SYSTEM),Linux)
-	sudo apt-get update && sudo apt-get -y install gcc git build-essential wget ruby-full lintian rpm help2man man-db
-	command -v fpm >/dev/null || sudo gem install fpm --no-ri --no-rdoc
-endif
 
 
 test:
