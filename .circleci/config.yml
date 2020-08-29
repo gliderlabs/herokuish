@@ -13,7 +13,7 @@ jobs:
       - run: |
           make circleci
       - run: |
-          make deps
+          make deps fpm
       - run: |
           make build
       - run: |
@@ -29,5 +29,5 @@ jobs:
           name: release
           command: |
             if [ "${CIRCLE_BRANCH}" == "release" ]; then
-              make release
+              make release release-packagecloud
             fi

@@ -1,11 +1,13 @@
 NAME = herokuish
+DESCRIPTION = 'Herokuish uses Docker and Buildpacks to build applications like Heroku'
 HARDWARE = $(shell uname -m)
-VERSION ?= 0.5.15
+VERSION ?= 0.5.16
 IMAGE_NAME ?= $(NAME)
 BUILD_TAG ?= dev
 
 BUILDPACK_ORDER := multi ruby nodejs clojure python java gradle scala play php go static
 SHELL := /bin/bash
+SYSTEM := $(shell sh -c 'uname -s 2>/dev/null')
 
 shellcheck:
 ifneq ($(shell shellcheck --version > /dev/null 2>&1 ; echo $$?),0)
@@ -16,6 +18,13 @@ else
 	@sudo apt-get update && sudo apt-get install -y shellcheck
 endif
 endif
+
+fpm:
+ifeq ($(SYSTEM),Linux)
+	sudo apt-get update && sudo apt-get -y install gcc git build-essential wget ruby-dev ruby1.9.1 lintian rpm help2man man-db
+	command -v fpm >/dev/null || gem install fpm --no-ri --no-rdoc
+endif
+
 
 build:
 	@count=0; \
@@ -33,15 +42,57 @@ ifeq ($(CIRCLECI),true)
 else
 	docker build -f Dockerfile.dev -t $(IMAGE_NAME):$(BUILD_TAG) .
 endif
+	$(MAKE) build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm
+	$(MAKE) build/deb/$(NAME)_$(VERSION)_amd64.deb
 
-build-in-docker:
-	docker build --rm -f Dockerfile.build -t $(NAME)-build .
-	docker run --rm -v /var/run/docker.sock:/var/run/docker.sock:ro \
-		-v /var/lib/docker:/var/lib/docker \
-		-v ${PWD}:/src/github.com/gliderlabs/herokuish -w /src/github.com/gliderlabs/herokuish \
-		-e IMAGE_NAME=$(IMAGE_NAME) -e BUILD_TAG=$(BUILD_TAG) -e VERSION=master \
-		$(NAME)-build make -e deps build
-	docker rmi $(NAME)-build || true
+build/deb:
+	mkdir -p build/deb
+
+build/deb/$(NAME)_$(VERSION)_amd64.deb: build/deb
+	echo $(VERSION) > /tmp/$(NAME)-VERSION
+	fpm \
+		--after-install contrib/post-install \
+		--architecture amd64 \
+		--category utils \
+		--deb-pre-depends 'docker-engine-cs (>= 1.13.0) | docker-engine (>= 1.13.0) | docker-io (>= 1.13.0) | docker.io (>= 1.13.0) | docker-ce (>= 1.13.0) | docker-ee (>= 1.13.0) | moby-engine' \
+		--deb-pre-depends sudo \
+		--description $(DESCRIPTION) \
+		--input-type dir \
+		--license 'MIT License' \
+		--name $(NAME) \
+		--output-type deb \
+		--package build/deb/$(NAME)_$(VERSION)_amd64.deb \
+		--url "https://github.com/gliderlabs/$(NAME)" \
+		--vendor "" \
+		--version $(VERSION) \
+		--verbose \
+		/tmp/$(NAME)-VERSION=/var/lib/herokuish/VERSION \
+		LICENSE=/usr/share/doc/$(NAME)/copyright
+
+build/rpm:
+	mkdir -p build/rpm
+
+build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm: build/rpm
+	echo $(VERSION) > /tmp/$(NAME)-VERSION
+	fpm \
+		--after-install contrib/post-install \
+		--architecture x86_64 \
+		--category utils \
+		--depends '/usr/bin/docker' \
+		--depends 'sudo' \
+		--description $(DESCRIPTION) \
+		--input-type dir \
+		--license 'MIT License' \
+		--name $(NAME) \
+		--output-type rpm \
+		--package build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm \
+		--url "https://github.com/gliderlabs/$(NAME)" \
+		--vendor "" \
+		--version $(VERSION) \
+		--verbose \
+		/tmp/$(NAME)-VERSION=/var/lib/herokuish/VERSION \
+		LICENSE=/usr/share/doc/$(NAME)/copyright
+
 
 clean:
 	rm -rf build/*
@@ -54,6 +105,7 @@ deps:
 	go get -u github.com/progrium/gh-release/...
 	go get -u github.com/progrium/basht/...
 	go get || true
+
 
 test:
 	basht tests/*/tests.sh
@@ -73,10 +125,26 @@ lint:
 
 release: build
 	rm -rf release && mkdir release
+	cp build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm release/$(NAME)-$(VERSION)-1.x86_64.rpm
+	cp build/deb/$(NAME)_$(VERSION)_amd64.deb release/$(NAME)_$(VERSION)_amd64.deb
 	tar -zcf release/$(NAME)_$(VERSION)_linux_$(HARDWARE).tgz -C build/linux $(NAME)
 	tar -zcf release/$(NAME)_$(VERSION)_darwin_$(HARDWARE).tgz -C build/darwin $(NAME)
 	gh-release create gliderlabs/$(NAME) $(VERSION) \
 		$(shell git rev-parse --abbrev-ref HEAD) v$(VERSION)
+
+release-packagecloud:
+	@$(MAKE) release-packagecloud-deb
+	@$(MAKE) release-packagecloud-rpm
+
+release-packagecloud-deb: build/deb/$(NAME)_$(VERSION)_amd64.deb
+	package_cloud push $(PACKAGECLOUD_REPOSITORY)/ubuntu/xenial  build/deb/$(NAME)_$(VERSION)_amd64.deb
+	package_cloud push $(PACKAGECLOUD_REPOSITORY)/ubuntu/bionic  build/deb/$(NAME)_$(VERSION)_amd64.deb
+	package_cloud push $(PACKAGECLOUD_REPOSITORY)/ubuntu/focal   build/deb/$(NAME)_$(VERSION)_amd64.deb
+	package_cloud push $(PACKAGECLOUD_REPOSITORY)/debian/stretch build/deb/$(NAME)_$(VERSION)_amd64.deb
+	package_cloud push $(PACKAGECLOUD_REPOSITORY)/debian/buster  build/deb/$(NAME)_$(VERSION)_amd64.deb
+
+release-packagecloud-rpm: build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm
+	package_cloud push $(PACKAGECLOUD_REPOSITORY)/el/7           build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm
 
 bumpup:
 	for i in $(BUILDPACK_ORDER); do \
@@ -94,4 +162,4 @@ bumpup:
 		fi ; \
 	done
 
-.PHONY: build
+.PHONY: build build/deb/$(NAME)_$(VERSION)_amd64.deb build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm
