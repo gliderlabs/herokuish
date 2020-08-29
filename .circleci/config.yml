@@ -13,7 +13,7 @@ jobs:
       - run: |
           make circleci
       - run: |
-          make deps fpm
+          make deps fpm package_cloud
       - run: |
           make build
       - run: |
