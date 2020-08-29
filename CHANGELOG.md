@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.5.18](https://github.com/gliderlabs/herokuish/compare/v0.5.17...v0.5.18) - 2020-08-29
+### Fixed
+- @josegonzalez Release to the correct packagecloud repository
+
 ## [0.5.17](https://github.com/gliderlabs/herokuish/compare/v0.5.16...v0.5.17) - 2020-08-29
 ### Fixed
 - @josegonzalez add package_cloud to CI environment

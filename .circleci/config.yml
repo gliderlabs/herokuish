@@ -29,5 +29,6 @@ jobs:
           name: release
           command: |
             if [ "${CIRCLE_BRANCH}" == "release" ]; then
+              export PACKAGECLOUD_REPOSITORY=dokku/dokku
               make release release-packagecloud
             fi

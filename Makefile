@@ -1,9 +1,10 @@
 NAME = herokuish
 DESCRIPTION = 'Herokuish uses Docker and Buildpacks to build applications like Heroku'
 HARDWARE = $(shell uname -m)
-VERSION ?= 0.5.17
+VERSION ?= 0.5.18
 IMAGE_NAME ?= $(NAME)
 BUILD_TAG ?= dev
+PACKAGECLOUD_REPOSITORY ?= dokku/dokku-betafish
 
 BUILDPACK_ORDER := multi ruby nodejs clojure python java gradle scala play php go static
 SHELL := /bin/bash
