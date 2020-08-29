@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## [0.5.16](https://github.com/gliderlabs/herokuish/compare/v0.5.15...v0.5.16) - 2020-08-29
 ### Fixed
 - @josegonzalez upgrade play test app to fix CI
+- @josegonzalez prune old gliderlabs/herokuish images
 
 ### Added
 - @josegonzalez Automate package release

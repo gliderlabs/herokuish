@@ -15,3 +15,9 @@ VERSION=$(cat /var/lib/herokuish/VERSION)
 
 sudo docker pull "gliderlabs/herokuish:v${VERSION}"
 sudo docker tag "gliderlabs/herokuish:v${VERSION}" gliderlabs/herokuish:latest
+
+echo "Pruning dangling images"
+docker images -f dangling=true | awk '{print $3}' | xargs docker rmi || true
+
+echo "Pruning unused gliderlabs/herokuish images"
+docker images -a | grep "^gliderlabs\/herokuish" | grep -v latest | awk '{print $3}' | xargs docker rmi || true
