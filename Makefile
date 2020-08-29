@@ -162,4 +162,4 @@ bumpup:
 		fi ; \
 	done
 
-.PHONY: build build/deb/$(NAME)_$(VERSION)_amd64.deb build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm
+.PHONY: build
