@@ -1,16 +1,20 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [Unreleased][unreleased]
+## [0.5.16](https://github.com/gliderlabs/herokuish/compare/v0.5.15...v0.5.16) - 2020-08-29
 ### Fixed
+- @josegonzalez upgrade play test app to fix CI
 
 ### Added
-
-### Removed
+- @josegonzalez Automate package release
 
 ### Changed
+- @josegonzalez Update go to version v145 #595
+- @josegonzalez Update nodejs to version v175 #592
+- @josegonzalez Update php to version v179 #594
+- @josegonzalez Update python to version v177
 
-## [0.5.15] - 2020-07-24
+## [0.5.15](https://github.com/gliderlabs/herokuish/compare/v0.5.14...v0.5.15) - 2020-07-24
 
 ### Changed
 - @cdmwebs Fix Typo in README
@@ -23,21 +27,20 @@ All notable changes to this project will be documented in this file.
 - @josegonzalez Update nodejs to version v174
 - @dependabot Bump django from 1.11.28 to 1.11.29
 
-
-## [0.5.14] - 2020-06-01
+## [0.5.14](https://github.com/gliderlabs/herokuish/compare/v0.5.13...v0.5.14) - 2020-06-01
 
 ### Changed
 - @josegonzalez Update php to version v176
 - @josegonzalez Update python to version v170
 
-## [0.5.13] - 2020-05-07
+## [0.5.13](https://github.com/gliderlabs/herokuish/compare/v0.5.12...v0.5.13) - 2020-05-07
 
 ### Changed
 - @josegonzalez Update go to version v142
 - @josegonzalez Update nodejs to version v171
 - @josegonzalez Update php to version v174
 
-## [0.5.12] - 2020-04-25
+## [0.5.12](https://github.com/gliderlabs/herokuish/compare/v0.5.11...v0.5.12) - 2020-04-25
 
 ### Changed
 - @josegonzalez Update go to version v141
@@ -45,17 +48,17 @@ All notable changes to this project will be documented in this file.
 - @josegonzalez Update ruby to version v215
 - @josegonzalez Update static to version v13
 
-## [0.5.11] - 2020-04-02
+## [0.5.11](https://github.com/gliderlabs/herokuish/compare/v0.5.10...v0.5.11) - 2020-04-02
 
 ### Changed
 - @josegonzalez Update ruby to version v214
 
-## [0.5.10] - 2020-04-01
+## [0.5.10](https://github.com/gliderlabs/herokuish/compare/v0.5.9...v0.5.10) - 2020-04-01
 
 ### Changed
 - @josegonzalez Update ruby to version v213
 
-## [0.5.9] - 2020-03-31
+## [0.5.9](https://github.com/gliderlabs/herokuish/compare/v0.5.8...v0.5.9) - 2020-03-31
 ### Changed
 - @josegonzalez Update go to version v139
 - @josegonzalez Update nodejs to version v170
@@ -64,27 +67,27 @@ All notable changes to this project will be documented in this file.
 - @josegonzalez Update ruby to version v212
 - @dependabot Bump symfony/http-foundation from 4.4.1 to 4.4.7
 
-## [0.5.8] - 2020-03-16
+## [0.5.8](https://github.com/gliderlabs/herokuish/compare/v0.5.7...v0.5.8) - 2020-03-16
 ### Changed
 - @josegonzalez Update go to version v138
 - @josegonzalez Update python to version v166
 - @josegonzalez Update ruby to version v211
 
-## [0.5.7] - 2020-02-02
+## [0.5.7](https://github.com/gliderlabs/herokuish/compare/v0.5.6...v0.5.7) - 2020-02-02
 ### Changed
 - @dependabot Bump django from 1.11.23 to 1.11.28
 - @josegonzalez Update go to version v137
 - @josegonzalez Update php to version v172
 - @josegonzalez Update python to version v165
 
-## [0.5.6] - 2019-12-20
+## [0.5.6](https://github.com/gliderlabs/herokuish/compare/v0.5.5...v0.5.6) - 2019-12-20
 ### Changed
 - @josegonzalez Update nodejs to version v167
 - @josegonzalez Update php to version v169
 - @josegonzalez Update python to version v163
 - @josegonzalez Update scala to version v87
 
-## [0.5.5] - 2019-12-20
+## [0.5.5](https://github.com/gliderlabs/herokuish/compare/v0.5.4...v0.5.5) - 2019-12-20
 ### Changed
 - @josegonzalez Update go to version v136
 - @josegonzalez Update java to version v66
@@ -94,7 +97,7 @@ All notable changes to this project will be documented in this file.
 - @josegonzalez Update ruby to version v207
 - dependabot: Bump rack from 1.5.2 to 1.6.12
 
-## [0.5.4] - 2019-12-04
+## [0.5.4](https://github.com/gliderlabs/herokuish/compare/v0.5.3...v0.5.4) - 2019-12-04
 ### Changed
 - @josegonzalez Update go to version v135
 - @josegonzalez Update gradle to version v31
@@ -109,20 +112,20 @@ All notable changes to this project will be documented in this file.
 - @michaelshobbs  Use ruby 2.6.2 with fixed bundler
 - dependabot: Update various test app dependencies
 
-## [0.5.3] - 2019-08-19
+## [0.5.3](https://github.com/gliderlabs/herokuish/compare/v0.5.2...v0.5.3) - 2019-08-19
 ### Changed
 - @josegonzalez Update clojure to version v84
 - @josegonzalez Update nodejs to version v161
 - @josegonzalez Update php to version v159
 - @josegonzalez Update static to version v12
 
-## [0.5.2] - 2019-07-29
+## [0.5.2](https://github.com/gliderlabs/herokuish/compare/v0.5.1...v0.5.2) - 2019-07-29
 ### Changed
 - @josegonzalez Update go to version v126
 - @josegonzalez Update nodejs to version v158
 - @josegonzalez Update php to version v154
 
-## [0.5.1] - 2019-07-05
+## [0.5.1](https://github.com/gliderlabs/herokuish/compare/v0.5.0...v0.5.1) - 2019-07-05
 ### Added
 - @josegonzalez Use go modules
 
@@ -138,18 +141,18 @@ All notable changes to this project will be documented in this file.
 - @josegonzalez Update scala to version v85
 - @josegonzalez Update static to version v11
 
-## [0.5.0] - 2019-03-14
+## [0.5.0](https://github.com/gliderlabs/herokuish/compare/v0.4.10...v0.5.0) - 2019-03-14
 ### Changed
 - @swistaczek Bump heroku stack to Heroku:18
 
-## [0.4.10] - 2019-03-14
+## [0.4.10](https://github.com/gliderlabs/herokuish/compare/v0.4.9...v0.4.10) - 2019-03-14
 ### Changed
 - @michaelshobbs Update go to version v104
 - @michaelshobbs Update nodejs to version v142
 - @michaelshobbs Update php to version v151
 - @michaelshobbs Update ruby to version v200
 
-## [0.4.9] - 2019-03-07
+## [0.4.9](https://github.com/gliderlabs/herokuish/compare/v0.4.8...v0.4.9) - 2019-03-07
 ### Changed
 - @tnir Update go to version v102 to support Go 1.12
 - @michaelshobbs Update java to version v63
@@ -157,7 +160,7 @@ All notable changes to this project will be documented in this file.
 - @michaelshobbs Update python to version v149
 - @michaelshobbs Update ruby to version v199
 
-## [0.4.8] - 2019-02-15
+## [0.4.8](https://github.com/gliderlabs/herokuish/compare/v0.4.7...v0.4.8) - 2019-02-15
 ### Changed
 - @nbyl Update gradle buildpack to v28
 - @eval Update clojure to version v83
@@ -167,13 +170,13 @@ All notable changes to this project will be documented in this file.
 - @josegonzalez Update nodejs to version v137
 - @josegonzalez Update php to version v150
 
-## [0.4.7] - 2019-01-22
+## [0.4.7](https://github.com/gliderlabs/herokuish/compare/v0.4.6...v0.4.7) - 2019-01-22
 ### Changed
 - @michaelshobbs Update go to version v99
 - @michaelshobbs Update php to version v149
 - @michaelshobbs Update ruby to version v198
 
-## [0.4.6] - 2018-12-26
+## [0.4.6](https://github.com/gliderlabs/herokuish/compare/v0.4.5...v0.4.6) - 2018-12-26
 ### Fixed
 - @HillLiu update golang to 1.11.2 for docker build
 
@@ -186,7 +189,7 @@ All notable changes to this project will be documented in this file.
 - @josegonzalez Update scala to version v83
 - @josegonzalez Update static to version v10
 
-## [0.4.5] - 2018-10-26
+## [0.4.5](https://github.com/gliderlabs/herokuish/compare/v0.4.4...v0.4.5) - 2018-10-26
 ### Changed
 - @michaelshobbs Update nodejs to version v130 fb65b5a
 - @michaelshobbs Update python to version v144 bfabe39
@@ -194,7 +197,7 @@ All notable changes to this project will be documented in this file.
 - @michaelshobbs Update php to version v145 eaa3ca7
 - @michaelshobbs Update ruby to version v195 f24f45f
 
-## [0.4.4] - 2018-08-20
+## [0.4.4](https://github.com/gliderlabs/herokuish/compare/v0.4.3...v0.4.4) - 2018-08-20
 ### Changed
 - @natanrolnik Remove .git directory deletion upon build pack installation
 - @michaelshobbs Update go to version v90
@@ -202,7 +205,7 @@ All notable changes to this project will be documented in this file.
 - @michaelshobbs Update python to version v138
 - @michaelshobbs Update ruby to version v190
 
-## [0.4.3] - 2018-07-03
+## [0.4.3](https://github.com/gliderlabs/herokuish/compare/v0.4.2...v0.4.3) - 2018-07-03
 ### Changed
 - @webknjaz Upgrade python support to v3.7.0
 - @michaelshobbs Update go to version v89
@@ -212,7 +215,7 @@ All notable changes to this project will be documented in this file.
 - @michaelshobbs Update ruby to version v188
 - @michaelshobbs Update scala to version v82
 
-## [0.4.2] - 2018-05-10
+## [0.4.2](https://github.com/gliderlabs/herokuish/compare/v0.4.1...v0.4.2) - 2018-05-10
 - @peterhellberg Update go to version v87
 - @michaelshobbs Update clojure to version v82
 - @michaelshobbs Update gradle to version v26
@@ -222,7 +225,7 @@ All notable changes to this project will be documented in this file.
 - @michaelshobbs Update ruby to version v183
 - @michaelshobbs Update scala to version v81
 
-## [0.4.1] - 2018-04-23
+## [0.4.1](https://github.com/gliderlabs/herokuish/compare/v0.4.0...v0.4.1) - 2018-04-23
 ### Changed
 - @nolith Update java to version v60
 - @michaelshobbs Update go to version v86
@@ -231,7 +234,7 @@ All notable changes to this project will be documented in this file.
 - @michaelshobbs Update python to version v132
 - @michaelshobbs Update ruby to version v178
 
-## [0.4.0] - 2018-03-10
+## [0.4.0](https://github.com/gliderlabs/herokuish/compare/v0.3.36...v0.4.0) - 2018-03-10
 ### Changed
 - @michaelshobbs pin docker version for local build target
 - @iSDP move base image to heroku16
@@ -243,7 +246,7 @@ All notable changes to this project will be documented in this file.
 
 **NOTE: v0.4.0 is now based on heroku-16**
 
-## [0.3.36] - 2018-03-10
+## [0.3.36](https://github.com/gliderlabs/herokuish/compare/v0.3.35...v0.3.36) - 2018-03-10
 ### Changed
 - @josegonzalez fix: retrieve only valid process types
 - @michaelshobbs Update ruby to version v174
@@ -254,7 +257,7 @@ All notable changes to this project will be documented in this file.
 
 **NOTE: This will be the last version of herokuish based on cedar-14**
 
-## [0.3.35] - 2018-02-09
+## [0.3.35](https://github.com/gliderlabs/herokuish/compare/v0.3.34...v0.3.35) - 2018-02-09
 ### Added
 - @davidkarlsen Be able to opt out from setuidgid - needed when not running as root initially
 
@@ -262,8 +265,7 @@ All notable changes to this project will be documented in this file.
 - @michaelshobbs Update go to version v83
 - @michaelshobbs Update nodejs to version v118
 
-
-## [0.3.34] - 2018-01-30
+## [0.3.34](https://github.com/gliderlabs/herokuish/compare/v0.3.33...v0.3.34) - 2018-01-30
 ### Added
 - @josegonzalez feat: update all installed service dependencies when building the docker image
 
@@ -278,7 +280,7 @@ All notable changes to this project will be documented in this file.
 - @michaelshobbs Update java to version v59
 - @michaelshobbs Update nodejs to version v116
 
-## [0.3.33] - 2017-11-01
+## [0.3.33](https://github.com/gliderlabs/herokuish/compare/v0.3.32...v0.3.33) - 2017-11-01
 ### Changed
 - @miyucy Update ruby version to v170
 - @Shelnutt2 Update go to v78 for go dep support
@@ -292,8 +294,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 - @miyucy Add task to bump up buildpacks version
 
-
-## [0.3.32] - 2017-08-29
+## [0.3.32](https://github.com/gliderlabs/herokuish/compare/v0.3.31...v0.3.32) - 2017-08-29
 ### Changed
 - @miyucy Update ruby version to v168
 - @miyucy Update nodejs to version v110
@@ -322,8 +323,7 @@ All notable changes to this project will be documented in this file.
 ### Removed
 - @michaelshobbs drop grails 2 buildpack per heroku
 
-
-## [0.3.31] - 2017-06-21
+## [0.3.31](https://github.com/gliderlabs/herokuish/compare/v0.3.30...v0.3.31) - 2017-06-21
 ### Changed
 - @michaelshobbs Update go to version v69
 - @michaelshobbs Update ruby to version v163
@@ -331,8 +331,7 @@ All notable changes to this project will be documented in this file.
 - @michaelshobbs Update gradle to version v22
 - @michaelshobbs use go 1.8.3 in dev
 
-
-## [0.3.30] - 2017-06-21
+## [0.3.30](https://github.com/gliderlabs/herokuish/compare/v0.3.29...v0.3.30) - 2017-06-21
 ### Fixed
 - @karanthukral Added error handling for when Procfile does not define the process being used
 
@@ -340,16 +339,14 @@ All notable changes to this project will be documented in this file.
 - @webknjaz Upgrade python buildpack to v109
 - @michaelshobbs fix python tests with new buildpack
 
-
-## [0.3.29] - 2017-05-03
+## [0.3.29](https://github.com/gliderlabs/herokuish/compare/v0.3.28...v0.3.29) - 2017-05-03
 ### Fixed
 - @alexquick [build] fix old .env parsing to handle quotes and escapes better      cce259c
 
 ### Changed
 - @michaelshobbs Update ruby to version v159
 
-
-## [0.3.28] - 2017-04-19
+## [0.3.28](https://github.com/gliderlabs/herokuish/compare/v0.3.27...v0.3.28) - 2017-04-19
 ### Fixed
 - @dmgr bugfix: curl may fail to fetch not quoted url if behind proxy
 
@@ -360,13 +357,11 @@ All notable changes to this project will be documented in this file.
 - @michaelshobbs Update php to version v121
 - @michaelshobbs Update ruby to version v158
 
-
-## [0.3.27] - 2017-03-21
+## [0.3.27](https://github.com/gliderlabs/herokuish/compare/v0.3.26...v0.3.27) - 2017-03-21
 ### Changed
 - @michaelshobbs Update ruby to version v155
 
-
-## [0.3.26] - 2017-02-28
+## [0.3.26](https://github.com/gliderlabs/herokuish/compare/v0.3.25...v0.3.26) - 2017-02-28
 ### Changed
 - @wfarr Update go buildpack to v62
 - @michaelshobbs Update java to version v51
@@ -374,8 +369,7 @@ All notable changes to this project will be documented in this file.
 - @michaelshobbs Update python to version v99
 - @michaelshobbs Update scala to version v76
 
-
-## [0.3.25] - 2017-02-01
+## [0.3.25](https://github.com/gliderlabs/herokuish/compare/v0.3.24...v0.3.25) - 2017-02-01
 ### Changed
 - @fjorgemota Update buildpack-php to v119
 - @michaelshobbs Update clojure to version v76
@@ -386,15 +380,13 @@ All notable changes to this project will be documented in this file.
 - @michaelshobbs Update scala to version v75
 - @michaelshobbs Update java to version v50
 
-
-## [0.3.24] - 2017-01-02
+## [0.3.24](https://github.com/gliderlabs/herokuish/compare/v0.3.23...v0.3.24) - 2017-01-02
 ### Changed
 - @michaelshobbs Update static to version v8
 - @michaelshobbs Update python to version v97
 - @michaelshobbs Update ruby to version v150
 
-
-## [0.3.23] - 2016-12-16
+## [0.3.23](https://github.com/gliderlabs/herokuish/compare/v0.3.22...v0.3.23) - 2016-12-16
 ### Changed
 - @joshmanders Update nodejs version v93
 - @michaelshobbs Update go to version v54
@@ -402,8 +394,7 @@ All notable changes to this project will be documented in this file.
 - @michaelshobbs Update php to version v117
 - @michaelshobbs Update ruby to version v149
 
-
-## [0.3.22] - 2016-11-18
+## [0.3.22](https://github.com/gliderlabs/herokuish/compare/v0.3.21...v0.3.22) - 2016-11-18
 ### Removed
 - @michaelshobbs remove html2text dependency
 
@@ -413,16 +404,14 @@ All notable changes to this project will be documented in this file.
 - @michaelshobbs Update ruby to version v148
 - @michaelshobbs Update python to version v85
 
-
-## [0.3.21] - 2016-11-14
+## [0.3.21](https://github.com/gliderlabs/herokuish/compare/v0.3.20...v0.3.21) - 2016-11-14
 ### Fixed
 - @michaelshobbs skip blank lines in .env. closes #195
 
 ### Removed
 - @michaelshobbs remove emberjs buildpack from default set
 
-
-## [0.3.20] - 2016-11-13
+## [0.3.20](https://github.com/gliderlabs/herokuish/compare/v0.3.19...v0.3.20) - 2016-11-13
 ### Changed
 - @michaelshobbs new .env parser that handles spaces
 - @michaelshobbs change readme instructions to use github releases
@@ -430,8 +419,7 @@ All notable changes to this project will be documented in this file.
 - @michaelshobbs Update php to version v114
 - @michaelshobbs Update python to version v83
 
-
-## [0.3.19] - 2016-09-20
+## [0.3.19](https://github.com/gliderlabs/herokuish/compare/v0.3.18...v0.3.19) - 2016-09-20
 ### Changed
 - @josegonzalez Update static buildpack to v6
 - @michaelshobbs Update gradle to version v18
@@ -439,26 +427,22 @@ All notable changes to this project will be documented in this file.
 - @michaelshobbs Update php to version v110
 - @michaelshobbs Update python to version v82
 
-
-## [0.3.18] - 2016-07-29
+## [0.3.18](https://github.com/gliderlabs/herokuish/compare/v0.3.17...v0.3.18) - 2016-07-29
 ### Changed
 - @xtian Don't print .release file during build
 - @michaelshobbs Update php to version v109
 - @michaelshobbs Update go to version v44
 - @michaelshobbs Update scala to version v72
 
-
-## [0.3.17] - 2016-07-14
+## [0.3.17](https://github.com/gliderlabs/herokuish/compare/v0.3.16...v0.3.17) - 2016-07-14
 ### Fixed
 - @michaelshobbs set unprivileged user/group to same name and test with this user
 
-
-## [0.3.16] - 2016-07-14
+## [0.3.16](https://github.com/gliderlabs/herokuish/compare/v0.3.15...v0.3.16) - 2016-07-14
 ### Added
 - @michaelshobbs add named unprivileged user
 
-
-## [0.3.15] - 2016-07-14
+## [0.3.15](https://github.com/gliderlabs/herokuish/compare/v0.3.14...v0.3.15) - 2016-07-14
 ### Fixed
 - @joshmanders only delete $app_path if $import_path is not empty. fixes #111
 
@@ -469,8 +453,7 @@ All notable changes to this project will be documented in this file.
 - @michaelshobbs Update python to version v81
 - @michaelshobbs Update scala to version v71
 
-
-## [0.3.14] - 2016-06-27
+## [0.3.14](https://github.com/gliderlabs/herokuish/compare/v0.3.13...v0.3.14) - 2016-06-27
 ### Added
 - @michaelshobbs implement heroku-like buildpack detect order and output. closes #133
 
@@ -482,8 +465,7 @@ All notable changes to this project will be documented in this file.
 - @michaelshobbs Update grails to version v21
 - @michaelshobbs Update php to version v107
 
-
-## [0.3.13] - 2016-05-09
+## [0.3.13](https://github.com/gliderlabs/herokuish/compare/v0.3.12...v0.3.13) - 2016-05-09
 ### Fixed
 - @michaelshobbs ensure correct permissions on tgz buildpack directories
 
@@ -491,8 +473,7 @@ All notable changes to this project will be documented in this file.
 - @michaelshobbs Update php to version v102
 - @michaelshobbs Update go to version v36
 
-
-## [0.3.12] - 2016-04-27
+## [0.3.12](https://github.com/gliderlabs/herokuish/compare/v0.3.11...v0.3.12) - 2016-04-27
 ### Fixed
 - @michaelshobbs try testing port more times before continuing. add output when testing for a listener
 - @michaelshobbs increase retry in an attempt to allow the (ember specifially) app to fully startup
@@ -506,14 +487,12 @@ All notable changes to this project will be documented in this file.
 - @michaelshobbs Update php to version v101
 - @michaelshobbs Update scala to version v70
 
-
-## [0.3.11] - 2016-04-07
+## [0.3.11](https://github.com/gliderlabs/herokuish/compare/v0.3.10...v0.3.11) - 2016-04-07
 ### Changed
 - @michaelshobbs Update php to version v100 (#140)
 - @michaelshobbs Update python to version v80 (#141)
 
-
-## [0.3.10] - 2016-03-30
+## [0.3.10](https://github.com/gliderlabs/herokuish/compare/v0.3.9...v0.3.10) - 2016-03-30
 ### Changed
 - @michaelshobbs Update nodejs to version v89
 - @michaelshobbs Update php to version v99
@@ -521,8 +500,7 @@ All notable changes to this project will be documented in this file.
 - @michaelshobbs Update ruby to version v146
 - @michaelshobbs Update scala to version v67
 
-
-## [0.3.9] - 2016-03-08
+## [0.3.9](https://github.com/gliderlabs/herokuish/compare/v0.3.8...v0.3.9) - 2016-03-08
 ### Fixed
 - @graphaelli clean up link warning
 
@@ -543,15 +521,13 @@ All notable changes to this project will be documented in this file.
 - @michaelshobbs Update go to version v31
 - @michaelshobbs upgrade to go1.6
 
-
-## [0.3.8] - 2016-01-06
+## [0.3.8](https://github.com/gliderlabs/herokuish/compare/v0.3.7...v0.3.8) - 2016-01-06
 ### Changed
 - @josegonzalez Upgrade gradle buildpack version to 17
 - @josegonzalez Update java buildpack version to 42
 - @josegonzalez Update scala buildpack version to 64
 
-
-## [0.3.7] - 2015-12-31
+## [0.3.7](https://github.com/gliderlabs/herokuish/compare/v0.3.6...v0.3.7) - 2015-12-31
 ### Fixed
 - @michaelshobbs force rebuild of packages that are already up to date
 - @michaelshobbs fix buildpack version output after adding dokku/buildpack-nginx
@@ -564,8 +540,7 @@ All notable changes to this project will be documented in this file.
 - @CEikermann Updated buildpack-php to v90
 - @josegonzalez Upgrade python buildpack to v74
 
-
-## [0.3.6] - 2015-12-14
+## [0.3.6](https://github.com/gliderlabs/herokuish/compare/v0.3.5...v0.3.6) - 2015-12-14
 ### Changed
 - Update php buildpack to version 87
 - Update clojure buildpack to version 73
@@ -577,8 +552,7 @@ All notable changes to this project will be documented in this file.
 - Update ruby buildpack to version 141
 - Update multi buildpack to version v1.0.0
 
-
-## [0.3.5] - 2015-11-25
+## [0.3.5](https://github.com/gliderlabs/herokuish/compare/v0.3.4...v0.3.5) - 2015-11-25
 ### Added
 - Add static buildpack and test
 
@@ -588,8 +562,7 @@ All notable changes to this project will be documented in this file.
  - Update static buildpack to v5
  - Update local build env to docker 1.9.1
 
-
-## [0.3.4] - 2015-10-23
+## [0.3.4](https://github.com/gliderlabs/herokuish/compare/v0.3.3...v0.3.4) - 2015-10-23
 ### Changed
 - Upgrade clojure buildpack to version 70
 - Update go buildpack to version 18
@@ -600,8 +573,7 @@ All notable changes to this project will be documented in this file.
 - Update ruby buildpack to version 140
 - Update scala buildpack to version 63
 
-
-## [0.3.3] - 2015-09-10
+## [0.3.3](https://github.com/gliderlabs/herokuish/compare/v0.3.2...v0.3.3) - 2015-09-10
 ### Added
 - Use exec to run procfile entries
 - Throw error when detect fails in custom buildpack
@@ -609,8 +581,7 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - Bumped scala buildpack to v60
 
-
-## [0.3.2] - 2015-07-28
+## [0.3.2](https://github.com/gliderlabs/herokuish/compare/v0.3.1...v0.3.2) - 2015-07-28
 ### Added
 - Repo Analytics to README
 
@@ -625,8 +596,7 @@ All notable changes to this project will be documented in this file.
 - Bumped python buildpack to version 61
 - Bumped ruby buildpack to version 138
 
-
-## [0.3.1] - 2015-07-09
+## [0.3.1](https://github.com/gliderlabs/herokuish/compare/v0.3.0...v0.3.1) - 2015-07-09
 ### Fixed
 - Fixed directory permission for custom buildpacks
 
@@ -640,8 +610,7 @@ All notable changes to this project will be documented in this file.
 - Build from mainline heroku/cedar:14 docker images
 - Bump nodejs/scala buildpack versions
 
-
-## [0.3.0] - 2015-04-04
+## [0.3.0](https://github.com/gliderlabs/herokuish/compare/v0.2.0...v0.3.0) - 2015-04-04
 ### Fixed
 - Fixed Scala buildpack and app test
 - Fixed collision issue with `VERSION` environment variable
@@ -661,8 +630,7 @@ All notable changes to this project will be documented in this file.
 - Moved buildpack versions and app tests to `buildpacks` directory
 - Prepared for automated tracking branches for latest buildpacks
 
-
-## [0.2.0] - 2015-02-10
+## [0.2.0](https://github.com/gliderlabs/herokuish/compare/v0.1.0...v0.2.0) - 2015-02-10
 ### Fixed
 - Fixed CI issue with `go get` on CircleCI
 - Updated go-basher usage to latest API
@@ -684,69 +652,3 @@ All notable changes to this project will be documented in this file.
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
 
-[unreleased]: https://github.com/gliderlabs/herokuish/compare/v0.5.15...HEAD
-[0.5.15]: https://github.com/gliderlabs/herokuish/compare/v0.5.14...v0.5.15
-[0.5.14]: https://github.com/gliderlabs/herokuish/compare/v0.5.13...v0.5.14
-[0.5.13]: https://github.com/gliderlabs/herokuish/compare/v0.5.12...v0.5.13
-[0.5.12]: https://github.com/gliderlabs/herokuish/compare/v0.5.11...v0.5.12
-[0.5.11]: https://github.com/gliderlabs/herokuish/compare/v0.5.10...v0.5.11
-[0.5.10]: https://github.com/gliderlabs/herokuish/compare/v0.5.9...v0.5.10
-[0.5.9]: https://github.com/gliderlabs/herokuish/compare/v0.5.8...v0.5.9
-[0.5.8]: https://github.com/gliderlabs/herokuish/compare/v0.5.7...v0.5.8
-[0.5.7]: https://github.com/gliderlabs/herokuish/compare/v0.5.6...v0.5.7
-[0.5.6]: https://github.com/gliderlabs/herokuish/compare/v0.5.5...v0.5.6
-[0.5.5]: https://github.com/gliderlabs/herokuish/compare/v0.5.4...v0.5.5
-[0.5.4]: https://github.com/gliderlabs/herokuish/compare/v0.5.3...v0.5.4
-[0.5.3]: https://github.com/gliderlabs/herokuish/compare/v0.5.2...v0.5.3
-[0.5.2]: https://github.com/gliderlabs/herokuish/compare/v0.5.1...v0.5.2
-[0.5.1]: https://github.com/gliderlabs/herokuish/compare/v0.5.0...v0.5.1
-[0.5.0]: https://github.com/gliderlabs/herokuish/compare/v0.4.10...v0.5.0
-[0.4.10]: https://github.com/gliderlabs/herokuish/compare/v0.4.9...v0.4.10
-[0.4.9]: https://github.com/gliderlabs/herokuish/compare/v0.4.8...v0.4.9
-[0.4.8]: https://github.com/gliderlabs/herokuish/compare/v0.4.7...v0.4.8
-[0.4.7]: https://github.com/gliderlabs/herokuish/compare/v0.4.6...v0.4.7
-[0.4.6]: https://github.com/gliderlabs/herokuish/compare/v0.4.5...v0.4.6
-[0.4.5]: https://github.com/gliderlabs/herokuish/compare/v0.4.4...v0.4.5
-[0.4.4]: https://github.com/gliderlabs/herokuish/compare/v0.4.3...v0.4.4
-[0.4.3]: https://github.com/gliderlabs/herokuish/compare/v0.4.2...v0.4.3
-[0.4.2]: https://github.com/gliderlabs/herokuish/compare/v0.4.1...v0.4.2
-[0.4.1]: https://github.com/gliderlabs/herokuish/compare/v0.4.0...v0.4.1
-[0.4.0]: https://github.com/gliderlabs/herokuish/compare/v0.3.36...v0.4.0
-[0.3.36]: https://github.com/gliderlabs/herokuish/compare/v0.3.35...v0.3.36
-[0.3.35]: https://github.com/gliderlabs/herokuish/compare/v0.3.34...v0.3.35
-[0.3.34]: https://github.com/gliderlabs/herokuish/compare/v0.3.33...v0.3.34
-[0.3.33]: https://github.com/gliderlabs/herokuish/compare/v0.3.32...v0.3.33
-[0.3.32]: https://github.com/gliderlabs/herokuish/compare/v0.3.31...v0.3.32
-[0.3.31]: https://github.com/gliderlabs/herokuish/compare/v0.3.30...v0.3.31
-[0.3.30]: https://github.com/gliderlabs/herokuish/compare/v0.3.29...v0.3.30
-[0.3.29]: https://github.com/gliderlabs/herokuish/compare/v0.3.28...v0.3.29
-[0.3.28]: https://github.com/gliderlabs/herokuish/compare/v0.3.27...v0.3.28
-[0.3.27]: https://github.com/gliderlabs/herokuish/compare/v0.3.26...v0.3.27
-[0.3.26]: https://github.com/gliderlabs/herokuish/compare/v0.3.25...v0.3.26
-[0.3.25]: https://github.com/gliderlabs/herokuish/compare/v0.3.24...v0.3.25
-[0.3.24]: https://github.com/gliderlabs/herokuish/compare/v0.3.23...v0.3.24
-[0.3.23]: https://github.com/gliderlabs/herokuish/compare/v0.3.22...v0.3.23
-[0.3.22]: https://github.com/gliderlabs/herokuish/compare/v0.3.21...v0.3.22
-[0.3.21]: https://github.com/gliderlabs/herokuish/compare/v0.3.20...v0.3.21
-[0.3.20]: https://github.com/gliderlabs/herokuish/compare/v0.3.19...v0.3.20
-[0.3.19]: https://github.com/gliderlabs/herokuish/compare/v0.3.18...v0.3.19
-[0.3.18]: https://github.com/gliderlabs/herokuish/compare/v0.3.17...v0.3.18
-[0.3.17]: https://github.com/gliderlabs/herokuish/compare/v0.3.16...v0.3.17
-[0.3.16]: https://github.com/gliderlabs/herokuish/compare/v0.3.15...v0.3.16
-[0.3.15]: https://github.com/gliderlabs/herokuish/compare/v0.3.14...v0.3.15
-[0.3.14]: https://github.com/gliderlabs/herokuish/compare/v0.3.13...v0.3.14
-[0.3.13]: https://github.com/gliderlabs/herokuish/compare/v0.3.12...v0.3.13
-[0.3.12]: https://github.com/gliderlabs/herokuish/compare/v0.3.11...v0.3.12
-[0.3.11]: https://github.com/gliderlabs/herokuish/compare/v0.3.10...v0.3.11
-[0.3.10]: https://github.com/gliderlabs/herokuish/compare/v0.3.9...v0.3.10
-[0.3.9]: https://github.com/gliderlabs/herokuish/compare/v0.3.8...v0.3.9
-[0.3.8]: https://github.com/gliderlabs/herokuish/compare/v0.3.7...v0.3.8
-[0.3.7]: https://github.com/gliderlabs/herokuish/compare/v0.3.6...v0.3.7
-[0.3.6]: https://github.com/gliderlabs/herokuish/compare/v0.3.5...v0.3.6
-[0.3.5]: https://github.com/gliderlabs/herokuish/compare/v0.3.4...v0.3.5
-[0.3.4]: https://github.com/gliderlabs/herokuish/compare/v0.3.3...v0.3.4
-[0.3.3]: https://github.com/gliderlabs/herokuish/compare/v0.3.2...v0.3.3
-[0.3.2]: https://github.com/gliderlabs/herokuish/compare/v0.3.1...v0.3.2
-[0.3.1]: https://github.com/gliderlabs/herokuish/compare/v0.3.0...v0.3.1
-[0.3.0]: https://github.com/gliderlabs/herokuish/compare/v0.2.0...v0.3.0
-[0.2.0]: https://github.com/gliderlabs/herokuish/compare/v0.1.0...v0.2.0
