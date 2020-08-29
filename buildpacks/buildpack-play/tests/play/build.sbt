@@ -4,8 +4,7 @@ version := "1.0-SNAPSHOT"
 
 libraryDependencies ++= Seq(
   javaJdbc,
-  javaEbean,
-  cache
-)     
+  guice
+)
 
-play.Project.playJavaSettings
+lazy val root = (project in file(".")).enablePlugins(PlayScala)

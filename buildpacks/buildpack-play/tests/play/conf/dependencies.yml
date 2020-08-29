@@ -1,4 +1,4 @@
 # Application dependencies
 
 require:
-    - play 2.2.0
+    - play 2.8.2
