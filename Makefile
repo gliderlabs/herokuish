@@ -7,6 +7,7 @@ BUILD_TAG ?= dev
 
 BUILDPACK_ORDER := multi ruby nodejs clojure python java gradle scala play php go static
 SHELL := /bin/bash
+SYSTEM := $(shell sh -c 'uname -s 2>/dev/null')
 
 shellcheck:
 ifneq ($(shell shellcheck --version > /dev/null 2>&1 ; echo $$?),0)
@@ -97,8 +98,10 @@ deps:
 	go get -u github.com/progrium/gh-release/...
 	go get -u github.com/progrium/basht/...
 	go get || true
+ifeq ($(SYSTEM),Linux)
 	apt-get update && apt-get -y install gcc git build-essential wget ruby-dev ruby1.9.1 lintian rpm help2man man-db
 	command -v fpm >/dev/null || sudo gem install fpm --no-ri --no-rdoc
+endif
 
 
 test:
