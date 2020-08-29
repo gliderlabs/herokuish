@@ -20,7 +20,11 @@ endif
 endif
 
 fpm:
+ifeq ($(SYSTEM),Linux)
+	sudo apt-get update && sudo apt-get -y install gcc git build-essential wget ruby-dev ruby1.9.1 lintian rpm help2man man-db
 	command -v fpm >/dev/null || sudo gem install fpm --no-ri --no-rdoc
+endif
+
 
 build:
 	@count=0; \
