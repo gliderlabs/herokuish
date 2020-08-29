@@ -1,7 +1,7 @@
 NAME = herokuish
 DESCRIPTION = 'Herokuish uses Docker and Buildpacks to build applications like Heroku'
 HARDWARE = $(shell uname -m)
-VERSION ?= 0.5.16
+VERSION ?= 0.5.17
 IMAGE_NAME ?= $(NAME)
 BUILD_TAG ?= dev
 
@@ -23,6 +23,12 @@ fpm:
 ifeq ($(SYSTEM),Linux)
 	sudo apt-get update && sudo apt-get -y install gcc git build-essential wget ruby-dev ruby1.9.1 lintian rpm help2man man-db
 	command -v fpm >/dev/null || gem install fpm --no-ri --no-rdoc
+endif
+
+package_cloud:
+ifeq ($(SYSTEM),Linux)
+	sudo apt-get update && sudo apt-get -y install gcc git build-essential wget ruby-dev ruby1.9.1 lintian rpm help2man man-db
+	command -v package_cloud >/dev/null || gem install package_cloud --no-ri --no-rdoc
 endif
 
 
