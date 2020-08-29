@@ -29,5 +29,5 @@ jobs:
           name: release
           command: |
             if [ "${CIRCLE_BRANCH}" == "release" ]; then
-              make release
+              make release release-packagecloud
             fi
