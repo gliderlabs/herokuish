@@ -1,6 +1,17 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.5.19](https://github.com/gliderlabs/herokuish/compare/v0.5.18...v0.5.19) - 2020-11-08
+### Changed
+- @josegonzalez Update clojure to version v86 #608
+- @josegonzalez Update go to version v148 #609
+- @josegonzalez Update gradle to version v32 #610
+- @josegonzalez Update nodejs to version v176 #604
+- @josegonzalez Update php to version v182 #612
+- @josegonzalez Update python to version v184 #613
+- @josegonzalez Update ruby to version v222 #614
+- @josegonzalez Update scala to version v88 #615
+
 ## [0.5.18](https://github.com/gliderlabs/herokuish/compare/v0.5.17...v0.5.18) - 2020-08-29
 ### Fixed
 - @josegonzalez Release to the correct packagecloud repository
@@ -660,4 +671,3 @@ All notable changes to this project will be documented in this file.
 - Updated to latest buildpack releases
 - User for `buildpack-build` is `$USER` or randomized
 - User for `procfile-exec` is `$USER` or detected from `/app`
-
