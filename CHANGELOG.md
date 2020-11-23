@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.5.20](https://github.com/gliderlabs/herokuish/compare/v0.5.19...v0.5.20) - 2020-11-22
+### Changed
+- @josegonzalez Update java to version v68 #618
+- @josegonzalez Update nodejs to version v178 #619
+- @josegonzalez Update php to version v185 #620
+- @josegonzalez Update python to version v186 #621
+
 ## [0.5.19](https://github.com/gliderlabs/herokuish/compare/v0.5.18...v0.5.19) - 2020-11-08
 ### Changed
 - @josegonzalez Update clojure to version v86 #608
