@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.5.21](https://github.com/gliderlabs/herokuish/compare/v0.5.20...v0.5.21) - 2020-11-22
+### Changed
+- @josegonzalez Update gradle to version v33 #624
+
+### Fixed
+- @josegonzalez Change directories after `$HOME` is setup #623
+
 ## [0.5.20](https://github.com/gliderlabs/herokuish/compare/v0.5.19...v0.5.20) - 2020-11-22
 ### Changed
 - @josegonzalez Update java to version v68 #618
