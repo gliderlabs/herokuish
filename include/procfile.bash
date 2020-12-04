@@ -49,9 +49,9 @@ procfile-exec() {
 	declare desc="Run as unprivileged user with Heroku-like env"
 	[[ "$USER" ]] || detect-unprivileged
 	procfile-setup-home
+	cd "$app_path" || return 1
 	procfile-load-env
 	procfile-load-profile
-	cd "$app_path" || return 1
 	# unprivileged_user is defined in outer scope
 	# shellcheck disable=SC2154,SC2046
 	if [[ "$HEROKUISH_SETUIDGUID" == "false" ]]; then
