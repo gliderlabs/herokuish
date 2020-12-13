@@ -46,8 +46,10 @@ build:
 	mkdir -p build/darwin && GOOS=darwin go build -a -ldflags "-X main.Version=$(VERSION)" -o build/darwin/$(NAME)
 ifeq ($(CIRCLECI),true)
 	docker build -t $(IMAGE_NAME):$(BUILD_TAG) .
+	docker build -t $(IMAGE_NAME):$(BUILD_TAG)-20 --build-arg STACK_VERSION=20 .
 else
 	docker build -f Dockerfile.dev -t $(IMAGE_NAME):$(BUILD_TAG) .
+	docker build -f Dockerfile.dev -t $(IMAGE_NAME):$(BUILD_TAG)-20 --build-arg STACK_VERSION=20 .
 endif
 	$(MAKE) build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm
 	$(MAKE) build/deb/$(NAME)_$(VERSION)_amd64.deb
@@ -108,6 +110,7 @@ clean:
 
 deps:
 	docker pull heroku/heroku:18-build
+	docker pull heroku/heroku:20-build
 	go get -u github.com/jteeuwen/go-bindata/...
 	go get -u github.com/progrium/gh-release/...
 	go get -u github.com/progrium/basht/...

@@ -1,6 +1,10 @@
-FROM heroku/heroku:18-build
+ARG STACK_VERSION=18
+FROM heroku/heroku:$STACK_VERSION-build
+ARG STACK_VERSION
 
+ENV STACK=heroku-$STACK_VERSION
 ENV DEBIAN_FRONTEND noninteractive
+LABEL com.gliderlabs.herokuish/stack=$STACK
 
 RUN apt-get update -qq \
  && apt-get install -qq -y daemontools \
