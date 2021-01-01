@@ -1,6 +1,10 @@
-FROM heroku/heroku:18-build
+ARG STACK_VERSION=18
+FROM heroku/heroku:$STACK_VERSION-build
+ARG STACK_VERSION
 
+ENV STACK=heroku-$STACK_VERSION
 ENV DEBIAN_FRONTEND noninteractive
+LABEL com.gliderlabs.herokuish/stack=$STACK
 
 RUN apt-get update -qq \
  && apt-get install -qq -y daemontools \
@@ -13,7 +17,7 @@ RUN apt-get update -qq \
  && mv /etc/ImageMagick-6/policy.xml.custom /etc/ImageMagick-6/policy.xml \
  && apt-get clean \
  && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/* /var/tmp/*
-RUN curl "https://github.com/gliderlabs/herokuish/releases/download/v0.5.21/herokuish_0.5.21_linux_x86_64.tgz" \
+RUN curl "https://github.com/gliderlabs/herokuish/releases/download/v0.5.22/herokuish_0.5.22_linux_x86_64.tgz" \
     --silent -L | tar -xzC /bin
 RUN /bin/herokuish buildpack install \
   && ln -s /bin/herokuish /build \
