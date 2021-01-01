@@ -1,6 +1,17 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.5.22](https://github.com/gliderlabs/herokuish/compare/v0.5.21...v0.5.22) - 2020-12-31
+### Changed
+- @josegonzalez Update go to version v149 #627
+- @josegonzalez Update php to version v187 #629
+- @josegonzalez Update nodejs to version v180 #628
+- @josegonzalez Update python to version v188 #632
+- @josegonzalez Update nodejs to version v181 #631
+
+### Added
+- @josegonzalez add ability to build heroku-20 based images #630
+
 ## [0.5.21](https://github.com/gliderlabs/herokuish/compare/v0.5.20...v0.5.21) - 2020-11-22
 ### Changed
 - @josegonzalez Update gradle to version v33 #624
