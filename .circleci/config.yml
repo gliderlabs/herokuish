@@ -40,13 +40,13 @@ jobs:
       - run: |
           echo "$DOCKERHUB_PASSWORD" | docker login --username "$DOCKERHUB_USERNAME" --password-stdin
       - run: |
-          docker build -t $(IMAGE_NAME):$(BUILD_TAG)-18 --build-arg STACK_VERSION=18 .
+          docker build -t $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_TAG-18 --build-arg STACK_VERSION=18 .
       - run: |
-          docker build -t $(IMAGE_NAME):$(BUILD_TAG)-20 --build-arg STACK_VERSION=20 .
+          docker build -t $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_TAG-20 --build-arg STACK_VERSION=20 .
       - run: |
-          docker push $(IMAGE_NAME):$(BUILD_TAG)-18
+          docker push $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_TAG-18
       - run: |
-          docker push $(IMAGE_NAME):$(BUILD_TAG)-20
+          docker push $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_TAG-20
 
 workflows:
   version: 2
