@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  workflow:
     machine: true
     working_directory: ~/gliderlabs/herokuish
     parallelism: 4
@@ -32,7 +32,7 @@ jobs:
               export PACKAGECLOUD_REPOSITORY=dokku/dokku
               make release release-packagecloud
             fi
-  docker-build:
+  release-workflow:
     machine: true
     working_directory: ~/gliderlabs/herokuish
     steps:
@@ -50,12 +50,12 @@ jobs:
 
 workflows:
   version: 2
-  untagged-build:
+  workflow:
     jobs:
-      - build
-  tagged-build:
+      - workflow
+  release-workflow:
     jobs:
-      - docker-build:
+      - release-workflow:
           filters:
             branches:
               ignore: /.*/
