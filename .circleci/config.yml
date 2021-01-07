@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  workflow:
     machine: true
     working_directory: ~/gliderlabs/herokuish
     parallelism: 4
@@ -32,3 +32,32 @@ jobs:
               export PACKAGECLOUD_REPOSITORY=dokku/dokku
               make release release-packagecloud
             fi
+  release-workflow:
+    machine: true
+    working_directory: ~/gliderlabs/herokuish
+    steps:
+      - checkout
+      - run: |
+          echo "$DOCKERHUB_PASSWORD" | docker login --username "$DOCKERHUB_USERNAME" --password-stdin
+      - run: |
+          docker build -t $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_TAG-18 --build-arg STACK_VERSION=18 .
+      - run: |
+          docker build -t $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_TAG-20 --build-arg STACK_VERSION=20 .
+      - run: |
+          docker push $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_TAG-18
+      - run: |
+          docker push $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_TAG-20
+
+workflows:
+  version: 2
+  workflow:
+    jobs:
+      - workflow
+  release-workflow:
+    jobs:
+      - release-workflow:
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v.*/

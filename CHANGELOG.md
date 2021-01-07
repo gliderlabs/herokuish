@@ -1,6 +1,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.5.22](https://github.com/gliderlabs/herokuish/compare/v0.5.22...v0.5.23) - 2021-01-07
+### Changed
+- @josegonzalez Update gradle to version v34 #635
+- @josegonzalez Update nodejs to version v182 #635
+
+### Added
+- @josegonzalez publish all stacks to docker hub #637
+
 ## [0.5.22](https://github.com/gliderlabs/herokuish/compare/v0.5.21...v0.5.22) - 2020-12-31
 ### Changed
 - @josegonzalez Update go to version v149 #627
