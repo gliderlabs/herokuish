@@ -32,3 +32,30 @@ jobs:
               export PACKAGECLOUD_REPOSITORY=dokku/dokku
               make release release-packagecloud
             fi
+  docker-build:
+    machine: true
+    working_directory: ~/gliderlabs/herokuish
+    steps:
+      - checkout
+      - run: |
+          echo "$DOCKERHUB_PASSWORD" | docker login --username "$DOCKERHUB_USERNAME" --password-stdin
+      - run: |
+          docker build -t $(IMAGE_NAME):$(BUILD_TAG)-18 --build-arg STACK_VERSION=18 .
+      - run: |
+          docker build -t $(IMAGE_NAME):$(BUILD_TAG)-20 --build-arg STACK_VERSION=20 .
+      - run: |
+          docker push $(IMAGE_NAME):$(BUILD_TAG)-18
+      - run: |
+          docker push $(IMAGE_NAME):$(BUILD_TAG)-20
+
+workflows:
+  version: 2
+  untagged-build:
+    jobs:
+      - build
+  tagged-build:
+    jobs:
+      - docker-build:
+          filters:
+            tags:
+              only: /^v.*/
