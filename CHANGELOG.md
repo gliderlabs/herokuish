@@ -1,7 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [0.5.22](https://github.com/gliderlabs/herokuish/compare/v0.5.22...v0.5.23) - 2021-01-07
+## [0.5.24](https://github.com/gliderlabs/herokuish/compare/v0.5.23...v0.5.24) - 2021-01-17
+### Changed
+- @josegonzalez Update java to version v69 #642
+- @josegonzalez Update php to version v188 #640
+
+## [0.5.23](https://github.com/gliderlabs/herokuish/compare/v0.5.22...v0.5.23) - 2021-01-07
 ### Changed
 - @josegonzalez Update gradle to version v34 #635
 - @josegonzalez Update nodejs to version v182 #635
