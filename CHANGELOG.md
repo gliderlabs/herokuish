@@ -1,6 +1,16 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.5.25](https://github.com/gliderlabs/herokuish/compare/v0.5.24...v0.5.25) - 2021-02-08
+### Changed
+- @josegonzalez Update ruby to version v223 #646
+- @josegonzalez Update nodejs to version v183 #647
+- @josegonzalez Update php to version v189 #648
+- @josegonzalez Update go to version v151 #649
+
+### Added
+- @josegonzalez feat: add null buildpack #645
+
 ## [0.5.24](https://github.com/gliderlabs/herokuish/compare/v0.5.23...v0.5.24) - 2021-01-17
 ### Changed
 - @josegonzalez Update java to version v69 #642
