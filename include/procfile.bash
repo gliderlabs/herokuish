@@ -108,6 +108,9 @@ procfile-load-profile() {
 		# shellcheck disable=SC1090
 		source "$file"
 	done
+	if [[ -s "$app_path/.profile" ]]; then
+		source "$app_path/.profile"
+	fi
 	shopt -u nullglob
 	hash -r
 }
