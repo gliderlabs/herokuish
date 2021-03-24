@@ -130,6 +130,8 @@ buildpack-install() {
 		chown -R root:root "$target_path"
 		chmod 755 "$target_path"
 	fi
+
+	find "$buildpack_path" \( \! -user "${unprivileged_user:-32767}" -o \! -group "${unprivileged_group:-32767}" \) -print0 | xargs -P 0 -0 --no-run-if-empty chown --no-dereference "${unprivileged_user:-32767}:${unprivileged_group:-32767}"
 }
 
 buildpack-list() {
