@@ -17,11 +17,22 @@ RUN apt-get update -qq \
  && mv /etc/ImageMagick-6/policy.xml.custom /etc/ImageMagick-6/policy.xml \
  && apt-get clean \
  && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/* /var/tmp/*
-RUN curl "https://github.com/gliderlabs/herokuish/releases/download/v0.5.26/herokuish_0.5.26_linux_x86_64.tgz" \
+RUN curl "https://github.com/gliderlabs/herokuish/releases/download/v0.5.27/herokuish_0.5.27_linux_x86_64.tgz" \
     --silent -L | tar -xzC /bin
 RUN /bin/herokuish buildpack install \
     && ln -s /bin/herokuish /build \
     && ln -s /bin/herokuish /start \
-    && ln -s /bin/herokuish /exec
+    && ln -s /bin/herokuish /exec \
+    && cd /tmp/buildpacks \
+    && rm -rf \
+            */.git \
+            */.github \
+            */.circleci \
+            */changelogs \
+            */spec \
+            */support/build \
+            */builds \
+            */test \
+            */tmp
 COPY include/default_user.bash /tmp/default_user.bash
 RUN bash /tmp/default_user.bash && rm -f /tmp/default_user.bash

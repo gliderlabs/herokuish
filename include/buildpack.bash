@@ -130,6 +130,8 @@ buildpack-install() {
 		chown -R root:root "$target_path"
 		chmod 755 "$target_path"
 	fi
+
+	find "$buildpack_path" \( \! -user "${unprivileged_user:-32767}" -o \! -group "${unprivileged_group:-32767}" \) -print0 | xargs -P 0 -0 --no-run-if-empty chown --no-dereference "${unprivileged_user:-32767}:${unprivileged_group:-32767}"
 }
 
 buildpack-list() {
@@ -155,14 +157,19 @@ buildpack-setup() {
 	# unprivileged_user defined in outer scope
 	# shellcheck disable=SC2154
 	usermod --home "$HOME" "$unprivileged_user" > /dev/null 2>&1
+
+	# Prepare permissions quicker for slower filesystems
 	# vars defined in outer scope
 	# shellcheck disable=SC2154
-	chown -R "$unprivileged_user:$unprivileged_group" \
-		"$app_path" \
-		"$build_path" \
-		"$cache_path" \
-		"$env_path" \
-		"$buildpack_path"
+	chown -R "$unprivileged_user:$unprivileged_group" "$app_path"
+	# shellcheck disable=SC2154
+	find "$build_path" \( \! -user "$unprivileged_user" -o \! -group "$unprivileged_group" \) -print0 | xargs -P 0 -0 --no-run-if-empty chown --no-dereference "$unprivileged_user:$unprivileged_group"
+	# shellcheck disable=SC2154
+	find "$cache_path" \( \! -user "$unprivileged_user" -o \! -group "$unprivileged_group" \) -print0 | xargs -P 0 -0 --no-run-if-empty chown --no-dereference "$unprivileged_user:$unprivileged_group"
+	# shellcheck disable=SC2154
+	find "$env_path" \( \! -user "$unprivileged_user" -o \! -group "$unprivileged_group" \) -print0 | xargs -P 0 -0 --no-run-if-empty chown --no-dereference "$unprivileged_user:$unprivileged_group"
+	# shellcheck disable=SC2154
+	find "$buildpack_path" \( \! -user "$unprivileged_user" -o \! -group "$unprivileged_group" \) -print0 | xargs -P 0 -0 --no-run-if-empty chown --no-dereference "$unprivileged_user:$unprivileged_group"
 
 	# Useful settings / features
 	export CURL_CONNECT_TIMEOUT="30"

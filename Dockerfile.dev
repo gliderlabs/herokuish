@@ -22,6 +22,17 @@ COPY ./build/linux/herokuish /bin/herokuish
 RUN /bin/herokuish buildpack install \
     && ln -s /bin/herokuish /build \
     && ln -s /bin/herokuish /start \
-    && ln -s /bin/herokuish /exec
+    && ln -s /bin/herokuish /exec \
+    && cd /tmp/buildpacks \
+    && rm -rf \
+            */.git \
+            */.github \
+            */.circleci \
+            */changelogs \
+            */spec \
+            */support/build \
+            */builds \
+            */test \
+            */tmp
 COPY include/default_user.bash /tmp/default_user.bash
 RUN bash /tmp/default_user.bash && rm -f /tmp/default_user.bash
