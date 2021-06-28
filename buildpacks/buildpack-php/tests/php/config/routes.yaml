@@ -1,3 +1,0 @@
-index:
-    path: /
-    controller: App\Controller\CIController::index
