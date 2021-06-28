@@ -1,18 +1,30 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.5.28](https://github.com/gliderlabs/herokuish/compare/v0.5.27...v0.5.28) - 2021-06-28
+
+### Changed
+
+- @dependabot Bump django from 1.11.29 to 2.2.24 in /buildpacks/buildpack-python/tests/python-django #678
+- @dependabot Bump symfony/http-foundation from 3.2.7 to 3.4.47 in /buildpacks/buildpack-php/tests/php #685
+- @josegonzalez Update nodejs to version v185 #680
+- @josegonzalez Update php to version v194 #682
+- @josegonzalez Update python to version v196 #681
+- @josegonzalez Update ruby to version v228 #683
+- @josegonzalez Update test php app so composer can handle it properly #684
+
 ## [0.5.27](https://github.com/gliderlabs/herokuish/compare/v0.5.26...v0.5.27) - 2021-03-25
 
 ### Changed
 - @dependabot Bump jinja2 from 2.10.1 to 2.11.3 in /buildpacks/buildpack-multi/tests/multi #661
 - @dependabot Bump jinja2 from 2.10.1 to 2.11.3 in /buildpacks/buildpack-python/tests/python-flask #660
 - @josegonzalez Drop non-buildpack related files #662
-- @dependabot Update ruby to version v225 #667
-- @dependabot Update scala to version v90 #666
-- @dependabot Update php to version v190 #665
-- @dependabot Update go to version v153 #664
-- @dependabot Ensure there is parity between the primary and dev images #668
-- @dependabot Prepare permissions quicker for slower filesystems #663
+- @josegonzalez Update ruby to version v225 #667
+- @josegonzalez Update scala to version v90 #666
+- @josegonzalez Update php to version v190 #665
+- @josegonzalez Update go to version v153 #664
+- @josegonzalez Ensure there is parity between the primary and dev images #668
+- @josegonzalez Prepare permissions quicker for slower filesystems #663
 
 ## [0.5.26](https://github.com/gliderlabs/herokuish/compare/v0.5.25...v0.5.26) - 2021-02-25
 
