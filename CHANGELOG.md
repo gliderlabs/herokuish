@@ -1,6 +1,17 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.5.29](https://github.com/gliderlabs/herokuish/compare/v0.5.28...v0.5.29) - 2021-07-12
+
+### Added
+
+- @Cellane Add latest-20 image tag to release process #687
+
+### Changed
+
+- @josegonzalez Update php to version v195 #688
+- @josegonzalez Update python to version v197 #689
+
 ## [0.5.28](https://github.com/gliderlabs/herokuish/compare/v0.5.27...v0.5.28) - 2021-06-28
 
 ### Changed
