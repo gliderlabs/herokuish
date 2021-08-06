@@ -1,6 +1,16 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.5.30](https://github.com/gliderlabs/herokuish/compare/v0.5.29...v0.5.30) - 2021-08-05
+
+### Added
+
+- @josegonzalez Pull latest-20 image in herokuish package #694
+
+### Changed
+
+- @josegonzalez Update php to version v196 #693
+
 ## [0.5.29](https://github.com/gliderlabs/herokuish/compare/v0.5.28...v0.5.29) - 2021-07-12
 
 ### Added

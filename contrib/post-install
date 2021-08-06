@@ -6,6 +6,12 @@ if which systemctl > /dev/null; then
   sleep 5
 fi
 
+echo "Pruning dangling images"
+docker images -f dangling=true | awk '{print $3}' | xargs docker rmi || true
+
+echo "Pruning unused gliderlabs/herokuish images"
+docker images -a | grep "^gliderlabs\/herokuish" | grep -v latest | awk '{print $3}' | xargs docker rmi || true
+
 echo 'Importing herokuish into docker (around 5 minutes)'
 if [[ -n "$http_proxy" ]] || [[ -n "$https_proxy" ]]; then
   echo "See the docker pull docs for proxy configuration";
@@ -14,10 +20,6 @@ fi
 VERSION=$(cat /var/lib/herokuish/VERSION)
 
 sudo docker pull "gliderlabs/herokuish:v${VERSION}"
+sudo docker pull "gliderlabs/herokuish:v${VERSION}-20"
 sudo docker tag "gliderlabs/herokuish:v${VERSION}" gliderlabs/herokuish:latest
-
-echo "Pruning dangling images"
-docker images -f dangling=true | awk '{print $3}' | xargs docker rmi || true
-
-echo "Pruning unused gliderlabs/herokuish images"
-docker images -a | grep "^gliderlabs\/herokuish" | grep -v latest | awk '{print $3}' | xargs docker rmi || true
+sudo docker tag "gliderlabs/herokuish:v${VERSION}-20" gliderlabs/herokuish:latest-20
