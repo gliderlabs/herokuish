@@ -25,8 +25,20 @@ jobs:
         with:
           python-version: '3.7.x'
 
+      - name: setup env
+        run: make circleci
+
       - name: shellcheck
         run: make shellcheck
 
-      - name: shellcheck
+      - name: lint
         run: make lint
+        
+      - name: install requirements
+        run: make deps fpm package_cloud
+
+      - name: build
+        run: CIRCLECI=true make build
+      
+      - name: bash tests
+        run: basht tests/**/tests.sh
