@@ -111,11 +111,15 @@ clean:
 deps:
 	docker pull heroku/heroku:18-build
 	docker pull heroku/heroku:20-build
-	go get -u github.com/jteeuwen/go-bindata/...
-	go get -u github.com/progrium/gh-release/...
-	go get -u github.com/progrium/basht/...
+	cd / && go get -u github.com/jteeuwen/go-bindata/...
+	cd / && go get -u github.com/progrium/basht/...
 	go get || true
 
+bin/gh-release:
+	mkdir -p bin
+	curl -o bin/gh-release.tgz -sL https://github.com/progrium/gh-release/releases/download/v2.2.1/gh-release_2.2.1_$(SYSTEM_NAME)_$(HARDWARE).tgz
+	tar xf bin/gh-release.tgz -C bin
+	chmod +x bin/gh-release
 
 test:
 	basht tests/*/tests.sh
@@ -133,13 +137,13 @@ lint:
 	@echo linting...
 	shellcheck -e SC2002,SC2030,SC2031,SC2034 -s bash include/*.bash tests/**/tests.sh
 
-release: build
+release: build bin/gh-release
 	rm -rf release && mkdir release
 	cp build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm release/$(NAME)-$(VERSION)-1.x86_64.rpm
 	cp build/deb/$(NAME)_$(VERSION)_amd64.deb release/$(NAME)_$(VERSION)_amd64.deb
 	tar -zcf release/$(NAME)_$(VERSION)_linux_$(HARDWARE).tgz -C build/linux $(NAME)
 	tar -zcf release/$(NAME)_$(VERSION)_darwin_$(HARDWARE).tgz -C build/darwin $(NAME)
-	gh-release create gliderlabs/$(NAME) $(VERSION) \
+	bin/gh-release create gliderlabs/$(NAME) $(VERSION) \
 		$(shell git rev-parse --abbrev-ref HEAD) v$(VERSION)
 
 release-packagecloud:
