@@ -21,6 +21,10 @@ jobs:
         with:
           fetch-depth: 0
 
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 1.9.3
+
       - uses: actions/setup-python@v2
         with:
           python-version: '3.7.x'
@@ -33,12 +37,12 @@ jobs:
 
       - name: lint
         run: make lint
-        
+
       - name: install requirements
         run: make deps fpm package_cloud
 
       - name: build
         run: CIRCLECI=true make build
-      
+
       - name: bash tests
         run: basht tests/**/tests.sh
