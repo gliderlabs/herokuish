@@ -1,0 +1,71 @@
+---
+name: CI
+
+# yamllint disable-line rule:truthy
+on:
+  pull_request:
+    branches:
+      - '*'
+  push:
+    branches:
+      - master
+      - 'release'
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-18.04
+    strategy:
+      fail-fast: true
+    env:
+      GITHUB_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
+      PACKAGECLOUD_TOKEN: ${{ secrets.PACKAGECLOUD_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-go@v2
+        with:
+          go-version: 1.12.0
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.3
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.7.x'
+
+      - name: setup env
+        run: make ci-report
+
+      - name: shellcheck
+        run: make shellcheck
+
+      - name: lint
+        run: make lint
+
+      - name: install requirements
+        run: make deps fpm package_cloud
+
+      - name: build
+        run: CIRCLECI=true make build
+
+      - name: bash tests
+        run: basht tests/**/tests.sh
+
+      - name: upload packages
+        uses: actions/upload-artifact@v2
+        with:
+          name: build
+          path: build
+
+      - name: release
+        run: |
+          if [[ "${GITHUB_REF#refs/heads/}" == "release" ]]; then
+            export CI_BRANCH=${GITHUB_REF#refs/heads/}
+            export PACKAGECLOUD_REPOSITORY=dokku/dokku
+            make release release-packagecloud
+          fi
