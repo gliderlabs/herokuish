@@ -117,7 +117,7 @@ deps:
 
 bin/gh-release:
 	mkdir -p bin
-	curl -o bin/gh-release.tgz -sL https://github.com/progrium/gh-release/releases/download/v2.2.1/gh-release_2.2.1_$(SYSTEM_NAME)_$(HARDWARE).tgz
+	curl -o bin/gh-release.tgz -sL https://github.com/progrium/gh-release/releases/download/v2.3.3/gh-release_2.3.3_$(SYSTEM_NAME)_$(HARDWARE).tgz
 	tar xf bin/gh-release.tgz -C bin
 	chmod +x bin/gh-release
 
