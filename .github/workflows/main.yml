@@ -115,6 +115,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.3
+
       - name: download packages
         uses: actions/download-artifact@v1
         with:
