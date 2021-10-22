@@ -1,6 +1,29 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.5.31](https://github.com/gliderlabs/herokuish/compare/v0.5.30...v0.5.31) - 2021-10-22
+
+### Added
+
+- @adam12 Add bullseye to deb release task #697
+
+### Changed
+
+- @josegonzalez Update python to version v200 #700
+- @josegonzalez Update php to version v199 #701
+- @josegonzalez Update ruby to version v230 #702
+- @josegonzalez Update nodejs to version v189 #703
+- @josegonzalez Update python to version v201 #708
+- @josegonzalez Update go to version v156 #710
+- @josegonzalez Update scala to version v91 #709
+- @josegonzalez Switch to Github Actions for CI #705
+- @josegonzalez Run full test suite in github actions #711
+
+### Fixed
+
+- @abitrolly Fix link to Python Docker image from Google #696
+- @josegonzalez Pull correct docker image for herokuish-18 #707
+
 ## [0.5.30](https://github.com/gliderlabs/herokuish/compare/v0.5.29...v0.5.30) - 2021-08-05
 
 ### Added
