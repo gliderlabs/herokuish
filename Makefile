@@ -149,7 +149,8 @@ lint:
 	@echo linting...
 	shellcheck -e SC2002,SC2030,SC2031,SC2034 -s bash include/*.bash tests/**/tests.sh
 
-release: build bin/gh-release
+release: build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm build/deb/$(NAME)_$(VERSION)_amd64.deb bin/gh-release
+	chmod +x build/linux/$(NAME) build/darwin/$(NAME)
 	rm -rf release && mkdir release
 	cp build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm release/$(NAME)-$(VERSION)-1.x86_64.rpm
 	cp build/deb/$(NAME)_$(VERSION)_amd64.deb release/$(NAME)_$(VERSION)_amd64.deb
