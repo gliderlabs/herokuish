@@ -1,6 +1,6 @@
 # herokuish
 
-[![Circle CI](https://circleci.com/gh/gliderlabs/herokuish.png?style=shield)](https://circleci.com/gh/gliderlabs/herokuish)
+[![Build Status](https://github.com/gliderlabs/herokuish/workflows/CI/badge.svg)](https://github.com/gliderlabs/herokuish/actions?query=workflow%3ACI)
 [![IRC Channel](https://img.shields.io/badge/irc-%23gliderlabs-blue.svg)](https://kiwiirc.com/client/irc.freenode.net/#gliderlabs)
 [![Docker Hub](https://img.shields.io/badge/docker%20hub-v0.5.30-blue)](https://hub.docker.com/r/gliderlabs/herokuish)
 
@@ -18,7 +18,7 @@ Download and uncompress the latest binary tarball from [releases](https://github
 
 For example, you can do this directly in your Dockerfiles installing into `/bin` as one step:
 
-```
+```shell
 RUN curl --location --silent https://github.com/gliderlabs/herokuish/releases/download/v0.5.30/herokuish_0.5.30_linux_x86_64.tgz \
 		  | tar -xzC /bin
 ```
@@ -29,7 +29,7 @@ Herokuish depends on Bash (4.0 or newer) and a handful of standard GNU utilties 
 
 Herokuish is meant to work behind the scenes inside a container. It tries not to force decisions about how you construct and operate containers. In fact, there's nothing that even ties it specifically to Docker. It focuses on neatly emulating Heroku, letting you design and orchestrate containers around it.
 
-```
+```shell
 $ herokuish
 
 Available commands:
@@ -64,7 +64,7 @@ but if already running as a non-root user setuidgid will fail, you can opt-out f
 
 Herokuish does not come with any buildpacks, but it is tested against recent versions of Heroku supported buildpacks. You can see this information with `herokuish version`. Example output:
 
-```
+```shell
 $ herokuish version
 herokuish: 0.3.0
 buildpacks:
@@ -82,7 +82,7 @@ You can install all supported buildpacks with `herokuish buildpack install`, or 
 
 Use `herokuish paths` to see relevant system paths it uses. You can use these to import or mount data for use inside a container. They can also be overridden by setting the appropriate environment variable.
 
-```
+```shell
 $ herokuish paths
 APP_PATH=/app                    # Application path during runtime
 ENV_PATH=/tmp/env                # Path to files for defining base environment
@@ -101,7 +101,7 @@ Some subcommands are made to be used as default commands or entrypoint commands 
 
 Don't be afraid of the help command. It actually tells you exactly what a command does:
 
-```
+```shell
 $ herokuish help slug export
 slug-export <url>
   Export generated slug tarball to URL (PUT) or STDOUT
@@ -130,13 +130,13 @@ issue or an issue with Dokku. Buildpack issues should be filed against Herokuish
 
 #### Running an app against Herokuish
 
-```
+```shell
 $ docker run --rm -v /abs/app/path:/tmp/app gliderlabs/herokuish /bin/herokuish test
 ```
 
 Mounting your local app source directory to `/tmp/app` and running `/bin/herokuish test` will run your app through the buildpack compile process. Then it starts your `web` process and attempts to connect to the web root path. If it runs into a problem, it should exit non-zero.
 
-```
+```shell
 ::: BUILDING APP :::
 -----> Ruby app detected
 -----> Compiling Ruby/Rack
@@ -149,13 +149,13 @@ You can use this output when you submit issues.
 
 #### Running an app tests using Heroku buildpacks
 
-```
+```shell
 $ docker run --rm -v /abs/app/path:/tmp/app gliderlabs/herokuish /bin/herokuish buildpack test
 ```
 
 Mounting your local app source directory to `/tmp/app` and running `/bin/herokuish buildpack test` will run your app through the buildpack test-compile process. Then it will run `test` command to execute application tests.
 
-```
+```shell
 -----> Ruby app detected
 -----> Setting up Test for Ruby/Rack
 -----> Using Ruby version: ruby-2.3.3
@@ -171,7 +171,7 @@ Mounting your local app source directory to `/tmp/app` and running `/bin/herokui
 
 If you run into an issue and looking for more insight into what `herokuish` is doing, you can set the `$TRACE` environment variable.
 
-```
+```shell
 $ docker run --rm -e TRACE=true -v /abs/app/path:/tmp/app gliderlabs/herokuish /bin/herokuish test
 + [[ -d /tmp/app ]]
 + rm -rf /app
