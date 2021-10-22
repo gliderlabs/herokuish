@@ -1,0 +1,47 @@
+---
+name: release
+
+# yamllint disable-line rule:truthy
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-18.04
+    strategy:
+      fail-fast: true
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Login to DockerHub
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+
+      - name: Build herokuish-18
+        run: docker image build -t gliderlabs/herokuish:${{ steps.get_version.outputs.VERSION }}-18 -t gliderlabs/herokuish:latest-18 --build-arg STACK_VERSION=18 .
+
+      - name: Build herokuish-20
+        run: docker image build -t gliderlabs/herokuish:${{ steps.get_version.outputs.VERSION }}-20 -t gliderlabs/herokuish:latest-20 --build-arg STACK_VERSION=20 .
+
+      - name: Push herokuish-18
+        run: |
+          docker image push gliderlabs/herokuish:${{ steps.get_version.outputs.VERSION }}-18
+          docker image push gliderlabs/herokuish:latest-18
+
+      - name: Push herokuish-20
+        run: |
+          docker image push gliderlabs/herokuish:${{ steps.get_version.outputs.VERSION }}-20
+          docker image push gliderlabs/herokuish:latest-20
