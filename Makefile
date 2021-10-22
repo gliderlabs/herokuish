@@ -32,8 +32,7 @@ ifeq ($(SYSTEM),Linux)
 	command -v package_cloud >/dev/null || gem install package_cloud --no-ri --no-rdoc
 endif
 
-
-build:
+bindata.go:
 	@count=0; \
 	for i in $(BUILDPACK_ORDER); do \
 		bp_count=$$(printf '%02d' $$count) ; \
@@ -42,8 +41,15 @@ build:
 		count=$$((count + 1)) ; \
 	done > include/buildpacks.txt
 	go-bindata include
+
+build: bindata.go
 	mkdir -p build/linux  && GOOS=linux  go build -a -ldflags "-X main.Version=$(VERSION)" -o build/linux/$(NAME)
 	mkdir -p build/darwin && GOOS=darwin go build -a -ldflags "-X main.Version=$(VERSION)" -o build/darwin/$(NAME)
+	$(MAKE) build/docker
+	$(MAKE) build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm
+	$(MAKE) build/deb/$(NAME)_$(VERSION)_amd64.deb
+
+build/docker:
 ifeq ($(CIRCLECI),true)
 	docker build -t $(IMAGE_NAME):$(BUILD_TAG) .
 	docker build -t $(IMAGE_NAME):$(BUILD_TAG)-20 --build-arg STACK_VERSION=20 .
@@ -51,8 +57,6 @@ else
 	docker build -f Dockerfile.dev -t $(IMAGE_NAME):$(BUILD_TAG) .
 	docker build -f Dockerfile.dev -t $(IMAGE_NAME):$(BUILD_TAG)-20 --build-arg STACK_VERSION=20 .
 endif
-	$(MAKE) build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm
-	$(MAKE) build/deb/$(NAME)_$(VERSION)_amd64.deb
 
 build/deb:
 	mkdir -p build/deb
@@ -113,6 +117,7 @@ deps:
 	docker pull heroku/heroku:20-build
 	cd / && go get -u github.com/jteeuwen/go-bindata/...
 	cd / && go get -u github.com/progrium/basht/...
+	$(MAKE) bindata.go
 	go get || true
 
 bin/gh-release:
@@ -183,4 +188,4 @@ bumpup:
 		fi ; \
 	done
 
-.PHONY: build
+.PHONY: build bindata.go

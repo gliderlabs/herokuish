@@ -99,6 +99,9 @@ jobs:
       - name: install requirements
         run: make deps
 
+      - name: build docker images
+        run: make build/docker
+
       - name: run buildpack test
         run: |
           echo "executing ${{ matrix.buildpack }} tests"
