@@ -124,7 +124,7 @@ bin/gh-release:
 test:
 	basht tests/*/tests.sh
 
-ci-setup:
+ci-report:
 	docker version
 	which go
 	go version
