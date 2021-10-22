@@ -17,9 +17,6 @@ jobs:
     runs-on: ubuntu-18.04
     strategy:
       fail-fast: true
-    env:
-      GITHUB_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
-      PACKAGECLOUD_TOKEN: ${{ secrets.PACKAGECLOUD_TOKEN }}
 
     steps:
       - uses: actions/checkout@v2
@@ -131,3 +128,6 @@ jobs:
             export PACKAGECLOUD_REPOSITORY=dokku/dokku
             make release release-packagecloud
           fi
+        env:
+          GITHUB_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
+          PACKAGECLOUD_TOKEN: ${{ secrets.PACKAGECLOUD_TOKEN }}
