@@ -64,7 +64,7 @@ jobs:
 
 
   unit-tests:
-    name: unit.${{ matrix.index }}
+    name: unit.${{ matrix.buildpack }}
     needs: build
     runs-on: ubuntu-18.04
     strategy:
@@ -91,6 +91,10 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: build
+
+      - name: install requirements
+        run: make deps
+
       - name: run buildpack test
         run: |
           echo "executing ${{ matrix.buildpack }} tests"
