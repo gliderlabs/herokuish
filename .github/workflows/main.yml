@@ -63,7 +63,7 @@ jobs:
           path: build
 
       - name: release
-        command: |
+        run: |
           if [[ "${GITHUB_REF#refs/heads/}" == "release" ]]; then
             export CI_BRANCH=${GITHUB_REF#refs/heads/}
             export PACKAGECLOUD_REPOSITORY=dokku/dokku
