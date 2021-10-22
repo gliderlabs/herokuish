@@ -9,10 +9,18 @@ on:
   push:
     branches:
       - master
+      - 'release'
 
 jobs:
   build:
+    name: build
     runs-on: ubuntu-18.04
+    strategy:
+      fail-fast: true
+    env:
+      GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      PACKAGECLOUD_TOKEN: ${{ secrets.PACKAGECLOUD_TOKEN }}
+
     steps:
       - uses: actions/checkout@v2
         with:
@@ -30,19 +38,8 @@ jobs:
         with:
           python-version: '3.7.x'
 
-      - name: report
-        run: |
-          which go
-          go version
-
-          which python
-          python -V
-
-          which ruby
-          ruby -v
-
       - name: setup env
-        run: make circleci
+        run: make ci-report
 
       - name: shellcheck
         run: make shellcheck
@@ -58,3 +55,17 @@ jobs:
 
       - name: bash tests
         run: basht tests/**/tests.sh
+
+      - name: upload packages
+        uses: actions/upload-artifact@v2
+        with:
+          name: build
+          path: build
+
+      - name: release
+        command: |
+          if [[ "${GITHUB_REF#refs/heads/}" == "release" ]]; then
+            export CI_BRANCH=${GITHUB_REF#refs/heads/}
+            export PACKAGECLOUD_REPOSITORY=dokku/dokku
+            make release release-packagecloud
+          fi

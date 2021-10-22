@@ -124,8 +124,14 @@ bin/gh-release:
 test:
 	basht tests/*/tests.sh
 
-circleci:
+ci-setup:
 	docker version
+	which go
+	go version
+	which python
+	python -V
+	which ruby
+	ruby -v
 	rm -f ~/.gitconfig
 	mv Dockerfile.dev Dockerfile
 
