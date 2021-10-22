@@ -36,10 +36,10 @@ jobs:
           go version
 
           which python
-          python version
+          python -V
 
           which ruby
-          ruby version
+          ruby -v
 
       - name: setup env
         run: make circleci
