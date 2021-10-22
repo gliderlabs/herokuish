@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: true
     env:
-      GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
       PACKAGECLOUD_TOKEN: ${{ secrets.PACKAGECLOUD_TOKEN }}
 
     steps:
