@@ -32,8 +32,7 @@ ifeq ($(SYSTEM),Linux)
 	command -v package_cloud >/dev/null || gem install package_cloud --no-ri --no-rdoc
 endif
 
-
-build:
+bindata.go:
 	@count=0; \
 	for i in $(BUILDPACK_ORDER); do \
 		bp_count=$$(printf '%02d' $$count) ; \
@@ -42,8 +41,16 @@ build:
 		count=$$((count + 1)) ; \
 	done > include/buildpacks.txt
 	go-bindata include
+
+build: bindata.go
 	mkdir -p build/linux  && GOOS=linux  go build -a -ldflags "-X main.Version=$(VERSION)" -o build/linux/$(NAME)
 	mkdir -p build/darwin && GOOS=darwin go build -a -ldflags "-X main.Version=$(VERSION)" -o build/darwin/$(NAME)
+	$(MAKE) build/docker
+	$(MAKE) build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm
+	$(MAKE) build/deb/$(NAME)_$(VERSION)_amd64.deb
+
+build/docker:
+	chmod +x build/linux/$(NAME) build/darwin/$(NAME)
 ifeq ($(CIRCLECI),true)
 	docker build -t $(IMAGE_NAME):$(BUILD_TAG) .
 	docker build -t $(IMAGE_NAME):$(BUILD_TAG)-20 --build-arg STACK_VERSION=20 .
@@ -51,8 +58,6 @@ else
 	docker build -f Dockerfile.dev -t $(IMAGE_NAME):$(BUILD_TAG) .
 	docker build -f Dockerfile.dev -t $(IMAGE_NAME):$(BUILD_TAG)-20 --build-arg STACK_VERSION=20 .
 endif
-	$(MAKE) build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm
-	$(MAKE) build/deb/$(NAME)_$(VERSION)_amd64.deb
 
 build/deb:
 	mkdir -p build/deb
@@ -113,6 +118,7 @@ deps:
 	docker pull heroku/heroku:20-build
 	cd / && go get -u github.com/jteeuwen/go-bindata/...
 	cd / && go get -u github.com/progrium/basht/...
+	$(MAKE) bindata.go
 	go get || true
 
 bin/gh-release:
@@ -152,11 +158,11 @@ release: build bin/gh-release
 	bin/gh-release create gliderlabs/$(NAME) $(VERSION) \
 		$(shell git rev-parse --abbrev-ref HEAD) v$(VERSION)
 
-release-packagecloud:
+release-packagecloud: package_cloud
 	@$(MAKE) release-packagecloud-deb
 	@$(MAKE) release-packagecloud-rpm
 
-release-packagecloud-deb: build/deb/$(NAME)_$(VERSION)_amd64.deb
+release-packagecloud-deb: package_cloud build/deb/$(NAME)_$(VERSION)_amd64.deb
 	package_cloud push $(PACKAGECLOUD_REPOSITORY)/ubuntu/xenial  build/deb/$(NAME)_$(VERSION)_amd64.deb
 	package_cloud push $(PACKAGECLOUD_REPOSITORY)/ubuntu/bionic  build/deb/$(NAME)_$(VERSION)_amd64.deb
 	package_cloud push $(PACKAGECLOUD_REPOSITORY)/ubuntu/focal   build/deb/$(NAME)_$(VERSION)_amd64.deb
@@ -164,7 +170,7 @@ release-packagecloud-deb: build/deb/$(NAME)_$(VERSION)_amd64.deb
 	package_cloud push $(PACKAGECLOUD_REPOSITORY)/debian/buster  build/deb/$(NAME)_$(VERSION)_amd64.deb
 	package_cloud push $(PACKAGECLOUD_REPOSITORY)/debian/bullseye build/deb/$(NAME)_$(VERSION)_amd64.deb
 
-release-packagecloud-rpm: build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm
+release-packagecloud-rpm: package_cloud build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm
 	package_cloud push $(PACKAGECLOUD_REPOSITORY)/el/7           build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm
 
 bumpup:
@@ -183,4 +189,4 @@ bumpup:
 		fi ; \
 	done
 
-.PHONY: build
+.PHONY: build bindata.go

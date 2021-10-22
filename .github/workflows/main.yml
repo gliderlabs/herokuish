@@ -62,6 +62,68 @@ jobs:
           name: build
           path: build
 
+
+  unit-tests:
+    name: unit.${{ matrix.buildpack }}
+    needs: build
+    runs-on: ubuntu-18.04
+    strategy:
+      fail-fast: false
+      matrix:
+        buildpack:
+          - buildpack-clojure
+          - buildpack-go
+          - buildpack-gradle
+          - buildpack-java
+          - buildpack-multi
+          - buildpack-nodejs
+          - buildpack-null
+          - buildpack-php
+          - buildpack-play
+          - buildpack-python
+          - buildpack-ruby
+          - buildpack-scala
+          - buildpack-static
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-go@v2
+        with:
+          go-version: 1.12.0
+
+      - name: download packages
+        uses: actions/download-artifact@v1
+        with:
+          name: build
+
+      - name: install requirements
+        run: make deps
+
+      - name: build docker images
+        run: make build/docker
+
+      - name: run buildpack test
+        run: |
+          echo "executing ${{ matrix.buildpack }} tests"
+          basht buildpacks/${{ matrix.buildpack }}/tests/*/test.sh
+
+  release:
+    name: release
+    needs: unit-tests
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.3
+
+      - name: download packages
+        uses: actions/download-artifact@v1
+        with:
+          name: build
+
       - name: release
         run: |
           if [[ "${GITHUB_REF#refs/heads/}" == "release" ]]; then
