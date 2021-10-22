@@ -11,7 +11,7 @@ jobs:
       - run: |
           case $CIRCLE_NODE_INDEX in 0) make lint;; esac
       - run: |
-          make ci-setup
+          make ci-report
       - run: |
           make deps fpm package_cloud
       - run: |
