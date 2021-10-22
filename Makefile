@@ -1,6 +1,7 @@
 NAME = herokuish
 DESCRIPTION = 'Herokuish uses Docker and Buildpacks to build applications like Heroku'
 HARDWARE = $(shell uname -m)
+SYSTEM_NAME  = $(shell uname -s | tr '[:upper:]' '[:lower:]')
 VERSION ?= 0.5.31
 IMAGE_NAME ?= $(NAME)
 BUILD_TAG ?= dev
