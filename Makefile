@@ -128,6 +128,11 @@ bin/gh-release:
 	tar xf bin/gh-release.tgz -C bin
 	chmod +x bin/gh-release
 
+bin/gh-release-body:
+	mkdir -p bin
+	curl -o bin/gh-release-body "https://raw.githubusercontent.com/dokku/gh-release-body/master/gh-release-body"
+	chmod +x bin/gh-release-body
+
 test:
 	basht tests/*/tests.sh
 
@@ -150,7 +155,7 @@ lint:
 	@echo linting...
 	shellcheck -e SC2002,SC2030,SC2031,SC2034 -s bash include/*.bash tests/**/tests.sh
 
-release: build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm build/deb/$(NAME)_$(VERSION)_amd64.deb bin/gh-release
+release: build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm build/deb/$(NAME)_$(VERSION)_amd64.deb bin/gh-release bin/gh-release-body
 	chmod +x build/linux/$(NAME) build/darwin/$(NAME)
 	rm -rf release && mkdir release
 	cp build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm release/$(NAME)-$(VERSION)-1.x86_64.rpm
@@ -159,6 +164,7 @@ release: build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm build/deb/$(NAME)_$(VERSION)_
 	tar -zcf release/$(NAME)_$(VERSION)_darwin_$(HARDWARE).tgz -C build/darwin $(NAME)
 	bin/gh-release create gliderlabs/$(NAME) $(VERSION) \
 		$(shell git rev-parse --abbrev-ref HEAD) v$(VERSION)
+	bin/gh-release-body $(MAINTAINER)/$(REPOSITORY) v$(VERSION)
 
 release-packagecloud: package_cloud
 	@$(MAKE) release-packagecloud-deb
