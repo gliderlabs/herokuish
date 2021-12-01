@@ -1,6 +1,15 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.5.33](https://github.com/gliderlabs/herokuish/compare/v0.5.32...v0.5.33) - 2021-12-01
+
+### Changed
+
+- @josegonzalez Update ruby to version v232 #725
+- @josegonzalez Update python to version v204 #727
+- @josegonzalez Update php to version v201 #728
+- @josegonzalez Update go to version v157 #729
+
 ## [0.5.32](https://github.com/gliderlabs/herokuish/compare/v0.5.31...v0.5.32) - 2021-11-06
 
 ### Changed
