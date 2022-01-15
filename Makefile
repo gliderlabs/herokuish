@@ -53,11 +53,11 @@ build: bindata.go
 	$(MAKE) build/deb/$(NAME)_$(VERSION)_amd64.deb
 
 build/docker:
-	chmod +x build/linux/$(NAME) build/darwin/$(NAME)
 ifeq ($(CIRCLECI),true)
 	docker build -t $(IMAGE_NAME):$(BUILD_TAG) .
 	docker build -t $(IMAGE_NAME):$(BUILD_TAG)-20 --build-arg STACK_VERSION=20 .
 else
+	chmod +x build/linux/$(NAME) build/darwin/$(NAME)
 	docker build -f Dockerfile.dev -t $(IMAGE_NAME):$(BUILD_TAG) .
 	docker build -f Dockerfile.dev -t $(IMAGE_NAME):$(BUILD_TAG)-20 --build-arg STACK_VERSION=20 .
 endif
