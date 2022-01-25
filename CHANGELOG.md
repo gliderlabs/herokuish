@@ -1,6 +1,21 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.5.34](https://github.com/gliderlabs/herokuish/compare/v0.5.33...v0.5.34) - 2021-01-19
+
+### Changed
+
+- @josegonzalez Update static to version v16 #738
+- @josegonzalez Update go to version v160 #737
+- @josegonzalez Update gradle to version v36 #736
+- @josegonzalez Update python to version v205 #735
+- @josegonzalez Update ruby to version v236 #734
+- @gjrdiesel Update php to version v205 #733
+
+### Fixed
+
+- @IlyaSemenov Don't require binary in ci mode make (for circleci) #726
+
 ## [0.5.33](https://github.com/gliderlabs/herokuish/compare/v0.5.32...v0.5.33) - 2021-12-01
 
 ### Changed
