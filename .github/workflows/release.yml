@@ -31,7 +31,7 @@ jobs:
         run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
 
       - name: Build herokuish-18
-        run: docker image build -t gliderlabs/herokuish:${{ steps.get_version.outputs.VERSION }}-18 -t gliderlabs/herokuish:latest-18 --build-arg STACK_VERSION=18 .
+        run: docker image build -t gliderlabs/herokuish:${{ steps.get_version.outputs.VERSION }}-18 -t gliderlabs/herokuish:latest-18 -t gliderlabs/herokuish:latest --build-arg STACK_VERSION=18 .
 
       - name: Build herokuish-20
         run: docker image build -t gliderlabs/herokuish:${{ steps.get_version.outputs.VERSION }}-20 -t gliderlabs/herokuish:latest-20 --build-arg STACK_VERSION=20 .
@@ -40,6 +40,7 @@ jobs:
         run: |
           docker image push gliderlabs/herokuish:${{ steps.get_version.outputs.VERSION }}-18
           docker image push gliderlabs/herokuish:latest-18
+          docker image push gliderlabs/herokuish:latest
 
       - name: Push herokuish-20
         run: |
