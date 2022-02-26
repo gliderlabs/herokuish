@@ -1,3 +1,4 @@
 Flask==1.0
 Jinja2==2.11.3
 gunicorn==19.5.0
+markupsafe==2.0.1
