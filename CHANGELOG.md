@@ -1,6 +1,28 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.5.35](https://github.com/gliderlabs/herokuish/compare/v0.5.34...v0.5.35) - 2021-05-06
+
+### Changed
+
+- @dependabot chore(deps): bump gopkg.in/yaml.v2 from 2.2.2 to 2.2.8 #741
+- @dependabot chore(deps): bump django from 2.2.24 to 2.2.27 in /buildpacks/buildpack-python/tests/python-django #743
+- @dependabot chore(deps): bump twig/twig from 2.3.0 to 2.14.11 in /buildpacks/buildpack-php/tests/php #744
+- @dependabot chore(deps): bump symfony/http-kernel from 3.2.7 to 3.4.49 in /buildpacks/buildpack-php/tests/php #751
+- @dependabot chore(deps): bump django from 2.2.27 to 2.2.28 in /buildpacks/buildpack-python/tests/python-django #763
+- @josegonzalez feat: upgrade to golang 1.17.8 #759
+- @josegonzalez Update go to version v161 #752
+- @josegonzalez Update nodejs to version v195 #762
+- @josegonzalez Update php to version v216 #760
+- @josegonzalez Update python to version v210 #761
+- @josegonzalez Update ruby to version v240 #758
+- @josegonzalez Update scala to version v92 #749
+
+### Fixed
+
+- @gjrdiesel Add gliderlabs/herokuish:latest tagging #740
+- @josegonzalez Pin to a version of markupsafe that works with older jinja2 #750
+
 ## [0.5.34](https://github.com/gliderlabs/herokuish/compare/v0.5.33...v0.5.34) - 2021-01-19
 
 ### Changed
