@@ -1,6 +1,22 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.5.36](https://github.com/gliderlabs/herokuish/compare/v0.5.35...v0.5.36) - 2021-06-06
+
+### Added
+
+- @josegonzalez Publish package for Ubuntu 22.04 #766
+
+### Changed
+
+- @josegonzalez Switch to dokku/heroku-buildpack-multi to enable better debugging #773
+- @josegonzalez Update php to version v218 #772
+- @josegonzalez Update nodejs to version v196 #771
+- @josegonzalez Update python to version v211 #770
+- @josegonzalez Update php to version v217 #769
+- @josegonzalez Update java to version v70 #768
+- @josegonzalez Update go to version v162 #767
+
 ## [0.5.35](https://github.com/gliderlabs/herokuish/compare/v0.5.34...v0.5.35) - 2021-05-06
 
 ### Changed
