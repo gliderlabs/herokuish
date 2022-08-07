@@ -1,6 +1,20 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.5.37](https://github.com/gliderlabs/herokuish/compare/v0.5.36...v0.5.37) - 2021-08-07
+
+### Changed
+
+- @josegonzalez Update clojure to version v90 #775
+- @josegonzalez Update go to version v166 #776
+- @josegonzalez Update gradle to version v38 #777
+- @josegonzalez Update java to version v72 #778
+- @josegonzalez Update nodejs to version v198 #779
+- @josegonzalez Update php to version v223 #788
+- @josegonzalez Update python to version v214 #787
+- @josegonzalez Update ruby to version v244 #786
+- @josegonzalez Update scala to version v94 #783
+
 ## [0.5.36](https://github.com/gliderlabs/herokuish/compare/v0.5.35...v0.5.36) - 2021-06-06
 
 ### Added
