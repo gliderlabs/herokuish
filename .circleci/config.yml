@@ -44,12 +44,17 @@ jobs:
       - run: |
           docker image build -t $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_TAG-20 -t $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:latest-20 --build-arg STACK_VERSION=20 .
       - run: |
+          docker image build -t $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_TAG-22 -t $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:latest-22 --build-arg STACK_VERSION=22 .
+      - run: |
           docker image push $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_TAG-18
           docker image push $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:latest-18
           docker image push $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:latest
       - run: |
           docker image push $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_TAG-20
           docker image push $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:latest-20
+      - run: |
+          docker image push $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_TAG-22
+          docker image push $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:latest-22
 
 workflows:
   version: 2
