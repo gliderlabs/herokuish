@@ -26,13 +26,13 @@ endif
 fpm:
 ifeq ($(SYSTEM),Linux)
 	sudo apt-get update && sudo apt-get -y install gcc git build-essential wget ruby-dev ruby1.9.1 lintian rpm help2man man-db
-	command -v fpm >/dev/null || gem install fpm --no-rdoc
+	command -v fpm >/dev/null || gem install fpm --no-document
 endif
 
 package_cloud:
 ifeq ($(SYSTEM),Linux)
 	sudo apt-get update && sudo apt-get -y install gcc git build-essential wget ruby-dev ruby1.9.1 lintian rpm help2man man-db
-	command -v package_cloud >/dev/null || gem install package_cloud --no-rdoc
+	command -v package_cloud >/dev/null || gem install package_cloud --no-document
 endif
 
 bindata.go:
