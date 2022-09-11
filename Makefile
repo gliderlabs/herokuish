@@ -56,10 +56,12 @@ build/docker:
 ifeq ($(CIRCLECI),true)
 	docker build -t $(IMAGE_NAME):$(BUILD_TAG) .
 	docker build -t $(IMAGE_NAME):$(BUILD_TAG)-20 --build-arg STACK_VERSION=20 .
+	docker build -t $(IMAGE_NAME):$(BUILD_TAG)-22 --build-arg STACK_VERSION=22 .
 else
 	chmod +x build/linux/$(NAME) build/darwin/$(NAME)
 	docker build -f Dockerfile.dev -t $(IMAGE_NAME):$(BUILD_TAG) .
 	docker build -f Dockerfile.dev -t $(IMAGE_NAME):$(BUILD_TAG)-20 --build-arg STACK_VERSION=20 .
+	docker build -f Dockerfile.dev -t $(IMAGE_NAME):$(BUILD_TAG)-22 --build-arg STACK_VERSION=22 .
 endif
 
 build/deb:
@@ -119,6 +121,7 @@ clean:
 deps:
 	docker pull heroku/heroku:18-build
 	docker pull heroku/heroku:20-build
+	docker pull heroku/heroku:22-build
 	cd / && go get -u github.com/jteeuwen/go-bindata/...
 	cd / && go get -u github.com/progrium/basht/...
 	$(MAKE) bindata.go

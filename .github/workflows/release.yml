@@ -36,6 +36,9 @@ jobs:
       - name: Build herokuish-20
         run: docker image build -t gliderlabs/herokuish:${{ steps.get_version.outputs.VERSION }}-20 -t gliderlabs/herokuish:latest-20 --build-arg STACK_VERSION=20 .
 
+      - name: Build herokuish-22
+        run: docker image build -t gliderlabs/herokuish:${{ steps.get_version.outputs.VERSION }}-22 -t gliderlabs/herokuish:latest-22 --build-arg STACK_VERSION=22 .
+
       - name: Push herokuish-18
         run: |
           docker image push gliderlabs/herokuish:${{ steps.get_version.outputs.VERSION }}-18
@@ -46,3 +49,8 @@ jobs:
         run: |
           docker image push gliderlabs/herokuish:${{ steps.get_version.outputs.VERSION }}-20
           docker image push gliderlabs/herokuish:latest-20
+
+      - name: Push herokuish-22
+        run: |
+          docker image push gliderlabs/herokuish:${{ steps.get_version.outputs.VERSION }}-22
+          docker image push gliderlabs/herokuish:latest-22
