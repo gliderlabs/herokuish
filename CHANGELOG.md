@@ -1,6 +1,18 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.5.38](https://github.com/gliderlabs/herokuish/compare/v0.5.37...v0.5.38) - 2021-11-01
+
+- @josegonzalez Add support for building a herokuish:22 image #792
+- @josegonzalez Upgrade ruby version used in CI #793
+- @josegonzalez Update go to version v168 #795
+- @josegonzalez Update nodejs to version v201 #804
+- @josegonzalez Update php to version v226 #803
+- @josegonzalez Update python to version v222 #802
+- @josegonzalez Update scala to version v96 #801
+- @josegonzalez Update static to version v22 #800
+- @josegonzalez chore(deps): bump twig/twig from 2.14.11 to 2.15.3 in /buildpacks/buildpack-php/tests/php #799
+
 ## [0.5.37](https://github.com/gliderlabs/herokuish/compare/v0.5.36...v0.5.37) - 2021-08-07
 
 ### Changed

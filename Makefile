@@ -4,7 +4,7 @@ REPOSITORY = herokuish
 DESCRIPTION = 'Herokuish uses Docker and Buildpacks to build applications like Heroku'
 HARDWARE = $(shell uname -m)
 SYSTEM_NAME  = $(shell uname -s | tr '[:upper:]' '[:lower:]')
-VERSION ?= 0.5.37
+VERSION ?= 0.5.38
 IMAGE_NAME ?= $(NAME)
 BUILD_TAG ?= dev
 PACKAGECLOUD_REPOSITORY ?= dokku/dokku-betafish
@@ -26,13 +26,13 @@ endif
 fpm:
 ifeq ($(SYSTEM),Linux)
 	sudo apt-get update && sudo apt-get -y install gcc git build-essential wget ruby-dev ruby1.9.1 lintian rpm help2man man-db
-	command -v fpm >/dev/null || gem install fpm --no-ri --no-rdoc
+	command -v fpm >/dev/null || gem install fpm --no-document
 endif
 
 package_cloud:
 ifeq ($(SYSTEM),Linux)
 	sudo apt-get update && sudo apt-get -y install gcc git build-essential wget ruby-dev ruby1.9.1 lintian rpm help2man man-db
-	command -v package_cloud >/dev/null || gem install package_cloud --no-ri --no-rdoc
+	command -v package_cloud >/dev/null || gem install package_cloud --no-document
 endif
 
 bindata.go:
@@ -56,10 +56,12 @@ build/docker:
 ifeq ($(CIRCLECI),true)
 	docker build -t $(IMAGE_NAME):$(BUILD_TAG) .
 	docker build -t $(IMAGE_NAME):$(BUILD_TAG)-20 --build-arg STACK_VERSION=20 .
+	docker build -t $(IMAGE_NAME):$(BUILD_TAG)-22 --build-arg STACK_VERSION=22 .
 else
 	chmod +x build/linux/$(NAME) build/darwin/$(NAME)
 	docker build -f Dockerfile.dev -t $(IMAGE_NAME):$(BUILD_TAG) .
 	docker build -f Dockerfile.dev -t $(IMAGE_NAME):$(BUILD_TAG)-20 --build-arg STACK_VERSION=20 .
+	docker build -f Dockerfile.dev -t $(IMAGE_NAME):$(BUILD_TAG)-22 --build-arg STACK_VERSION=22 .
 endif
 
 build/deb:
@@ -119,6 +121,7 @@ clean:
 deps:
 	docker pull heroku/heroku:18-build
 	docker pull heroku/heroku:20-build
+	docker pull heroku/heroku:22-build
 	cd / && go get -u github.com/jteeuwen/go-bindata/...
 	cd / && go get -u github.com/progrium/basht/...
 	$(MAKE) bindata.go

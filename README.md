@@ -2,13 +2,13 @@
 
 [![Build Status](https://github.com/gliderlabs/herokuish/workflows/CI/badge.svg)](https://github.com/gliderlabs/herokuish/actions?query=workflow%3ACI)
 [![IRC Channel](https://img.shields.io/badge/irc-%23gliderlabs-blue.svg)](https://kiwiirc.com/client/irc.freenode.net/#gliderlabs)
-[![Docker Hub](https://img.shields.io/badge/docker%20hub-v0.5.37-blue)](https://hub.docker.com/r/gliderlabs/herokuish)
+[![Docker Hub](https://img.shields.io/badge/docker%20hub-v0.5.38-blue)](https://hub.docker.com/r/gliderlabs/herokuish)
 
 A command line tool for emulating Heroku build and runtime tasks in containers.
 
 Herokuish is made for platform authors. The project consolidates and decouples Heroku compatibility logic (running buildpacks, parsing Procfile) and supporting workflow (importing/exporting slugs) from specific platform images like those in Dokku/Buildstep, Deis, Flynn, etc.
 
-The goal is to be the definitive, well maintained and heavily tested Heroku emulation utility shared by all. It is based on the [Heroku:18 and Heroku:20 system images](https://github.com/heroku/stack-images). Together they form a toolkit for achieving Heroku compatibility.
+The goal is to be the definitive, well maintained and heavily tested Heroku emulation utility shared by all. It is based on the [Heroku:18, Heroku:20, and Heroku:22 system images](https://github.com/heroku/stack-images). Together they form a toolkit for achieving Heroku compatibility.
 
 Herokuish is a community project and is in no way affiliated with Heroku.
 
@@ -19,7 +19,7 @@ Download and uncompress the latest binary tarball from [releases](https://github
 For example, you can do this directly in your Dockerfiles installing into `/bin` as one step:
 
 ```shell
-RUN curl --location --silent https://github.com/gliderlabs/herokuish/releases/download/v0.5.37/herokuish_0.5.37_linux_x86_64.tgz \
+RUN curl --location --silent https://github.com/gliderlabs/herokuish/releases/download/v0.5.38/herokuish_0.5.38_linux_x86_64.tgz \
 		  | tar -xzC /bin
 ```
 
