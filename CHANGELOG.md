@@ -1,5 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
+## [0.5.39](https://github.com/gliderlabs/herokuish/compare/v0.5.38...v0.5.39) - 2021-11-04
+
+- @josegonzalez Update nodejs to version v202 #806
+- @josegonzalez Update php to version v227 #807
 
 ## [0.5.38](https://github.com/gliderlabs/herokuish/compare/v0.5.37...v0.5.38) - 2021-11-01
 
