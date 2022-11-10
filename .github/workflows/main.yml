@@ -48,7 +48,7 @@ jobs:
         run: make deps fpm package_cloud
 
       - name: build
-        run: CIRCLECI=true make build
+        run: make build
 
       - name: bash tests
         run: basht tests/**/tests.sh

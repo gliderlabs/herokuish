@@ -12,6 +12,7 @@ PACKAGECLOUD_REPOSITORY ?= dokku/dokku-betafish
 BUILDPACK_ORDER := multi ruby nodejs clojure python java gradle scala play php go static null
 SHELL := /bin/bash
 SYSTEM := $(shell sh -c 'uname -s 2>/dev/null')
+DOCKER_ARGS ?= "--pull"
 
 shellcheck:
 ifneq ($(shell shellcheck --version > /dev/null 2>&1 ; echo $$?),0)
@@ -48,21 +49,14 @@ bindata.go:
 build: bindata.go
 	mkdir -p build/linux  && GOOS=linux  go build -a -ldflags "-X main.Version=$(VERSION)" -o build/linux/$(NAME)
 	mkdir -p build/darwin && GOOS=darwin go build -a -ldflags "-X main.Version=$(VERSION)" -o build/darwin/$(NAME)
-	$(MAKE) build/docker
 	$(MAKE) build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm
 	$(MAKE) build/deb/$(NAME)_$(VERSION)_amd64.deb
 
 build/docker:
-ifeq ($(CIRCLECI),true)
-	docker build -t $(IMAGE_NAME):$(BUILD_TAG) .
-	docker build -t $(IMAGE_NAME):$(BUILD_TAG)-20 --build-arg STACK_VERSION=20 .
-	docker build -t $(IMAGE_NAME):$(BUILD_TAG)-22 --build-arg STACK_VERSION=22 .
-else
-	chmod +x build/linux/$(NAME) build/darwin/$(NAME)
-	docker build -f Dockerfile.dev -t $(IMAGE_NAME):$(BUILD_TAG) .
-	docker build -f Dockerfile.dev -t $(IMAGE_NAME):$(BUILD_TAG)-20 --build-arg STACK_VERSION=20 .
-	docker build -f Dockerfile.dev -t $(IMAGE_NAME):$(BUILD_TAG)-22 --build-arg STACK_VERSION=22 .
-endif
+	# --push
+	docker buildx build --no-cache ${DOCKER_ARGS} --pull --progress plain --platform linux/arm,linux/arm64/v8,linux/amd64 --build-arg STACK_VERSION=18 --build-arg VERSION=$(VERSION) -t $(IMAGE_NAME):$(BUILD_TAG)-18 -t $(IMAGE_NAME):latest-18 -t $(IMAGE_NAME):latest .
+	docker buildx build --no-cache ${DOCKER_ARGS} --pull --progress plain --platform linux/arm,linux/arm64/v8,linux/amd64 --build-arg STACK_VERSION=20 --build-arg VERSION=$(VERSION) -t $(IMAGE_NAME):$(BUILD_TAG)-20 -t $(IMAGE_NAME):latest-20 .
+	docker buildx build --no-cache ${DOCKER_ARGS} --pull --progress plain --platform linux/arm,linux/arm64/v8,linux/amd64 --build-arg STACK_VERSION=22 --build-arg VERSION=$(VERSION) -t $(IMAGE_NAME):$(BUILD_TAG)-22 -t $(IMAGE_NAME):latest-22 .
 
 build/deb:
 	mkdir -p build/deb

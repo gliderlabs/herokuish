@@ -1,6 +1,21 @@
+# syntax=docker/dockerfile:1
 ARG STACK_VERSION=18
-FROM heroku/heroku:$STACK_VERSION-build
-ARG STACK_VERSION
+
+FROM golang:1.17 AS builder
+RUN mkdir /src
+ADD . /src/
+WORKDIR /src
+
+ARG VERSION
+RUN go build -a -ldflags "-X main.Version=$VERSION" -o herokuish .
+
+FROM ubuntu:${STACK_VERSION}.04 AS base
+ARG STACK_VERSION=18
+ARG TARGETARCH
+
+ADD bin/setup.sh /tmp/setup.sh
+RUN STACK_VERSION=${STACK_VERSION} TARGETARCH=${TARGETARCH} /tmp/setup.sh && \
+    rm -rf /tmp/setup.sh
 
 ENV STACK=heroku-$STACK_VERSION
 ENV DEBIAN_FRONTEND noninteractive
@@ -17,8 +32,9 @@ RUN apt-get update -qq \
     && mv /etc/ImageMagick-6/policy.xml.custom /etc/ImageMagick-6/policy.xml \
     && apt-get clean \
     && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/* /var/tmp/*
-RUN curl "https://github.com/gliderlabs/herokuish/releases/download/v0.5.39/herokuish_0.5.39_linux_x86_64.tgz" \
-    --silent -L | tar -xzC /bin
+
+COPY --from=builder /src/herokuish /bin/
+
 RUN /bin/herokuish buildpack install \
     && ln -s /bin/herokuish /build \
     && ln -s /bin/herokuish /start \
