@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -eo pipefail
+set -x
 
 # get heroku's stack scripts
 setup_01="$(cat /tmp/setup-01.sh)"
