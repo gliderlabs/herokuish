@@ -47,8 +47,25 @@ jobs:
       - name: install requirements
         run: make deps fpm package_cloud
 
+      - name: set up qemu
+        uses: docker/setup-qemu-action@v2
+
+      - name: set up docker buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: inspect builder
+        run: |
+          echo "Name:      ${{ steps.buildx.outputs.name }}"
+          echo "Endpoint:  ${{ steps.buildx.outputs.endpoint }}"
+          echo "Status:    ${{ steps.buildx.outputs.status }}"
+          echo "Flags:     ${{ steps.buildx.outputs.flags }}"
+          echo "Platforms: ${{ steps.buildx.outputs.platforms }}"
+
       - name: build
-        run: make build build/docker BUILDX=false
+        run: |
+          make build/docker
+          make build build/docker BUILDX=false
 
       - name: bash tests
         run: basht tests/**/tests.sh
@@ -97,8 +114,7 @@ jobs:
         run: make deps
 
       - name: build docker images
-        run: |
-          make build/docker BUILDX=false
+        run: make build/docker BUILDX=false
 
       - name: run buildpack test
         run: |
