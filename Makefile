@@ -13,6 +13,7 @@ BUILDPACK_ORDER := multi ruby nodejs clojure python java gradle scala play php g
 SHELL := /bin/bash
 SYSTEM := $(shell sh -c 'uname -s 2>/dev/null')
 DOCKER_ARGS ?= "--pull"
+BUILDX ?= true
 
 shellcheck:
 ifneq ($(shell shellcheck --version > /dev/null 2>&1 ; echo $$?),0)
@@ -53,10 +54,17 @@ build: bindata.go
 	$(MAKE) build/deb/$(NAME)_$(VERSION)_amd64.deb
 
 build/docker:
+ifeq ($(BUILDX),true)
 	# --push
 	docker buildx build --no-cache ${DOCKER_ARGS} --pull --progress plain --platform linux/arm,linux/arm64/v8,linux/amd64 --build-arg STACK_VERSION=18 --build-arg VERSION=$(VERSION) -t $(IMAGE_NAME):$(BUILD_TAG)-18 -t $(IMAGE_NAME):latest-18 -t $(IMAGE_NAME):latest .
 	docker buildx build --no-cache ${DOCKER_ARGS} --pull --progress plain --platform linux/arm,linux/arm64/v8,linux/amd64 --build-arg STACK_VERSION=20 --build-arg VERSION=$(VERSION) -t $(IMAGE_NAME):$(BUILD_TAG)-20 -t $(IMAGE_NAME):latest-20 .
 	docker buildx build --no-cache ${DOCKER_ARGS} --pull --progress plain --platform linux/arm,linux/arm64/v8,linux/amd64 --build-arg STACK_VERSION=22 --build-arg VERSION=$(VERSION) -t $(IMAGE_NAME):$(BUILD_TAG)-22 -t $(IMAGE_NAME):latest-22 .
+else
+	# --push
+	docker build --no-cache ${DOCKER_ARGS} --pull --progress plain --build-arg STACK_VERSION=18 --build-arg VERSION=$(VERSION) -t $(IMAGE_NAME):$(BUILD_TAG)-18 -t $(IMAGE_NAME):latest-18 -t $(IMAGE_NAME):latest .
+	docker build --no-cache ${DOCKER_ARGS} --pull --progress plain --build-arg STACK_VERSION=20 --build-arg VERSION=$(VERSION) -t $(IMAGE_NAME):$(BUILD_TAG)-20 -t $(IMAGE_NAME):latest-20 .
+	docker build --no-cache ${DOCKER_ARGS} --pull --progress plain --build-arg STACK_VERSION=22 --build-arg VERSION=$(VERSION) -t $(IMAGE_NAME):$(BUILD_TAG)-22 -t $(IMAGE_NAME):latest-22 .
+endif
 
 build/deb:
 	mkdir -p build/deb
