@@ -56,8 +56,8 @@ build: bindata.go
 
 build/docker:
 	$(MAKE) build/docker/18 STACK_VERSION=18
-	$(MAKE) build/docker/18 STACK_VERSION=20
-	$(MAKE) build/docker/18 STACK_VERSION=22
+	$(MAKE) build/docker/20 STACK_VERSION=20
+	$(MAKE) build/docker/22 STACK_VERSION=22
 
 build/docker/$(STACK_VERSION):
 ifeq ($(BUILDX),true)
