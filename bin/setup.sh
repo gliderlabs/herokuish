@@ -1,21 +1,9 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
-# install wget and certificates to get the scripts in place
-apt-get update
-apt-get install -y --no-install-recommends wget ca-certificates
-rm -rf /root/*
-rm -rf /tmp/*
-rm -rf /var/cache/apt/archives/*.deb
-rm -rf /var/lib/apt/lists/*
-
 # get heroku's stack scripts
-setup_01="$(wget -qO- "https://raw.githubusercontent.com/heroku/stack-images/main/heroku-${STACK_VERSION}/setup.sh")"
-setup_02="$(wget -qO- "https://raw.githubusercontent.com/heroku/stack-images/main/heroku-${STACK_VERSION}-build/setup.sh")"
-
-# cleanup ca-certificates
-apt-get purge -y ca-certificates
-apt-get autoremove -y --purge
+setup_01="$(cat /tmp/setup-01.sh)"
+setup_02="$(cat /tmp/setup-02.sh)"
 
 # write the first script
 echo "$setup_01" > /tmp/setup-01.sh
