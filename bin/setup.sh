@@ -12,7 +12,7 @@ chmod +x /tmp/setup-01.sh
 
 # Ensure we install from ports for arm/arm64 systems
 # Skip unsupported syslinux
-if [[ "$TARGETARCH" != "amd64" ]]; then
+if [[ -n "$TARGETARCH" ]] && [[ "$TARGETARCH" != "amd64" ]]; then
   sed -i 's#http://archive.ubuntu.com/ubuntu/#http://ports.ubuntu.com/ubuntu-ports/#' /tmp/setup-01.sh
   sed -i '/syslinux/d' /tmp/setup-01.sh
 fi
