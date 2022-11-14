@@ -99,7 +99,6 @@ jobs:
       - name: build docker images
         run: |
           make build/docker BUILDX=false
-          make build/docker
 
       - name: run buildpack test
         run: |
