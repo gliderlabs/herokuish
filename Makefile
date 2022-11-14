@@ -152,7 +152,6 @@ ci-report:
 	which ruby
 	ruby -v
 	rm -f ~/.gitconfig
-	mv Dockerfile.dev Dockerfile
 
 lint:
 	# SC2002: Useless cat - https://github.com/koalaman/shellcheck/wiki/SC2002
