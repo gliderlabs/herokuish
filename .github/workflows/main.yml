@@ -48,7 +48,7 @@ jobs:
         run: make deps fpm package_cloud
 
       - name: build
-        run: make build
+        run: make build build/docker BUILDX=false
 
       - name: bash tests
         run: basht tests/**/tests.sh
