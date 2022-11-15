@@ -52,7 +52,7 @@ build: bindata.go
 	mkdir -p build/linux  && GOOS=linux  go build -a -ldflags "-X main.Version=$(VERSION)" -o build/linux/$(NAME)
 	mkdir -p build/darwin && GOOS=darwin go build -a -ldflags "-X main.Version=$(VERSION)" -o build/darwin/$(NAME)
 	$(MAKE) build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm
-	$(MAKE) build/deb/$(NAME)_$(VERSION)_amd64.deb
+	$(MAKE) build/deb/$(NAME)_$(VERSION)_all.deb
 
 build/docker:
 	$(MAKE) build/docker/18 STACK_VERSION=18
@@ -73,11 +73,11 @@ endif
 build/deb:
 	mkdir -p build/deb
 
-build/deb/$(NAME)_$(VERSION)_amd64.deb: build/deb
+build/deb/$(NAME)_$(VERSION)_all.deb: build/deb
 	echo $(VERSION) > /tmp/$(NAME)-VERSION
 	fpm \
 		--after-install contrib/post-install \
-		--architecture amd64 \
+		--architecture all \
 		--category utils \
 		--deb-pre-depends 'docker-engine-cs (>= 1.13.0) | docker-engine (>= 1.13.0) | docker-io (>= 1.13.0) | docker.io (>= 1.13.0) | docker-ce (>= 1.13.0) | docker-ee (>= 1.13.0) | moby-engine' \
 		--deb-pre-depends sudo \
@@ -86,7 +86,7 @@ build/deb/$(NAME)_$(VERSION)_amd64.deb: build/deb
 		--license 'MIT License' \
 		--name $(NAME) \
 		--output-type deb \
-		--package build/deb/$(NAME)_$(VERSION)_amd64.deb \
+		--package build/deb/$(NAME)_$(VERSION)_all.deb \
 		--url "https://github.com/gliderlabs/$(NAME)" \
 		--vendor "" \
 		--version $(VERSION) \
@@ -165,11 +165,11 @@ lint:
 	@echo linting...
 	shellcheck -e SC2002,SC2030,SC2031,SC2034 -s bash include/*.bash tests/**/tests.sh
 
-release: build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm build/deb/$(NAME)_$(VERSION)_amd64.deb bin/gh-release bin/gh-release-body
+release: build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm build/deb/$(NAME)_$(VERSION)_all.deb bin/gh-release bin/gh-release-body
 	chmod +x build/linux/$(NAME) build/darwin/$(NAME)
 	rm -rf release && mkdir release
 	cp build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm release/$(NAME)-$(VERSION)-1.x86_64.rpm
-	cp build/deb/$(NAME)_$(VERSION)_amd64.deb release/$(NAME)_$(VERSION)_amd64.deb
+	cp build/deb/$(NAME)_$(VERSION)_all.deb release/$(NAME)_$(VERSION)_all.deb
 	tar -zcf release/$(NAME)_$(VERSION)_linux_$(HARDWARE).tgz -C build/linux $(NAME)
 	tar -zcf release/$(NAME)_$(VERSION)_darwin_$(HARDWARE).tgz -C build/darwin $(NAME)
 	bin/gh-release create gliderlabs/$(NAME) $(VERSION) \
@@ -180,14 +180,14 @@ release-packagecloud: package_cloud
 	@$(MAKE) release-packagecloud-deb
 	@$(MAKE) release-packagecloud-rpm
 
-release-packagecloud-deb: package_cloud build/deb/$(NAME)_$(VERSION)_amd64.deb
-	package_cloud push $(PACKAGECLOUD_REPOSITORY)/ubuntu/xenial  build/deb/$(NAME)_$(VERSION)_amd64.deb
-	package_cloud push $(PACKAGECLOUD_REPOSITORY)/ubuntu/bionic  build/deb/$(NAME)_$(VERSION)_amd64.deb
-	package_cloud push $(PACKAGECLOUD_REPOSITORY)/ubuntu/focal   build/deb/$(NAME)_$(VERSION)_amd64.deb
-	package_cloud push $(PACKAGECLOUD_REPOSITORY)/ubuntu/jammy   build/deb/$(NAME)_$(VERSION)_amd64.deb
-	package_cloud push $(PACKAGECLOUD_REPOSITORY)/debian/stretch build/deb/$(NAME)_$(VERSION)_amd64.deb
-	package_cloud push $(PACKAGECLOUD_REPOSITORY)/debian/buster  build/deb/$(NAME)_$(VERSION)_amd64.deb
-	package_cloud push $(PACKAGECLOUD_REPOSITORY)/debian/bullseye build/deb/$(NAME)_$(VERSION)_amd64.deb
+release-packagecloud-deb: package_cloud build/deb/$(NAME)_$(VERSION)_all.deb
+	package_cloud push $(PACKAGECLOUD_REPOSITORY)/ubuntu/xenial  build/deb/$(NAME)_$(VERSION)_all.deb
+	package_cloud push $(PACKAGECLOUD_REPOSITORY)/ubuntu/bionic  build/deb/$(NAME)_$(VERSION)_all.deb
+	package_cloud push $(PACKAGECLOUD_REPOSITORY)/ubuntu/focal   build/deb/$(NAME)_$(VERSION)_all.deb
+	package_cloud push $(PACKAGECLOUD_REPOSITORY)/ubuntu/jammy   build/deb/$(NAME)_$(VERSION)_all.deb
+	package_cloud push $(PACKAGECLOUD_REPOSITORY)/debian/stretch build/deb/$(NAME)_$(VERSION)_all.deb
+	package_cloud push $(PACKAGECLOUD_REPOSITORY)/debian/buster  build/deb/$(NAME)_$(VERSION)_all.deb
+	package_cloud push $(PACKAGECLOUD_REPOSITORY)/debian/bullseye build/deb/$(NAME)_$(VERSION)_all.deb
 
 release-packagecloud-rpm: package_cloud build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm
 	package_cloud push $(PACKAGECLOUD_REPOSITORY)/el/7           build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm
