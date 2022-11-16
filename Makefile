@@ -54,7 +54,7 @@ build: bindata.go
 	$(MAKE) build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm
 	$(MAKE) build/deb/$(NAME)_$(VERSION)_all.deb
 
-build/docker:
+build/docker: bindata.go
 	$(MAKE) build/docker/18 STACK_VERSION=18
 	$(MAKE) build/docker/20 STACK_VERSION=20
 	$(MAKE) build/docker/22 STACK_VERSION=22
