@@ -1,5 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
+
+## [0.5.40](https://github.com/gliderlabs/herokuish/compare/v0.5.39...v0.5.40) - 2021-11-15
+
+- @josegonzalez Update python to version v223 #809
+- @josegonzalez Update go to version v169 #810
+- @josegonzalez Add multi-arch support for herokuish #811
+
 ## [0.5.39](https://github.com/gliderlabs/herokuish/compare/v0.5.38...v0.5.39) - 2021-11-04
 
 - @josegonzalez Update nodejs to version v202 #806
