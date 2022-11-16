@@ -4,7 +4,7 @@ REPOSITORY = herokuish
 DESCRIPTION = 'Herokuish uses Docker and Buildpacks to build applications like Heroku'
 HARDWARE = $(shell uname -m)
 SYSTEM_NAME  = $(shell uname -s | tr '[:upper:]' '[:lower:]')
-VERSION ?= 0.5.39
+VERSION ?= 0.5.40
 IMAGE_NAME ?= $(NAME)
 BUILD_TAG ?= dev
 PACKAGECLOUD_REPOSITORY ?= dokku/dokku-betafish
@@ -12,6 +12,9 @@ PACKAGECLOUD_REPOSITORY ?= dokku/dokku-betafish
 BUILDPACK_ORDER := multi ruby nodejs clojure python java gradle scala play php go static null
 SHELL := /bin/bash
 SYSTEM := $(shell sh -c 'uname -s 2>/dev/null')
+DOCKER_ARGS ?= "--pull"
+BUILDX ?= true
+STACK_VERSION ?= 18
 
 shellcheck:
 ifneq ($(shell shellcheck --version > /dev/null 2>&1 ; echo $$?),0)
@@ -48,30 +51,33 @@ bindata.go:
 build: bindata.go
 	mkdir -p build/linux  && GOOS=linux  go build -a -ldflags "-X main.Version=$(VERSION)" -o build/linux/$(NAME)
 	mkdir -p build/darwin && GOOS=darwin go build -a -ldflags "-X main.Version=$(VERSION)" -o build/darwin/$(NAME)
-	$(MAKE) build/docker
 	$(MAKE) build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm
-	$(MAKE) build/deb/$(NAME)_$(VERSION)_amd64.deb
+	$(MAKE) build/deb/$(NAME)_$(VERSION)_all.deb
 
 build/docker:
-ifeq ($(CIRCLECI),true)
-	docker build -t $(IMAGE_NAME):$(BUILD_TAG) .
-	docker build -t $(IMAGE_NAME):$(BUILD_TAG)-20 --build-arg STACK_VERSION=20 .
-	docker build -t $(IMAGE_NAME):$(BUILD_TAG)-22 --build-arg STACK_VERSION=22 .
+	$(MAKE) build/docker/18 STACK_VERSION=18
+	$(MAKE) build/docker/20 STACK_VERSION=20
+	$(MAKE) build/docker/22 STACK_VERSION=22
+
+build/docker/$(STACK_VERSION):
+ifeq ($(BUILDX),true)
+ifeq ($(STACK_VERSION),18)
+	docker buildx build --no-cache ${DOCKER_ARGS} --pull --progress plain --platform linux/arm,linux/arm64/v8,linux/amd64 --build-arg STACK_VERSION=18 --build-arg VERSION=$(VERSION) -t $(IMAGE_NAME):$(BUILD_TAG)-18 -t $(IMAGE_NAME):latest-18 -t $(IMAGE_NAME):$(BUILD_TAG) -t $(IMAGE_NAME):latest .
 else
-	chmod +x build/linux/$(NAME) build/darwin/$(NAME)
-	docker build -f Dockerfile.dev -t $(IMAGE_NAME):$(BUILD_TAG) .
-	docker build -f Dockerfile.dev -t $(IMAGE_NAME):$(BUILD_TAG)-20 --build-arg STACK_VERSION=20 .
-	docker build -f Dockerfile.dev -t $(IMAGE_NAME):$(BUILD_TAG)-22 --build-arg STACK_VERSION=22 .
+	docker buildx build --no-cache ${DOCKER_ARGS} --pull --progress plain --platform linux/arm,linux/arm64/v8,linux/amd64 --build-arg STACK_VERSION=18 --build-arg VERSION=$(VERSION) -t $(IMAGE_NAME):$(BUILD_TAG)-18 -t $(IMAGE_NAME):latest-18 -t $(IMAGE_NAME):$(BUILD_TAG) .
+endif
+else
+	docker build --no-cache ${DOCKER_ARGS} --pull --progress plain --build-arg STACK_VERSION=18 --build-arg VERSION=$(VERSION) -t $(IMAGE_NAME):$(BUILD_TAG)-18 -t $(IMAGE_NAME):latest-18 -t $(IMAGE_NAME):$(BUILD_TAG) .
 endif
 
 build/deb:
 	mkdir -p build/deb
 
-build/deb/$(NAME)_$(VERSION)_amd64.deb: build/deb
+build/deb/$(NAME)_$(VERSION)_all.deb: build/deb
 	echo $(VERSION) > /tmp/$(NAME)-VERSION
 	fpm \
 		--after-install contrib/post-install \
-		--architecture amd64 \
+		--architecture all \
 		--category utils \
 		--deb-pre-depends 'docker-engine-cs (>= 1.13.0) | docker-engine (>= 1.13.0) | docker-io (>= 1.13.0) | docker.io (>= 1.13.0) | docker-ce (>= 1.13.0) | docker-ee (>= 1.13.0) | moby-engine' \
 		--deb-pre-depends sudo \
@@ -80,7 +86,7 @@ build/deb/$(NAME)_$(VERSION)_amd64.deb: build/deb
 		--license 'MIT License' \
 		--name $(NAME) \
 		--output-type deb \
-		--package build/deb/$(NAME)_$(VERSION)_amd64.deb \
+		--package build/deb/$(NAME)_$(VERSION)_all.deb \
 		--url "https://github.com/gliderlabs/$(NAME)" \
 		--vendor "" \
 		--version $(VERSION) \
@@ -150,7 +156,6 @@ ci-report:
 	which ruby
 	ruby -v
 	rm -f ~/.gitconfig
-	mv Dockerfile.dev Dockerfile
 
 lint:
 	# SC2002: Useless cat - https://github.com/koalaman/shellcheck/wiki/SC2002
@@ -160,11 +165,11 @@ lint:
 	@echo linting...
 	shellcheck -e SC2002,SC2030,SC2031,SC2034 -s bash include/*.bash tests/**/tests.sh
 
-release: build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm build/deb/$(NAME)_$(VERSION)_amd64.deb bin/gh-release bin/gh-release-body
+release: build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm build/deb/$(NAME)_$(VERSION)_all.deb bin/gh-release bin/gh-release-body
 	chmod +x build/linux/$(NAME) build/darwin/$(NAME)
 	rm -rf release && mkdir release
 	cp build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm release/$(NAME)-$(VERSION)-1.x86_64.rpm
-	cp build/deb/$(NAME)_$(VERSION)_amd64.deb release/$(NAME)_$(VERSION)_amd64.deb
+	cp build/deb/$(NAME)_$(VERSION)_all.deb release/$(NAME)_$(VERSION)_all.deb
 	tar -zcf release/$(NAME)_$(VERSION)_linux_$(HARDWARE).tgz -C build/linux $(NAME)
 	tar -zcf release/$(NAME)_$(VERSION)_darwin_$(HARDWARE).tgz -C build/darwin $(NAME)
 	bin/gh-release create gliderlabs/$(NAME) $(VERSION) \
@@ -175,14 +180,14 @@ release-packagecloud: package_cloud
 	@$(MAKE) release-packagecloud-deb
 	@$(MAKE) release-packagecloud-rpm
 
-release-packagecloud-deb: package_cloud build/deb/$(NAME)_$(VERSION)_amd64.deb
-	package_cloud push $(PACKAGECLOUD_REPOSITORY)/ubuntu/xenial  build/deb/$(NAME)_$(VERSION)_amd64.deb
-	package_cloud push $(PACKAGECLOUD_REPOSITORY)/ubuntu/bionic  build/deb/$(NAME)_$(VERSION)_amd64.deb
-	package_cloud push $(PACKAGECLOUD_REPOSITORY)/ubuntu/focal   build/deb/$(NAME)_$(VERSION)_amd64.deb
-	package_cloud push $(PACKAGECLOUD_REPOSITORY)/ubuntu/jammy   build/deb/$(NAME)_$(VERSION)_amd64.deb
-	package_cloud push $(PACKAGECLOUD_REPOSITORY)/debian/stretch build/deb/$(NAME)_$(VERSION)_amd64.deb
-	package_cloud push $(PACKAGECLOUD_REPOSITORY)/debian/buster  build/deb/$(NAME)_$(VERSION)_amd64.deb
-	package_cloud push $(PACKAGECLOUD_REPOSITORY)/debian/bullseye build/deb/$(NAME)_$(VERSION)_amd64.deb
+release-packagecloud-deb: package_cloud build/deb/$(NAME)_$(VERSION)_all.deb
+	package_cloud push $(PACKAGECLOUD_REPOSITORY)/ubuntu/xenial  build/deb/$(NAME)_$(VERSION)_all.deb
+	package_cloud push $(PACKAGECLOUD_REPOSITORY)/ubuntu/bionic  build/deb/$(NAME)_$(VERSION)_all.deb
+	package_cloud push $(PACKAGECLOUD_REPOSITORY)/ubuntu/focal   build/deb/$(NAME)_$(VERSION)_all.deb
+	package_cloud push $(PACKAGECLOUD_REPOSITORY)/ubuntu/jammy   build/deb/$(NAME)_$(VERSION)_all.deb
+	package_cloud push $(PACKAGECLOUD_REPOSITORY)/debian/stretch build/deb/$(NAME)_$(VERSION)_all.deb
+	package_cloud push $(PACKAGECLOUD_REPOSITORY)/debian/buster  build/deb/$(NAME)_$(VERSION)_all.deb
+	package_cloud push $(PACKAGECLOUD_REPOSITORY)/debian/bullseye build/deb/$(NAME)_$(VERSION)_all.deb
 
 release-packagecloud-rpm: package_cloud build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm
 	package_cloud push $(PACKAGECLOUD_REPOSITORY)/el/7           build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm
