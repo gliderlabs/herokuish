@@ -7,10 +7,10 @@ if which systemctl > /dev/null; then
 fi
 
 echo "Pruning dangling images"
-docker images -f dangling=true | awk '{print $3}' | xargs docker rmi || true
+docker images -qf dangling=true | xargs docker rmi || true
 
 echo "Pruning unused gliderlabs/herokuish images"
-docker images -a | grep "^gliderlabs\/herokuish" | grep -v latest | awk '{print $3}' | xargs docker rmi || true
+docker images -a | grep "^gliderlabs\/herokuish" | grep -v latest | awk '{print $3}' | xargs -r docker rmi || true
 
 echo 'Importing herokuish into docker (around 5 minutes)'
 if [[ -n "$http_proxy" ]] || [[ -n "$https_proxy" ]]; then
