@@ -55,9 +55,9 @@ procfile-exec() {
 	# unprivileged_user is defined in outer scope
 	# shellcheck disable=SC2154,SC2046
 	if [[ "$HEROKUISH_SETUIDGUID" == "false" ]]; then
-		exec $(eval echo "$@")
+		exec $(eval 'echo "$@"')
 	else
-		exec setuidgid "$unprivileged_user" $(eval echo "$@")
+		exec setuidgid "$unprivileged_user" $(eval 'echo "$@"')
 	fi
 }
 
