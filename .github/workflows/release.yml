@@ -45,4 +45,4 @@ jobs:
           echo "Platforms: ${{ steps.buildx.outputs.platforms }}"
 
       - name: Build herokuish
-        run: make build/docker VERSION=${{ steps.get_version.outputs.VERSION }} DOCKER_ARGS="--push"
+        run: make build/docker IMAGE_NAME=${{ env.GITHUB_REPOSITORY }} BUILD_TAG=${{ steps.get_version.outputs.VERSION }} VERSION=${{ steps.get_version.outputs.VERSION }} DOCKER_ARGS="--push"
