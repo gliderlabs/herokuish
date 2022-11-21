@@ -17,9 +17,11 @@ if [[ -n "$TARGETARCH" ]] && [[ "$TARGETARCH" != "amd64" ]]; then
   sed -i '/syslinux/d' /tmp/setup-01.sh
 fi
 
-# Skip unsupported postgresql on arm:18
-if [[ "$TARGETARCH" == "arm" ]] && [[ "$STACK_VERSION" == "18" ]]; then
-  sed -i '/postgresql-client-14/d' /tmp/setup-01.sh
+# Skip unsupported postgresql on arm:18 and arm:20
+if [[ "$TARGETARCH" == "arm" ]]; then
+  if [[ "$STACK_VERSION" == "18" ]] || [[ "$STACK_VERSION" == "20" ]]; then
+    sed -i '/postgresql-client-14/d' /tmp/setup-01.sh
+  fi
 fi
 
 # from base image
@@ -41,9 +43,11 @@ rm -rf /var/lib/apt/lists/*
 echo "$setup_02" > /tmp/setup-02.sh
 chmod +x /tmp/setup-02.sh
 
-# Skip unsupported postgresql on arm:18
-if [[ "$TARGETARCH" == "arm" ]] && [[ "$STACK_VERSION" == "18" ]]; then
-  sed -i '/postgresql-server-dev-14/d' /tmp/setup-02.sh
+# Skip unsupported postgresql on arm:18 and arm:20
+if [[ "$TARGETARCH" == "arm" ]]; then
+  if [[ "$STACK_VERSION" == "18" ]] || [[ "$STACK_VERSION" == "20" ]]; then
+    sed -i '/postgresql-server-dev-14/d' /tmp/setup-02.sh
+  fi
 fi
 
 # from build image
