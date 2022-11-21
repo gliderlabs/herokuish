@@ -62,12 +62,12 @@ build/docker: bindata.go
 build/docker/$(STACK_VERSION):
 ifeq ($(BUILDX),true)
 ifeq ($(STACK_VERSION),18)
-	docker buildx build --no-cache ${DOCKER_ARGS} --pull --progress plain --platform linux/arm,linux/arm64/v8,linux/amd64 --build-arg STACK_VERSION=18 --build-arg VERSION=$(VERSION) -t $(IMAGE_NAME):$(BUILD_TAG)-18 -t $(IMAGE_NAME):latest-18 -t $(IMAGE_NAME):$(BUILD_TAG) -t $(IMAGE_NAME):latest .
+	docker buildx build --no-cache ${DOCKER_ARGS} --pull --progress plain --platform linux/arm,linux/arm64/v8,linux/amd64 --build-arg STACK_VERSION=$(STACK_VERSION) --build-arg VERSION=$(VERSION) -t $(IMAGE_NAME):$(BUILD_TAG)-$(STACK_VERSION) -t $(IMAGE_NAME):latest-$(STACK_VERSION) -t $(IMAGE_NAME):$(BUILD_TAG) -t $(IMAGE_NAME):latest .
 else
-	docker buildx build --no-cache ${DOCKER_ARGS} --pull --progress plain --platform linux/arm,linux/arm64/v8,linux/amd64 --build-arg STACK_VERSION=18 --build-arg VERSION=$(VERSION) -t $(IMAGE_NAME):$(BUILD_TAG)-18 -t $(IMAGE_NAME):latest-18 -t $(IMAGE_NAME):$(BUILD_TAG) .
+	docker buildx build --no-cache ${DOCKER_ARGS} --pull --progress plain --platform linux/arm,linux/arm64/v8,linux/amd64 --build-arg STACK_VERSION=$(STACK_VERSION) --build-arg VERSION=$(VERSION) -t $(IMAGE_NAME):$(BUILD_TAG)-$(STACK_VERSION) -t $(IMAGE_NAME):latest-$(STACK_VERSION) .
 endif
 else
-	docker build --no-cache ${DOCKER_ARGS} --pull --progress plain --build-arg STACK_VERSION=18 --build-arg VERSION=$(VERSION) -t $(IMAGE_NAME):$(BUILD_TAG)-18 -t $(IMAGE_NAME):latest-18 -t $(IMAGE_NAME):$(BUILD_TAG) .
+	docker build --no-cache ${DOCKER_ARGS} --pull --progress plain --build-arg STACK_VERSION=$(STACK_VERSION) --build-arg VERSION=$(VERSION) -t $(IMAGE_NAME):$(BUILD_TAG)-$(STACK_VERSION) -t $(IMAGE_NAME):latest-$(STACK_VERSION) -t $(IMAGE_NAME):$(BUILD_TAG) .
 endif
 
 build/deb:
