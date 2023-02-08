@@ -18,7 +18,7 @@ concurrency:
 jobs:
   build:
     name: build.${{ matrix.make }}
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     strategy:
       fail-fast: true
       matrix:
@@ -93,7 +93,7 @@ jobs:
   unit-tests:
     name: unit.heroku-${{ matrix.heroku }}.${{ matrix.buildpack }}
     needs: build
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     strategy:
       fail-fast: false
       matrix:
@@ -142,7 +142,7 @@ jobs:
   release:
     name: release
     needs: unit-tests
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
 
     steps:
       - uses: actions/checkout@v2
