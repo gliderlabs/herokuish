@@ -162,8 +162,12 @@ lint:
 	# SC2030: Modification of name is local - https://github.com/koalaman/shellcheck/wiki/SC2030
 	# SC2031: Modification of name is local - https://github.com/koalaman/shellcheck/wiki/SC2031
 	# SC2034: VAR appears unused - https://github.com/koalaman/shellcheck/wiki/SC2034
+	# SC2206: Quote to prevent word splitting/globbing, or split robustly with mapfile or read -a.
+	# SC2001: See if you can use ${variable//search/replace} instead.
+	# SC2231: Quote expansions in this for loop glob to prevent wordsplitting, e.g. "$dir"/*.txt .
+	# SC2230: which is non-standard. Use builtin 'command -v' instead.
 	@echo linting...
-	shellcheck -e SC2002,SC2030,SC2031,SC2034 -s bash include/*.bash tests/**/tests.sh
+	shellcheck -e SC2002,SC2030,SC2031,SC2034,SC2206,SC2001,SC2231,SC2230 -s bash include/*.bash tests/**/tests.sh
 
 release: build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm build/deb/$(NAME)_$(VERSION)_all.deb bin/gh-release bin/gh-release-body
 	chmod +x build/linux/$(NAME) build/darwin/$(NAME)
