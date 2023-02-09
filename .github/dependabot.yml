@@ -57,7 +57,7 @@ updates:
       interval: daily
     open-pull-requests-limit: 10
   - package-ecosystem: pip
-    directory: "/buildpacks/buildpack-python/tests/python-flask
+    directory: "/buildpacks/buildpack-python/tests/python-flask"
     schedule:
       interval: daily
     open-pull-requests-limit: 10
