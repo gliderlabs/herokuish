@@ -23,12 +23,12 @@ jobs:
       fail-fast: true
       matrix:
         make:
-          - build/docker/18
-          - build/docker/20
-          - build/docker/22
-          - build build/docker/18 BUILDX=false
-          - build build/docker/20 BUILDX=false
-          - build build/docker/22 BUILDX=false
+          - build/docker/18 STACK_VERSION=18
+          - build/docker/20 STACK_VERSION=20
+          - build/docker/22 STACK_VERSION=22
+          - build build/docker/18 BUILDX=false STACK_VERSION=18
+          - build build/docker/20 BUILDX=false STACK_VERSION=20
+          - build build/docker/22 BUILDX=false STACK_VERSION=22
 
     steps:
       - uses: actions/checkout@v2
@@ -129,7 +129,7 @@ jobs:
         run: make deps
 
       - name: build docker images
-        run: make build/docker/${{ matrix.heroku }} BUILDX=false
+        run: make build/docker/${{ matrix.heroku }} BUILDX=false STACK_VERSION=${{ matrix.heroku }}
 
       - name: run buildpack test
         run: |
