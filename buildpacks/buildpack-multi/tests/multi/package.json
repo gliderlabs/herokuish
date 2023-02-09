@@ -5,6 +5,6 @@
     "node": "8.11.2"
   },
   "dependencies": {
-    "express": "3.1.x"
+    "express": "4.18.x"
   }
 }
