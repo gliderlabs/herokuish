@@ -79,7 +79,7 @@ jobs:
 
       - name: bash tests
         run: |
-          if [[ "${{ matrix.make }}" ~= *BUILDX* ]]; then
+          if [[ "${{ matrix.make }}" =~ *BUILDX* ]]; then
             basht tests/**/tests.sh
           fi
 
