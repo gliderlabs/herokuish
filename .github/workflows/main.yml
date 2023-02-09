@@ -17,10 +17,18 @@ concurrency:
 
 jobs:
   build:
-    name: build
+    name: build.${{ matrix.make }}
     runs-on: ubuntu-18.04
     strategy:
       fail-fast: true
+      matrix:
+        make:
+          - build/docker/18
+          - build/docker/20
+          - build/docker/22
+          - build build/docker/18 BUILDX=false
+          - build build/docker/20 BUILDX=false
+          - build build/docker/22 BUILDX=false
 
     steps:
       - uses: actions/checkout@v2
@@ -67,9 +75,7 @@ jobs:
           echo "Platforms: ${{ steps.buildx.outputs.platforms }}"
 
       - name: build
-        run: |
-          make build/docker
-          make build build/docker BUILDX=false
+        run: make ${{ matrix.make }}
 
       - name: bash tests
         run: basht tests/**/tests.sh
