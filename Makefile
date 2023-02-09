@@ -54,12 +54,12 @@ build: bindata.go
 	$(MAKE) build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm
 	$(MAKE) build/deb/$(NAME)_$(VERSION)_all.deb
 
-build/docker: bindata.go
+build/docker:
 	$(MAKE) build/docker/18 STACK_VERSION=18
 	$(MAKE) build/docker/20 STACK_VERSION=20
 	$(MAKE) build/docker/22 STACK_VERSION=22
 
-build/docker/$(STACK_VERSION):
+build/docker/$(STACK_VERSION): bindata.go
 ifeq ($(BUILDX),true)
 ifeq ($(STACK_VERSION),18)
 	docker buildx build --no-cache ${DOCKER_ARGS} --pull --progress plain --platform linux/arm,linux/arm64/v8,linux/amd64 --build-arg STACK_VERSION=$(STACK_VERSION) --build-arg VERSION=$(VERSION) -t $(IMAGE_NAME):$(BUILD_TAG)-$(STACK_VERSION) -t $(IMAGE_NAME):latest-$(STACK_VERSION) -t $(IMAGE_NAME):$(BUILD_TAG) -t $(IMAGE_NAME):latest .
