@@ -12,7 +12,12 @@ jobs:
     name: build
     runs-on: ubuntu-18.04
     strategy:
-      fail-fast: true
+      fail-fast: false
+      matrix:
+        heroku:
+          - 18
+          - 20
+          - 22
 
     steps:
       - uses: actions/checkout@v2
@@ -45,4 +50,4 @@ jobs:
           echo "Platforms: ${{ steps.buildx.outputs.platforms }}"
 
       - name: Build herokuish
-        run: make build/docker VERSION=${{ steps.get_version.outputs.VERSION }} DOCKER_ARGS="--push"
+        run: make build/docker/${{ matrix.heroku }} IMAGE_NAME=${{ env.GITHUB_REPOSITORY }} BUILD_TAG=${{ steps.get_version.outputs.VERSION }} VERSION=${{ steps.get_version.outputs.VERSION }} DOCKER_ARGS="--push"
