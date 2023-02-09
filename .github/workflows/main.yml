@@ -23,9 +23,9 @@ jobs:
       fail-fast: true
       matrix:
         make:
-          - build/docker/18 STACK_VERSION=18
-          - build/docker/20 STACK_VERSION=20
-          - build/docker/22 STACK_VERSION=22
+          - build/docker/18 STACK_VERSION=18 DOCKER_ARGS="--load"
+          - build/docker/20 STACK_VERSION=20 DOCKER_ARGS="--load"
+          - build/docker/22 STACK_VERSION=22 DOCKER_ARGS="--load"
           - build build/docker/18 BUILDX=false STACK_VERSION=18
           - build build/docker/20 BUILDX=false STACK_VERSION=20
           - build build/docker/22 BUILDX=false STACK_VERSION=22
