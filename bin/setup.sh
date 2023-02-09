@@ -20,7 +20,7 @@ fi
 # Skip unsupported postgresql on arm:18 and arm:20
 if [[ "$TARGETARCH" == "arm" ]]; then
   if [[ "$STACK_VERSION" == "18" ]] || [[ "$STACK_VERSION" == "20" ]]; then
-    sed -i '/postgresql-client-14/d' /tmp/setup-01.sh
+    sed -i '/postgresql-client-15/d' /tmp/setup-01.sh
   fi
 fi
 
@@ -46,7 +46,7 @@ chmod +x /tmp/setup-02.sh
 # Skip unsupported postgresql on arm:18 and arm:20
 if [[ "$TARGETARCH" == "arm" ]]; then
   if [[ "$STACK_VERSION" == "18" ]] || [[ "$STACK_VERSION" == "20" ]]; then
-    sed -i '/postgresql-server-dev-14/d' /tmp/setup-02.sh
+    sed -i '/postgresql-server-dev-15/d' /tmp/setup-02.sh
   fi
 fi
 
