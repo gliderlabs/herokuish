@@ -31,7 +31,7 @@ jobs:
           - build build/docker/22 BUILDX=false STACK_VERSION=22
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
@@ -117,7 +117,7 @@ jobs:
           - 22
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - uses: actions/setup-go@v3
         with:
@@ -145,7 +145,7 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - uses: ruby/setup-ruby@v1
         with:
