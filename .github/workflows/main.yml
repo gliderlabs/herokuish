@@ -124,7 +124,7 @@ jobs:
           go-version: 1.17.8
 
       - name: download packages
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v3
         with:
           name: build
 
@@ -152,7 +152,7 @@ jobs:
           ruby-version: 2.6
 
       - name: download packages
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v3
         with:
           name: build
 
