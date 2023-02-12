@@ -1,27 +1,18 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    mustermann (3.0.0)
-      ruby2_keywords (~> 0.0.1)
     nio4r (2.5.8)
     power_assert (2.0.3)
     puma (6.0.2)
       nio4r (~> 2.0)
-    rack (2.2.6.2)
-    rack-protection (3.0.5)
-      rack
+    rack (3.0.4.1)
     rack-test (2.0.2)
       rack (>= 1.3)
     rake (13.0.6)
-    ruby2_keywords (0.0.5)
-    sinatra (3.0.5)
-      mustermann (~> 3.0)
-      rack (~> 2.2, >= 2.2.4)
-      rack-protection (= 3.0.5)
-      tilt (~> 2.0)
+    sinatra (1.0)
+      rack (>= 1.0)
     test-unit (3.5.7)
       power_assert
-    tilt (2.0.11)
 
 PLATFORMS
   ruby
