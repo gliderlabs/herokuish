@@ -2,7 +2,7 @@
   "require" : {
     "silex/silex": "^2.0.4",
     "monolog/monolog": "^2.9",
-    "twig/twig": "^2.0",
+    "twig/twig": "^3.5",
     "symfony/twig-bridge": "^5"
   },
   "require-dev": {
