@@ -73,7 +73,7 @@ endif
 build/deb:
 	mkdir -p build/deb
 
-build/deb/$(NAME)_$(VERSION)_all.deb: build/deb
+build/deb/$(NAME)_$(VERSION)_all.deb: build/deb fpm
 	echo $(VERSION) > /tmp/$(NAME)-VERSION
 	fpm \
 		--after-install contrib/post-install \
@@ -97,7 +97,7 @@ build/deb/$(NAME)_$(VERSION)_all.deb: build/deb
 build/rpm:
 	mkdir -p build/rpm
 
-build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm: build/rpm
+build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm: build/rpm fpm
 	echo $(VERSION) > /tmp/$(NAME)-VERSION
 	fpm \
 		--after-install contrib/post-install \
