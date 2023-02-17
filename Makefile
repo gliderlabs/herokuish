@@ -170,6 +170,7 @@ lint:
 	shellcheck -e SC2002,SC2030,SC2031,SC2034,SC2206,SC2001,SC2231,SC2230 -s bash include/*.bash tests/**/tests.sh
 
 release: build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm build/deb/$(NAME)_$(VERSION)_all.deb bin/gh-release bin/gh-release-body
+	ls -lah build build/* || true
 	chmod +x build/linux/$(NAME) build/darwin/$(NAME)
 	rm -rf release && mkdir release
 	cp build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm release/$(NAME)-$(VERSION)-1.x86_64.rpm
