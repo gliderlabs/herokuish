@@ -1,6 +1,58 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.5.41](https://github.com/gliderlabs/herokuish/compare/v0.5.40...v0.5.41) - 2023-02-17
+
+- @dependabot chore(deps): bump docker/login-action from 1 to 2 #829
+- @dependabot chore(deps): bump maven-compiler-plugin from 2.3.2 to 3.10.1 in /buildpacks/buildpack-java/tests/java-jetty #830
+- @dependabot chore(deps-dev): bump heroku/heroku-buildpack-php from 121 to 230 in /buildpacks/buildpack-php/tests/php #831
+- @dependabot chore(deps): bump actions/checkout from 2 to 3 #832
+- @dependabot chore(deps): bump gopkg.in/yaml.v2 from 2.2.8 to 2.4.0 #833
+- @dependabot chore(deps): bump maven-dependency-plugin from 2.4 to 3.5.0 in /buildpacks/buildpack-java/tests/java-jetty #834
+- @dependabot chore(deps): bump gunicorn from 19.5.0 to 20.1.0 in /buildpacks/buildpack-multi/tests/multi #835
+- @dependabot chore(deps): bump express from 3.1.2 to 4.18.2 in /buildpacks/buildpack-nodejs/tests/nodejs-express #836
+- @dependabot chore(deps): bump gunicorn from 19.5.0 to 20.1.0 in /buildpacks/buildpack-python/tests/python-flask #837
+- @dependabot chore(deps): bump actions/download-artifact from 1 to 3 #838
+- @dependabot chore(deps): bump express from 3.1.2 to 4.18.2 in /buildpacks/buildpack-multi/tests/multi #839
+- @dependabot chore(deps): bump rack from 1.6.12 to 1.6.13 in /buildpacks/buildpack-multi/tests/multi #841
+- @dependabot chore(deps): bump actions/upload-artifact from 2 to 3 #842
+- @dependabot chore(deps): bump jinja2 from 2.11.3 to 3.1.2 in /buildpacks/buildpack-python/tests/python-flask #844
+- @dependabot chore(deps): bump jinja2 from 2.11.3 to 3.1.2 in /buildpacks/buildpack-multi/tests/multi #845
+- @dependabot chore(deps): bump actions/setup-go from 2 to 3 #847
+- @dependabot chore(deps): bump gunicorn from 19.5.0 to 20.1.0 in /buildpacks/buildpack-python/tests/python-django #848
+- @dependabot chore(deps): bump markupsafe from 2.0.1 to 2.1.2 in /buildpacks/buildpack-multi/tests/multi #849
+- @dependabot chore(deps): bump flask from 1.1.4 to 2.2.2 in /buildpacks/buildpack-python/tests/python-flask #850
+- @dependabot chore(deps): bump actions/setup-python from 2 to 4 #852
+- @dependabot chore(deps): bump sinatra from 1.4.2 to 1.4.8 in /buildpacks/buildpack-multi/tests/multi #853
+- @dependabot chore(deps): bump markupsafe from 2.0.1 to 2.1.2 in /buildpacks/buildpack-python/tests/python-flask #854
+- @dependabot chore(deps): bump flask from 1.1.4 to 2.2.2 in /buildpacks/buildpack-multi/tests/multi #856
+- @dependabot chore(deps): bump silex/silex from 2.0.4 to 2.3.0 in /buildpacks/buildpack-php/tests/php #857
+- @dependabot chore(deps): bump monolog/monolog from 1.22.1 to 2.9.1 in /buildpacks/buildpack-php/tests/php #858
+- @dependabot chore(deps-dev): bump rack-test from 0.6.3 to 2.0.2 in /buildpacks/buildpack-ruby/tests/ruby-sinatra #859
+- @dependabot chore(deps): bump golang from 1.17 to 1.20 #860
+- @dependabot chore(deps): bump symfony/twig-bridge from 3.2.7 to 5.2.12 in /buildpacks/buildpack-php/tests/php #861
+- @dependabot chore(deps): bump twig/twig from 2.15.4 to 3.5.1 in /buildpacks/buildpack-php/tests/php #862
+- @dependabot chore(deps): bump puma from 6.0.2 to 6.1.0 in /buildpacks/buildpack-ruby/tests/ruby-sinatra #863
+- @dependabot chore(deps): bump sinatra from 1.4.8 to 3.0.5 in /buildpacks/buildpack-multi/tests/multi #864
+- @dependabot chore(deps): bump rack from 1.6.13 to 3.0.4.1 in /buildpacks/buildpack-multi/tests/multi #865
+- @dependabot chore(deps-dev): bump heroku/heroku-buildpack-php from 230 to 231 in /buildpacks/buildpack-php/tests/php #866
+- @dependabot chore(deps): bump flask from 2.2.2 to 2.2.3 in /buildpacks/buildpack-python/tests/python-flask #867
+- @dependabot chore(deps): bump flask from 2.2.2 to 2.2.3 in /buildpacks/buildpack-multi/tests/multi #868
+- @dependabot Update python to version v225 #869
+- @dependabot Update ruby to version v252 #870
+- @josegonzalez Fix releases #816
+- @josegonzalez Update github workflows to use latest builder #826
+- @josegonzalez Update go to version v171 #825
+- @josegonzalez Update gradle to version v39 #821
+- @josegonzalez Update nodejs to version v203 #873
+- @josegonzalez Update php to version v230 #824
+- @josegonzalez Update php to version v231 #871
+- @josegonzalez Update python to version v224 #820
+- @josegonzalez Update python to version v226 #872
+- @josegonzalez Update ruby to version v245 #817
+- @josegonzalez Update ruby to version v250 #819
+- @josegonzalez Update ruby to version v251 #823
+
 ## [0.5.40](https://github.com/gliderlabs/herokuish/compare/v0.5.39...v0.5.40) - 2021-11-15
 
 - @josegonzalez Update python to version v223 #809
