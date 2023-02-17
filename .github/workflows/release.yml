@@ -10,18 +10,23 @@ on:
 jobs:
   build:
     name: build
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     strategy:
-      fail-fast: true
+      fail-fast: false
+      matrix:
+        heroku:
+          - 18
+          - 20
+          - 22
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
       - name: Login to DockerHub
         if: github.event_name != 'pull_request'
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -45,4 +50,4 @@ jobs:
           echo "Platforms: ${{ steps.buildx.outputs.platforms }}"
 
       - name: Build herokuish
-        run: make build/docker VERSION=${{ steps.get_version.outputs.VERSION }} DOCKER_ARGS="--push"
+        run: make build/docker/${{ matrix.heroku }} IMAGE_NAME=${{ env.GITHUB_REPOSITORY }} BUILD_TAG=${{ steps.get_version.outputs.VERSION }} VERSION=${{ steps.get_version.outputs.VERSION }} DOCKER_ARGS="--push"

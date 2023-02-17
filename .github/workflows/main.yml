@@ -11,19 +11,31 @@ on:
       - master
       - 'release'
 
+concurrency:
+  group: build-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
-    name: build
-    runs-on: ubuntu-18.04
+    name: build.${{ matrix.make }}
+    runs-on: ubuntu-20.04
     strategy:
       fail-fast: true
+      matrix:
+        make:
+          - build/docker/18 STACK_VERSION=18
+          - build/docker/20 STACK_VERSION=20
+          - build/docker/22 STACK_VERSION=22
+          - build build/docker/18 BUILDX=false STACK_VERSION=18
+          - build build/docker/20 BUILDX=false STACK_VERSION=20
+          - build build/docker/22 BUILDX=false STACK_VERSION=22
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-go@v2
+      - uses: actions/setup-go@v3
         with:
           go-version: 1.17.8
 
@@ -31,7 +43,7 @@ jobs:
         with:
           ruby-version: 2.6
 
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v4
         with:
           python-version: '3.7.x'
 
@@ -63,24 +75,25 @@ jobs:
           echo "Platforms: ${{ steps.buildx.outputs.platforms }}"
 
       - name: build
-        run: |
-          make build/docker
-          make build build/docker BUILDX=false
+        run: make ${{ matrix.make }}
 
       - name: bash tests
-        run: basht tests/**/tests.sh
+        run: |
+          if [[ "${{ matrix.make }}" =~ *BUILDX* ]]; then
+            basht tests/**/tests.sh
+          fi
 
       - name: upload packages
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: build
           path: build
 
 
   unit-tests:
-    name: unit.${{ matrix.buildpack }}
+    name: unit.heroku-${{ matrix.heroku }}.${{ matrix.buildpack }}
     needs: build
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     strategy:
       fail-fast: false
       matrix:
@@ -98,15 +111,20 @@ jobs:
           - buildpack-ruby
           - buildpack-scala
           - buildpack-static
-    steps:
-      - uses: actions/checkout@v2
+        heroku:
+          - 18
+          - 20
+          - 22
 
-      - uses: actions/setup-go@v2
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-go@v3
         with:
           go-version: 1.17.8
 
       - name: download packages
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v3
         with:
           name: build
 
@@ -114,7 +132,7 @@ jobs:
         run: make deps
 
       - name: build docker images
-        run: make build/docker BUILDX=false
+        run: make build/docker/${{ matrix.heroku }} BUILDX=false STACK_VERSION=${{ matrix.heroku }}
 
       - name: run buildpack test
         run: |
@@ -124,23 +142,23 @@ jobs:
   release:
     name: release
     needs: unit-tests
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.6
 
       - name: download packages
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v3
         with:
           name: build
 
       - name: Login to DockerHub
         if: github.event_name != 'pull_request'
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}

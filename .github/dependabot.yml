@@ -1,0 +1,68 @@
+---
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+  - package-ecosystem: gomod
+    directory: "/"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+  - package-ecosystem: gomod
+    directory: "/buildpacks/buildpack-go/tests/go"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+  - package-ecosystem: maven
+    directory: "/buildpacks/buildpack-java/tests/java-jetty"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+  - package-ecosystem: npm
+    directory: "/buildpacks/buildpack-multi/tests/multi"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+  - package-ecosystem: bundler
+    directory: "/buildpacks/buildpack-multi/tests/multi"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+  - package-ecosystem: pip
+    directory: "/buildpacks/buildpack-multi/tests/multi"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+  - package-ecosystem: npm
+    directory: "/buildpacks/buildpack-nodejs/tests/nodejs-express"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+  - package-ecosystem: composer
+    directory: "/buildpacks/buildpack-php/tests/php"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+  - package-ecosystem: pip
+    directory: "/buildpacks/buildpack-python/tests/python-django"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+  - package-ecosystem: pip
+    directory: "/buildpacks/buildpack-python/tests/python-flask"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+  - package-ecosystem: bundler
+    directory: "/buildpacks/buildpack-ruby/tests/ruby-sinatra"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10

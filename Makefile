@@ -4,7 +4,7 @@ REPOSITORY = herokuish
 DESCRIPTION = 'Herokuish uses Docker and Buildpacks to build applications like Heroku'
 HARDWARE = $(shell uname -m)
 SYSTEM_NAME  = $(shell uname -s | tr '[:upper:]' '[:lower:]')
-VERSION ?= 0.5.40
+VERSION ?= 0.5.41
 IMAGE_NAME ?= $(NAME)
 BUILD_TAG ?= dev
 PACKAGECLOUD_REPOSITORY ?= dokku/dokku-betafish
@@ -54,20 +54,20 @@ build: bindata.go
 	$(MAKE) build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm
 	$(MAKE) build/deb/$(NAME)_$(VERSION)_all.deb
 
-build/docker: bindata.go
+build/docker:
 	$(MAKE) build/docker/18 STACK_VERSION=18
 	$(MAKE) build/docker/20 STACK_VERSION=20
 	$(MAKE) build/docker/22 STACK_VERSION=22
 
-build/docker/$(STACK_VERSION):
+build/docker/$(STACK_VERSION): bindata.go
 ifeq ($(BUILDX),true)
 ifeq ($(STACK_VERSION),18)
-	docker buildx build --no-cache ${DOCKER_ARGS} --pull --progress plain --platform linux/arm,linux/arm64/v8,linux/amd64 --build-arg STACK_VERSION=18 --build-arg VERSION=$(VERSION) -t $(IMAGE_NAME):$(BUILD_TAG)-18 -t $(IMAGE_NAME):latest-18 -t $(IMAGE_NAME):$(BUILD_TAG) -t $(IMAGE_NAME):latest .
+	docker buildx build --no-cache ${DOCKER_ARGS} --pull --progress plain --platform linux/arm,linux/arm64/v8,linux/amd64 --build-arg STACK_VERSION=$(STACK_VERSION) --build-arg VERSION=$(VERSION) -t $(IMAGE_NAME):$(BUILD_TAG)-$(STACK_VERSION) -t $(IMAGE_NAME):latest-$(STACK_VERSION) -t $(IMAGE_NAME):$(BUILD_TAG) -t $(IMAGE_NAME):latest .
 else
-	docker buildx build --no-cache ${DOCKER_ARGS} --pull --progress plain --platform linux/arm,linux/arm64/v8,linux/amd64 --build-arg STACK_VERSION=18 --build-arg VERSION=$(VERSION) -t $(IMAGE_NAME):$(BUILD_TAG)-18 -t $(IMAGE_NAME):latest-18 -t $(IMAGE_NAME):$(BUILD_TAG) .
+	docker buildx build --no-cache ${DOCKER_ARGS} --pull --progress plain --platform linux/arm,linux/arm64/v8,linux/amd64 --build-arg STACK_VERSION=$(STACK_VERSION) --build-arg VERSION=$(VERSION) -t $(IMAGE_NAME):$(BUILD_TAG)-$(STACK_VERSION) -t $(IMAGE_NAME):latest-$(STACK_VERSION) .
 endif
 else
-	docker build --no-cache ${DOCKER_ARGS} --pull --progress plain --build-arg STACK_VERSION=18 --build-arg VERSION=$(VERSION) -t $(IMAGE_NAME):$(BUILD_TAG)-18 -t $(IMAGE_NAME):latest-18 -t $(IMAGE_NAME):$(BUILD_TAG) .
+	docker build --no-cache ${DOCKER_ARGS} --pull --progress plain --build-arg STACK_VERSION=$(STACK_VERSION) --build-arg VERSION=$(VERSION) -t $(IMAGE_NAME):$(BUILD_TAG)-$(STACK_VERSION) -t $(IMAGE_NAME):latest-$(STACK_VERSION) -t $(IMAGE_NAME):$(BUILD_TAG) .
 endif
 
 build/deb:
@@ -162,8 +162,12 @@ lint:
 	# SC2030: Modification of name is local - https://github.com/koalaman/shellcheck/wiki/SC2030
 	# SC2031: Modification of name is local - https://github.com/koalaman/shellcheck/wiki/SC2031
 	# SC2034: VAR appears unused - https://github.com/koalaman/shellcheck/wiki/SC2034
+	# SC2206: Quote to prevent word splitting/globbing, or split robustly with mapfile or read -a.
+	# SC2001: See if you can use ${variable//search/replace} instead.
+	# SC2231: Quote expansions in this for loop glob to prevent wordsplitting, e.g. "$dir"/*.txt .
+	# SC2230: which is non-standard. Use builtin 'command -v' instead.
 	@echo linting...
-	shellcheck -e SC2002,SC2030,SC2031,SC2034 -s bash include/*.bash tests/**/tests.sh
+	shellcheck -e SC2002,SC2030,SC2031,SC2034,SC2206,SC2001,SC2231,SC2230 -s bash include/*.bash tests/**/tests.sh
 
 release: build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm build/deb/$(NAME)_$(VERSION)_all.deb bin/gh-release bin/gh-release-body
 	chmod +x build/linux/$(NAME) build/darwin/$(NAME)
