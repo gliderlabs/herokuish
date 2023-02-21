@@ -17,18 +17,18 @@ concurrency:
 
 jobs:
   build:
-    name: build.${{ matrix.make }}
+    name: build.${{ matrix.heroku }}-${{ matrix.buildx }}
     runs-on: ubuntu-20.04
     strategy:
       fail-fast: true
       matrix:
-        make:
-          - build/docker/18 STACK_VERSION=18
-          - build/docker/20 STACK_VERSION=20
-          - build/docker/22 STACK_VERSION=22
-          - build build/docker/18 BUILDX=false STACK_VERSION=18
-          - build build/docker/20 BUILDX=false STACK_VERSION=20
-          - build build/docker/22 BUILDX=false STACK_VERSION=22
+        buildx:
+          - "true"
+          - "false"
+        heroku:
+          - 18
+          - 20
+          - 22
 
     steps:
       - uses: actions/checkout@v3
@@ -75,18 +75,23 @@ jobs:
           echo "Platforms: ${{ steps.buildx.outputs.platforms }}"
 
       - name: build
-        run: make ${{ matrix.make }}
+        run: |
+          if [[ "${{ matrix.buildx }}" == "true" ]]; then
+            make build/docker/${{ matrix.heroku }} STACK_VERSION=${{ matrix.heroku }}
+          else
+            make build build/docker/${{ matrix.heroku }} BUILDX=false STACK_VERSION=${{ matrix.heroku }}
+          fi
 
       - name: bash tests
         run: |
-          if [[ "${{ matrix.make }}" =~ *BUILDX* ]]; then
+          if [[ "${{ matrix.buildx }}" == "false" ]]; then
             basht tests/**/tests.sh
           fi
 
       - name: upload packages
         uses: actions/upload-artifact@v3
         with:
-          name: build
+          name: build-${{ matrix.heroku }}-${{ matrix.buildx }}
           path: build
 
 
@@ -126,7 +131,12 @@ jobs:
       - name: download packages
         uses: actions/download-artifact@v3
         with:
-          name: build
+          name: build-${{ matrix.heroku }}-true
+          path: build
+
+      - name: validate packages
+        run: |
+          ls -lah build build/*
 
       - name: install requirements
         run: make deps
@@ -154,7 +164,12 @@ jobs:
       - name: download packages
         uses: actions/download-artifact@v3
         with:
-          name: build
+          name: build-22-true
+          path: build
+
+      - name: validate packages
+        run: |
+          ls -lah build build/*
 
       - name: Login to DockerHub
         if: github.event_name != 'pull_request'
