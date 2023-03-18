@@ -74,6 +74,7 @@ build/deb:
 	mkdir -p build/deb
 
 build/deb/$(NAME)_$(VERSION)_all.deb: build/deb fpm
+	rm -f build/deb/$(NAME)_$(VERSION)_all.deb
 	echo $(VERSION) > /tmp/$(NAME)-VERSION
 	fpm \
 		--after-install contrib/post-install \
@@ -98,6 +99,7 @@ build/rpm:
 	mkdir -p build/rpm
 
 build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm: build/rpm fpm
+	rm -f build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm
 	echo $(VERSION) > /tmp/$(NAME)-VERSION
 	fpm \
 		--after-install contrib/post-install \
