@@ -169,7 +169,7 @@ jobs:
 
       - name: validate packages
         run: |
-          ls -lah build build/*
+          ls -lah build build/* bin/*
 
       - name: Login to DockerHub
         if: github.event_name != 'pull_request'
