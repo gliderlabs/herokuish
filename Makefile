@@ -38,7 +38,7 @@ ifeq ($(SYSTEM),Linux)
 	command -v package_cloud >/dev/null || gem install package_cloud --no-document
 endif
 
-bindata.go:
+bindata.go: go-bindata
 	@count=0; \
 	for i in $(BUILDPACK_ORDER); do \
 		bp_count=$$(printf '%02d' $$count) ; \
@@ -126,14 +126,16 @@ clean:
 	docker rm $(shell docker ps -aq) || true
 	docker rmi herokuish:dev || true
 
-deps:
+deps: bindata.go
 	docker pull heroku/heroku:18-build
 	docker pull heroku/heroku:20-build
 	docker pull heroku/heroku:22-build
-	cd / && go get -u github.com/jteeuwen/go-bindata/...
 	cd / && go get -u github.com/progrium/basht/...
 	$(MAKE) bindata.go
 	go get || true
+
+go-bindata:
+	cd / && go get -u github.com/jteeuwen/go-bindata/...
 
 bin/gh-release:
 	mkdir -p bin
