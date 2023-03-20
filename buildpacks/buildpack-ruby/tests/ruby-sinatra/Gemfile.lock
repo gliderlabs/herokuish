@@ -7,7 +7,7 @@ GEM
     power_assert (2.0.3)
     puma (6.1.1)
       nio4r (~> 2.0)
-    rack (2.2.6.2)
+    rack (2.2.6.4)
     rack-protection (3.0.5)
       rack
     rack-test (2.1.0)
