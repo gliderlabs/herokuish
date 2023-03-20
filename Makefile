@@ -135,7 +135,7 @@ deps: bindata.go
 	go get || true
 
 go-bindata:
-	cd / && go install github.com/jteeuwen/go-bindata/go-bindata@latest
+	cd / && go install -v -x -a github.com/jteeuwen/go-bindata/go-bindata@latest
 
 bin/gh-release:
 	mkdir -p bin
