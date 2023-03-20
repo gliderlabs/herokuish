@@ -52,4 +52,4 @@ jobs:
       - name: Build herokuish
         run: |
           export PATH="/home/runner/go/bin:$PATH"
-          make build/docker/${{ matrix.heroku }} IMAGE_NAME=${{ env.GITHUB_REPOSITORY }} BUILD_TAG=${{ steps.get_version.outputs.VERSION }} VERSION=${{ steps.get_version.outputs.VERSION }} DOCKER_ARGS="--push"
+          make build/docker/${{ matrix.heroku }} IMAGE_NAME=${{ env.GITHUB_REPOSITORY }} BUILD_TAG=${{ steps.get_version.outputs.VERSION }} VERSION=${{ steps.get_version.outputs.VERSION }} DOCKER_ARGS="--push" STACK_VERSION=${{ matrix.heroku }}
