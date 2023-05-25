@@ -207,7 +207,7 @@ For help and discussion beyond Github Issues, join us on Freenode in `#gliderlab
 
 ## Releases
 
-Anybody can propose a release. First bump the version in `Makefile` and `Dockerfile`, make sure `CHANGELOG.md` is up to date, and make sure tests are passing. Then open a Pull Request from `master` into the `release` branch. Once a maintainer approves and merges, CircleCI will build a release and upload it to Github.
+Anybody can propose a release. First bump the version in `Makefile` and `Dockerfile`, make sure `CHANGELOG.md` is up to date, and make sure tests are passing. Then open a Pull Request from `master` into the `release` branch. Once a maintainer approves and merges, Github Actions will build a release and upload it to Github.
 
 ## Acknowledgements
 
