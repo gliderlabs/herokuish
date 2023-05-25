@@ -26,7 +26,6 @@ jobs:
           - "true"
           - "false"
         heroku:
-          - 18
           - 20
           - 22
 
@@ -117,7 +116,6 @@ jobs:
           - buildpack-scala
           - buildpack-static
         heroku:
-          - 18
           - 20
           - 22
 

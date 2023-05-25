@@ -17,7 +17,7 @@ if [[ -n "$TARGETARCH" ]] && [[ "$TARGETARCH" != "amd64" ]]; then
   sed -i '/syslinux/d' /tmp/setup-01.sh
 fi
 
-# Skip unsupported postgresql on arm:18 and arm:20
+# Skip unsupported postgresql on arm:20
 if [[ "$TARGETARCH" == "arm" ]]; then
   sed -i '/postgresql-client-15/d' /tmp/setup-01.sh
 fi
@@ -41,7 +41,7 @@ rm -rf /var/lib/apt/lists/*
 echo "$setup_02" > /tmp/setup-02.sh
 chmod +x /tmp/setup-02.sh
 
-# Skip unsupported postgresql on arm:18 and arm:20
+# Skip unsupported postgresql on arm:20
 if [[ "$TARGETARCH" == "arm" ]]; then
   sed -i '/postgresql-server-dev-15/d' /tmp/setup-02.sh
 fi
