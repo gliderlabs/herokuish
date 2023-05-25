@@ -1,0 +1,42 @@
+---
+name: tag release
+
+# yamllint disable-line rule:truthy
+on:
+  push:
+    branches:
+      - 'release'
+
+jobs:
+  tag-release:
+    name: tag-release
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6
+
+      - name: download packages
+        uses: actions/download-artifact@v3
+        with:
+          name: build-22-false
+          path: build
+
+      - name: Login to DockerHub
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: release
+        run: |
+          export CI_BRANCH=${GITHUB_REF#refs/heads/}
+          export PACKAGECLOUD_REPOSITORY=dokku/dokku
+          make release release-packagecloud
+        env:
+          GITHUB_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
+          PACKAGECLOUD_TOKEN: ${{ secrets.PACKAGECLOUD_TOKEN }}
