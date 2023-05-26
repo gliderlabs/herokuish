@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.6.0](https://github.com/gliderlabs/herokuish/compare/v0.5.42...v0.6.0) - 2023-05-26
+
+- @josegonzalez Drop Ubuntu 18 support #923
+
 ## [0.5.42](https://github.com/gliderlabs/herokuish/compare/v0.5.41...v0.5.42) - 2023-05-26
 
 - @dependabot chore(deps-dev): bump rack-test from 2.0.2 to 2.1.0 in /buildpacks/buildpack-ruby/tests/ruby-sinatra #889
