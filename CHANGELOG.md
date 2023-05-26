@@ -1,6 +1,40 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.5.42](https://github.com/gliderlabs/herokuish/compare/v0.5.41...v0.5.42) - 2023-05-26
+
+- @dependabot chore(deps): bump actions/setup-go from 3 to 4 #891
+- @dependabot chore(deps): bump rack from 3.0.4.1 to 3.0.7 in /buildpacks/buildpack-multi/tests/multi #890
+- @dependabot chore(deps): bump maven-compiler-plugin from 3.10.1 to 3.11.0 in /buildpacks/buildpack-java/tests/java-jetty #882
+- @dependabot chore(deps): bump puma from 6.1.0 to 6.1.1 in /buildpacks/buildpack-ruby/tests/ruby-sinatra #883
+- @dependabot chore(deps-dev): bump rack-test from 2.0.2 to 2.1.0 in /buildpacks/buildpack-ruby/tests/ruby-sinatra #889
+- @dependabot chore(deps): bump rack from 2.2.6.2 to 2.2.6.4 in /buildpacks/buildpack-ruby/tests/ruby-sinatra #888
+- @dependabot chore(deps): bump github.com/progrium/go-basher from 0.0.0-20190315062444-ad5de635edd1 to 5.1.6+incompatible #881
+- @dependabot chore(deps): bump sinatra from 1.0 to 3.0.5 in /buildpacks/buildpack-multi/tests/multi #875
+- @dependabot chore(deps): bump rack from 2.2.6.4 to 3.0.7 in /buildpacks/buildpack-multi/tests/multi #903
+- @dependabot chore(deps): bump sinatra from 1.0 to 3.0.5 in /buildpacks/buildpack-multi/tests/multi #904
+- @dependabot chore(deps-dev): bump test-unit from 3.5.7 to 3.5.9 in /buildpacks/buildpack-ruby/tests/ruby-sinatra #919
+- @dependabot chore(deps): bump maven-dependency-plugin from 3.5.0 to 3.6.0 in /buildpacks/buildpack-java/tests/java-jetty #918
+- @dependabot chore(deps): bump twig/twig from 3.5.1 to 3.6.0 in /buildpacks/buildpack-php/tests/php #916
+- @dependabot chore(deps): bump flask from 2.2.3 to 2.3.2 in /buildpacks/buildpack-multi/tests/multi #915
+- @dependabot chore(deps): bump flask from 2.2.3 to 2.3.2 in /buildpacks/buildpack-python/tests/python-flask #914
+- @dependabot chore(deps): bump rack from 2.2.6.4 to 2.2.7 in /buildpacks/buildpack-ruby/tests/ruby-sinatra #911
+- @dependabot chore(deps): bump puma from 6.1.1 to 6.2.2 in /buildpacks/buildpack-ruby/tests/ruby-sinatra #910
+- @dependabot chore(deps): bump sinatra from 3.0.5 to 3.0.6 in /buildpacks/buildpack-multi/tests/multi #908
+- @dependabot chore(deps): bump sinatra from 3.0.5 to 3.0.6 in /buildpacks/buildpack-ruby/tests/ruby-sinatra #909
+- @dependabot chore(deps): bump rack from 2.2.6.4 to 2.2.7 in /buildpacks/buildpack-multi/tests/multi #920
+- @josegonzalez chore: drop all references to circleci #921
+- @josegonzalez chore: split out actions workflows #922
+- @josegonzalez Update go to version v174 #928
+- @josegonzalez Update nodejs to version v205 #901
+- @josegonzalez Update nodejs to version v213 #926
+- @josegonzalez Update php to version v234 #924
+- @josegonzalez Update python to version v229 #902
+- @josegonzalez Update python to version v232 #927
+- @josegonzalez Update ruby to version v254 #929
+- @josegonzalez Update static to version v23 #925
+- @henningjensen Don't fail in post-install when no dangling images are present #815
+
 ## [0.5.41](https://github.com/gliderlabs/herokuish/compare/v0.5.40...v0.5.41) - 2023-02-17
 
 - @dependabot chore(deps): bump docker/login-action from 1 to 2 #829
