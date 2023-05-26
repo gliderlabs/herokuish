@@ -19,9 +19,7 @@ fi
 
 VERSION=$(cat /var/lib/herokuish/VERSION)
 
-sudo docker pull "gliderlabs/herokuish:v${VERSION}-18"
 sudo docker pull "gliderlabs/herokuish:v${VERSION}-20"
 sudo docker pull "gliderlabs/herokuish:v${VERSION}-22"
-sudo docker tag "gliderlabs/herokuish:v${VERSION}-18" gliderlabs/herokuish:latest
 sudo docker tag "gliderlabs/herokuish:v${VERSION}-20" gliderlabs/herokuish:latest-20
 sudo docker tag "gliderlabs/herokuish:v${VERSION}-22" gliderlabs/herokuish:latest-22
