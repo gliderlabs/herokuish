@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    name: build
+    name: release
     runs-on: ubuntu-20.04
     strategy:
       fail-fast: false

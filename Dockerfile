@@ -45,7 +45,6 @@ RUN /bin/herokuish buildpack install \
     && rm -rf \
     */.git \
     */.github \
-    */.circleci \
     */changelogs \
     */spec \
     */support/build \

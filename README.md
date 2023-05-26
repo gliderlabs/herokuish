@@ -2,7 +2,7 @@
 
 [![Build Status](https://github.com/gliderlabs/herokuish/workflows/CI/badge.svg)](https://github.com/gliderlabs/herokuish/actions?query=workflow%3ACI)
 [![IRC Channel](https://img.shields.io/badge/irc-%23gliderlabs-blue.svg)](https://kiwiirc.com/client/irc.freenode.net/#gliderlabs)
-[![Docker Hub](https://img.shields.io/badge/docker%20hub-v0.5.41-blue)](https://hub.docker.com/r/gliderlabs/herokuish)
+[![Docker Hub](https://img.shields.io/badge/docker%20hub-v0.5.42-blue)](https://hub.docker.com/r/gliderlabs/herokuish)
 
 A command line tool for emulating Heroku build and runtime tasks in containers.
 
@@ -19,7 +19,7 @@ Download and uncompress the latest binary tarball from [releases](https://github
 For example, you can do this directly in your Dockerfiles installing into `/bin` as one step:
 
 ```shell
-RUN curl --location --silent https://github.com/gliderlabs/herokuish/releases/download/v0.5.41/herokuish_0.5.41_linux_x86_64.tgz \
+RUN curl --location --silent https://github.com/gliderlabs/herokuish/releases/download/v0.5.42/herokuish_0.5.42_linux_x86_64.tgz \
 		  | tar -xzC /bin
 ```
 
@@ -207,7 +207,7 @@ For help and discussion beyond Github Issues, join us on Freenode in `#gliderlab
 
 ## Releases
 
-Anybody can propose a release. First bump the version in `Makefile` and `Dockerfile`, make sure `CHANGELOG.md` is up to date, and make sure tests are passing. Then open a Pull Request from `master` into the `release` branch. Once a maintainer approves and merges, CircleCI will build a release and upload it to Github.
+Anybody can propose a release. First bump the version in `Makefile` and `Dockerfile`, make sure `CHANGELOG.md` is up to date, and make sure tests are passing. Then open a Pull Request from `master` into the `release` branch. Once a maintainer approves and merges, Github Actions will build a release and upload it to Github.
 
 ## Acknowledgements
 
