@@ -15,7 +15,6 @@ jobs:
       fail-fast: false
       matrix:
         heroku:
-          - 18
           - 20
           - 22
 
