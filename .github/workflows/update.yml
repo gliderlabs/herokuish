@@ -1,0 +1,19 @@
+---
+name: Bump buildpacks
+
+# yamllint disable-line rule:truthy
+on:
+  schedule:
+    - cron: '37 13 * * *'
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    name: bump-buildpacks
+    runs-on: ubuntu-20.04
+    steps:
+      - name: bump buildpacks
+        run: |
+          make bumpup
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}

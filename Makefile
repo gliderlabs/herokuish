@@ -202,16 +202,24 @@ release-packagecloud-rpm: package_cloud build/rpm/$(NAME)-$(VERSION)-1.x86_64.rp
 bumpup:
 	for i in $(BUILDPACK_ORDER); do \
 		url=$$(cat buildpacks/buildpack-$$i/buildpack-url) ; \
+		current_version=$$(cat buildpacks/buildpack-$$i/buildpack-version) ; \
 		version=$$(git ls-remote --tags $$url | awk '{print $$2}' | sed 's/refs\/tags\///' | egrep 'v[0-9]+$$' | sed 's/v//' | sort -n | tail -n 1) ; \
+		branch_name=$$(echo "update-$$i-from-$$current_version-to-$$version") ; \
 		if [[ "x$$version" != 'x' ]]; then \
+			if [[ $$(git rev-parse --verify $$branch_name 2>/dev/null) ]] ; then \
+				continue ; \
+			fi ; \
 			echo v$$version > buildpacks/buildpack-$$i/buildpack-version ; \
 			git status -s buildpacks/buildpack-$$i/buildpack-version | fgrep ' M ' ; \
-			if [[ $$? -eq 0 ]] ; then \
-				git checkout -b $$(date +%Y%m%d)-update-$$i ; \
-				git add buildpacks/buildpack-$$i/buildpack-version ; \
-				git commit -m "Update $$i to version v$$version" ; \
-				git checkout - ; \
+			if [[ $$? -eq 1 ]] ; then \
+				continue ; \
 			fi ; \
+			git checkout -b $$branch_name ; \
+			git add buildpacks/buildpack-$$i/buildpack-version ; \
+			git commit -m "Update $$i to version v$$version" ; \
+			git checkout - ; \
+			git push origin $$branch_name ; \
+			gh pr create --title "Update $$i to version v$$version" --head $$branch_name ; \
 		fi ; \
 	done
 
