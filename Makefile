@@ -219,7 +219,7 @@ bumpup:
 			git commit -m "Update $$i to version v$$version" ; \
 			git checkout - ; \
 			git push origin $$branch_name ; \
-			gh pr create --title "Update $$i to version v$$version" --head $$branch_name ; \
+			gh pr create --title "Update $$i to version v$$version" --body "From $$current_version" --head $$branch_name ; \
 		fi ; \
 	done
 
