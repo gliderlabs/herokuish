@@ -16,6 +16,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: configure git
+        run: |
+          git config --global user.name 'Dokku Bot'
+          git config --global user.email no-reply@dokku.com
+
       - name: bump buildpacks
         run: |
           make bumpup
