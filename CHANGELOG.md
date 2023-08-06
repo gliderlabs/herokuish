@@ -1,6 +1,57 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.6.1](https://github.com/gliderlabs/herokuish/compare/v0.6.0...v0.6.1) - 2023-08-06
+
+- #933 @dependabot: chore(deps): bump puma from 6.2.2 to 6.3.0 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #934 @dependabot: chore(deps): bump markupsafe from 2.1.2 to 2.1.3 in /buildpacks/buildpack-multi/tests/multi
+- #935 @dependabot: chore(deps): bump markupsafe from 2.1.2 to 2.1.3 in /buildpacks/buildpack-python/tests/python-flask
+- #936 @josegonzalez: Update python to version v233
+- #937 @josegonzalez: feat: automate updates of buildpacks in ci
+- #938 @josegonzalez: fix: ensure the codebase is available for the make target to run
+- #939 @dependabot: chore(deps): bump twig/twig from 3.6.0 to 3.6.1 in /buildpacks/buildpack-php/tests/php
+- #940 @josegonzalez: Fix issues with auto-bumping buildpacks
+- #941 @dokku-bot: Update php to version v235
+- #942 @dependabot: chore(deps-dev): bump test-unit from 3.5.9 to 3.6.0 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #943 @dependabot: chore(deps): bump rack from 2.2.7 to 3.0.8 in /buildpacks/buildpack-multi/tests/multi
+- #944 @dependabot: chore(deps): bump sinatra from 1.0 to 3.0.6 in /buildpacks/buildpack-multi/tests/multi
+- #945 @dependabot: chore(deps): bump rack from 2.2.7 to 3.0.8 in /buildpacks/buildpack-multi/tests/multi
+- #946 @dependabot: chore(deps): bump sinatra from 1.0 to 3.0.6 in /buildpacks/buildpack-multi/tests/multi
+- #947 @dependabot: chore(deps): bump rack from 2.2.7 to 3.0.8 in /buildpacks/buildpack-multi/tests/multi
+- #948 @dependabot: chore(deps): bump sinatra from 1.0 to 3.0.6 in /buildpacks/buildpack-multi/tests/multi
+- #949 @dokku-bot: Update nodejs to version v215
+- #950 @dependabot: chore(deps): bump rack from 2.2.7 to 3.0.8 in /buildpacks/buildpack-multi/tests/multi
+- #951 @dependabot: chore(deps): bump sinatra from 1.0 to 3.0.6 in /buildpacks/buildpack-multi/tests/multi
+- #952 @dependabot: chore(deps-dev): bump test-unit from 3.6.0 to 3.6.1 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #953 @dependabot: chore(deps): bump rack from 2.2.7 to 3.0.8 in /buildpacks/buildpack-multi/tests/multi
+- #954 @dokku-bot: Update go to version v175
+- #955 @dependabot: chore(deps): bump sinatra from 1.0 to 3.0.6 in /buildpacks/buildpack-multi/tests/multi
+- #956 @dependabot: chore(deps): bump rack from 2.2.7 to 3.0.8 in /buildpacks/buildpack-multi/tests/multi
+- #957 @dependabot: chore(deps): bump sinatra from 1.0 to 3.0.6 in /buildpacks/buildpack-multi/tests/multi
+- #958 @dependabot: chore(deps): bump rack from 2.2.7 to 3.0.8 in /buildpacks/buildpack-multi/tests/multi
+- #959 @dokku-bot: Update nodejs to version v216
+- #960 @dependabot: chore(deps): bump sinatra from 1.0 to 3.0.6 in /buildpacks/buildpack-multi/tests/multi
+- #961 @dependabot: chore(deps): bump rack from 2.2.7 to 3.0.8 in /buildpacks/buildpack-multi/tests/multi
+- #962 @dependabot: chore(deps): bump sinatra from 1.0 to 3.0.6 in /buildpacks/buildpack-multi/tests/multi
+- #963 @dependabot: chore(deps): bump rack from 2.2.7 to 3.0.8 in /buildpacks/buildpack-multi/tests/multi
+- #971 @dependabot: chore(deps): bump gunicorn from 20.1.0 to 21.2.0 in /buildpacks/buildpack-multi/tests/multi
+- #972 @dependabot: chore(deps): bump gunicorn from 20.1.0 to 21.2.0 in /buildpacks/buildpack-python/tests/python-flask
+- #973 @dependabot: chore(deps): bump gunicorn from 20.1.0 to 21.2.0 in /buildpacks/buildpack-python/tests/python-django
+- #974 @dokku-bot: Update nodejs to version v217
+- #975 @dokku-bot: Update php to version v236
+- #976 @dependabot: chore(deps): bump sinatra from 1.0 to 3.0.6 in /buildpacks/buildpack-multi/tests/multi
+- #977 @dependabot: chore(deps): bump rack from 2.2.7 to 3.0.8 in /buildpacks/buildpack-multi/tests/multi
+- #978 @dokku-bot: Update python to version v234
+- #979 @dokku-bot: Update ruby to version v255
+- #980 @dokku-bot: Update nodejs to version v218
+- #981 @dependabot: chore(deps): bump twig/twig from 3.6.1 to 3.7.0 in /buildpacks/buildpack-php/tests/php
+- #982 @dependabot: chore(deps): bump sinatra and rack in /buildpacks/buildpack-multi/tests/multi
+- #983 @dependabot: chore(deps): bump rack and sinatra in /buildpacks/buildpack-multi/tests/multi
+- #984 @dependabot: chore(deps): bump sinatra and rack in /buildpacks/buildpack-multi/tests/multi
+- #985 @dependabot: chore(deps): bump rack from 2.2.7 to 2.2.8 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #986 @Coffee2CodeNL: Add Bookworm Support
+- #987 @dependabot: chore(deps): bump rack and sinatra in /buildpacks/buildpack-multi/tests/multi
+
 ## [0.6.0](https://github.com/gliderlabs/herokuish/compare/v0.5.42...v0.6.0) - 2023-05-26
 
 - @josegonzalez Drop Ubuntu 18 support #923
