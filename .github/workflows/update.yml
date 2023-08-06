@@ -1,0 +1,28 @@
+---
+name: Bump buildpacks
+
+# yamllint disable-line rule:truthy
+on:
+  schedule:
+    - cron: '37 13 * * *'
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    name: bump-buildpacks
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: configure git
+        run: |
+          git config --global user.name 'Dokku Bot'
+          git config --global user.email no-reply@dokku.com
+
+      - name: bump buildpacks
+        run: |
+          make bumpup
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
