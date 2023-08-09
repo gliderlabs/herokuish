@@ -1,6 +1,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.7.0](https://github.com/gliderlabs/herokuish/compare/v0.6.1...v0.7.0) - 2023-08-08
+
+- #995 @dependabot: chore(deps): bump sinatra from 3.0.6 to 3.1.0 in /buildpacks/buildpack-multi/tests/multi
+- #996 @dependabot: chore(deps): bump rack and sinatra in /buildpacks/buildpack-multi/tests/multi
+- #994 @dependabot: chore(deps): bump sinatra from 3.0.6 to 3.1.0 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #997 @dokku-bot: Update go to version v177
+- #998 @josegonzalez: Only install the 22 stack via deb package
+
 ## [0.6.1](https://github.com/gliderlabs/herokuish/compare/v0.6.0...v0.6.1) - 2023-08-06
 
 - #933 @dependabot: chore(deps): bump puma from 6.2.2 to 6.3.0 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
