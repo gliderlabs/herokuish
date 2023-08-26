@@ -167,6 +167,14 @@ Mounting your local app source directory to `/tmp/app` and running `/bin/herokui
        1 example, 0 failures
 ```
 
+If you are on macOS, you'll want to explicitly set the platform:
+
+```shell
+$ docker run --platform linux/amd64 --rm -v /abs/app/path:/tmp/app gliderlabs/herokuish /bin/herokuish buildpack test
+```
+
+However, there is a risk of compatibility issues when running on a different platform than the one you are developing on. If you are getting strange compilation or segfaults, try running the build process on an x86 platform.
+
 #### Troubleshooting
 
 If you run into an issue and looking for more insight into what `herokuish` is doing, you can set the `$TRACE` environment variable.
@@ -196,6 +204,14 @@ $ docker run --rm -e TRACE=true -v /abs/app/path:/tmp/app gliderlabs/herokuish /
 ----->' Unable to select a buildpack
 + exit 1
 ```
+
+You can also set a custom buildpack:
+
+```shell
+docker run -e BUILDPACK_URL="https://github.com/custom/buildpack.git#with-a-branch" -e STACK=heroku-20 -e TRACE=true --rm -v ./:/tmp/app -it gliderlabs/herokuish /bin/herokuish test
+```
+
+Note that the underlying buildpacks will not trace their commands with `TRACE=true` is enabled. They need to independently set `set -x` in order to trace execution.
 
 ## Contributing
 
