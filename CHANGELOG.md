@@ -1,6 +1,27 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.7.1](https://github.com/gliderlabs/herokuish/compare/v0.7.0...v0.7.1) - 2023-08-27
+
+- #1001 @josegonzalez: Use updated method for setting output data in github actions
+- #1002 @dependabot: chore(deps): bump golang from 1.20 to 1.21
+- #1003 @dependabot: chore(deps): bump sinatra and rack in /buildpacks/buildpack-multi/tests/multi
+- #1004 @dependabot: chore(deps): bump rack and sinatra in /buildpacks/buildpack-multi/tests/multi
+- #1005 @dokku-bot: Update nodejs to version v219
+- #1006 @dependabot: chore(deps): bump sinatra and rack in /buildpacks/buildpack-multi/tests/multi
+- #1007 @dokku-bot: Update java to version v73
+- #1008 @dokku-bot: Update go to version v178
+- #1009 @dependabot: chore(deps): bump rack and sinatra in /buildpacks/buildpack-multi/tests/multi
+- #1011 @dependabot: chore(deps): bump puma from 6.3.0 to 6.3.1 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1012 @dependabot: chore(deps): bump sinatra and rack in /buildpacks/buildpack-multi/tests/multi
+- #1013 @dependabot: chore(deps): bump rack and sinatra in /buildpacks/buildpack-multi/tests/multi
+- #1014 @dokku-bot: Update static to version v24
+- #1015 @dependabot: chore(deps): bump flask from 2.3.2 to 2.3.3 in /buildpacks/buildpack-multi/tests/multi
+- #1016 @dependabot: chore(deps): bump sinatra and rack in /buildpacks/buildpack-multi/tests/multi
+- #1017 @dependabot: chore(deps): bump flask from 2.3.2 to 2.3.3 in /buildpacks/buildpack-python/tests/python-flask
+- #1019 @dokku-bot: Update python to version v235
+- #1020 @iloveitaly Note about mac compatibility and some debugging tips
+
 ## [0.7.0](https://github.com/gliderlabs/herokuish/compare/v0.6.1...v0.7.0) - 2023-08-08
 
 - #995 @dependabot: chore(deps): bump sinatra from 3.0.6 to 3.1.0 in /buildpacks/buildpack-multi/tests/multi
