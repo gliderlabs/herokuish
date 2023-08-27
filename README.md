@@ -2,7 +2,7 @@
 
 [![Build Status](https://github.com/gliderlabs/herokuish/workflows/CI/badge.svg)](https://github.com/gliderlabs/herokuish/actions?query=workflow%3ACI)
 [![IRC Channel](https://img.shields.io/badge/irc-%23gliderlabs-blue.svg)](https://kiwiirc.com/client/irc.freenode.net/#gliderlabs)
-[![Docker Hub](https://img.shields.io/badge/docker%20hub-v0.7.0-blue)](https://hub.docker.com/r/gliderlabs/herokuish)
+[![Docker Hub](https://img.shields.io/badge/docker%20hub-v0.7.1-blue)](https://hub.docker.com/r/gliderlabs/herokuish)
 
 A command line tool for emulating Heroku build and runtime tasks in containers.
 
@@ -19,7 +19,7 @@ Download and uncompress the latest binary tarball from [releases](https://github
 For example, you can do this directly in your Dockerfiles installing into `/bin` as one step:
 
 ```shell
-RUN curl --location --silent https://github.com/gliderlabs/herokuish/releases/download/v0.7.0/herokuish_0.7.0_linux_x86_64.tgz \
+RUN curl --location --silent https://github.com/gliderlabs/herokuish/releases/download/v0.7.1/herokuish_0.7.1_linux_x86_64.tgz \
 		  | tar -xzC /bin
 ```
 
@@ -167,6 +167,14 @@ Mounting your local app source directory to `/tmp/app` and running `/bin/herokui
        1 example, 0 failures
 ```
 
+If you are on macOS, you'll want to explicitly set the platform:
+
+```shell
+$ docker run --platform linux/amd64 --rm -v /abs/app/path:/tmp/app gliderlabs/herokuish /bin/herokuish buildpack test
+```
+
+However, there is a risk of compatibility issues when running on a different platform than the one you are developing on. If you are getting strange compilation or segfaults, try running the build process on an x86 platform.
+
 #### Troubleshooting
 
 If you run into an issue and looking for more insight into what `herokuish` is doing, you can set the `$TRACE` environment variable.
@@ -196,6 +204,14 @@ $ docker run --rm -e TRACE=true -v /abs/app/path:/tmp/app gliderlabs/herokuish /
 ----->' Unable to select a buildpack
 + exit 1
 ```
+
+You can also set a custom buildpack:
+
+```shell
+docker run -e BUILDPACK_URL="https://github.com/custom/buildpack.git#with-a-branch" -e STACK=heroku-20 -e TRACE=true --rm -v ./:/tmp/app -it gliderlabs/herokuish /bin/herokuish test
+```
+
+Note that the underlying buildpacks will not trace their commands with `TRACE=true` is enabled. They need to independently set `set -x` in order to trace execution.
 
 ## Contributing
 
