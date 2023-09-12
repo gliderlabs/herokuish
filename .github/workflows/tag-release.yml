@@ -33,7 +33,7 @@ jobs:
           ruby-version: 2.6
 
       - name: set up qemu
-        uses: docker/setup-qemu-action@v2
+        uses: docker/setup-qemu-action@v3
 
       - name: set up docker buildx
         uses: docker/setup-buildx-action@v2
