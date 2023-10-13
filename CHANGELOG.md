@@ -1,6 +1,43 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.7.2](https://github.com/gliderlabs/herokuish/compare/v0.7.1...v0.7.2) - 2023-10-11
+
+- #1024 @dependabot: chore(deps): bump rack and sinatra in /buildpacks/buildpack-multi/tests/multi
+- #1025 @dependabot: chore(deps): bump twig/twig from 3.7.0 to 3.7.1 in /buildpacks/buildpack-php/tests/php
+- #1026 @dokku-bot: Update php to version v238
+- #1027 @dependabot: chore(deps): bump sinatra and rack in /buildpacks/buildpack-multi/tests/multi
+- #1028 @dependabot: chore(deps): bump actions/checkout from 3 to 4
+- #1029 @dependabot: chore(deps): bump rack and sinatra in /buildpacks/buildpack-multi/tests/multi
+- #1030 @dependabot: chore(deps): bump sinatra and rack in /buildpacks/buildpack-multi/tests/multi
+- #1031 @dependabot: chore(deps): bump rack and sinatra in /buildpacks/buildpack-multi/tests/multi
+- #1032 @dependabot: chore(deps): bump docker/login-action from 2 to 3
+- #1033 @dependabot: chore(deps): bump docker/setup-qemu-action from 2 to 3
+- #1034 @dependabot: chore(deps): bump docker/setup-buildx-action from 2 to 3
+- #1035 @dokku-bot: Update nodejs to version v220
+- #1036 @dependabot: chore(deps): bump sinatra and rack in /buildpacks/buildpack-multi/tests/multi
+- #1037 @dokku-bot: Update clojure to version v91
+- #1038 @dokku-bot: Update go to version v180
+- #1039 @dokku-bot: Update nodejs to version v221
+- #1040 @dependabot: chore(deps): bump puma from 6.3.1 to 6.4.0 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1041 @dokku-bot: Update ruby to version v257
+- #1042 @dependabot: chore(deps): bump rack and sinatra in /buildpacks/buildpack-multi/tests/multi
+- #1043 @dokku-bot: Update nodejs to version v222
+- #1044 @dokku-bot: Update ruby to version v258
+- #1045 @dependabot: chore(deps): bump sinatra and rack in /buildpacks/buildpack-multi/tests/multi
+- #1046 @dokku-bot: Update php to version v239
+- #1047 @dependabot: chore(deps): bump flask from 2.3.3 to 3.0.0 in /buildpacks/buildpack-python/tests/python-flask
+- #1048 @dependabot: chore(deps): bump flask from 2.3.3 to 3.0.0 in /buildpacks/buildpack-multi/tests/multi
+- #1049 @dependabot: chore(deps): bump rack and sinatra in /buildpacks/buildpack-multi/tests/multi
+- #1050 @dokku-bot: Update ruby to version v259
+- #1051 @dokku-bot: Update python to version v236
+- #1053 @dependabot: chore(deps): bump sinatra and rack in /buildpacks/buildpack-multi/tests/multi
+- #1054 @dokku-bot: Update python to version v237
+- #1055 @dokku-bot: Update nodejs to version v223
+- #1056 @dependabot: chore(deps): bump rack and sinatra in /buildpacks/buildpack-multi/tests/multi
+- #1057 @dokku-bot: Update nodejs to version v224
+- #1058 @dokku-bot: Update go to version v181
+
 ## [0.7.1](https://github.com/gliderlabs/herokuish/compare/v0.7.0...v0.7.1) - 2023-08-27
 
 - #1001 @josegonzalez: Use updated method for setting output data in github actions
