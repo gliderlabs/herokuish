@@ -5,7 +5,7 @@ name: CI
 on:
   pull_request:
     branches:
-      - '*'
+      - "*"
   push:
     branches:
       - master
@@ -39,11 +39,11 @@ jobs:
 
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.6
+          ruby-version: 2.7
 
       - uses: actions/setup-python@v4
         with:
-          python-version: '3.7.x'
+          python-version: "3.7.x"
 
       - name: setup env
         run: make ci-report

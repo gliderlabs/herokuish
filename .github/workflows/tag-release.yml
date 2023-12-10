@@ -5,7 +5,7 @@ name: tag release
 on:
   push:
     branches:
-      - 'release'
+      - "release"
 
 jobs:
   build:
@@ -30,7 +30,7 @@ jobs:
 
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.6
+          ruby-version: 2.7
 
       - name: set up qemu
         uses: docker/setup-qemu-action@v3
@@ -40,7 +40,7 @@ jobs:
 
       - uses: actions/setup-python@v4
         with:
-          python-version: '3.7.x'
+          python-version: "3.7.x"
 
       - name: install requirements
         run: make deps fpm package_cloud
@@ -65,7 +65,7 @@ jobs:
 
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.6
+          ruby-version: 2.7
 
       - name: download packages
         uses: actions/download-artifact@v3
