@@ -3,9 +3,9 @@ GEM
   specs:
     mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
-    nio4r (2.5.9)
+    nio4r (2.7.0)
     power_assert (2.0.3)
-    puma (6.4.0)
+    puma (6.4.1)
       nio4r (~> 2.0)
     rack (2.2.8)
     rack-protection (3.1.0)
