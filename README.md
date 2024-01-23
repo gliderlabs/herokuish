@@ -131,7 +131,7 @@ issue or an issue with Dokku. Buildpack issues should be filed against Herokuish
 #### Running an app against Herokuish
 
 ```shell
-$ docker run --rm -v /abs/app/path:/tmp/app gliderlabs/herokuish /bin/herokuish test
+docker run --rm -v /abs/app/path:/tmp/app gliderlabs/herokuish /bin/herokuish test
 ```
 
 Mounting your local app source directory to `/tmp/app` and running `/bin/herokuish test` will run your app through the buildpack compile process. Then it starts your `web` process and attempts to connect to the web root path. If it runs into a problem, it should exit non-zero.
@@ -150,7 +150,7 @@ You can use this output when you submit issues.
 #### Running an app tests using Heroku buildpacks
 
 ```shell
-$ docker run --rm -v /abs/app/path:/tmp/app gliderlabs/herokuish /bin/herokuish buildpack test
+docker run --rm -v /abs/app/path:/tmp/app gliderlabs/herokuish /bin/herokuish buildpack test
 ```
 
 Mounting your local app source directory to `/tmp/app` and running `/bin/herokuish buildpack test` will run your app through the buildpack test-compile process. Then it will run `test` command to execute application tests.
@@ -170,7 +170,7 @@ Mounting your local app source directory to `/tmp/app` and running `/bin/herokui
 If you are on macOS, you'll want to explicitly set the platform:
 
 ```shell
-$ docker run --platform linux/amd64 --rm -v /abs/app/path:/tmp/app gliderlabs/herokuish /bin/herokuish buildpack test
+docker run --platform linux/amd64 --rm -v /abs/app/path:/tmp/app gliderlabs/herokuish /bin/herokuish buildpack test
 ```
 
 However, there is a risk of compatibility issues when running on a different platform than the one you are developing on. If you are getting strange compilation or segfaults, try running the build process on an x86 platform.
