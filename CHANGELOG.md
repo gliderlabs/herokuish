@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.7.4](https://github.com/gliderlabs/herokuish/compare/v0.7.3...v0.7.4) - 2024-04-4
+
+- #1120 @dependabot: chore(deps): bump rack from 3.0.8 to 3.0.9 in /buildpacks/buildpack-multi/tests/multi
+- #1121 @dependabot: chore(deps): bump markupsafe from 2.1.4 to 2.1.5 in /buildpacks/buildpack-python/tests/python-flask
+- #1122 @dependabot: chore(deps): bump flask from 3.0.1 to 3.0.2 in /buildpacks/buildpack-python/tests/python-flask
+- #1123 @dependabot: chore(deps): bump markupsafe from 2.1.4 to 2.1.5 in /buildpacks/buildpack-multi/tests/multi
+- #1124 @dependabot: chore(deps): bump flask from 3.0.1 to 3.0.2 in /buildpacks/buildpack-multi/tests/multi
+- #1125 @dokku-bot: Update nodejs to version v236
+- #1126 @dependabot: chore(deps): bump golang from 1.21 to 1.22
+- #1127 @dokku-bot: Update python to version v243
+- #1128 @dokku-bot: Update scala to version v97
+- #1130 @dokku-bot: Update go to version v187
+- #1131 @dokku-bot: Update php to version v246
+- #1133 @dependabot: chore(deps-dev): bump test-unit from 3.6.1 to 3.6.2 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1136 @dependabot: chore(deps): bump rack from 3.0.9 to 3.0.9.1 in /buildpacks/buildpack-multi/tests/multi
+- #1137 @dependabot: chore(deps): bump rack from 2.2.8 to 2.2.8.1 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1138 @josegonzalez: Upgrade to ruby 3.3 in CI
+- #1139 @dokku-bot: Update ruby to version v266
+- #1140 @dokku-bot: Update nodejs to version v237
+- #1141 @dokku-bot: Update scala to version v98
+- #1142 @josegonzalez: Add ability for users to disable the chown process on container start
+- #1143 @dokku-bot: Update ruby to version v267
+- #1144 @dokku-bot: Update go to version v188
+- #1145 @dokku-bot: Update php to version v247
+
 ## [0.7.3](https://github.com/gliderlabs/herokuish/compare/v0.7.2...v0.7.3) - 2024-01-29
 
 - #1060 @dependabot: chore(deps): bump sinatra and rack in /buildpacks/buildpack-multi/tests/multi
