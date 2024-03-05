@@ -8,7 +8,7 @@ GEM
     power_assert (2.0.3)
     puma (6.4.2)
       nio4r (~> 2.0)
-    rack (2.2.8)
+    rack (2.2.8.1)
     rack-protection (3.2.0)
       base64 (>= 0.1.0)
       rack (~> 2.2, >= 2.2.4)
@@ -21,7 +21,7 @@ GEM
       rack (~> 2.2, >= 2.2.4)
       rack-protection (= 3.2.0)
       tilt (~> 2.0)
-    test-unit (3.6.1)
+    test-unit (3.6.2)
       power_assert
     tilt (2.3.0)
 
