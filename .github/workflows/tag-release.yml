@@ -30,7 +30,7 @@ jobs:
 
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7
+          ruby-version: 3.3
 
       - name: set up qemu
         uses: docker/setup-qemu-action@v3
@@ -65,7 +65,7 @@ jobs:
 
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7
+          ruby-version: 3.3
 
       - name: download packages
         uses: actions/download-artifact@v3
