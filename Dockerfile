@@ -16,6 +16,7 @@ ARG TARGETARCH
 ADD https://raw.githubusercontent.com/heroku/stack-images/main/heroku-${STACK_VERSION}/setup.sh /tmp/setup-01.sh
 ADD https://raw.githubusercontent.com/heroku/stack-images/main/heroku-${STACK_VERSION}-build/setup.sh /tmp/setup-02.sh
 ADD bin/setup.sh /tmp/setup.sh
+ADD build-deps/${STACK_VERSION} /build
 RUN STACK_VERSION=${STACK_VERSION} TARGETARCH=${TARGETARCH} /tmp/setup.sh && \
     rm -rf /tmp/setup.sh
 

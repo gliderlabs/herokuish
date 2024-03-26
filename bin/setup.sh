@@ -7,7 +7,7 @@ setup_01="$(cat /tmp/setup-01.sh)"
 setup_02="$(cat /tmp/setup-02.sh)"
 
 # write the first script
-echo "$setup_01" > /tmp/setup-01.sh
+echo "$setup_01" >/tmp/setup-01.sh
 chmod +x /tmp/setup-01.sh
 
 # Ensure we install from ports for arm/arm64 systems
@@ -19,7 +19,7 @@ fi
 
 # Skip unsupported postgresql on arm:20
 if [[ "$TARGETARCH" == "arm" ]]; then
-  sed -i '/postgresql-client-15/d' /tmp/setup-01.sh
+  sed -i '/postgresql-client-16/d' /tmp/setup-01.sh
 fi
 
 # from base image
@@ -38,12 +38,12 @@ rm -rf /var/cache/apt/archives/*.deb
 rm -rf /var/lib/apt/lists/*
 
 # write the second script
-echo "$setup_02" > /tmp/setup-02.sh
+echo "$setup_02" >/tmp/setup-02.sh
 chmod +x /tmp/setup-02.sh
 
 # Skip unsupported postgresql on arm:20
 if [[ "$TARGETARCH" == "arm" ]]; then
-  sed -i '/postgresql-server-dev-15/d' /tmp/setup-02.sh
+  sed -i '/postgresql-server-dev-16/d' /tmp/setup-02.sh
 fi
 
 # from build image
