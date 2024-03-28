@@ -9,7 +9,7 @@ fn-desc() {
   declare desc="Inspect a function's description"
   desc=""
   eval "$(type "$1" | grep desc | head -1)"
-  echo $desc
+  echo "$desc"
 }
 
 fn-info() {

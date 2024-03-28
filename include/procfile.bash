@@ -88,7 +88,7 @@ procfile-load-env() {
   # shellcheck disable=SC2154
   if [[ -d "$env_path" ]]; then
     shopt -s nullglob
-    for e in $env_path/*; do
+    for e in "$env_path"/*; do
       varname=$(basename "$e")
       export "$varname=$(cat "$e")"
     done
@@ -102,7 +102,7 @@ procfile-load-profile() {
     source "$file"
   done
   mkdir -p "$app_path/.profile.d"
-  for file in $app_path/.profile.d/*.sh; do
+  for file in "$app_path/.profile.d"/*.sh; do
     # shellcheck disable=SC1090
     source "$file"
   done

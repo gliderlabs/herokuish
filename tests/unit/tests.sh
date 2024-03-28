@@ -1,5 +1,7 @@
+# shellcheck shell=bash
+
 T_envfile-parse() {
-  # shellcheck disable=SC1090
+  # shellcheck disable=SC1091
   source "$(dirname "${BASH_SOURCE[0]}")/../../include/buildpack.bash"
   local fixture_filename
   local foo_expected='Hello'$'\n'' '\''world'\'' '
@@ -8,7 +10,7 @@ T_envfile-parse() {
   local nested_bar_expected=foo
 
   fixture_filename="$(dirname "${BASH_SOURCE[0]}")/fixtures/complicated_envfile"
-  eval "$(cat "$fixture_filename" | _envfile-parse)"
+  eval "$(_envfile-parse <"$fixture_filename")"
 
   # shellcheck disable=2154
   if [[ ! "$foo_expected" == "$foo" ]]; then
@@ -36,7 +38,7 @@ T_envfile-parse() {
 }
 
 T_procfile-parse-valid() {
-  # shellcheck disable=SC1090
+  # shellcheck disable=SC1091
   source "$(dirname "${BASH_SOURCE[0]}")/../../include/procfile.bash"
   local expected actual app_path
   app_path="$(dirname "${BASH_SOURCE[0]}")/fixtures"
@@ -58,7 +60,7 @@ T_procfile-parse-valid() {
 }
 
 T_procfile-parse-merge-conflict() {
-  # shellcheck disable=SC1090
+  # shellcheck disable=SC1091
   source "$(dirname "${BASH_SOURCE[0]}")/../../include/procfile.bash"
   local expected actual app_path
   app_path="$(dirname "${BASH_SOURCE[0]}")/fixtures-merge-conflict"
@@ -80,7 +82,7 @@ T_procfile-parse-merge-conflict() {
 }
 
 T_procfile-parse-invalid() {
-  # shellcheck disable=SC1090
+  # shellcheck disable=SC1091
   source "$(dirname "${BASH_SOURCE[0]}")/../../include/procfile.bash"
   local expected actual app_path
   app_path="$(dirname "${BASH_SOURCE[0]}")/fixtures"
@@ -96,9 +98,10 @@ T_procfile-parse-invalid() {
 
 T_procfile-types() {
   title() {
+    # shellcheck disable=SC2317
     :
   }
-  # shellcheck disable=SC1090
+  # shellcheck disable=SC1091
   source "$(dirname "${BASH_SOURCE[0]}")/../../include/procfile.bash"
   local expected actual app_path
   app_path="$(dirname "${BASH_SOURCE[0]}")/fixtures"
@@ -114,9 +117,10 @@ T_procfile-types() {
 
 T_procfile-types-merge-conflict() {
   title() {
+    # shellcheck disable=SC2317
     :
   }
-  # shellcheck disable=SC1090
+  # shellcheck disable=SC1091
   source "$(dirname "${BASH_SOURCE[0]}")/../../include/procfile.bash"
   local expected actual app_path
   app_path="$(dirname "${BASH_SOURCE[0]}")/fixtures-merge-conflict"
@@ -131,7 +135,7 @@ T_procfile-types-merge-conflict() {
 }
 
 T_procfile-load-env() {
-  # shellcheck disable=SC1090
+  # shellcheck disable=SC1091
   source "$(dirname "${BASH_SOURCE[0]}")/../../include/procfile.bash"
   local expected actual app_path env_path
   env_path="$(dirname "${BASH_SOURCE[0]}")/fixtures/env"
@@ -148,9 +152,10 @@ T_procfile-load-env() {
 }
 
 T_procfile-load-profile() {
-  # shellcheck disable=SC1090
+  # shellcheck disable=SC1091
   source "$(dirname "${BASH_SOURCE[0]}")/../../include/procfile.bash"
   local expected actual app_path
+  # shellcheck disable=SC2034
   app_path="$(dirname "${BASH_SOURCE[0]}")/fixtures"
 
   procfile-load-profile
@@ -167,7 +172,7 @@ T_procfile-load-profile() {
 #or else shell is hijacked by suceeding exec, so rather than no test
 #it is better to pass a failing cmd, so that we can check we pass exec step
 T_procfile-exec() {
-  # shellcheck disable=SC1090
+  # shellcheck disable=SC1091
   source "$(dirname "${BASH_SOURCE[0]}")/../../include/procfile.bash"
   local expected actual
 
@@ -181,11 +186,11 @@ T_procfile-exec() {
 }
 
 T_procfile-exec-setuidgid-optout() {
-  # shellcheck disable=SC1090
+  # shellcheck disable=SC1091
   source "$(dirname "${BASH_SOURCE[0]}")/../../include/procfile.bash"
   local expected actual
 
-  HEROKUISH_SETUIDGUID=false
+  export HEROKUISH_SETUIDGUID=false
   actual=procfile-exec invalid
   expected=".*invalid: command not found.*"
 

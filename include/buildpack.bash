@@ -10,6 +10,7 @@ _envfile-parse() {
     value="${line#*=}"
     case "$value" in
       \'* | \"*)
+        # shellcheck disable=SC2269
         value="${value}"
         ;;
       *)
@@ -45,14 +46,15 @@ _select-buildpack() {
     chown -R "$unprivileged_user:$unprivileged_group" "$buildpack_path/custom"
     selected_name="$(unprivileged "$selected_path/bin/detect" "$build_path" || true)"
   else
+    # shellcheck disable=SC2206
     local buildpacks=($buildpack_path/*)
     local valid_buildpacks=()
     for buildpack in "${buildpacks[@]}"; do
-      unprivileged "$buildpack/bin/detect" "$build_path" &>/dev/null \
-        && valid_buildpacks+=("$buildpack")
+      unprivileged "$buildpack/bin/detect" "$build_path" &>/dev/null && valid_buildpacks+=("$buildpack")
     done
     if [[ ${#valid_buildpacks[@]} -gt 1 ]]; then
       title "Warning: Multiple default buildpacks reported the ability to handle this app. The first buildpack in the list below will be used."
+      # shellcheck disable=SC2001
       echo "Detected buildpacks: $(sed -e "s:/tmp/buildpacks/[0-9][0-9]_buildpack-::g" <<<"${valid_buildpacks[@]}")" | indent
     fi
     if [[ ${#valid_buildpacks[@]} -gt 0 ]]; then

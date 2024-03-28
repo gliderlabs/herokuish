@@ -1,3 +1,5 @@
+# shellcheck shell=bash
+
 herokuish-test() {
   declare name="$1" script="$2"
   # shellcheck disable=SC2046,SC2154
@@ -27,6 +29,7 @@ trap cleanup EXIT
 
 T_binary() {
   _test-binary() {
+    # shellcheck disable=SC2317
     herokuish
   }
   herokuish-test "test-binary" "$(fn-source _test-binary)"
@@ -34,6 +37,7 @@ T_binary() {
 
 T_default-user() {
   _test-user() {
+    # shellcheck disable=SC2317
     id herokuishuser
   }
   herokuish-test "test-user" "$(fn-source _test-user)"
