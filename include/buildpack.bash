@@ -161,7 +161,7 @@ buildpack-setup() {
 	# Prepare permissions quicker for slower filesystems
 	# vars defined in outer scope
 	# shellcheck disable=SC2154
-	find "$app_path" \( \! -user "$unprivileged_user" -o \! -group "$unprivileged_group" \) -print0 | xargs -0 -r chown "$unprivileged_user:$unprivileged_group"
+	find "$app_path" \( \! -user "$unprivileged_user" -o \! -group "$unprivileged_group" \) -print0 | xargs -P 0 -0 --no-run-if-empty chown --no-dereference "$unprivileged_user:$unprivileged_group"
 	# shellcheck disable=SC2154
 	find "$build_path" \( \! -user "$unprivileged_user" -o \! -group "$unprivileged_group" \) -print0 | xargs -P 0 -0 --no-run-if-empty chown --no-dereference "$unprivileged_user:$unprivileged_group"
 	# shellcheck disable=SC2154
