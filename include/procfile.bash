@@ -103,6 +103,7 @@ procfile-load-profile() {
     source "$file"
   done
   mkdir -p "$app_path/.profile.d"
+  # shellcheck disable=SC2154
   chown "$unprivileged_user:$unprivileged_group" "$app_path/.profile.d"
   for file in "$app_path/.profile.d"/*.sh; do
     # shellcheck disable=SC1090
