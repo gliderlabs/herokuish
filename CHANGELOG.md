@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.8.0](https://github.com/gliderlabs/herokuish/compare/v0.7.6...v0.8.0) - 2024-03-28
+
+- #1093 @dependabot: chore(deps): bump actions/download-artifact from 3 to 4
+- #1173 @josegonzalez: Use find to identify only files not already owned by user
+- #1174 @josegonzalez: Add linting to CI
+- #1175 @josegonzalez: Ensure all file permissions are set to specified unprivileged user
+- #467 @mlandauer: Only copy from app import path to app path when building
+
 ## [0.7.6](https://github.com/gliderlabs/herokuish/compare/v0.7.5...v0.7.6) - 2024-03-28
 
 - #1171 @josegonzalez: Use a run mount to add build dependencies
