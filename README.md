@@ -2,7 +2,7 @@
 
 [![Build Status](https://github.com/gliderlabs/herokuish/workflows/CI/badge.svg)](https://github.com/gliderlabs/herokuish/actions?query=workflow%3ACI)
 [![IRC Channel](https://img.shields.io/badge/irc-%23gliderlabs-blue.svg)](https://kiwiirc.com/client/irc.freenode.net/#gliderlabs)
-[![Docker Hub](https://img.shields.io/badge/docker%20hub-v0.7.6-blue)](https://hub.docker.com/r/gliderlabs/herokuish)
+[![Docker Hub](https://img.shields.io/badge/docker%20hub-v0.8.0-blue)](https://hub.docker.com/r/gliderlabs/herokuish)
 
 A command line tool for emulating Heroku build and runtime tasks in containers.
 
@@ -19,7 +19,7 @@ Download and uncompress the latest binary tarball from [releases](https://github
 For example, you can do this directly in your Dockerfiles installing into `/bin` as one step:
 
 ```shell
-RUN curl --location --silent https://github.com/gliderlabs/herokuish/releases/download/v0.7.6/herokuish_0.7.6_linux_x86_64.tgz \
+RUN curl --location --silent https://github.com/gliderlabs/herokuish/releases/download/v0.8.0/herokuish_0.8.0_linux_x86_64.tgz \
     | tar -xzC /bin
 ```
 
@@ -60,7 +60,7 @@ For example, build processes that produce Docker images without producing interm
 `herokuish exec` will by default drop root privileges through use of [setuidgid](https://cr.yp.to/daemontools/setuidgid.html),
 but if already running as a non-root user setuidgid will fail, you can opt-out from this by setting the env-var `HEROKUISH_SETUIDGUID=false`.
 
-#### Buildpacks
+### Buildpacks
 
 Herokuish does not come with any buildpacks, but it is tested against recent versions of Heroku supported buildpacks. You can see this information with `herokuish version`. Example output:
 
@@ -78,7 +78,7 @@ buildpacks:
 
 You can install all supported buildpacks with `herokuish buildpack install`, or you can manually install buildpacks individually with `herokuish buildpack install <url> [committish]`. You can also mount a directory containing your platform's supported buildpacks (see Paths, next section), or you could bake your supported buildpacks into an image. These are the types of decisions that are up to you.
 
-#### Paths
+### Paths
 
 Use `herokuish paths` to see relevant system paths it uses. You can use these to import or mount data for use inside a container. They can also be overridden by setting the appropriate environment variable.
 
@@ -93,11 +93,11 @@ BUILDPACK_PATH=/tmp/buildpacks   # Path to installed buildpacks
 
 ```
 
-#### Entrypoints
+### Entrypoints
 
 Some subcommands are made to be used as default commands or entrypoint commands for containers. Specifically, herokuish detects if it was called as `/start`, `/exec`, or `/build` which will shortcut it to running those subcommands directly. This means you can either install the binary in those locations or create symlinks from those locations, allowing you to use them as your container entrypoint.
 
-#### Help
+### Help
 
 Don't be afraid of the help command. It actually tells you exactly what a command does:
 
@@ -128,7 +128,7 @@ Having trouble pushing an app to Dokku or Heroku? Use Herokuish with a local Doc
 instance to debug. This is especially helpful with Dokku to help determine if it's a buildpack
 issue or an issue with Dokku. Buildpack issues should be filed against Herokuish.
 
-#### Running an app against Herokuish
+### Running an app against Herokuish
 
 ```shell
 docker run --rm -v /abs/app/path:/tmp/app gliderlabs/herokuish /bin/herokuish test
@@ -147,7 +147,7 @@ Mounting your local app source directory to `/tmp/app` and running `/bin/herokui
 
 You can use this output when you submit issues.
 
-#### Running an app tests using Heroku buildpacks
+### Running an app tests using Heroku buildpacks
 
 ```shell
 docker run --rm -v /abs/app/path:/tmp/app gliderlabs/herokuish /bin/herokuish buildpack test
@@ -175,7 +175,7 @@ docker run --platform linux/amd64 --rm -v /abs/app/path:/tmp/app gliderlabs/hero
 
 However, there is a risk of compatibility issues when running on a different platform than the one you are developing on. If you are getting strange compilation or segfaults, try running the build process on an x86 platform.
 
-#### Troubleshooting
+## Troubleshooting
 
 If you run into an issue and looking for more insight into what `herokuish` is doing, you can set the `$TRACE` environment variable.
 

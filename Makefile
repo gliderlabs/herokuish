@@ -4,7 +4,7 @@ REPOSITORY = herokuish
 DESCRIPTION = 'Herokuish uses Docker and Buildpacks to build applications like Heroku'
 HARDWARE = $(shell uname -m)
 SYSTEM_NAME  = $(shell uname -s | tr '[:upper:]' '[:lower:]')
-VERSION ?= 0.7.6
+VERSION ?= 0.8.0
 IMAGE_NAME ?= $(NAME)
 BUILD_TAG ?= dev
 PACKAGECLOUD_REPOSITORY ?= dokku/dokku-betafish
@@ -158,18 +158,6 @@ ci-report:
 	which ruby
 	ruby -v
 	rm -f ~/.gitconfig
-
-lint:
-	# SC2002: Useless cat - https://github.com/koalaman/shellcheck/wiki/SC2002
-	# SC2030: Modification of name is local - https://github.com/koalaman/shellcheck/wiki/SC2030
-	# SC2031: Modification of name is local - https://github.com/koalaman/shellcheck/wiki/SC2031
-	# SC2034: VAR appears unused - https://github.com/koalaman/shellcheck/wiki/SC2034
-	# SC2206: Quote to prevent word splitting/globbing, or split robustly with mapfile or read -a.
-	# SC2001: See if you can use ${variable//search/replace} instead.
-	# SC2231: Quote expansions in this for loop glob to prevent wordsplitting, e.g. "$dir"/*.txt .
-	# SC2230: which is non-standard. Use builtin 'command -v' instead.
-	@echo linting...
-	shellcheck -e SC2002,SC2030,SC2031,SC2034,SC2206,SC2001,SC2231,SC2230 -s bash include/*.bash tests/**/tests.sh
 
 release: build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm build/deb/$(NAME)_$(VERSION)_all.deb bin/gh-release bin/gh-release-body
 	ls -lah build build/* || true
