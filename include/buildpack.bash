@@ -162,6 +162,9 @@ buildpack-setup() {
   # shellcheck disable=SC2154
   usermod --home "$HOME" "$unprivileged_user" >/dev/null 2>&1
 
+  # shellcheck disable=SC2154
+  chown "$unprivileged_user:$unprivileged_group" "$HOME"
+
   # Prepare permissions quicker for slower filesystems
   # vars defined in outer scope
   # shellcheck disable=SC2154
@@ -191,16 +194,18 @@ buildpack-execute() {
   cd "$build_path" || return 1
   unprivileged "$selected_path/bin/compile" "$build_path" "$cache_path" "$env_path"
   if [[ -f "$selected_path/bin/release" ]]; then
-    unprivileged "$selected_path/bin/release" "$build_path" "$cache_path" >"$build_path/.release"
+    unprivileged "$selected_path/bin/release" "$build_path" "$cache_path" | unprivileged tee "$build_path/.release" >/dev/null
   fi
   if [[ -f "$build_path/.release" ]]; then
     config_vars="$(cat "$build_path/.release" | yaml-get config_vars)"
+    unprivileged touch "$build_path/.profile.d/00_config_vars.sh"
     if [[ "$config_vars" ]]; then
       mkdir -p "$build_path/.profile.d"
+      chown "$unprivileged_user:$unprivileged_group" "$build_path/.profile.d"
       OIFS=$IFS
       IFS=$'\n'
       for var in $config_vars; do
-        echo "export $(echo "$var" | sed -e 's/=/="/' -e 's/$/"/')" >>"$build_path/.profile.d/00_config_vars.sh"
+        echo "export $(echo "$var" | sed -e 's/=/="/' -e 's/$/"/')" | unprivileged tee -a "$build_path/.profile.d/00_config_vars.sh" >/dev/null
       done
       IFS=$OIFS
     fi
