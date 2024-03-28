@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.7.6](https://github.com/gliderlabs/herokuish/compare/v0.7.5...v0.7.6) - 2024-03-28
+
+- #1171 @josegonzalez: Use a run mount to add build dependencies
+
 ## [0.7.5](https://github.com/gliderlabs/herokuish/compare/v0.7.4...v0.7.5) - 2024-03-28
 
 - #1148 @dokku-bot: Update go to version v189
