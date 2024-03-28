@@ -877,7 +877,7 @@ All notable changes to this project will be documented in this file.
 
 - @michaelshobbs remove erlang from buildpack bundle
 
-**NOTE: v0.4.0 is now based on heroku-16**
+> NOTE: v0.4.0 is now based on heroku-16
 
 ## [0.3.36](https://github.com/gliderlabs/herokuish/compare/v0.3.35...v0.3.36) - 2018-03-10
 
@@ -890,7 +890,7 @@ All notable changes to this project will be documented in this file.
 - @michaelshobbs Update nodejs to version v121
 - @michaelshobbs Update go to version v85
 
-**NOTE: This will be the last version of herokuish based on cedar-14**
+> NOTE: This will be the last version of herokuish based on cedar-14
 
 ## [0.3.35](https://github.com/gliderlabs/herokuish/compare/v0.3.34...v0.3.35) - 2018-02-09
 

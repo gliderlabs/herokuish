@@ -51,9 +51,6 @@ jobs:
       - name: shellcheck
         run: make shellcheck
 
-      - name: lint
-        run: make lint
-
       - name: install requirements
         run: make deps fpm package_cloud
 

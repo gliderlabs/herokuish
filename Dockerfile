@@ -3,7 +3,7 @@ ARG STACK_VERSION=20
 
 FROM golang:1.22 AS builder
 RUN mkdir /src
-ADD . /src/
+COPY . /src/
 WORKDIR /src
 
 ARG VERSION
@@ -15,7 +15,7 @@ ARG TARGETARCH
 
 ADD https://raw.githubusercontent.com/heroku/stack-images/main/heroku-${STACK_VERSION}/setup.sh /tmp/setup-01.sh
 ADD https://raw.githubusercontent.com/heroku/stack-images/main/heroku-${STACK_VERSION}-build/setup.sh /tmp/setup-02.sh
-ADD bin/setup.sh /tmp/setup.sh
+COPY bin/setup.sh /tmp/setup.sh
 RUN --mount=source=build-deps/${STACK_VERSION},target=/build  STACK_VERSION=${STACK_VERSION} TARGETARCH=${TARGETARCH} /tmp/setup.sh && \
     rm -rf /tmp/setup.sh
 
@@ -24,9 +24,9 @@ ENV DEBIAN_FRONTEND noninteractive
 LABEL com.gliderlabs.herokuish/stack=$STACK
 
 RUN apt-get update -qq \
-    && apt-get install -qq -y daemontools \
+    && apt-get install --no-install-recommends -qq -y daemontools \
     && cp /etc/ImageMagick-6/policy.xml /etc/ImageMagick-6/policy.xml.custom \
-    && apt-get -y -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confnew \
+    && apt-get  -y -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confnew \
     --allow-downgrades \
     --allow-remove-essential \
     --allow-change-held-packages \

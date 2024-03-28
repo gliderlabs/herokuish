@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-addgroup --quiet --gid "32767" "herokuishuser" && \
-adduser \
+addgroup --quiet --gid "32767" "herokuishuser" \
+  && adduser \
     --shell /bin/bash \
     --disabled-password \
     --force-badname \
