@@ -50,7 +50,7 @@ jobs:
           make build build/docker/${{ matrix.heroku }} BUILDX=false STACK_VERSION=${{ matrix.heroku }}
 
       - name: upload packages
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: build-${{ matrix.heroku }}-${{ matrix.buildx }}
           path: build
@@ -68,7 +68,7 @@ jobs:
           ruby-version: 3.3
 
       - name: download packages
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: build-22-false
           path: build
