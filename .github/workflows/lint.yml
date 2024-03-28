@@ -51,6 +51,9 @@ jobs:
         uses: actions/checkout@v4
       - name: Run shellcheck
         uses: ludeeus/action-shellcheck@00cae500b08a931fb5698e11e79bfbd38e612a38
+        with:
+          ignore_paths: >-
+            tests/unit/fixtures/.profile.d/app.sh
 
   shfmt:
     name: shfmt
