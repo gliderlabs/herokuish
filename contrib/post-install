@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if which systemctl > /dev/null; then
+if which systemctl >/dev/null; then
   echo "Starting docker"
   systemctl start docker
   sleep 5
@@ -14,7 +14,7 @@ docker images -a | grep "^gliderlabs\/herokuish" | grep -v latest | awk '{print 
 
 echo 'Importing herokuish into docker (around 5 minutes)'
 if [[ -n "$http_proxy" ]] || [[ -n "$https_proxy" ]]; then
-  echo "See the docker pull docs for proxy configuration";
+  echo "See the docker pull docs for proxy configuration"
 fi
 
 VERSION=$(cat /var/lib/herokuish/VERSION)

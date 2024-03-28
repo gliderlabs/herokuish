@@ -1,0 +1,77 @@
+---
+name: "lint"
+
+# yamllint disable-line rule:truthy
+on:
+  pull_request:
+    branches:
+      - "*"
+  push:
+    branches:
+      - "master"
+
+concurrency:
+  group: lint-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  hadolint:
+    name: hadolint
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Clone
+        uses: actions/checkout@v4
+      - name: Run hadolint
+        uses: hadolint/hadolint-action@54c9adbab1582c2ef04b2016b760714a4bfde3cf
+        with:
+          config: .github/linters/.hadolint.yml
+
+  markdown-lint:
+    name: markdown-lint
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Clone
+        uses: actions/checkout@v4
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: ".github/workflows/lint.yml"
+      - name: Install markdownlint-cli
+        run: npm install -g markdownlint-cli@0.35.0
+      - name: Run markdown-lint
+        run: markdownlint -c .github/linters/.markdown-lint.yml *.md **/*.md
+
+  shellcheck:
+    name: shellcheck
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Clone
+        uses: actions/checkout@v4
+      - name: Run shellcheck
+        uses: ludeeus/action-shellcheck@00cae500b08a931fb5698e11e79bfbd38e612a38
+
+  shfmt:
+    name: shfmt
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Clone
+        uses: actions/checkout@v4
+      - name: Run shfmt
+        uses: luizm/action-sh-checker@c6edb3de93e904488b413636d96c6a56e3ad671a
+        env:
+          SHFMT_OPTS: -l -bn -ci -i 2 -d
+        with:
+          sh_checker_shellcheck_disable: true
+
+  yamllint:
+    name: yamllint
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Clone
+        uses: actions/checkout@v4
+      - name: Run yamllint
+        uses: ibiqlik/action-yamllint@2576378a8e339169678f9939646ee3ee325e845c
+        with:
+          config_file: ".github/linters/.yamllint.yml"
