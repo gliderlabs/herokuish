@@ -75,7 +75,8 @@ procfile-types() {
     # shellcheck disable=SC2154
     [[ "$default_types" ]] && echo "Default types for $selected_name -> ${default_types// /, }"
     for type in $default_types; do
-      echo "$type: $(cat "$app_path/.release" | yaml-get default_process_types "$type")" >>"$app_path/Procfile"
+      unprivileged touch "$app_path/Procfile"
+      echo "$type: $(cat "$app_path/.release" | yaml-get default_process_types "$type")" | unprivileged tee -a "$app_path/Procfile" >/dev/null
     done
     return
   fi
@@ -102,6 +103,7 @@ procfile-load-profile() {
     source "$file"
   done
   mkdir -p "$app_path/.profile.d"
+  chown "$unprivileged_user:$unprivileged_group" "$app_path/.profile.d"
   for file in "$app_path/.profile.d"/*.sh; do
     # shellcheck disable=SC1090
     source "$file"
@@ -116,7 +118,10 @@ procfile-load-profile() {
 
 procfile-setup-home() {
   export HOME="$app_path"
+  # shellcheck disable=SC2154
   usermod --home "$app_path" "$unprivileged_user" >/dev/null 2>&1
+  # shellcheck disable=SC2154
+  chown "$unprivileged_user:$unprivileged_group" "$app_path"
   if [[ "$HEROKUISH_DISABLE_CHOWN" == "true" ]]; then
     # unprivileged_user & unprivileged_group are defined in outer scope
     # shellcheck disable=SC2154
