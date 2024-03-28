@@ -2,7 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.7.4](https://github.com/gliderlabs/herokuish/compare/v0.7.3...v0.7.4) - 2024-04-4
+## [0.7.5](https://github.com/gliderlabs/herokuish/compare/v0.7.4...v0.7.5) - 2024-03-28
+
+- #1148 @dokku-bot: Update go to version v189
+- #1149 @dokku-bot: Update nodejs to version v238
+- #1152 @dependabot: chore(deps): bump org.apache.maven.plugins:maven-compiler-plugin from 3.12.1 to 3.13.0 in /buildpacks/buildpack-java/tests/java-jetty
+- #1153 @dependabot: chore(deps): bump rack from 2.2.8.1 to 2.2.9 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1154 @dependabot: chore(deps): bump rack from 3.0.9.1 to 3.0.10 in /buildpacks/buildpack-multi/tests/multi
+- #1159 @josegonzalez: chore: update ruby in ci to latest version to fix releases
+- #1160 @josegonzalez: Vendor build directory to fix builds
+- #1161 @dependabot: chore(deps): bump express from 4.18.3 to 4.19.2 in /buildpacks/buildpack-nodejs/tests/nodejs-express
+- #1162 @dependabot: chore(deps): bump express from 4.18.3 to 4.19.2 in /buildpacks/buildpack-multi/tests/multi
+- #1167 @dokku-bot: Update nodejs to version v239
+- #1168 @dokku-bot: Update python to version v246
+- #1169 @dokku-bot: Update nodejs to version v240
+
+## [0.7.4](https://github.com/gliderlabs/herokuish/compare/v0.7.3...v0.7.4) - 2024-03-04
 
 - #1120 @dependabot: chore(deps): bump rack from 3.0.8 to 3.0.9 in /buildpacks/buildpack-multi/tests/multi
 - #1121 @dependabot: chore(deps): bump markupsafe from 2.1.4 to 2.1.5 in /buildpacks/buildpack-python/tests/python-flask
