@@ -1,0 +1,12 @@
+@($model;format="camel"$Form: Form[$model;format="Camel"$Data])(implicit request: MessagesRequestHeader)
+
+<h1>$model;format="camel"$ form</h1>
+
+@request.flash.get("success").getOrElse("")
+
+@helper.form(action = routes.$model;format="Camel"$Controller.$model;format="camel"$Post()) {
+  @helper.CSRF.formField
+  @helper.inputText($model;format="camel"$Form("name"))
+  @helper.inputText($model;format="camel"$Form("age"))
+  <input type="submit" value="submit"/>
+}
