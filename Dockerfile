@@ -53,3 +53,4 @@ RUN /bin/herokuish buildpack install \
     */tmp
 COPY include/default_user.bash /tmp/default_user.bash
 RUN bash /tmp/default_user.bash && rm -f /tmp/default_user.bash
+ENV BASH_BIN /usr/bin/bash
