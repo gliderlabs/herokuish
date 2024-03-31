@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.9.0](https://github.com/gliderlabs/herokuish/compare/v0.8.0...v0.9.0) - 2024-03-31
+
+- #1177 @dependabot: Update php to version v248
+- #1178 @josegonzalez: chore: update dependencies in scala test app
+- #1179 @josegonzalez: feat: use system bash to avoid extracting bash at runtime
+
 ## [0.8.0](https://github.com/gliderlabs/herokuish/compare/v0.7.6...v0.8.0) - 2024-03-28
 
 - #1093 @dependabot: chore(deps): bump actions/download-artifact from 3 to 4
