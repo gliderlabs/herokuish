@@ -204,6 +204,7 @@ buildpack-execute() {
   fi
   if [[ -f "$build_path/.release" ]]; then
     config_vars="$(cat "$build_path/.release" | yaml-get config_vars)"
+    unprivileged mkdir -p "$build_path/.profile.d"
     unprivileged touch "$build_path/.profile.d/00_config_vars.sh"
     if [[ "$config_vars" ]]; then
       mkdir -p "$build_path/.profile.d"
