@@ -104,7 +104,9 @@ procfile-load-profile() {
   done
   if [[ -d "$app_path/.profile.d" ]]; then
     # shellcheck disable=SC2154
-    chown "$unprivileged_user:$unprivileged_group" "$app_path/.profile.d"
+    if [[ "$HEROKUISH_DISABLE_CHOWN" != "true" ]]; then
+      chown "$unprivileged_user:$unprivileged_group" "$app_path/.profile.d"
+    fi
     for file in "$app_path/.profile.d"/*.sh; do
       # shellcheck disable=SC1090
       source "$file"
@@ -123,7 +125,7 @@ procfile-setup-home() {
   # shellcheck disable=SC2154
   usermod --home "$app_path" "$unprivileged_user" >/dev/null 2>&1
   # shellcheck disable=SC2154
-  if [[ "$HEROKUISH_DISABLE_CHOWN" == "true" ]]; then
+  if [[ "$HEROKUISH_DISABLE_CHOWN" != "true" ]]; then
     chown "$unprivileged_user:$unprivileged_group" "$app_path"
     # unprivileged_user & unprivileged_group are defined in outer scope
     # shellcheck disable=SC2154
