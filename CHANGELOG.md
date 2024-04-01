@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.9.1](https://github.com/gliderlabs/herokuish/compare/v0.9.0...v0.9.1) - 2024-04-01
+
+- #1181 @josegonzalez: fix: do not unnecessarily create/change files when starting a process
+- #1182 @josegonzalez: fix: invert disable-chown check
+- #1183 @josegonzalez: fix: create the profile.d directory during the build process
+
 ## [0.9.0](https://github.com/gliderlabs/herokuish/compare/v0.8.0...v0.9.0) - 2024-03-31
 
 - #1177 @dependabot: Update php to version v248
