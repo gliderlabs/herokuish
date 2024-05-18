@@ -8,22 +8,29 @@ GEM
     power_assert (2.0.3)
     puma (6.4.2)
       nio4r (~> 2.0)
-    rack (2.2.9)
-    rack-protection (3.2.0)
+    rack (3.0.11)
+    rack-protection (4.0.0)
       base64 (>= 0.1.0)
-      rack (~> 2.2, >= 2.2.4)
+      rack (>= 3.0.0, < 4)
+    rack-session (2.0.0)
+      rack (>= 3.0.0)
     rack-test (2.1.0)
       rack (>= 1.3)
+    rackup (2.1.0)
+      rack (>= 3)
+      webrick (~> 1.8)
     rake (13.2.1)
     ruby2_keywords (0.0.5)
-    sinatra (3.2.0)
+    sinatra (4.0.0)
       mustermann (~> 3.0)
-      rack (~> 2.2, >= 2.2.4)
-      rack-protection (= 3.2.0)
+      rack (>= 3.0.0, < 4)
+      rack-protection (= 4.0.0)
+      rack-session (>= 2.0.0, < 3)
       tilt (~> 2.0)
     test-unit (3.6.2)
       power_assert
     tilt (2.3.0)
+    webrick (1.8.1)
 
 PLATFORMS
   ruby
@@ -32,6 +39,7 @@ DEPENDENCIES
   puma
   rack
   rack-test
+  rackup
   rake
   sinatra
   test-unit
