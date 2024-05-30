@@ -2080,16 +2080,16 @@
     "packages-dev": [
         {
             "name": "heroku/heroku-buildpack-php",
-            "version": "v249",
+            "version": "v250",
             "source": {
                 "type": "git",
                 "url": "https://github.com/heroku/heroku-buildpack-php.git",
-                "reference": "79b2d9e8f9ea5df5a3df7d3cd977664e54068ebd"
+                "reference": "ff65a584d30b39d7f29453a0f0a23ac9fb71afaa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/79b2d9e8f9ea5df5a3df7d3cd977664e54068ebd",
-                "reference": "79b2d9e8f9ea5df5a3df7d3cd977664e54068ebd",
+                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/ff65a584d30b39d7f29453a0f0a23ac9fb71afaa",
+                "reference": "ff65a584d30b39d7f29453a0f0a23ac9fb71afaa",
                 "shasum": ""
             },
             "bin": [
@@ -2119,9 +2119,9 @@
             ],
             "support": {
                 "issues": "https://github.com/heroku/heroku-buildpack-php/issues",
-                "source": "https://github.com/heroku/heroku-buildpack-php/tree/v249"
+                "source": "https://github.com/heroku/heroku-buildpack-php/tree/v250"
             },
-            "time": "2024-04-12T17:45:29+00:00"
+            "time": "2024-05-29T19:07:32+00:00"
         }
     ],
     "aliases": [],
