@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.9.2](https://github.com/gliderlabs/herokuish/compare/v0.9.1...v0.9.2) - 2024-06-21
+
+- #1205 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 231 to 249 in /buildpacks/buildpack-php/tests/php
+- #1231 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 249 to 252 in /buildpacks/buildpack-php/tests/php
+- #1243 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 252 to 253 in /buildpacks/buildpack-php/tests/php
+- #1191 @dependabot: chore(deps): bump flask from 3.0.2 to 3.0.3 in /buildpacks/buildpack-multi/tests/multi
+- #1190 @dependabot: chore(deps): bump flask from 3.0.2 to 3.0.3 in /buildpacks/buildpack-python/tests/python-flask
+- #1226 @dependabot: chore(deps): bump github.com/progrium/go-basher from 5.1.6+incompatible to 5.1.7+incompatible
+- #1200 @dependabot: chore(deps): bump gunicorn from 21.2.0 to 22.0.0 in /buildpacks/buildpack-multi/tests/multi
+- #1199 @dependabot: chore(deps): bump gunicorn from 21.2.0 to 22.0.0 in /buildpacks/buildpack-python/tests/python-django
+- #1198 @dependabot: chore(deps): bump gunicorn from 21.2.0 to 22.0.0 in /buildpacks/buildpack-python/tests/python-flask
+- #1216 @dependabot: chore(deps): bump jinja2 from 3.1.3 to 3.1.4 in /buildpacks/buildpack-multi/tests/multi
+- #1215 @dependabot: chore(deps): bump jinja2 from 3.1.3 to 3.1.4 in /buildpacks/buildpack-python/tests/python-flask
+- #1197 @dependabot: chore(deps): bump monolog/monolog from 2.9.2 to 2.9.3 in /buildpacks/buildpack-php/tests/php
+- #1242 @dependabot: chore(deps): bump org.apache.maven.plugins:maven-dependency-plugin from 3.6.1 to 3.7.0 in /buildpacks/buildpack-java/tests/java-jetty
+- #1218 @dependabot: chore(deps): bump rack from 3.0.10 to 3.0.11 in /buildpacks/buildpack-multi/tests/multi
+- #1237 @dependabot: chore(deps): bump rack from 3.0.11 to 3.1.0 in /buildpacks/buildpack-multi/tests/multi
+- #1236 @dependabot: chore(deps): bump rack from 3.0.11 to 3.1.0 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1241 @dependabot: chore(deps): bump rack from 3.1.0 to 3.1.3 in /buildpacks/buildpack-multi/tests/multi
+- #1240 @dependabot: chore(deps): bump rack from 3.1.0 to 3.1.3 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1185 @dependabot: chore(deps): bump rake from 13.1.0 to 13.2.0 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1188 @dependabot: chore(deps): bump rake from 13.2.0 to 13.2.1 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1219 @dependabot: chore(deps): bump sinatra and rack in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1201 @dependabot: chore(deps): bump twig/twig from 3.8.0 to 3.9.1 in /buildpacks/buildpack-php/tests/php
+- #1202 @dependabot: chore(deps): bump twig/twig from 3.9.1 to 3.9.2 in /buildpacks/buildpack-php/tests/php
+- #1204 @dependabot: chore(deps): bump twig/twig from 3.9.2 to 3.9.3 in /buildpacks/buildpack-php/tests/php
+- #1223 @dependabot: chore(deps): bump twig/twig from 3.9.3 to 3.10.3 in /buildpacks/buildpack-php/tests/php
+- #1234 @dokku-bot: Update go to version v192
+- #1245 @dokku-bot: Update nodejs to version v254
+- #1246 @dokku-bot: Update php to version v253
+- #1247 @dokku-bot: Update python to version v252
+- #1244 @dokku-bot: Update ruby to version v272
+
 ## [0.9.1](https://github.com/gliderlabs/herokuish/compare/v0.9.0...v0.9.1) - 2024-04-01
 
 - #1181 @josegonzalez: fix: do not unnecessarily create/change files when starting a process
