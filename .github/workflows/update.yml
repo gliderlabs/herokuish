@@ -4,13 +4,13 @@ name: Bump buildpacks
 # yamllint disable-line rule:truthy
 on:
   schedule:
-    - cron: '37 13 * * *'
+    - cron: "37 13 * * *"
   workflow_dispatch: {}
 
 jobs:
   build:
     name: bump-buildpacks
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
         with:
