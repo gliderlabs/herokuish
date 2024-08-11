@@ -57,6 +57,7 @@ build: bindata.go
 build/docker:
 	$(MAKE) build/docker/20 STACK_VERSION=20
 	$(MAKE) build/docker/22 STACK_VERSION=22
+	$(MAKE) build/docker/24 STACK_VERSION=24
 
 build/docker/$(STACK_VERSION): bindata.go
 ifeq ($(BUILDX),true)
@@ -128,6 +129,7 @@ clean:
 deps: bindata.go
 	docker pull heroku/heroku:20-build
 	docker pull heroku/heroku:22-build
+	docker pull heroku/heroku:24-build
 	cd / && go get -u github.com/progrium/basht/...
 	$(MAKE) bindata.go
 	go get || true

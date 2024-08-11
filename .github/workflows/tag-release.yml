@@ -17,7 +17,7 @@ jobs:
         buildx:
           - "false"
         heroku:
-          - 22
+          - 24
 
     steps:
       - uses: actions/checkout@v4
@@ -70,7 +70,7 @@ jobs:
       - name: download packages
         uses: actions/download-artifact@v4
         with:
-          name: build-22-false
+          name: build-24-false
           path: build
 
       - name: Login to DockerHub

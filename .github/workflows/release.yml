@@ -5,7 +5,7 @@ name: release
 on:
   push:
     tags:
-      - '*'
+      - "*"
 
 jobs:
   build:
@@ -17,6 +17,7 @@ jobs:
         heroku:
           - 20
           - 22
+          - 24
 
     steps:
       - uses: actions/checkout@v4
