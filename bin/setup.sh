@@ -10,16 +10,11 @@ setup_02="$(cat /tmp/setup-02.sh)"
 echo "$setup_01" >/tmp/setup-01.sh
 chmod +x /tmp/setup-01.sh
 
-# Ensure we install from ports for arm/arm64 systems
+# Ensure we install from ports for arm64 systems
 # Skip unsupported syslinux
 if [[ -n "$TARGETARCH" ]] && [[ "$TARGETARCH" != "amd64" ]]; then
   sed -i 's#http://archive.ubuntu.com/ubuntu/#http://ports.ubuntu.com/ubuntu-ports/#' /tmp/setup-01.sh
   sed -i '/syslinux/d' /tmp/setup-01.sh
-fi
-
-# Skip unsupported postgresql on arm:20
-if [[ "$TARGETARCH" == "arm" ]]; then
-  sed -i '/postgresql-client-16/d' /tmp/setup-01.sh
 fi
 
 # from base image
@@ -40,11 +35,6 @@ rm -rf /var/lib/apt/lists/*
 # write the second script
 echo "$setup_02" >/tmp/setup-02.sh
 chmod +x /tmp/setup-02.sh
-
-# Skip unsupported postgresql on arm:20
-if [[ "$TARGETARCH" == "arm" ]]; then
-  sed -i '/postgresql-server-dev-16/d' /tmp/setup-02.sh
-fi
 
 # from build image
 /tmp/setup-02.sh
