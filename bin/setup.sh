@@ -17,6 +17,22 @@ if [[ -n "$TARGETARCH" ]] && [[ "$TARGETARCH" != "amd64" ]]; then
   sed -i '/syslinux/d' /tmp/setup-01.sh
 fi
 
+# Use time_64 packages for 24 stack
+if [[ "$STACK_VERSION" == "24" ]]; then
+  sed -i 's/libev4/libev4t64/' /tmp/setup-01.sh
+  sed -i 's/libevent-2.1-7/libevent-2.1-7t64/' /tmp/setup-01.sh
+  sed -i 's/libevent-core-2.1-7/libevent-core-2.1-7t64/' /tmp/setup-01.sh
+  sed -i 's/libevent-extra-2.1-7/libevent-extra-2.1-7t64/' /tmp/setup-01.sh
+  sed -i 's/libevent-openssl-2.1-7/libevent-openssl-2.1-7t64/' /tmp/setup-01.sh
+  sed -i 's/libevent-pthreads-2.1-7/libevent-pthreads-2.1-7t64/' /tmp/setup-01.sh
+  sed -i 's/libgnutls-openssl27/libgnutls-openssl27t64/' /tmp/setup-01.sh
+  sed -i 's/libgnutls30/libgnutls30t64/' /tmp/setup-01.sh
+  sed -i 's/libmemcached11/libmemcached11t64/' /tmp/setup-01.sh
+  sed -i 's/libuv1/libuv1t64/' /tmp/setup-01.sh
+  sed -i 's/libvips42/libvips42t64/' /tmp/setup-01.sh
+  sed -i 's/libzip4/libzip4t64/' /tmp/setup-01.sh
+fi
+
 # from base image
 /tmp/setup-01.sh
 
