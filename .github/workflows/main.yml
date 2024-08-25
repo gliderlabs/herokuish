@@ -27,6 +27,7 @@ jobs:
         heroku:
           - 20
           - 22
+          - 24
 
     steps:
       - uses: actions/checkout@v4
@@ -113,6 +114,7 @@ jobs:
         heroku:
           - 20
           - 22
+          - 24
 
     steps:
       - uses: actions/checkout@v4
