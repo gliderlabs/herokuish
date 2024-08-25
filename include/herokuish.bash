@@ -113,6 +113,7 @@ herokuish-test() {
     echo -e "$output"
     if [[ "$output" != "$expected" ]]; then
       echo "::: TEST FAILED :::"
+      echo "::: EXPECTED: $expected :::"
       exit 2
     fi
   fi
@@ -144,9 +145,9 @@ main() {
   cmd-export procfile-parse
 
   case "$SELF" in
-    /start) procfile-start "$@" ;;
-    /exec) procfile-exec "$@" ;;
-    /build) buildpack-build ;;
-    *) cmd-ns "" "$@" ;;
+  /start) procfile-start "$@" ;;
+  /exec) procfile-exec "$@" ;;
+  /build) buildpack-build ;;
+  *) cmd-ns "" "$@" ;;
   esac
 }
