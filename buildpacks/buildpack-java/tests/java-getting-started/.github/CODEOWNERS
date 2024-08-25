@@ -1,0 +1,8 @@
+# Note: Delete this file if you are copying the code in this repository into your own project.
+
+# Default to requesting pull request reviews from the Heroku Languages team.
+* @heroku/languages
+
+# However, request review from the Heroku language owner for files that are updated
+# by Dependabot, to reduce team review request noise.
+pom.xml @Malax
