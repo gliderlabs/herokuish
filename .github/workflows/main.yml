@@ -25,7 +25,6 @@ jobs:
           - "true"
           - "false"
         heroku:
-          - 22
           - 24
 
     steps:
@@ -111,7 +110,6 @@ jobs:
           - buildpack-scala
           - buildpack-static
         heroku:
-          - 22
           - 24
 
     steps:
