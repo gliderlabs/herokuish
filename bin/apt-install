@@ -3,18 +3,18 @@
 # Usage: apt-install package1 package2 package3 ...
 
 main() {
-    declare PACKAGES=("$@")
+  declare PACKAGES=("$@")
 
-    if [[ ${#PACKAGES[@]} -eq 0 ]]; then
-        echo "Usage: apt-install package1 package2 package3 ..."
-        exit 1
-    fi
+  if [[ ${#PACKAGES[@]} -eq 0 ]]; then
+    echo "Usage: apt-install package1 package2 package3 ..."
+    exit 1
+  fi
 
-    DEBIAN_FRONTEND=noninteractive
-    apt-get update
-    apt-get -o Dpkg::Use-Pty=0 --no-install-recommends -y install "${PACKAGES[@]}"
-    apt-get clean
-    rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/* /var/tmp/*
+  DEBIAN_FRONTEND=noninteractive
+  apt-get update
+  apt-get -o Dpkg::Use-Pty=0 --no-install-recommends -y install "${PACKAGES[@]}"
+  apt-get clean
+  rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/* /var/tmp/*
 }
 
 main "$@"

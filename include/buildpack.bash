@@ -9,13 +9,13 @@ _envfile-parse() {
     key=${key#*export }
     value="${line#*=}"
     case "$value" in
-    \'* | \"*)
-      # shellcheck disable=SC2269
-      value="${value}"
-      ;;
-    *)
-      value=\""${value}"\"
-      ;;
+      \'* | \"*)
+        # shellcheck disable=SC2269
+        value="${value}"
+        ;;
+      *)
+        value=\""${value}"\"
+        ;;
     esac
     echo "export ${key}=${value}"
   done <<<"$(cat)"
@@ -113,20 +113,20 @@ buildpack-install() {
   else
     local tar_args
     case "$url" in
-    *.tgz | *.tar.gz)
-      target_path="${target_path//.tgz/}"
-      target_path="${target_path//.tar.gz/}"
-      tar_args="-xzC"
-      ;;
-    *.tbz | *.tar.bz)
-      target_path="${target_path//.tbz/}"
-      target_path="${target_path//.tar.bz/}"
-      tar_args="-xjC"
-      ;;
-    *.tar)
-      target_path="${target_path//.tar/}"
-      tar_args="-xC"
-      ;;
+      *.tgz | *.tar.gz)
+        target_path="${target_path//.tgz/}"
+        target_path="${target_path//.tar.gz/}"
+        tar_args="-xzC"
+        ;;
+      *.tbz | *.tar.bz)
+        target_path="${target_path//.tbz/}"
+        target_path="${target_path//.tar.bz/}"
+        tar_args="-xjC"
+        ;;
+      *.tar)
+        target_path="${target_path//.tar/}"
+        tar_args="-xC"
+        ;;
     esac
     echo "Downloading '$url' into '$target_path'..."
     mkdir -p "$target_path"
