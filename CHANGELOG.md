@@ -2,6 +2,42 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.10.0](https://github.com/gliderlabs/herokuish/compare/v0.9.2...v0.10.0) - 2024-08-24
+
+- #1249 @dokku-bot: Update nodejs to version v255
+- #1250 @dokku-bot: chore(deps): bump org.apache.maven.plugins:maven-dependency-plugin from 3.7.0 to 3.7.1 in /buildpacks/buildpack-java/tests/java-jetty
+- #1251 @dokku-bot: chore(deps): bump rack from 3.1.3 to 3.1.4 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1252 @dokku-bot: chore(deps): bump rack from 3.1.3 to 3.1.4 in /buildpacks/buildpack-multi/tests/multi
+- #1253 @HectorMalot: Publish package for Ubuntu 24.04
+- #1254 @dokku-bot: Update ruby to version v273
+- #1255 @dokku-bot: Update ruby to version v274
+- #1256 @dokku-bot: Update python to version v253
+- #1257 @dokku-bot: chore(deps): bump rack from 3.1.4 to 3.1.5 in /buildpacks/buildpack-multi/tests/multi
+- #1258 @dokku-bot: chore(deps): bump rack from 3.1.4 to 3.1.5 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1259 @dokku-bot: chore(deps): bump rack from 3.1.5 to 3.1.6 in /buildpacks/buildpack-multi/tests/multi
+- #1260 @dokku-bot: chore(deps): bump rack from 3.1.5 to 3.1.6 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1261 @dokku-bot: Update ruby to version v275
+- #1262 @dokku-bot: Update nodejs to version v256
+- #1263 @dokku-bot: chore(deps-dev): bump heroku/heroku-buildpack-php from 253 to 254 in /buildpacks/buildpack-php/tests/php
+- #1264 @dokku-bot: Update php to version v254
+- #1265 @dokku-bot: Update ruby to version v276
+- #1266 @dokku-bot: Update nodejs to version v257
+- #1268 @dokku-bot: chore(deps): bump rack from 3.1.6 to 3.1.7 in /buildpacks/buildpack-multi/tests/multi
+- #1269 @dokku-bot: Update ruby to version v277
+- #1270 @dokku-bot: Update nodejs to version v258
+- #1282 @josegonzalez: Update ci runners to ubuntu-22.04
+- #1283 @josegonzalez: Build and default to heroku-24 based image
+- #1284 @dokku-bot: chore(deps): bump gunicorn from 22.0.0 to 23.0.0 in /buildpacks/buildpack-multi/tests/multi
+- #1285 @dokku-bot: chore(deps): bump gunicorn from 22.0.0 to 23.0.0 in /buildpacks/buildpack-python/tests/python-flask
+- #1286 @dokku-bot: chore(deps): bump gunicorn from 22.0.0 to 23.0.0 in /buildpacks/buildpack-python/tests/python-django
+- #1287 @dokku-bot: Update nodejs to version v262
+- #1288 @dokku-bot: chore(deps): bump golang from 1.22 to 1.23
+- #1289 @dokku-bot: Update go to version v195
+- #1290 @josegonzalez: chore: drop linux/arm (32-bit) support
+- #1291 @dokku-bot: chore(deps): bump org.apache.maven.plugins:maven-dependency-plugin from 3.7.1 to 3.8.0 in /buildpacks/buildpack-java/tests/java-jetty
+- #1292 @josegonzalez: Remove unmaintained heroku/play buildpack
+- #1293 @josegonzalez: Update test applications in java and gradle buildpacks
+
 ## [0.9.2](https://github.com/gliderlabs/herokuish/compare/v0.9.1...v0.9.2) - 2024-06-21
 
 - #1205 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 231 to 249 in /buildpacks/buildpack-php/tests/php
