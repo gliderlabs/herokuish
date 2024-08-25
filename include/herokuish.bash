@@ -113,6 +113,7 @@ herokuish-test() {
     echo -e "$output"
     if [[ "$output" != "$expected" ]]; then
       echo "::: TEST FAILED :::"
+      echo "::: EXPECTED: $expected :::"
       exit 2
     fi
   fi

@@ -10,14 +10,14 @@ on:
 jobs:
   build:
     name: build.${{ matrix.heroku }}-${{ matrix.buildx }}
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: true
       matrix:
         buildx:
           - "false"
         heroku:
-          - 22
+          - 24
 
     steps:
       - uses: actions/checkout@v4
@@ -58,7 +58,7 @@ jobs:
   tag-release:
     name: tag-release
     needs: build
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     steps:
       - uses: actions/checkout@v4
@@ -70,7 +70,7 @@ jobs:
       - name: download packages
         uses: actions/download-artifact@v4
         with:
-          name: build-22-false
+          name: build-24-false
           path: build
 
       - name: Login to DockerHub

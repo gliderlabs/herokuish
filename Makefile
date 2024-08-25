@@ -4,12 +4,12 @@ REPOSITORY = herokuish
 DESCRIPTION = 'Herokuish uses Docker and Buildpacks to build applications like Heroku'
 HARDWARE = $(shell uname -m)
 SYSTEM_NAME  = $(shell uname -s | tr '[:upper:]' '[:lower:]')
-VERSION ?= 0.9.2
+VERSION ?= 0.10.0
 IMAGE_NAME ?= $(NAME)
 BUILD_TAG ?= dev
 PACKAGECLOUD_REPOSITORY ?= dokku/dokku-betafish
 
-BUILDPACK_ORDER := multi ruby nodejs clojure python java gradle scala play php go static null
+BUILDPACK_ORDER := multi ruby nodejs clojure python java gradle scala php go static null
 SHELL := /bin/bash
 SYSTEM := $(shell sh -c 'uname -s 2>/dev/null')
 DOCKER_ARGS ?= "--pull"
@@ -57,13 +57,14 @@ build: bindata.go
 build/docker:
 	$(MAKE) build/docker/20 STACK_VERSION=20
 	$(MAKE) build/docker/22 STACK_VERSION=22
+	$(MAKE) build/docker/24 STACK_VERSION=24
 
 build/docker/$(STACK_VERSION): bindata.go
 ifeq ($(BUILDX),true)
 ifeq ($(STACK_VERSION),20)
-	docker buildx build --no-cache ${DOCKER_ARGS} --pull --progress plain --platform linux/arm,linux/arm64/v8,linux/amd64 --build-arg STACK_VERSION=$(STACK_VERSION) --build-arg VERSION=$(VERSION) -t $(IMAGE_NAME):$(BUILD_TAG)-$(STACK_VERSION) -t $(IMAGE_NAME):latest-$(STACK_VERSION) -t $(IMAGE_NAME):$(BUILD_TAG) -t $(IMAGE_NAME):latest .
+	docker buildx build --no-cache ${DOCKER_ARGS} --pull --progress plain --platform linux/arm64/v8,linux/amd64 --build-arg STACK_VERSION=$(STACK_VERSION) --build-arg VERSION=$(VERSION) -t $(IMAGE_NAME):$(BUILD_TAG)-$(STACK_VERSION) -t $(IMAGE_NAME):latest-$(STACK_VERSION) -t $(IMAGE_NAME):$(BUILD_TAG) -t $(IMAGE_NAME):latest .
 else
-	docker buildx build --no-cache ${DOCKER_ARGS} --pull --progress plain --platform linux/arm,linux/arm64/v8,linux/amd64 --build-arg STACK_VERSION=$(STACK_VERSION) --build-arg VERSION=$(VERSION) -t $(IMAGE_NAME):$(BUILD_TAG)-$(STACK_VERSION) -t $(IMAGE_NAME):latest-$(STACK_VERSION) .
+	docker buildx build --no-cache ${DOCKER_ARGS} --pull --progress plain --platform linux/arm64/v8,linux/amd64 --build-arg STACK_VERSION=$(STACK_VERSION) --build-arg VERSION=$(VERSION) -t $(IMAGE_NAME):$(BUILD_TAG)-$(STACK_VERSION) -t $(IMAGE_NAME):latest-$(STACK_VERSION) .
 endif
 else
 	docker build --no-cache ${DOCKER_ARGS} --pull --progress plain --build-arg STACK_VERSION=$(STACK_VERSION) --build-arg VERSION=$(VERSION) -t $(IMAGE_NAME):$(BUILD_TAG)-$(STACK_VERSION) -t $(IMAGE_NAME):latest-$(STACK_VERSION) -t $(IMAGE_NAME):$(BUILD_TAG) .
@@ -128,6 +129,7 @@ clean:
 deps: bindata.go
 	docker pull heroku/heroku:20-build
 	docker pull heroku/heroku:22-build
+	docker pull heroku/heroku:24-build
 	cd / && go get -u github.com/progrium/basht/...
 	$(MAKE) bindata.go
 	go get || true
@@ -180,6 +182,7 @@ release-packagecloud-deb: package_cloud build/deb/$(NAME)_$(VERSION)_all.deb
 	package_cloud push $(PACKAGECLOUD_REPOSITORY)/ubuntu/bionic  build/deb/$(NAME)_$(VERSION)_all.deb
 	package_cloud push $(PACKAGECLOUD_REPOSITORY)/ubuntu/focal   build/deb/$(NAME)_$(VERSION)_all.deb
 	package_cloud push $(PACKAGECLOUD_REPOSITORY)/ubuntu/jammy   build/deb/$(NAME)_$(VERSION)_all.deb
+	package_cloud push $(PACKAGECLOUD_REPOSITORY)/ubuntu/noble   build/deb/$(NAME)_$(VERSION)_all.deb
 	package_cloud push $(PACKAGECLOUD_REPOSITORY)/debian/stretch build/deb/$(NAME)_$(VERSION)_all.deb
 	package_cloud push $(PACKAGECLOUD_REPOSITORY)/debian/buster  build/deb/$(NAME)_$(VERSION)_all.deb
 	package_cloud push $(PACKAGECLOUD_REPOSITORY)/debian/bullseye build/deb/$(NAME)_$(VERSION)_all.deb
