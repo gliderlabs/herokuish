@@ -8,7 +8,7 @@ A command line tool for emulating Heroku build and runtime tasks in containers.
 
 Herokuish is made for platform authors. The project consolidates and decouples Heroku compatibility logic (running buildpacks, parsing Procfile) and supporting workflow (importing/exporting slugs) from specific platform images like those in Dokku/Buildstep, Deis, Flynn, etc.
 
-The goal is to be the definitive, well maintained and heavily tested Heroku emulation utility shared by all. It is based on the [Heroku:24 system image](https://github.com/heroku/stack-images). Together they form a toolkit for achieving Heroku compatibility.
+The goal is to be the definitive, well maintained and heavily tested Heroku emulation utility shared by all. It is based on the [Heroku:24 system image](https://github.com/heroku/base-images). Together they form a toolkit for achieving Heroku compatibility.
 
 Herokuish is a community project and is in no way affiliated with Heroku.
 
