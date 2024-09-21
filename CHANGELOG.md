@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.10.1](https://github.com/gliderlabs/herokuish/compare/v0.10.0...v0.10.1) - 2024-09-21
+
+- #1298 @dokku-bot: Update php to version v256
+- #1299 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 255 to 256 in /buildpacks/buildpack-php/tests/php
+- #1301 @dokku-bot: Update ruby to version v279
+- #1302 @dokku-bot: Update nodejs to version v264
+- #1303 @dokku-bot: Update python to version v256
+- #1306 @dokku-bot: Update go to version v197
+- #1307 @dependabot: chore(deps): bump twig/twig from 3.11.0 to 3.11.1 in /buildpacks/buildpack-php/tests/php
+- #1308 @dependabot: chore(deps): bump express from 4.19.2 to 4.21.0 in /buildpacks/buildpack-multi/tests/multi
+- #1309 @dependabot: chore(deps): bump express from 4.19.2 to 4.21.0 in /buildpacks/buildpack-nodejs/tests/nodejs-express
+- #1310 @dokku-bot: Update static to version v26
+- #1311 @dependabot: chore(deps): bump luizm/action-sh-checker from 0.8.0 to 0.9.0
+- #1312 @dependabot: chore(deps): bump puma from 6.4.2 to 6.4.3 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1313 @dokku-bot: Update nodejs to version v265
+
 ## [0.10.0](https://github.com/gliderlabs/herokuish/compare/v0.9.2...v0.10.0) - 2024-08-24
 
 - #1249 @dokku-bot: Update nodejs to version v255
