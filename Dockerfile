@@ -13,7 +13,7 @@ FROM ubuntu:${STACK_VERSION}.04 AS base
 ARG STACK_VERSION=20
 ARG TARGETARCH
 
-ADD https://raw.githubusercontent.com/heroku/base-images/refs/heads/main/heroku-${STACK_VERSION}/rds-global-bundle.pem /build/rds-global-bundle.pem
+ADD https://raw.githubusercontent.com/heroku/base-images/refs/heads/main/heroku-${STACK_VERSION}/rds-global-bundle.pem /tmp/rds-global-bundle.pem
 ADD https://raw.githubusercontent.com/heroku/stack-images/main/heroku-${STACK_VERSION}/setup.sh /tmp/setup-01.sh
 ADD https://raw.githubusercontent.com/heroku/stack-images/main/heroku-${STACK_VERSION}-build/setup.sh /tmp/setup-02.sh
 COPY bin/setup.sh /tmp/setup.sh
