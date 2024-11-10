@@ -33,9 +33,6 @@ if [[ "$STACK_VERSION" == "24" ]]; then
   sed -i 's/libzip4/libzip4t64/' /tmp/setup-01.sh
 fi
 
-# download the rds-global-bundle.pem
-mv /tmp/rds-global-bundle.pem "/build/rds-global-bundle.pem"
-
 # from base image
 /tmp/setup-01.sh
 
