@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.10.2](https://github.com/gliderlabs/herokuish/compare/v0.10.1...v0.10.2) - 2024-11-10
+
+- #1315 @dokku-bot: Update python to version v257
+- #1316 @dokku-bot: Update php to version v257
+- #1317 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 256 to 257 in /buildpacks/buildpack-php/tests/php
+- #1318 @dokku-bot: Update python to version v258
+- #1319 @dokku-bot: Update go to version v198
+- #1320 @dependabot: chore(deps): bump webrick from 1.8.1 to 1.8.2 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1321 @dokku-bot: Update java to version v74
+- #1322 @dokku-bot: Update gradle to version v40
+- #1323 @dokku-bot: Update nodejs to version v266
+- #1326 @dependabot: chore(deps): bump markupsafe from 2.1.5 to 3.0.1 in /buildpacks/buildpack-python/tests/python-flask
+- #1327 @dependabot: chore(deps): bump markupsafe from 2.1.5 to 3.0.1 in /buildpacks/buildpack-multi/tests/multi
+- #1328 @dokku-bot: Update ruby to version v280
+- #1329 @dokku-bot: Update python to version v259
+- #1330 @dokku-bot: Update python to version v260
+- #1331 @dependabot: chore(deps): bump rack from 3.1.7 to 3.1.8 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1332 @dependabot: chore(deps): bump rack from 3.1.7 to 3.1.8 in /buildpacks/buildpack-multi/tests/multi
+- #1333 @dokku-bot: Update python to version v261
+- #1334 @dependabot: chore(deps): bump markupsafe from 3.0.1 to 3.0.2 in /buildpacks/buildpack-python/tests/python-flask
+- #1335 @dependabot: chore(deps): bump markupsafe from 3.0.1 to 3.0.2 in /buildpacks/buildpack-multi/tests/multi
+- #1339 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 257 to 258 in /buildpacks/buildpack-php/tests/php
+- #1340 @dokku-bot: Update nodejs to version v269
+- #1341 @dokku-bot: Update python to version v263
+- #1342 @dokku-bot: Update php to version v258
+- #1343 @dependabot: chore(deps): bump rackup from 2.1.0 to 2.2.0 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1344 @dokku-bot: Update python to version v265
+- #1345 @dependabot: chore(deps): bump twig/twig from 3.11.1 to 3.11.2 in /buildpacks/buildpack-php/tests/php
+- #1347 @dokku-bot: Update ruby to version v282
+- #1349 @josegonzalez Copy the rds pem bundle into place to avoid build failures
+- #1350 @josegonzalez Create .well-known/funding-manifest-urls
+- #1351 @dokku-bot: Update python to version v266
+
 ## [0.10.1](https://github.com/gliderlabs/herokuish/compare/v0.10.0...v0.10.1) - 2024-09-21
 
 - #1298 @dokku-bot: Update php to version v256
