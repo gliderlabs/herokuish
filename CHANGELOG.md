@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.10.3](https://github.com/gliderlabs/herokuish/compare/v0.10.2...v0.10.3) - 2024-11-24
+
+- #1353 @dokku-bot: Update python to version v267
+- #1354 @dokku-bot: Update go to version v200
+- #1355 @dependabot: chore(deps): bump flask from 3.0.3 to 3.1.0 in /buildpacks/buildpack-multi/tests/multi
+- #1356 @dependabot: chore(deps): bump rackup from 2.2.0 to 2.2.1 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1357 @dependabot: chore(deps): bump flask from 3.0.3 to 3.1.0 in /buildpacks/buildpack-python/tests/python-flask
+- #1358 @dokku-bot: Update nodejs to version v270
+- #1359 @dokku-bot: Update ruby to version v283
+- #1361 @dependabot: chore(deps): bump sinatra from 4.0.0 to 4.1.0 in /buildpacks/buildpack-multi/tests/multi
+- #1362 @dependabot: chore(deps): bump sinatra from 4.0.0 to 4.1.0 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1363 @dependabot: chore(deps): bump sinatra from 4.0.0 to 4.1.1 in /buildpacks/buildpack-multi/tests/multi
+- #1364 @dependabot: chore(deps): bump sinatra from 4.0.0 to 4.1.1 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1366 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 258 to 259 in /buildpacks/buildpack-php/tests/php
+- #1367 @dokku-bot: Update ruby to version v285
+- #1368 @dokku-bot: Update nodejs to version v272
+- #1369 @dokku-bot: Update php to version v259
+
 ## [0.10.2](https://github.com/gliderlabs/herokuish/compare/v0.10.1...v0.10.2) - 2024-11-10
 
 - #1315 @dokku-bot: Update python to version v257
