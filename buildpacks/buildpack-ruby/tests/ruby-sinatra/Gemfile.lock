@@ -29,7 +29,7 @@ GEM
       rack-protection (= 4.1.1)
       rack-session (>= 2.0.0, < 3)
       tilt (~> 2.0)
-    test-unit (3.6.5)
+    test-unit (3.6.7)
       power_assert
     tilt (2.4.0)
 
