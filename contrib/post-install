@@ -7,7 +7,7 @@ if which systemctl >/dev/null; then
 fi
 
 echo "Pruning dangling images"
-docker images -qf dangling=true | xargs docker rmi || true
+docker images -qf dangling=true | xargs --no-run-if-empty docker rmi
 
 echo "Pruning unused gliderlabs/herokuish images"
 docker images -a | grep "^gliderlabs\/herokuish" | grep -v latest | awk '{print $3}' | xargs -r docker rmi || true
