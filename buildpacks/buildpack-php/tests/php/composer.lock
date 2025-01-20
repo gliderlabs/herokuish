@@ -2157,16 +2157,16 @@
     "packages-dev": [
         {
             "name": "heroku/heroku-buildpack-php",
-            "version": "v261",
+            "version": "v262",
             "source": {
                 "type": "git",
                 "url": "https://github.com/heroku/heroku-buildpack-php.git",
-                "reference": "90e575937dd57c41cf7c3daa2fcfdf71cd123323"
+                "reference": "1760810eda69a483b0ae5f503d7580088ac69a0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/90e575937dd57c41cf7c3daa2fcfdf71cd123323",
-                "reference": "90e575937dd57c41cf7c3daa2fcfdf71cd123323",
+                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/1760810eda69a483b0ae5f503d7580088ac69a0a",
+                "reference": "1760810eda69a483b0ae5f503d7580088ac69a0a",
                 "shasum": ""
             },
             "bin": [
@@ -2196,9 +2196,9 @@
             ],
             "support": {
                 "issues": "https://github.com/heroku/heroku-buildpack-php/issues",
-                "source": "https://github.com/heroku/heroku-buildpack-php/tree/v261"
+                "source": "https://github.com/heroku/heroku-buildpack-php/tree/v262"
             },
-            "time": "2024-12-20T15:57:01+00:00"
+            "time": "2025-01-17T12:20:58+00:00"
         }
     ],
     "aliases": [],
@@ -2208,5 +2208,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.3.0"
 }
