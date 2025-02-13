@@ -14,7 +14,7 @@ SHELL := /bin/bash
 SYSTEM := $(shell sh -c 'uname -s 2>/dev/null')
 DOCKER_ARGS ?= "--pull"
 BUILDX ?= true
-STACK_VERSION ?= 20
+STACK_VERSION ?= 24
 
 shellcheck:
 ifneq ($(shell shellcheck --version > /dev/null 2>&1 ; echo $$?),0)
@@ -55,13 +55,11 @@ build: bindata.go
 	$(MAKE) build/deb/$(NAME)_$(VERSION)_all.deb
 
 build/docker:
-	$(MAKE) build/docker/20 STACK_VERSION=20
-	$(MAKE) build/docker/22 STACK_VERSION=22
 	$(MAKE) build/docker/24 STACK_VERSION=24
 
 build/docker/$(STACK_VERSION): bindata.go
 ifeq ($(BUILDX),true)
-ifeq ($(STACK_VERSION),20)
+ifeq ($(STACK_VERSION),24)
 	docker buildx build --no-cache ${DOCKER_ARGS} --pull --progress plain --platform linux/arm64/v8,linux/amd64 --build-arg STACK_VERSION=$(STACK_VERSION) --build-arg VERSION=$(VERSION) -t $(IMAGE_NAME):$(BUILD_TAG)-$(STACK_VERSION) -t $(IMAGE_NAME):latest-$(STACK_VERSION) -t $(IMAGE_NAME):$(BUILD_TAG) -t $(IMAGE_NAME):latest .
 else
 	docker buildx build --no-cache ${DOCKER_ARGS} --pull --progress plain --platform linux/arm64/v8,linux/amd64 --build-arg STACK_VERSION=$(STACK_VERSION) --build-arg VERSION=$(VERSION) -t $(IMAGE_NAME):$(BUILD_TAG)-$(STACK_VERSION) -t $(IMAGE_NAME):latest-$(STACK_VERSION) .
@@ -127,8 +125,6 @@ clean:
 	docker rmi herokuish:dev || true
 
 deps: bindata.go
-	docker pull heroku/heroku:20-build
-	docker pull heroku/heroku:22-build
 	docker pull heroku/heroku:24-build
 	cd / && go get -u github.com/progrium/basht/...
 	$(MAKE) bindata.go
