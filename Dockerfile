@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-ARG STACK_VERSION=20
+ARG STACK_VERSION=22
 
 FROM golang:1.24 AS builder
 RUN mkdir /src
@@ -10,7 +10,7 @@ ARG VERSION
 RUN go build -a -ldflags "-X main.Version=$VERSION" -o herokuish .
 
 FROM ubuntu:${STACK_VERSION}.04 AS base
-ARG STACK_VERSION=20
+ARG STACK_VERSION=22
 ARG TARGETARCH
 
 ADD https://raw.githubusercontent.com/heroku/stack-images/main/heroku-${STACK_VERSION}/setup.sh /tmp/setup-01.sh
