@@ -8,7 +8,7 @@ A command line tool for emulating Heroku build and runtime tasks in containers.
 
 Herokuish is made for platform authors. The project consolidates and decouples Heroku compatibility logic (running buildpacks, parsing Procfile) and supporting workflow (importing/exporting slugs) from specific platform images like those in Dokku/Buildstep, Deis, Flynn, etc.
 
-The goal is to be the definitive, well maintained and heavily tested Heroku emulation utility shared by all. It is based on the [Heroku:20, Heroku:22, and Heroku:24 system images](https://github.com/heroku/stack-images). Together they form a toolkit for achieving Heroku compatibility.
+The goal is to be the definitive, well maintained and heavily tested Heroku emulation utility shared by all. It is based on the [Heroku:22, and Heroku:24 system images](https://github.com/heroku/stack-images). Together they form a toolkit for achieving Heroku compatibility.
 
 Herokuish is a community project and is in no way affiliated with Heroku.
 
@@ -208,7 +208,7 @@ $ docker run --rm -e TRACE=true -v /abs/app/path:/tmp/app gliderlabs/herokuish /
 You can also set a custom buildpack:
 
 ```shell
-docker run -e BUILDPACK_URL="https://github.com/custom/buildpack.git#with-a-branch" -e STACK=heroku-20 -e TRACE=true --rm -v ./:/tmp/app -it gliderlabs/herokuish /bin/herokuish test
+docker run -e BUILDPACK_URL="https://github.com/custom/buildpack.git#with-a-branch" -e STACK=heroku-22 -e TRACE=true --rm -v ./:/tmp/app -it gliderlabs/herokuish /bin/herokuish test
 ```
 
 Note that the underlying buildpacks will not trace their commands with `TRACE=true` is enabled. They need to independently set `set -x` in order to trace execution.
