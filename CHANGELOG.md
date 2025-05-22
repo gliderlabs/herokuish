@@ -2,6 +2,105 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.11.0](https://github.com/gliderlabs/herokuish/compare/v0.10.3...v0.11.0) - 2025-05-22
+
+- #1294 @josegonzalez: Build images from heroku/heroku:STACK-build images and drop support for heroku-20 and heroku-22
+- #1372 @dependabot: chore(deps-dev): bump test-unit from 3.6.2 to 3.6.3 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1373 @dependabot: chore(deps): bump puma from 6.4.3 to 6.5.0 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1374 @dependabot: chore(deps-dev): bump test-unit from 3.6.3 to 3.6.4 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1375 @dokku-bot: Update python to version v268
+- #1376 @dokku-bot: Update python to version v269
+- #1377 @dokku-bot: Update nodejs to version v274
+- #1378 @dokku-bot: Update go to version v201
+- #1380 @dokku-bot: Update nodejs to version v275
+- #1382 @dokku-bot: Update ruby to version v286
+- #1383 @dokku-bot: Update python to version v272
+- #1384 @josegonzalez: chore: upgrade django app
+- #1385 @dependabot: chore(deps-dev): bump test-unit from 3.6.4 to 3.6.5 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1386 @dependabot: chore(deps-dev): bump test-unit from 3.6.5 to 3.6.7 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1387 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 259 to 260 in /buildpacks/buildpack-php/tests/php
+- #1388 @dokku-bot: Update php to version v260
+- #1389 @turicas: Don't try to delete dangling images if none is present
+- #1390 @dokku-bot: Update php to version v261
+- #1391 @dependabot: chore(deps): bump jinja2 from 3.1.4 to 3.1.5 in /buildpacks/buildpack-multi/tests/multi
+- #1392 @dependabot: chore(deps): bump jinja2 from 3.1.4 to 3.1.5 in /buildpacks/buildpack-python/tests/python-flask
+- #1393 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 260 to 261 in /buildpacks/buildpack-php/tests/php
+- #1394 @dependabot: chore(deps-dev): bump rack-test from 2.1.0 to 2.2.0 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1395 @dokku-bot: Update ruby to version v287
+- #1402 @dependabot: chore(deps): bump monolog/monolog from 2.9.3 to 3.8.1 in /buildpacks/buildpack-php/tests/php
+- #1403 @dokku-bot: Update python to version v275
+- #1404 @dokku-bot: Update php to version v262
+- #1406 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 261 to 262 in /buildpacks/buildpack-php/tests/php
+- #1407 @dokku-bot: Update go to version v202
+- #1408 @dokku-bot: Update nodejs to version v278
+- #1410 @dependabot: chore(deps): bump puma from 6.5.0 to 6.6.0 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1411 @dependabot: chore(deps): bump twig/twig from 3.11.2 to 3.19.0 in /buildpacks/buildpack-php/tests/php
+- #1412 @dependabot: chore(deps): bump rack from 3.1.8 to 3.1.9 in /buildpacks/buildpack-multi/tests/multi
+- #1413 @dependabot: chore(deps): bump rack from 3.1.8 to 3.1.9 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1414 @dokku-bot: Update ruby to version v291
+- #1415 @dokku-bot: Update nodejs to version v279
+- #1416 @dokku-bot: Update nodejs to version v280
+- #1417 @dokku-bot: Update python to version v276
+- #1419 @dokku-bot: Update nodejs to version v282
+- #1420 @dokku-bot: Update go to version v203
+- #1421 @dokku-bot: Update ruby to version v292
+- #1425 @dependabot: chore(deps): bump golang from 1.23 to 1.24
+- #1426 @dependabot: chore(deps): bump twig/twig from 3.19.0 to 3.20.0 in /buildpacks/buildpack-php/tests/php
+- #1429 @dokku-bot: Update php to version v263
+- #1430 @dokku-bot: Update ruby to version v293
+- #1431 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 262 to 263 in /buildpacks/buildpack-php/tests/php
+- #1435 @dokku-bot: Update java to version v75
+- #1436 @dokku-bot: Update python to version v279
+- #1437 @dokku-bot: Update nodejs to version v286
+- #1438 @dependabot: chore(deps): bump rack from 3.1.9 to 3.1.11 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1439 @dependabot: chore(deps): bump rack from 3.1.9 to 3.1.11 in /buildpacks/buildpack-multi/tests/multi
+- #1440 @dokku-bot: Update go to version v205
+- #1441 @dependabot: chore(deps): bump jinja2 from 3.1.5 to 3.1.6 in /buildpacks/buildpack-multi/tests/multi
+- #1442 @dependabot: chore(deps): bump jinja2 from 3.1.5 to 3.1.6 in /buildpacks/buildpack-python/tests/python-flask
+- #1443 @dependabot: chore(deps): bump rack from 3.1.11 to 3.1.12 in /buildpacks/buildpack-multi/tests/multi
+- #1444 @dependabot: chore(deps): bump rack from 3.1.11 to 3.1.12 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1445 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 263 to 264 in /buildpacks/buildpack-php/tests/php
+- #1446 @dokku-bot: Update php to version v264
+- #1447 @dokku-bot: Update nodejs to version v287
+- #1449 @dokku-bot: Update ruby to version v295
+- #1450 @dokku-bot: Update ruby to version v296
+- #1451 @dependabot: chore(deps): bump monolog/monolog from 3.8.1 to 3.9.0 in /buildpacks/buildpack-php/tests/php
+- #1452 @dokku-bot: Update ruby to version v297
+- #1453 @dokku-bot: Update nodejs to version v288
+- #1454 @dependabot: chore(deps): bump express from 4.21.2 to 5.1.0 in /buildpacks/buildpack-nodejs/tests/nodejs-express
+- #1455 @dependabot: chore(deps): bump express from 4.21.2 to 5.1.0 in /buildpacks/buildpack-multi/tests/multi
+- #1456 @dokku-bot: Update go to version v206
+- #1457 @dokku-bot: Update ruby to version v298
+- #1458 @dokku-bot: Update nodejs to version v289
+- #1459 @dependabot: chore(deps-dev): bump test-unit from 3.6.7 to 3.6.8 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1460 @dokku-bot: Update ruby to version v299
+- #1462 @dokku-bot: Update python to version v281
+- #1463 @dokku-bot: Update php to version v265
+- #1464 @dependabot: chore(deps): bump rack from 3.1.12 to 3.1.13 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1465 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 264 to 265 in /buildpacks/buildpack-php/tests/php
+- #1466 @dependabot: chore(deps): bump rack from 3.1.12 to 3.1.13 in /buildpacks/buildpack-multi/tests/multi
+- #1467 @dokku-bot: Update ruby to version v300
+- #1468 @josegonzalez: chore: bump nodejs from 8.11.2 to 22.14.x
+- #1469 @josegonzalez: chore: drop support for heroku-20
+- #1470 @dokku-bot: Update ruby to version v301
+- #1471 @dokku-bot: Update ruby to version v302
+- #1472 @dokku-bot: Update ruby to version v303
+- #1473 @dokku-bot: Update nodejs to version v290
+- #1474 @dokku-bot: Update ruby to version v305
+- #1476 @dependabot: chore(deps): bump twig/twig from 3.20.0 to 3.21.1 in /buildpacks/buildpack-php/tests/php
+- #1484 @dependabot: chore(deps): bump rack-session from 2.0.0 to 2.1.1 in /buildpacks/buildpack-multi/tests/multi
+- #1485 @dependabot: chore(deps): bump rack-session from 2.0.0 to 2.1.1 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1487 @dependabot: chore(deps): bump flask from 3.1.0 to 3.1.1 in /buildpacks/buildpack-multi/tests/multi
+- #1488 @dependabot: chore(deps): bump flask from 3.1.0 to 3.1.1 in /buildpacks/buildpack-python/tests/python-flask
+- #1492 @dokku-bot: Update go to version v207
+- #1493 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 265 to 267 in /buildpacks/buildpack-php/tests/php
+- #1495 @dokku-bot: Update php to version v267
+- #1496 @dokku-bot: Update nodejs to version v294
+- #1498 @dependabot: chore(deps): bump rack from 3.1.13 to 3.1.15 in /buildpacks/buildpack-multi/tests/multi
+- #1499 @dependabot: chore(deps): bump rack from 3.1.13 to 3.1.15 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1500 @dokku-bot: Update ruby to version v309
+- #1501 @dokku-bot: Update python to version v287
+
 ## [0.10.3](https://github.com/gliderlabs/herokuish/compare/v0.10.2...v0.10.3) - 2024-11-24
 
 - #1353 @dokku-bot: Update python to version v267
