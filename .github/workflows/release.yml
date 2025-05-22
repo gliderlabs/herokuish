@@ -15,8 +15,6 @@ jobs:
       fail-fast: false
       matrix:
         heroku:
-          - 20
-          - 22
           - 24
 
     steps:
