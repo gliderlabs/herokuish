@@ -34,7 +34,6 @@ RUN apt-install daemontools && \
     */.github \
     */changelogs \
     */spec \
-    */support/build \
     */builds \
     */test \
     */tmp
