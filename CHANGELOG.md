@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.11.1](https://github.com/gliderlabs/herokuish/compare/v0.11.0...v0.11.1) - 2025-07-25
+
+- #1504 @dokku-bot: Update nodejs to version v295
+- #1506 @dokku-bot: Update ruby to version v310
+- #1508 @dependabot: chore(deps): bump rake from 13.2.1 to 13.3.0 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1509 @josegonzalez: Do not delete support/build directories
+- #1510 @dokku-bot: Update python to version v288
+- #1511 @dependabot: chore(deps): bump rack from 3.1.15 to 3.1.16 in /buildpacks/buildpack-multi/tests/multi
+- #1512 @dependabot: chore(deps): bump rack from 3.1.15 to 3.1.16 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1513 @dokku-bot: Update ruby to version v311
+- #1514 @dokku-bot: Update python to version v289
+- #1515 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 267 to 268 in /buildpacks/buildpack-php/tests/php
+- #1516 @dokku-bot: Update nodejs to version v296
+- #1517 @dokku-bot: Update php to version v268
+- #1518 @dokku-bot: Update ruby to version v312
+- #1519 @dokku-bot: Update gradle to version v41
+- #1520 @dokku-bot: Update python to version v290
+- #1521 @dokku-bot: Update go to version v208
+- #1523 @dokku-bot: Update nodejs to version v298
+- #1524 @dependabot: chore(deps-dev): bump test-unit from 3.6.8 to 3.6.9 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1526 @dokku-bot: Update php to version v269
+- #1527 @dependabot: chore(deps-dev): bump test-unit from 3.6.9 to 3.7.0 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1528 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 268 to 269 in /buildpacks/buildpack-php/tests/php
+- #1530 @dokku-bot: Update go to version v209
+- #1532 @dokku-bot: Update java to version v76
+- #1533 @dokku-bot: Update gradle to version v43
+- #1535 @dokku-bot: Update nodejs to version v300
+- #1536 @dokku-bot: Update ruby to version v314
+- #1538 @dokku-bot: Update python to version v293
+
 ## [0.11.0](https://github.com/gliderlabs/herokuish/compare/v0.10.3...v0.11.0) - 2025-05-22
 
 - #1294 @josegonzalez: Build images from heroku/heroku:STACK-build images and drop support for heroku-20 and heroku-22
