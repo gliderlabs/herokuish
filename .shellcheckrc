@@ -1,8 +1,9 @@
-disable=SC2128
 disable=SC1091
 disable=SC2002
-disable=SC2294
-disable=SC2034
-disable=SC2031
 disable=SC2030
+disable=SC2031
+disable=SC2034
+disable=SC2128
+disable=SC2294
+disable=SC2329
 disable=SC3045
