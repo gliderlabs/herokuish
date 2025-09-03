@@ -2,6 +2,37 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.11.2](https://github.com/gliderlabs/herokuish/compare/v0.11.1...v0.11.2) - 2025-09-03
+
+- #1542 @dependabot: chore(deps): bump rack from 3.1.16 to 3.2.0 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1544 @dependabot: chore(deps): bump rack from 3.1.16 to 3.2.0 in /buildpacks/buildpack-multi/tests/multi
+- #1546 @dependabot: chore(deps): bump puma from 6.6.0 to 6.6.1 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1547 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 269 to 271 in /buildpacks/buildpack-php/tests/php
+- #1549 @dokku-bot: Update php to version v271
+- #1552 @dependabot: chore(deps): bump actions/download-artifact from 4 to 5
+- #1553 @dokku-bot: Update nodejs to version v303
+- #1556 @dokku-bot: Update python to version v298
+- #1557 @dokku-bot: Update ruby to version v317
+- #1558 @dokku-bot: Update go to version v210
+- #1559 @dokku-bot: Update ruby to version v318
+- #1560 @dependabot: chore(deps): bump actions/checkout from 4 to 5
+- #1561 @dokku-bot: Update python to version v299
+- #1562 @dependabot: chore(deps): bump golang from 1.24 to 1.25
+- #1564 @dokku-bot: Update go to version v211
+- #1565 @dokku-bot: Update nodejs to version v304
+- #1566 @dokku-bot: Update python to version v301
+- #1567 @dependabot: chore(deps): bump flask from 3.1.1 to 3.1.2 in /buildpacks/buildpack-multi/tests/multi
+- #1568 @dependabot: chore(deps): bump flask from 3.1.1 to 3.1.2 in /buildpacks/buildpack-python/tests/python-flask
+- #1569 @dokku-bot: Update nodejs to version v305
+- #1570 @dokku-bot: Update python to version v302
+- #1574 @dokku-bot: Update ruby to version v319
+- #1575 @dokku-bot: Update nodejs to version v308
+- #1577 @dokku-bot: Update python to version v305
+- #1578 @dokku-bot: Update php to version v272
+- #1579 @dependabot: chore(deps): bump rack from 3.2.0 to 3.2.1 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1580 @dependabot: chore(deps): bump rack from 3.2.0 to 3.2.1 in /buildpacks/buildpack-multi/tests/multi
+- #1581 @josegonzalez: chore: ignore SC2329 when linting shell scripts
+
 ## [0.11.1](https://github.com/gliderlabs/herokuish/compare/v0.11.0...v0.11.1) - 2025-07-25
 
 - #1504 @dokku-bot: Update nodejs to version v295
