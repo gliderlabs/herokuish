@@ -7,7 +7,7 @@ GEM
       ruby2_keywords (~> 0.0.1)
     nio4r (2.7.4)
     power_assert (2.0.5)
-    puma (7.0.0)
+    puma (7.0.1)
       nio4r (~> 2.0)
     rack (3.2.1)
     rack-protection (4.1.1)
