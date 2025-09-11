@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.11.3](https://github.com/gliderlabs/herokuish/compare/v0.11.2...v0.11.3) - 2025-09-10
+
+- #1583 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 271 to 272 in /buildpacks/buildpack-php/tests/php
+- #1584 @dependabot: chore(deps): bump puma from 6.6.1 to 7.0.0 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1585 @dependabot: chore(deps): bump hadolint/hadolint-action from 3.1.0 to 3.2.0
+- #1586 @dependabot: chore(deps): bump actions/setup-python from 5 to 6
+- #1587 @dokku-bot: Update php to version v273
+- #1588 @dependabot: chore(deps): bump actions/setup-go from 5 to 6
+- #1589 @dependabot: chore(deps): bump actions/setup-node from 4 to 5
+- #1590 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 272 to 273 in /buildpacks/buildpack-php/tests/php
+- #1591 @dokku-bot: Update nodejs to version v309
+- #1592 @dokku-bot: Update java to version v79
+- #1593 @dependabot: chore(deps): bump puma from 7.0.0 to 7.0.1 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1594 @dependabot: chore(deps): bump puma from 7.0.1 to 7.0.2 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1595 @dokku-bot: Update python to version v306
+- #1596 @dokku-bot: Update java to version v80
+- #1597 @dokku-bot: Update go to version v212
+- #1598 @dokku-bot: Update ruby to version v320
+
 ## [0.11.2](https://github.com/gliderlabs/herokuish/compare/v0.11.1...v0.11.2) - 2025-09-03
 
 - #1542 @dependabot: chore(deps): bump rack from 3.1.16 to 3.2.0 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
