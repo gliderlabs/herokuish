@@ -4,7 +4,7 @@ REPOSITORY = herokuish
 DESCRIPTION = 'Herokuish uses Docker and Buildpacks to build applications like Heroku'
 HARDWARE = $(shell uname -m)
 SYSTEM_NAME  = $(shell uname -s | tr '[:upper:]' '[:lower:]')
-VERSION ?= 0.11.3
+VERSION ?= 0.11.4
 IMAGE_NAME ?= $(NAME)
 BUILD_TAG ?= dev
 PACKAGECLOUD_REPOSITORY ?= dokku/dokku-betafish
@@ -174,15 +174,12 @@ release-packagecloud: package_cloud
 	@$(MAKE) release-packagecloud-rpm
 
 release-packagecloud-deb: package_cloud build/deb/$(NAME)_$(VERSION)_all.deb
-	package_cloud push $(PACKAGECLOUD_REPOSITORY)/ubuntu/xenial  build/deb/$(NAME)_$(VERSION)_all.deb
-	package_cloud push $(PACKAGECLOUD_REPOSITORY)/ubuntu/bionic  build/deb/$(NAME)_$(VERSION)_all.deb
-	package_cloud push $(PACKAGECLOUD_REPOSITORY)/ubuntu/focal   build/deb/$(NAME)_$(VERSION)_all.deb
 	package_cloud push $(PACKAGECLOUD_REPOSITORY)/ubuntu/jammy   build/deb/$(NAME)_$(VERSION)_all.deb
 	package_cloud push $(PACKAGECLOUD_REPOSITORY)/ubuntu/noble   build/deb/$(NAME)_$(VERSION)_all.deb
 	package_cloud push $(PACKAGECLOUD_REPOSITORY)/debian/stretch build/deb/$(NAME)_$(VERSION)_all.deb
-	package_cloud push $(PACKAGECLOUD_REPOSITORY)/debian/buster  build/deb/$(NAME)_$(VERSION)_all.deb
 	package_cloud push $(PACKAGECLOUD_REPOSITORY)/debian/bullseye build/deb/$(NAME)_$(VERSION)_all.deb
 	package_cloud push $(PACKAGECLOUD_REPOSITORY)/debian/bookworm build/deb/$(NAME)_$(VERSION)_all.deb
+	package_cloud push $(PACKAGECLOUD_REPOSITORY)/debian/trixie   build/deb/$(NAME)_$(VERSION)_all.deb
 
 release-packagecloud-rpm: package_cloud build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm
 	package_cloud push $(PACKAGECLOUD_REPOSITORY)/el/7           build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm

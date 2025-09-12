@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.11.4](https://github.com/gliderlabs/herokuish/compare/v0.11.3...v0.11.4) - 2025-09-12
+
+- #1600 @dokku-bot: Update python to version v307
+- #1601 @dokku-bot: Update scala to version v99
+- #1603 @dokku-bot: Update gradle to version v44
+- #1602 @dokku-bot: Update clojure to version v92
+- #1604 @dokku-bot: Update gradle to version v45
+- #1605 @josegonzalez: feat: add support for debian trixie
+- #1606 @josegonzalez: chore: drop support for unsupported Ubuntu Xenial, Bionic, Focal, and Debian Buster
+
 ## [0.11.3](https://github.com/gliderlabs/herokuish/compare/v0.11.2...v0.11.3) - 2025-09-10
 
 - #1583 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 271 to 272 in /buildpacks/buildpack-php/tests/php
