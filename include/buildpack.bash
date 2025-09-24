@@ -70,6 +70,12 @@ _select-buildpack() {
   fi
 }
 
+buildpack-detect() {
+	declare desc="Detect suitable buildpack for an application"
+	ensure-paths
+	_select-buildpack
+}
+
 buildpack-build() {
   declare desc="Build an application using installed buildpacks"
   ensure-paths
