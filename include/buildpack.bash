@@ -73,6 +73,8 @@ _select-buildpack() {
 buildpack-detect() {
 	declare desc="Detect suitable buildpack for an application"
 	ensure-paths
+	[[ "$USER" ]] || randomize-unprivileged
+	buildpack-setup >/dev/null
 	_select-buildpack
 }
 
