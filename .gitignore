@@ -4,3 +4,4 @@ build
 include/cedarish.txt
 include/buildpacks.txt
 bindata.go
+.idea/
