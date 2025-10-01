@@ -14,7 +14,7 @@ ARG STACK_VERSION=24
 ARG TARGETARCH
 
 ENV STACK=heroku-$STACK_VERSION
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 LABEL com.gliderlabs.herokuish/stack=$STACK
 
 USER root
@@ -39,4 +39,4 @@ RUN apt-install daemontools && \
     */tmp
 COPY include/default_user.bash /tmp/default_user.bash
 RUN bash /tmp/default_user.bash && rm -f /tmp/default_user.bash
-ENV BASH_BIN /usr/bin/bash
+ENV BASH_BIN=/usr/bin/bash
