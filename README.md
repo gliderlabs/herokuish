@@ -35,6 +35,7 @@ $ herokuish
 Available commands:
   buildpack                Use and install buildpacks
     build                    Build an application using installed buildpacks
+    detect                   Detect buildpack to use for an application
     install                  Install buildpack from Git URL and optional committish
     list                     List installed buildpacks
     test                     Build and run tests for an application using installed buildpacks

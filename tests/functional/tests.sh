@@ -48,3 +48,48 @@ T_generate-slug() {
 		herokuish slug generate
 		tar tzf /tmp/slug.tgz"
 }
+
+T_buildpack-detect-default() {
+  herokuish-test "buildpack-detect-default" "
+    set -e
+    unset BUILDPACK_URL
+    export buildpack_path=/tmp/buildpacks
+    export build_path=/tmp/app
+    export unprivileged_user=\$(whoami)
+    export unprivileged_group=\$(id -gn)
+
+    rm -rf \$buildpack_path && mkdir -p \$buildpack_path
+
+    mkdir -p \$buildpack_path/00_buildpack-ruby/bin
+    {
+      echo '#!/usr/bin/env bash'
+      echo 'echo Ruby'
+      echo 'exit 0'
+    } > \$buildpack_path/00_buildpack-ruby/bin/detect
+    chmod +x \$buildpack_path/00_buildpack-ruby/bin/detect
+
+    herokuish buildpack detect | grep 'Ruby app detected'
+  "
+}
+
+T_buildpack-detect-fail() {
+  herokuish-test "buildpack-detect-fail" "
+    set -e
+    unset BUILDPACK_URL
+    export buildpack_path=/tmp/buildpacks
+    export build_path=/tmp/app
+    export unprivileged_user=\$(whoami)
+    export unprivileged_group=\$(id -gn)
+
+    rm -rf \$buildpack_path && mkdir -p \$buildpack_path
+
+    mkdir -p \$buildpack_path/00_buildpack-fail/bin
+    {
+      echo '#!/usr/bin/env bash'
+      echo 'exit 1'
+    } > \$buildpack_path/00_buildpack-fail/bin/detect
+    chmod +x \$buildpack_path/00_buildpack-fail/bin/detect
+
+    herokuish buildpack detect 2>&1 | grep 'Unable to select a buildpack'
+  "
+}
