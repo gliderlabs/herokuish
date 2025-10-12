@@ -2,7 +2,7 @@
 
 [![Build Status](https://github.com/gliderlabs/herokuish/workflows/CI/badge.svg)](https://github.com/gliderlabs/herokuish/actions?query=workflow%3ACI)
 [![IRC Channel](https://img.shields.io/badge/irc-%23gliderlabs-blue.svg)](https://kiwiirc.com/client/irc.freenode.net/#gliderlabs)
-[![Docker Hub](https://img.shields.io/badge/docker%20hub-v0.11.4-blue)](https://hub.docker.com/r/gliderlabs/herokuish)
+[![Docker Hub](https://img.shields.io/badge/docker%20hub-v0.11.5-blue)](https://hub.docker.com/r/gliderlabs/herokuish)
 
 A command line tool for emulating Heroku build and runtime tasks in containers.
 
@@ -19,7 +19,7 @@ Download and uncompress the latest binary tarball from [releases](https://github
 For example, you can do this directly in your Dockerfiles installing into `/bin` as one step:
 
 ```shell
-RUN curl --location --silent https://github.com/gliderlabs/herokuish/releases/download/v0.11.4/herokuish_0.11.4_linux_x86_64.tgz \
+RUN curl --location --silent https://github.com/gliderlabs/herokuish/releases/download/v0.11.5/herokuish_0.11.5_linux_x86_64.tgz \
     | tar -xzC /bin
 ```
 
@@ -35,6 +35,7 @@ $ herokuish
 Available commands:
   buildpack                Use and install buildpacks
     build                    Build an application using installed buildpacks
+    detect                   Detect buildpack to use for an application
     install                  Install buildpack from Git URL and optional committish
     list                     List installed buildpacks
     test                     Build and run tests for an application using installed buildpacks

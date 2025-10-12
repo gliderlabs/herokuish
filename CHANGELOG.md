@@ -2,6 +2,46 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.11.5](https://github.com/gliderlabs/herokuish/compare/v0.11.4...v0.11.5) - 2025-10-12
+
+- #1608 @dokku-bot: Update nodejs to version v310
+- #1609 @dependabot: chore(deps): bump puma from 7.0.2 to 7.0.3 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1610 @dokku-bot: Update gradle to version v46
+- #1611 @dokku-bot: Update gradle to version v47
+- #1612 @dokku-bot: Update go to version v213
+- #1613 @dokku-bot: Update ruby to version v321
+- #1614 @dokku-bot: Update gradle to version v48
+- #1615 @dokku-bot: Update python to version v308
+- #1616 @dokku-bot: Update python to version v309
+- #1617 @dokku-bot: Update php to version v274
+- #1618 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 273 to 274 in /buildpacks/buildpack-php/tests/php
+- #1619 @dependabot: chore(deps): bump hadolint/hadolint-action from 3.2.0 to 3.3.0
+- #1620 @dokku-bot: Update python to version v310
+- #1621 @dependabot: chore(deps): bump puma from 7.0.3 to 7.0.4 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1622 @Tashows Expose buildpack detection as a command
+- #1624 @dokku-bot: Update nodejs to version v313
+- #1625 @dependabot: chore(deps): bump markupsafe from 3.0.2 to 3.0.3 in /buildpacks/buildpack-python/tests/python-flask
+- #1626 @dependabot: chore(deps): bump markupsafe from 3.0.2 to 3.0.3 in /buildpacks/buildpack-multi/tests/multi
+- #1627 @dokku-bot: Update ruby to version v322
+- #1628 @dokku-bot: Update scala to version v100
+- #1629 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 274 to 275 in /buildpacks/buildpack-php/tests/php
+- #1630 @dokku-bot: Update python to version v311
+- #1631 @dokku-bot: Update php to version v275
+- #1632 @josegonzalez fix: use updated method of setting environment variables in Dockerfile
+- #1633 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 275 to 276 in /buildpacks/buildpack-php/tests/php
+- #1634 @dokku-bot: Update python to version v312
+- #1635 @dokku-bot: Update php to version v276
+- #1636 @dependabot: chore(deps): bump rack from 3.2.1 to 3.2.2 in /buildpacks/buildpack-multi/tests/multi
+- #1637 @dependabot: chore(deps): bump rack from 3.2.1 to 3.2.2 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1638 @dependabot: chore(deps): bump sinatra from 4.1.1 to 4.2.0 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1639 @dependabot: chore(deps): bump sinatra from 4.1.1 to 4.2.0 in /buildpacks/buildpack-multi/tests/multi
+- #1640 @dokku-bot: Update go to version v214
+- #1642 @dependabot: chore(deps): bump rack from 3.2.2 to 3.2.3 in /buildpacks/buildpack-multi/tests/multi
+- #1643 @dependabot: chore(deps): bump rack from 3.2.2 to 3.2.3 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1644 @dokku-bot: Update ruby to version v324
+- #1645 @dokku-bot: Update python to version v313
+- #1646 @dokku-bot: Update nodejs to version v314
+
 ## [0.11.4](https://github.com/gliderlabs/herokuish/compare/v0.11.3...v0.11.4) - 2025-09-12
 
 - #1600 @dokku-bot: Update python to version v307
