@@ -68,7 +68,7 @@ jobs:
           ruby-version: 3.3
 
       - name: download packages
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: build-24-false
           path: build
