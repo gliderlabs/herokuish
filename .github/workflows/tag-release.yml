@@ -20,7 +20,7 @@ jobs:
           - 24
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
@@ -50,7 +50,7 @@ jobs:
           make build build/docker/${{ matrix.heroku }} BUILDX=false STACK_VERSION=${{ matrix.heroku }}
 
       - name: upload packages
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: build-${{ matrix.heroku }}-${{ matrix.buildx }}
           path: build
@@ -61,14 +61,14 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.3
 
       - name: download packages
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: build-24-false
           path: build

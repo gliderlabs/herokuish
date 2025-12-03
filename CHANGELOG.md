@@ -2,6 +2,52 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.11.6](https://github.com/gliderlabs/herokuish/compare/v0.11.5...v0.11.6) - 2025-12-02
+
+- #1648 @josegonzalez: chore: update django from 5.1.4 to 5.2.7
+- #1649 @dependabot: chore(deps): bump actions/setup-node from 5 to 6
+- #1650 @dokku-bot: Update go to version v215
+- #1651 @dokku-bot: Update python to version v314
+- #1652 @dependabot: chore(deps): bump puma from 7.0.4 to 7.1.0 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1653 @dokku-bot: Update scala to version v102
+- #1654 @dokku-bot: Update ruby to version v326
+- #1655 @dokku-bot: Update python to version v315
+- #1656 @dokku-bot: Update ruby to version v327
+- #1657 @dokku-bot: Update nodejs to version v315
+- #1658 @dokku-bot: Update php to version v277
+- #1659 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 276 to 277 in /buildpacks/buildpack-php/tests/php
+- #1660 @dependabot: chore(deps): bump actions/upload-artifact from 4 to 5
+- #1661 @dependabot: chore(deps): bump actions/download-artifact from 5 to 6
+- #1662 @dokku-bot: Update python to version v316
+- #1664 @dependabot: chore(deps): bump rake from 13.3.0 to 13.3.1 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1665 @dependabot: chore(deps): bump twig/twig from 3.21.1 to 3.22.0 in /buildpacks/buildpack-php/tests/php
+- #1666 @dokku-bot: Update nodejs to version v316
+- #1667 @dependabot: chore(deps): bump rack from 3.2.3 to 3.2.4 in /buildpacks/buildpack-multi/tests/multi
+- #1668 @dependabot: chore(deps): bump rack from 3.2.3 to 3.2.4 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1669 @dependabot: chore(deps-dev): bump test-unit from 3.7.0 to 3.7.1 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1670 @dokku-bot: Update python to version v317
+- #1671 @dokku-bot: Update go to version v216
+- #1673 @dokku-bot: Update nodejs to version v317
+- #1674 @dokku-bot: Update python to version v319
+- #1675 @dokku-bot: Update ruby to version v328
+- #1676 @dokku-bot: Update ruby to version v329
+- #1677 @dokku-bot: Update nodejs to version v318
+- #1678 @dependabot: chore(deps): bump actions/checkout from 5 to 6
+- #1679 @dokku-bot: Update python to version v320
+- #1680 @dokku-bot: Update python to version v321
+- #1681 @dokku-bot: Update static to version v27
+- #1682 @dokku-bot: Update php to version v278
+- #1683 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 277 to 278 in /buildpacks/buildpack-php/tests/php
+- #1685 @dependabot: chore(deps-dev): bump test-unit from 3.7.1 to 3.7.3 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1686 @dependabot: chore(deps): bump symfony/twig-bridge from 5.2.12 to 8.0.0 in /buildpacks/buildpack-php/tests/php
+- #1687 @dokku-bot: Update nodejs to version v319
+- #1688 @dependabot: chore(deps): bump twig/twig from 3.22.0 to 3.22.1 in /buildpacks/buildpack-php/tests/php
+- #1689 @dependabot: chore(deps): bump express from 5.1.0 to 5.2.1 in /buildpacks/buildpack-nodejs/tests/nodejs-express
+- #1690 @dependabot: chore(deps): bump express from 5.1.0 to 5.2.1 in /buildpacks/buildpack-multi/tests/multi
+- #1691 @dokku-bot: Update ruby to version v332
+- #1692 @dokku-bot: Update python to version v322
+- #1693 @dokku-bot: Update scala to version v104
+
 ## [0.11.5](https://github.com/gliderlabs/herokuish/compare/v0.11.4...v0.11.5) - 2025-10-12
 
 - #1608 @dokku-bot: Update nodejs to version v310
