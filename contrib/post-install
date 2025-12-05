@@ -10,7 +10,7 @@ echo "Pruning dangling images"
 docker images -qf dangling=true | xargs --no-run-if-empty docker rmi
 
 echo "Pruning unused gliderlabs/herokuish images"
-docker images -a | grep "^gliderlabs\/herokuish" | grep -v latest | awk '{print $3}' | xargs -r docker rmi || true
+docker images -a --format table | grep "^gliderlabs\/herokuish" | grep -v latest | awk '{print $3}' | xargs --no-run-if-empty docker rmi || true
 
 echo 'Importing herokuish into docker (around 5 minutes)'
 if [[ -n "$http_proxy" ]] || [[ -n "$https_proxy" ]]; then
