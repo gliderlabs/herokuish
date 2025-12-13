@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.11.7](https://github.com/gliderlabs/herokuish/compare/v0.11.6...v0.11.7) - 2025-12-13
+
+- #1695 @dokku-bot: Update ruby to version v333
+- #1696 @dokku-bot: Update nodejs to version v320
+- #1697 @dokku-bot: Update scala to version v105
+- #1698 @dokku-bot: Update go to version v217
+- #1699 @moschlar: Fix compatibility with newer docker releases in debian post-install script
+- #1700 @dependabot: chore(deps): bump rackup from 2.2.1 to 2.3.1 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1701 @dokku-bot: Update python to version v323
+- #1702 @dependabot: chore(deps): bump symfony/twig-bridge from 8.0.0 to 8.0.1 in /buildpacks/buildpack-php/tests/php
+- #1703 @dokku-bot: Update python to version v324
+- #1705 @dokku-bot: Update python to version v325
+- #1706 @dokku-bot: Update nodejs to version v321
+- #1708 @dokku-bot: Update nodejs to version v322
+- #1709 @dokku-bot: Update php to version v279
+
 ## [0.11.6](https://github.com/gliderlabs/herokuish/compare/v0.11.5...v0.11.6) - 2025-12-02
 
 - #1648 @josegonzalez: chore: update django from 5.1.4 to 5.2.7
