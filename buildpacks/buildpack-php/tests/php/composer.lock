@@ -1999,16 +1999,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v3.22.1",
+            "version": "v3.22.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "1de2ec1fc43ab58a4b7e80b214b96bfc895750f3"
+                "reference": "946ddeafa3c9f4ce279d1f34051af041db0e16f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/1de2ec1fc43ab58a4b7e80b214b96bfc895750f3",
-                "reference": "1de2ec1fc43ab58a4b7e80b214b96bfc895750f3",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/946ddeafa3c9f4ce279d1f34051af041db0e16f2",
+                "reference": "946ddeafa3c9f4ce279d1f34051af041db0e16f2",
                 "shasum": ""
             },
             "require": {
@@ -2062,7 +2062,7 @@
             ],
             "support": {
                 "issues": "https://github.com/twigphp/Twig/issues",
-                "source": "https://github.com/twigphp/Twig/tree/v3.22.1"
+                "source": "https://github.com/twigphp/Twig/tree/v3.22.2"
             },
             "funding": [
                 {
@@ -2074,22 +2074,22 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-11-16T16:01:12+00:00"
+            "time": "2025-12-14T11:28:47+00:00"
         }
     ],
     "packages-dev": [
         {
             "name": "heroku/heroku-buildpack-php",
-            "version": "v278",
+            "version": "v279",
             "source": {
                 "type": "git",
                 "url": "https://github.com/heroku/heroku-buildpack-php.git",
-                "reference": "bd01e69f6b16e0a795e747d35930e46067a79243"
+                "reference": "9d57c835c9793612f2275b9db3aedb33b6b23f57"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/bd01e69f6b16e0a795e747d35930e46067a79243",
-                "reference": "bd01e69f6b16e0a795e747d35930e46067a79243",
+                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/9d57c835c9793612f2275b9db3aedb33b6b23f57",
+                "reference": "9d57c835c9793612f2275b9db3aedb33b6b23f57",
                 "shasum": ""
             },
             "bin": [
@@ -2119,9 +2119,9 @@
             ],
             "support": {
                 "issues": "https://github.com/heroku/heroku-buildpack-php/issues",
-                "source": "https://github.com/heroku/heroku-buildpack-php/tree/v278"
+                "source": "https://github.com/heroku/heroku-buildpack-php/tree/v279"
             },
-            "time": "2025-11-22T15:39:34+00:00"
+            "time": "2025-12-12T15:40:43+00:00"
         }
     ],
     "aliases": [],
