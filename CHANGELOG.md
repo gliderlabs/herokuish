@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.11.8](https://github.com/gliderlabs/herokuish/compare/v0.11.7...v0.11.8) - 2025-12-16
+
+- #1711 @dependabot: chore(deps): bump twig/twig from 3.22.1 to 3.22.2 in /buildpacks/buildpack-php/tests/php
+- #1712 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 278 to 279 in /buildpacks/buildpack-php/tests/php
+- #1713 @dependabot: chore(deps): bump actions/download-artifact from 6 to 7
+- #1714 @dependabot: chore(deps): bump actions/upload-artifact from 5 to 6
+- #1716 @josegonzalez: Update ruby version used in test sinatra app
+- #1717 @dokku-bot: Update ruby to version v335
+
 ## [0.11.7](https://github.com/gliderlabs/herokuish/compare/v0.11.6...v0.11.7) - 2025-12-13
 
 - #1695 @dokku-bot: Update ruby to version v333
