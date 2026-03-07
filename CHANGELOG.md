@@ -2,6 +2,93 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.11.9](https://github.com/gliderlabs/herokuish/compare/v0.11.8...v0.11.9) - 2026-03-07
+
+- #1719 @dokku-bot: Update ruby to version v336
+- #1720 @dokku-bot: Update ruby to version v337
+- #1721 @dokku-bot: Update php to version v280
+- #1722 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 279 to 280 in /buildpacks/buildpack-php/tests/php
+- #1724 @dependabot: chore(deps-dev): bump test-unit from 3.7.3 to 3.7.6 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1725 @dokku-bot: Update ruby to version v338
+- #1726 @dependabot: chore(deps): bump symfony/twig-bridge from 8.0.1 to 8.0.3 in /buildpacks/buildpack-php/tests/php
+- #1727 @dependabot: chore(deps): bump monolog/monolog from 3.9.0 to 3.10.0 in /buildpacks/buildpack-php/tests/php
+- #1728 @dependabot: chore(deps-dev): bump test-unit from 3.7.6 to 3.7.7 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1729 @dependabot: chore(deps): bump luizm/action-sh-checker from 0.9.0 to 0.10.0
+- #1730 @dokku-bot: Update python to version v326
+- #1731 @dokku-bot: Update ruby to version v339
+- #1732 @dokku-bot: Update ruby to version v340
+- #1733 @dokku-bot: Update python to version v329
+- #1734 @dokku-bot: Update python to version v330
+- #1737 @dokku-bot: Update python to version v331
+- #1739 @dokku-bot: Update ruby to version v344
+- #1741 @dokku-bot: Update go to version v218
+- #1742 @dokku-bot: Update php to version v281
+- #1743 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 280 to 281 in /buildpacks/buildpack-php/tests/php
+- #1744 @dependabot: chore(deps): bump puma from 7.1.0 to 7.2.0 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1745 @dokku-bot: Update nodejs to version v325
+- #1746 @dependabot: chore(deps): bump gunicorn from 23.0.0 to 24.0.0 in /buildpacks/buildpack-python/tests/python-django
+- #1747 @dependabot: chore(deps): bump gunicorn from 23.0.0 to 24.0.0 in /buildpacks/buildpack-multi/tests/multi
+- #1748 @dependabot: chore(deps): bump gunicorn from 23.0.0 to 24.0.0 in /buildpacks/buildpack-python/tests/python-flask
+- #1749 @dependabot: chore(deps): bump twig/twig from 3.22.2 to 3.23.0 in /buildpacks/buildpack-php/tests/php
+- #1750 @dependabot: chore(deps): bump symfony/twig-bridge from 8.0.3 to 8.0.4 in /buildpacks/buildpack-php/tests/php
+- #1751 @dependabot: chore(deps): bump gunicorn from 24.0.0 to 24.1.1 in /buildpacks/buildpack-multi/tests/multi
+- #1752 @dependabot: chore(deps): bump gunicorn from 24.0.0 to 24.1.1 in /buildpacks/buildpack-python/tests/python-django
+- #1753 @dependabot: chore(deps): bump gunicorn from 24.0.0 to 24.1.1 in /buildpacks/buildpack-python/tests/python-flask
+- #1754 @dokku-bot: Update python to version v332
+- #1755 @dokku-bot: Update ruby to version v345
+- #1756 @dokku-bot: Update nodejs to version v326
+- #1757 @dokku-bot: Update clojure to version v93
+- #1758 @dokku-bot: Update nodejs to version v327
+- #1759 @dokku-bot: Update clojure to version v94
+- #1760 @dependabot: chore(deps): bump symfony/twig-bridge from 8.0.4 to 8.0.5 in /buildpacks/buildpack-php/tests/php
+- #1761 @dependabot: chore(deps): bump gunicorn from 24.1.1 to 25.0.0 in /buildpacks/buildpack-python/tests/python-django
+- #1762 @dependabot: chore(deps): bump gunicorn from 24.1.1 to 25.0.0 in /buildpacks/buildpack-multi/tests/multi
+- #1763 @dependabot: chore(deps): bump gunicorn from 24.1.1 to 25.0.0 in /buildpacks/buildpack-python/tests/python-flask
+- #1764 @dependabot: chore(deps): bump gunicorn from 25.0.0 to 25.0.1 in /buildpacks/buildpack-multi/tests/multi
+- #1765 @dependabot: chore(deps): bump gunicorn from 25.0.0 to 25.0.1 in /buildpacks/buildpack-python/tests/python-django
+- #1766 @dependabot: chore(deps): bump gunicorn from 25.0.0 to 25.0.1 in /buildpacks/buildpack-python/tests/python-flask
+- #1767 @dokku-bot: Update ruby to version v347
+- #1768 @dokku-bot: Update nodejs to version v328
+- #1769 @dokku-bot: Update python to version v334
+- #1770 @dokku-bot: Update nodejs to version v329
+- #1771 @dokku-bot: Update go to version v219
+- #1772 @dokku-bot: Update nodejs to version v330
+- #1773 @dependabot: chore(deps): bump gunicorn from 25.0.1 to 25.0.3 in /buildpacks/buildpack-multi/tests/multi
+- #1774 @dependabot: chore(deps): bump gunicorn from 25.0.1 to 25.0.3 in /buildpacks/buildpack-python/tests/python-django
+- #1775 @dependabot: chore(deps): bump gunicorn from 25.0.1 to 25.0.3 in /buildpacks/buildpack-python/tests/python-flask
+- #1776 @dokku-bot: Update python to version v335
+- #1778 @dokku-bot: Update nodejs to version v331
+- #1779 @dokku-bot: Update go to version v220
+- #1780 @dependabot: chore(deps): bump rack from 3.2.4 to 3.2.5 in /buildpacks/buildpack-multi/tests/multi
+- #1781 @dependabot: chore(deps): bump rack from 3.2.4 to 3.2.5 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1782 @dependabot: chore(deps): bump gunicorn from 25.0.3 to 25.1.0 in /buildpacks/buildpack-python/tests/python-django
+- #1783 @dependabot: chore(deps): bump gunicorn from 25.0.3 to 25.1.0 in /buildpacks/buildpack-python/tests/python-flask
+- #1784 @dependabot: chore(deps): bump gunicorn from 25.0.3 to 25.1.0 in /buildpacks/buildpack-multi/tests/multi
+- #1788 @dokku-bot: Update go to version v223
+- #1789 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 281 to 283 in /buildpacks/buildpack-php/tests/php
+- #1790 @dependabot: chore(deps): bump flask from 3.1.2 to 3.1.3 in /buildpacks/buildpack-multi/tests/multi
+- #1791 @dependabot: chore(deps): bump flask from 3.1.2 to 3.1.3 in /buildpacks/buildpack-python/tests/python-flask
+- #1793 @dokku-bot: Update php to version v283
+- #1794 @dokku-bot: Update nodejs to version v333
+- #1795 @dependabot: chore(deps): bump github.com/progrium/go-basher from 5.1.7+incompatible to 5.1.8+incompatible
+- #1797 @dokku-bot: Update clojure to version v96
+- #1798 @dokku-bot: Update java to version v81
+- #1799 @dokku-bot: Update gradle to version v49
+- #1800 @dokku-bot: Update scala to version v106
+- #1801 @dependabot: chore(deps): bump symfony/twig-bridge from 8.0.5 to 8.0.6 in /buildpacks/buildpack-php/tests/php
+- #1802 @dokku-bot: Update nodejs to version v335
+- #1803 @dependabot: chore(deps): bump actions/upload-artifact from 6 to 7
+- #1804 @dependabot: chore(deps): bump actions/download-artifact from 7 to 8
+- #1805 @dokku-bot: Update ruby to version v348
+- #1807 @dependabot: chore(deps): bump docker/login-action from 3 to 4
+- #1808 @dependabot: chore(deps): bump docker/setup-qemu-action from 3 to 4
+- #1809 @dokku-bot: Update python to version v338
+- #1810 @dependabot: chore(deps): bump docker/setup-buildx-action from 3 to 4
+- #1811 @dokku-bot: Update nodejs to version v336
+- #1812 @dokku-bot: Update go to version v224
+- #1813 @dokku-bot: Update ruby to version v349
+- #1814 @dokku-bot: Update nodejs to version v337
+
 ## [0.11.8](https://github.com/gliderlabs/herokuish/compare/v0.11.7...v0.11.8) - 2025-12-16
 
 - #1711 @dependabot: chore(deps): bump twig/twig from 3.22.1 to 3.22.2 in /buildpacks/buildpack-php/tests/php
