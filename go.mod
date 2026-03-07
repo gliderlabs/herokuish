@@ -3,7 +3,7 @@ module herokuish
 go 1.17
 
 require (
-	github.com/progrium/go-basher v5.1.7+incompatible
+	github.com/progrium/go-basher v5.1.8+incompatible
 	gopkg.in/yaml.v2 v2.4.0
 )
 
