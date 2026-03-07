@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 ARG STACK_VERSION=24
 
-FROM golang:1.25 AS builder
+FROM golang:1.26 AS builder
 RUN mkdir /src
 COPY . /src/
 WORKDIR /src
