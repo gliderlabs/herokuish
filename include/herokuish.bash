@@ -59,7 +59,7 @@ indent() {
 }
 
 unprivileged() {
-  setuidgid "$unprivileged_user" "$@"
+  runuser -u "$unprivileged_user" -- "$@"
 }
 
 detect-unprivileged() {
@@ -83,6 +83,7 @@ randomize-unprivileged() {
     --quiet \
     --home "$app_path" \
     "$username"
+  usermod -aG tty "$username"
 
   unprivileged_user="$username"
   unprivileged_group="$username"

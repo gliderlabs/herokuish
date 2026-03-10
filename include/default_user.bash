@@ -11,4 +11,5 @@ addgroup --quiet --gid "32767" "herokuishuser" \
     --gecos '' \
     --quiet \
     --home "/app" \
-    "herokuishuser"
+    "herokuishuser" \
+  && usermod -aG tty herokuishuser
