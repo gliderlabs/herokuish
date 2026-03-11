@@ -59,7 +59,11 @@ indent() {
 }
 
 unprivileged() {
-  runuser -u "$unprivileged_user" -- "$@"
+  if [ -n "$HEROKUISH_WITH_TTY" ]; then
+    runuser -u "$unprivileged_user" -- "$@"
+  else
+    setuidgid "$unprivileged_user" "$@"
+  fi
 }
 
 detect-unprivileged() {
@@ -83,7 +87,10 @@ randomize-unprivileged() {
     --quiet \
     --home "$app_path" \
     "$username"
-  usermod -aG tty "$username"
+
+  if [ -n "$HEROKUISH_WITH_TTY" ]; then
+    usermod -aG tty "$username"
+  fi
 
   unprivileged_user="$username"
   unprivileged_group="$username"
