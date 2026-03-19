@@ -2081,16 +2081,16 @@
     "packages-dev": [
         {
             "name": "heroku/heroku-buildpack-php",
-            "version": "v283",
+            "version": "v285",
             "source": {
                 "type": "git",
                 "url": "https://github.com/heroku/heroku-buildpack-php.git",
-                "reference": "74456d03da581b9a0568157afdd9543688262bf8"
+                "reference": "8fb15acb4ab0c9753256be702fe0d12f74f6735d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/74456d03da581b9a0568157afdd9543688262bf8",
-                "reference": "74456d03da581b9a0568157afdd9543688262bf8",
+                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/8fb15acb4ab0c9753256be702fe0d12f74f6735d",
+                "reference": "8fb15acb4ab0c9753256be702fe0d12f74f6735d",
                 "shasum": ""
             },
             "bin": [
@@ -2120,9 +2120,9 @@
             ],
             "support": {
                 "issues": "https://github.com/heroku/heroku-buildpack-php/issues",
-                "source": "https://github.com/heroku/heroku-buildpack-php/tree/v283"
+                "source": "https://github.com/heroku/heroku-buildpack-php/tree/v285"
             },
-            "time": "2026-02-18T15:58:28+00:00"
+            "time": "2026-03-17T04:06:57+00:00"
         }
     ],
     "aliases": [],
