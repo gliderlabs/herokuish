@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
+main() {
+  declare TAG="$1"
+  IMAGE=gliderlabs/herokuish
+
+  if [ -z "$TAG" ]; then
+    echo "Usage: $0 <tag>"
+    exit 1
+  fi
+
+  architectures=(amd64 arm64)
+
+  echo "====> Deleting all existing manifests"
+  tags=("${TAG}" "${TAG}-24" "latest" "latest-24")
+  for tag in "${tags[@]}"; do
+    if docker manifest inspect "${IMAGE}:${tag}" 2>/dev/null; then
+      echo "      Deleting manifest for ${IMAGE}:${tag}"
+      docker manifest rm "${IMAGE}:${tag}" || true
+    fi
+  done
+
+  echo "====> Processing $IMAGE:$TAG"
+  for architecture in "${architectures[@]}"; do
+    echo "----> Processing ${architecture}"
+    echo "      Pulling ${IMAGE}:${TAG} for ${architecture}"
+    docker image pull --platform "linux/${architecture}" "${IMAGE}:${TAG}"
+    docker image tag "${IMAGE}:${TAG}" "${IMAGE}:${TAG}-${architecture}"
+    docker image rm "${IMAGE}:${TAG}"
+
+    echo "      Removing label from ${IMAGE}:${TAG}-${architecture}"
+    docker-copyedit.py \
+      FROM "${IMAGE}:${TAG}-${architecture}" \
+      INTO "${IMAGE}:${TAG}-${architecture}-patched" \
+      REMOVE LABEL io.buildpacks.stack.id
+    echo "      Tagging ${IMAGE}:${TAG}-${architecture}-patched as ${IMAGE}:${TAG}-${architecture}"
+    docker image rm "${IMAGE}:${TAG}-${architecture}"
+    docker image tag "${IMAGE}:${TAG}-${architecture}-patched" "${IMAGE}:${TAG}-${architecture}"
+    echo "      Pushing ${IMAGE}:${TAG}-${architecture}"
+    docker image push "${IMAGE}:${TAG}-${architecture}"
+  done
+
+  echo "----> Creating manifests"
+  tags=("${TAG}" "${TAG}-24" "latest" "latest-24")
+  for tag in "${tags[@]}"; do
+    echo "      Creating manifest for ${IMAGE}:${tag}"
+    docker manifest create "${IMAGE}:${tag}" \
+      --amend "${IMAGE}:${TAG}-amd64" \
+      --amend "${IMAGE}:${TAG}-arm64"
+  done
+
+  echo "----> Pushing manifests"
+  for tag in "${tags[@]}"; do
+    echo "      Pushing manifest for ${IMAGE}:${tag}"
+    docker manifest push "${IMAGE}:${tag}"
+  done
+
+  echo " !    Done!"
+}
+
+main "$@"

@@ -32,6 +32,29 @@ _move-build-to-app() {
 }
 
 _select-buildpack() {
+  # Issue #554: if .buildpacks declares exactly one buildpack, treat it as
+  # BUILDPACK_URL. Bypasses heroku-buildpack-multi (and its misleading
+  # "Multiple default buildpacks reported" warning) when the user has only
+  # declared a single buildpack — there is nothing "multi" about that case.
+  # A caller-provided BUILDPACK_URL always wins.
+  # shellcheck disable=SC2154
+  if [[ -z "$BUILDPACK_URL" ]] && [[ -f "$build_path/.buildpacks" ]]; then
+    local -a _dotbuildpacks_urls=()
+    local _dotbuildpacks_line
+    while IFS= read -r _dotbuildpacks_line || [[ -n "$_dotbuildpacks_line" ]]; do
+      _dotbuildpacks_line="${_dotbuildpacks_line%$'\r'}"
+      _dotbuildpacks_line="${_dotbuildpacks_line#"${_dotbuildpacks_line%%[![:space:]]*}"}"
+      _dotbuildpacks_line="${_dotbuildpacks_line%"${_dotbuildpacks_line##*[![:space:]]}"}"
+      [[ -z "$_dotbuildpacks_line" ]] && continue
+      [[ "${_dotbuildpacks_line:0:1}" == "#" ]] && continue
+      _dotbuildpacks_urls+=("$_dotbuildpacks_line")
+    done <"$build_path/.buildpacks"
+
+    if [[ "${#_dotbuildpacks_urls[@]}" -eq 1 ]]; then
+      BUILDPACK_URL="${_dotbuildpacks_urls[0]}"
+    fi
+  fi
+
   if [[ -n "$BUILDPACK_URL" ]]; then
     title "Fetching custom buildpack"
     # buildpack_path defined in outer scope
@@ -40,7 +63,10 @@ _select-buildpack() {
     rm -rf "$selected_path"
 
     IFS='#' read -r url commit <<<"$BUILDPACK_URL"
-    buildpack-install "$url" "$commit" custom &>/dev/null
+    if ! buildpack-install "$url" "$commit" custom; then
+      title "Unable to fetch custom buildpack from $url"
+      exit 1
+    fi
     # unprivileged_user & unprivileged_group defined in outer scope
     # shellcheck disable=SC2154
     chown -R "$unprivileged_user:$unprivileged_group" "$buildpack_path/custom"
@@ -74,6 +100,9 @@ buildpack-detect() {
   declare desc="Detect suitable buildpack for an application"
   ensure-paths
   [[ "$USER" ]] || randomize-unprivileged
+  if [[ -n "$HEROKUISH_WITH_TTY" ]]; then
+    usermod -aG tty "$unprivileged_user" 2>/dev/null || true
+  fi
   buildpack-setup >/dev/null
   _select-buildpack
 }
@@ -82,6 +111,9 @@ buildpack-build() {
   declare desc="Build an application using installed buildpacks"
   ensure-paths
   [[ "$USER" ]] || randomize-unprivileged
+  if [[ -n "$HEROKUISH_WITH_TTY" ]]; then
+    usermod -aG tty "$unprivileged_user" 2>/dev/null || true
+  fi
   buildpack-setup >/dev/null
   buildpack-execute | indent
   procfile-types | indent
@@ -97,26 +129,53 @@ buildpack-install() {
     done
     return
   fi
+
+  # Reject obviously invalid input up-front so failures surface with a clear
+  # message instead of a silent empty install. Accept common git/http/ssh/file
+  # URL shapes, git scp-style addresses, and existing local directories.
+  if [[ ! -d "$url" ]] \
+    && [[ ! "$url" =~ ^(https?|git|ssh|file)://.+ ]] \
+    && [[ ! "$url" =~ ^[A-Za-z0-9_.-]+@[A-Za-z0-9_.-]+:.+ ]]; then
+    echo "!     Invalid buildpack URL: '$url'" >&2
+    echo "!     Expected a git remote (https://, git://, ssh://, git@host:path) or a tarball URL (http(s)://...tar.gz|tgz|tar.bz|tbz|tar)." >&2
+    return 1
+  fi
+
+  # pipefail ensures the curl|tar pipeline below surfaces either side's
+  # failure. `local -` scopes the shell option change to this function.
+  local -
+  set -o pipefail
+
   # buildpack_path is defined in outer scope
   # shellcheck disable=SC2154
   local target_path="$buildpack_path/${name:-$(basename "$url")}"
-  if [[ "$(
-    git ls-remote "$url" &>/dev/null
-    echo $?
-  )" -eq 0 ]]; then
+  if git ls-remote "$url" &>/dev/null; then
     if [[ "$commit" ]]; then
       if ! git clone --branch "$commit" --quiet --depth 1 "$url" "$target_path" &>/dev/null; then
         # if the shallow clone failed partway through, clean up and try a full clone
         rm -rf "$target_path"
-        git clone "$url" "$target_path"
+        if ! git clone "$url" "$target_path"; then
+          echo "!     Failed to clone buildpack from '$url'" >&2
+          rm -rf "$target_path"
+          return 1
+        fi
         cd "$target_path" || return 1
-        git checkout --quiet "$commit"
+        if ! git checkout --quiet "$commit"; then
+          echo "!     Failed to checkout '$commit' from '$url'" >&2
+          cd - >/dev/null || true
+          rm -rf "$target_path"
+          return 1
+        fi
         cd - >/dev/null || return 1
       else
         echo "Cloning into '$target_path'..."
       fi
     else
-      git clone --depth=1 "$url" "$target_path"
+      if ! git clone --depth=1 "$url" "$target_path"; then
+        echo "!     Failed to clone buildpack from '$url'" >&2
+        rm -rf "$target_path"
+        return 1
+      fi
     fi
   else
     local tar_args
@@ -135,10 +194,19 @@ buildpack-install() {
         target_path="${target_path//.tar/}"
         tar_args="-xC"
         ;;
+      *)
+        echo "!     Buildpack URL is not a reachable git remote or a recognised archive: '$url'" >&2
+        echo "!     Supported archive extensions: .tgz, .tar.gz, .tbz, .tar.bz, .tar" >&2
+        return 1
+        ;;
     esac
     echo "Downloading '$url' into '$target_path'..."
     mkdir -p "$target_path"
-    curl -s --retry 2 "$url" | tar "$tar_args" "$target_path"
+    if ! curl --fail --silent --show-error --location --retry 2 "$url" | tar "$tar_args" "$target_path"; then
+      echo "!     Failed to download buildpack from '$url'" >&2
+      rm -rf "$target_path"
+      return 1
+    fi
     chown -R root:root "$target_path"
     chmod 755 "$target_path"
   fi
@@ -233,6 +301,9 @@ buildpack-test() {
   declare desc="Build and run tests for an application using installed buildpacks"
   ensure-paths
   [[ "$USER" ]] || randomize-unprivileged
+  if [[ -n "$HEROKUISH_WITH_TTY" ]]; then
+    usermod -aG tty "$unprivileged_user" 2>/dev/null || true
+  fi
   buildpack-setup >/dev/null
   _select-buildpack
 

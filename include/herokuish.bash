@@ -4,12 +4,12 @@ if [[ "${BASH_VERSINFO[0]}" -lt "4" ]]; then
   exit 2
 fi
 
-readonly app_path="${APP_PATH:-/app}"
-readonly env_path="${ENV_PATH:-/tmp/env}"
-readonly build_path="${BUILD_PATH:-/tmp/build}"
-readonly cache_path="${CACHE_PATH:-/tmp/cache}"
-readonly import_path="${IMPORT_PATH:-/tmp/app}"
-readonly buildpack_path="${BUILDPACK_PATH:-/tmp/buildpacks}"
+[[ -z "${app_path+x}" ]] && readonly app_path="${APP_PATH:-/app}"
+[[ -z "${env_path+x}" ]] && readonly env_path="${ENV_PATH:-/tmp/env}"
+[[ -z "${build_path+x}" ]] && readonly build_path="${BUILD_PATH:-/tmp/build}"
+[[ -z "${cache_path+x}" ]] && readonly cache_path="${CACHE_PATH:-/tmp/cache}"
+[[ -z "${import_path+x}" ]] && readonly import_path="${IMPORT_PATH:-/tmp/app}"
+[[ -z "${buildpack_path+x}" ]] && readonly buildpack_path="${BUILDPACK_PATH:-/tmp/buildpacks}"
 
 declare unprivileged_user="$USER"
 declare unprivileged_group="${USER/nobody/nogroup}"
@@ -59,7 +59,11 @@ indent() {
 }
 
 unprivileged() {
-  setuidgid "$unprivileged_user" "$@"
+  if [ -n "$HEROKUISH_WITH_TTY" ]; then
+    runuser -u "$unprivileged_user" -- "$@"
+  else
+    setuidgid "$unprivileged_user" "$@"
+  fi
 }
 
 detect-unprivileged() {
@@ -83,6 +87,10 @@ randomize-unprivileged() {
     --quiet \
     --home "$app_path" \
     "$username"
+
+  if [ -n "$HEROKUISH_WITH_TTY" ]; then
+    usermod -aG tty "$username"
+  fi
 
   unprivileged_user="$username"
   unprivileged_group="$username"

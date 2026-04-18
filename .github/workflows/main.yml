@@ -76,10 +76,13 @@ jobs:
             make build build/docker/${{ matrix.heroku }} BUILDX=false STACK_VERSION=${{ matrix.heroku }}
           fi
 
+      - name: install bats
+        run: sudo apt-get update && sudo apt-get install -y bats
+
       - name: bash tests
         run: |
           if [[ "${{ matrix.buildx }}" == "false" ]]; then
-            basht tests/**/tests.sh
+            bats tests/*/tests.bats
           fi
 
       - name: upload packages
@@ -104,7 +107,6 @@ jobs:
           - buildpack-nodejs
           - buildpack-null
           - buildpack-php
-          - buildpack-play
           - buildpack-python
           - buildpack-ruby
           - buildpack-scala
@@ -135,7 +137,10 @@ jobs:
       - name: build docker images
         run: make build/docker/${{ matrix.heroku }} BUILDX=false STACK_VERSION=${{ matrix.heroku }}
 
+      - name: install bats
+        run: sudo apt-get update && sudo apt-get install -y bats
+
       - name: run buildpack test
         run: |
           echo "executing ${{ matrix.buildpack }} tests"
-          basht buildpacks/${{ matrix.buildpack }}/tests/*/test.sh
+          bats buildpacks/${{ matrix.buildpack }}/tests/*/test.bats

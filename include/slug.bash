@@ -1,4 +1,4 @@
-readonly slug_path="/tmp/slug.tgz"
+[[ -z "${slug_path+x}" ]] && readonly slug_path="/tmp/slug.tgz"
 
 slug-import() {
   declare desc="Import a gzipped slug tarball from URL or STDIN "

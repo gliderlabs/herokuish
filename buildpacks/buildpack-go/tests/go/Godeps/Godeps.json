@@ -1,8 +1,0 @@
-{
-	"ImportPath": "./cmd/web",
-	"GoVersion": "go1.6",
-	"Packages": [
-		"./..."
-	],
-	"Deps": []
-}

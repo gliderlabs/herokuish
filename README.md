@@ -2,7 +2,7 @@
 
 [![Build Status](https://github.com/gliderlabs/herokuish/workflows/CI/badge.svg)](https://github.com/gliderlabs/herokuish/actions?query=workflow%3ACI)
 [![IRC Channel](https://img.shields.io/badge/irc-%23gliderlabs-blue.svg)](https://kiwiirc.com/client/irc.freenode.net/#gliderlabs)
-[![Docker Hub](https://img.shields.io/badge/docker%20hub-v0.11.9-blue)](https://hub.docker.com/r/gliderlabs/herokuish)
+[![Docker Hub](https://img.shields.io/badge/docker%20hub-v0.11.10-blue)](https://hub.docker.com/r/gliderlabs/herokuish)
 
 A command line tool for emulating Heroku build and runtime tasks in containers.
 
@@ -19,7 +19,7 @@ Download and uncompress the latest binary tarball from [releases](https://github
 For example, you can do this directly in your Dockerfiles installing into `/bin` as one step:
 
 ```shell
-RUN curl --location --silent https://github.com/gliderlabs/herokuish/releases/download/v0.11.9/herokuish_0.11.9_linux_x86_64.tgz \
+RUN curl --location --silent https://github.com/gliderlabs/herokuish/releases/download/v0.11.10/herokuish_0.11.10_linux_x86_64.tgz \
     | tar -xzC /bin
 ```
 
@@ -213,6 +213,20 @@ docker run -e BUILDPACK_URL="https://github.com/custom/buildpack.git#with-a-bran
 ```
 
 Note that the underlying buildpacks will not trace their commands with `TRACE=true` is enabled. They need to independently set `set -x` in order to trace execution.
+
+`BUILDPACK_URL` must be a git remote (`https://`, `git://`, `ssh://`, `git@host:path`) or a tarball URL ending in `.tgz`, `.tar.gz`, `.tbz`, `.tar.bz`, or `.tar`. If the value is malformed or the download fails, herokuish now exits non-zero with a message such as `!     Invalid buildpack URL: 'ruby'` or `!     Failed to download buildpack from '<url>'` — previously this path could stop silently.
+
+If `BUILDPACK_URL` is not set and the app's build directory contains a `.buildpacks` file with exactly one entry, herokuish treats that entry as `BUILDPACK_URL`. This bypasses `heroku-buildpack-multi` (and its "Multiple default buildpacks reported" warning) when only one buildpack is declared, since there is no real ambiguity. A `.buildpacks` file with two or more entries still goes through `heroku-buildpack-multi` as before. An explicit `BUILDPACK_URL` always wins over the file.
+
+### Entropy for `/dev/random`
+
+Workloads built on `libsodium` (used by `libzmq`, `pyzmq`, and transitively by Jupyter/`voila`) can hang on startup when the container's kernel entropy pool is not yet seeded. The runtime image ships with `rng-tools5` (which provides `rngd`) and will start it before `procfile-exec` hands off to the application when `HEROKUISH_ENTROPY=true` is set:
+
+```shell
+docker run --rm --cap-add=SYS_ADMIN -e HEROKUISH_ENTROPY=true gliderlabs/herokuish /start web
+```
+
+`rngd` needs `CAP_SYS_ADMIN` to inject entropy into `/dev/random`; without it the daemon either no-ops or logs a warning (`!     rngd failed to start`), and the application is still executed. The setting is off by default to preserve existing behavior — enable it only if you are seeing startup hangs caused by entropy starvation (see gliderlabs/herokuish#659).
 
 ## Contributing
 

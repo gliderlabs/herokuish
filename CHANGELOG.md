@@ -2,6 +2,52 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.11.10](https://github.com/gliderlabs/herokuish/compare/v0.11.9...v0.11.10) - 2026-04-18
+
+- #1777 @dependabot: chore(deps): bump golang from 1.25 to 1.26
+- #1816 @dokku-bot: Update static to version v28
+- #1817 @dependabot: chore(deps): bump symfony/twig-bridge from 8.0.6 to 8.0.7 in /buildpacks/buildpack-php/tests/php
+- #1820 @nerg4l: Give access to tty for unprivileged and herokuish user
+- #1821 @dokku-bot: Update ruby to version v351
+- #1822 @dokku-bot: Update nodejs to version v338
+- #1823 @dokku-bot: Update python to version v339
+- #1825 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 283 to 285 in /buildpacks/buildpack-php/tests/php
+- #1826 @dokku-bot: Update ruby to version v352
+- #1827 @dokku-bot: Update php to version v285
+- #1828 @dependabot: chore(deps): bump twig/twig from 3.23.0 to 3.24.0 in /buildpacks/buildpack-php/tests/php
+- #1835 @dependabot: chore(deps): bump gunicorn from 25.1.0 to 25.3.0 in /buildpacks/buildpack-python/tests/python-flask
+- #1836 @dependabot: chore(deps): bump gunicorn from 25.1.0 to 25.3.0 in /buildpacks/buildpack-multi/tests/multi
+- #1837 @dependabot: chore(deps): bump gunicorn from 25.1.0 to 25.3.0 in /buildpacks/buildpack-python/tests/python-django
+- #1839 @dokku-bot: Update nodejs to version v340
+- #1840 @dokku-bot: Update ruby to version v355
+- #1841 @dokku-bot: Update clojure to version v97
+- #1842 @dependabot: chore(deps): bump rack from 3.2.5 to 3.2.6 in /buildpacks/buildpack-multi/tests/multi
+- #1843 @dependabot: chore(deps): bump rack from 3.2.5 to 3.2.6 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1844 @dokku-bot: Update python to version v340
+- #1845 @dokku-bot: Update nodejs to version v341
+- #1846 @dependabot: chore(deps): bump rack-session from 2.1.1 to 2.1.2 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1847 @dependabot: chore(deps): bump rack-session from 2.1.1 to 2.1.2 in /buildpacks/buildpack-multi/tests/multi
+- #1848 @dokku-bot: Update python to version v341
+- #1849 @dependabot: chore(deps): bump puma from 7.2.0 to 8.0.0 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1850 @dokku-bot: Update ruby to version v356
+- #1851 @dokku-bot: Update go to version v228
+- #1852 @dokku-bot: Update python to version v342
+- #1853 @dokku-bot: Update python to version v343
+- #1854 @josegonzalez: Fix readonly variable warnings during bash re-sourcing
+- #1855 @josegonzalez: chore(deps): bump python-django test app to Django 6.0.4 and Python 3.13.13
+- #1856 @josegonzalez: Replace abandoned Silex with Slim 4 in PHP test app
+- #1857 @dependabot: chore(deps): bump rake from 13.3.1 to 13.4.1 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1858 @josegonzalez: Run bin/retag after release images are pushed
+- #1859 @josegonzalez: Surface errors when custom buildpack download fails
+- #1860 @josegonzalez: Migrate test harness from basht to bats-core
+- #1861 @josegonzalez: Delete stickler.yml
+- #1862 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 285 to 286 in /buildpacks/buildpack-php/tests/php
+- #1863 @dependabot: chore(deps): bump rake from 13.4.1 to 13.4.2 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1864 @dokku-bot: Update php to version v286
+- #1865 @josegonzalez: Treat single-entry .buildpacks as BUILDPACK_URL
+- #1866 @josegonzalez: Install rng-tools5 and add HEROKUISH_ENTROPY opt-in
+- #1867 @dokku-bot: Update nodejs to version v342
+
 ## [0.11.9](https://github.com/gliderlabs/herokuish/compare/v0.11.8...v0.11.9) - 2026-03-07
 
 - #1719 @dokku-bot: Update ruby to version v336

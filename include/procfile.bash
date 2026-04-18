@@ -47,6 +47,7 @@ procfile-start() {
 procfile-exec() {
   declare desc="Run as unprivileged user with Heroku-like env"
   [[ "$USER" ]] || detect-unprivileged
+  procfile-ensure-entropy
   procfile-setup-home
   cd "$app_path" || return 1
   procfile-load-env
@@ -57,6 +58,21 @@ procfile-exec() {
     exec $(eval echo "$@")
   else
     exec setuidgid "$unprivileged_user" $(eval echo "$@")
+  fi
+}
+
+procfile-ensure-entropy() {
+  declare desc="Start rngd to seed /dev/random when HEROKUISH_ENTROPY=true"
+  [[ "$HEROKUISH_ENTROPY" == "true" ]] || return 0
+  if ! command -v rngd >/dev/null 2>&1; then
+    echo "!     HEROKUISH_ENTROPY=true but rngd is not installed; skipping" >&2
+    return 0
+  fi
+  if pgrep -x rngd >/dev/null 2>&1; then
+    return 0
+  fi
+  if ! rngd -b >/dev/null 2>&1; then
+    echo "!     rngd failed to start; /dev/random may block (need CAP_SYS_ADMIN?)" >&2
   fi
 }
 
