@@ -75,7 +75,7 @@ jobs:
 
       - uses: actions/setup-python@v6
         with:
-          python-version: "3.7.x"
+          python-version: "3.9.x"
 
       - name: install docker-copyedit
         run: pip install docker-copyedit

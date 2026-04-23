@@ -56,7 +56,16 @@ _select-buildpack() {
   fi
 
   if [[ -n "$BUILDPACK_URL" ]]; then
-    title "Fetching custom buildpack"
+    # Compute display name: shorthand for GitHub, full URL otherwise
+    local display_name="$BUILDPACK_URL"
+    if [[ "$display_name" == https://github.com/* ]]; then
+      display_name="${display_name#https://github.com/}"
+      display_name="${display_name/.git/}"
+    elif [[ "$display_name" == git@github.com:* ]]; then
+      display_name="${display_name#git@github.com:}"
+      display_name="${display_name/.git/}"
+    fi
+    title "Fetching custom buildpack $display_name"
     # buildpack_path defined in outer scope
     # shellcheck disable=SC2154
     selected_path="$buildpack_path/custom"

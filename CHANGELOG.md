@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.11.11](https://github.com/gliderlabs/herokuish/compare/v0.11.10...v0.11.11) - 2026-04-23
+
+- #1869 @josegonzalez: Bump Python to 3.9 in retag workflow
+- #1870 @dokku-bot: Update php to version v287
+- #1871 @josegonzalez: Show buildpack name in fetch message
+- #1872 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 286 to 287 in /buildpacks/buildpack-php/tests/php
+- #1873 @dokku-bot: Update static to version v29
+- #1874 @dokku-bot: Update ruby to version v357
+- #1877 @dokku-bot: Update static to version v32
+
 ## [0.11.10](https://github.com/gliderlabs/herokuish/compare/v0.11.9...v0.11.10) - 2026-04-18
 
 - #1777 @dependabot: chore(deps): bump golang from 1.25 to 1.26

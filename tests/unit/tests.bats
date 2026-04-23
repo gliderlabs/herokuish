@@ -296,6 +296,51 @@ EOF
   }
 }
 
+@test "select-buildpack-fetch-message-shows-buildpack-name" {
+  # The "Fetching custom buildpack" title must include the buildpack identity.
+  # GitHub URLs are shortened to owner/repo; non-GitHub URLs are shown in full.
+  _select-buildpack-setup
+
+  # GitHub HTTPS with .git suffix and branch
+  export BUILDPACK_URL="https://github.com/heroku/heroku-buildpack-python.git#main"
+  run _select-buildpack
+  rm -rf "$_select_buildpack_root"
+  [[ "$output" == *"Fetching custom buildpack heroku/heroku-buildpack-python#main"* ]] || {
+    echo "GitHub HTTPS: expected shorthand with branch, got: $output"
+    return 1
+  }
+
+  # GitHub HTTPS without .git suffix or branch
+  _select-buildpack-setup
+  export BUILDPACK_URL="https://github.com/heroku/heroku-buildpack-ruby"
+  run _select-buildpack
+  rm -rf "$_select_buildpack_root"
+  [[ "$output" == *"Fetching custom buildpack heroku/heroku-buildpack-ruby"* ]] || {
+    echo "GitHub HTTPS plain: expected shorthand, got: $output"
+    return 2
+  }
+
+  # GitHub SSH with .git suffix
+  _select-buildpack-setup
+  export BUILDPACK_URL="git@github.com:heroku/heroku-buildpack-nodejs.git"
+  run _select-buildpack
+  rm -rf "$_select_buildpack_root"
+  [[ "$output" == *"Fetching custom buildpack heroku/heroku-buildpack-nodejs"* ]] || {
+    echo "GitHub SSH: expected shorthand, got: $output"
+    return 3
+  }
+
+  # Non-GitHub URL shown in full
+  _select-buildpack-setup
+  export BUILDPACK_URL="https://example.com/custom-buildpack#v2"
+  run _select-buildpack
+  rm -rf "$_select_buildpack_root"
+  [[ "$output" == *"Fetching custom buildpack https://example.com/custom-buildpack#v2"* ]] || {
+    echo "Non-GitHub: expected full URL with branch, got: $output"
+    return 4
+  }
+}
+
 @test "procfile-parse-valid" {
   # shellcheck disable=SC1091
   source "${BATS_TEST_DIRNAME}/../../include/procfile.bash"
