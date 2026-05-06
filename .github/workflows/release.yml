@@ -16,6 +16,7 @@ jobs:
       matrix:
         heroku:
           - 24
+          - 26
 
     steps:
       - uses: actions/checkout@v6
