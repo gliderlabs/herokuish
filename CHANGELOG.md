@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.11.12](https://github.com/gliderlabs/herokuish/compare/v0.11.11...v0.11.12) - 2026-05-22
+
+- #1880 @josegonzalez: Replace docker-copyedit with regctl for image retagging
+- #1881 @josegonzalez: Strip io.buildpacks.stack.id before push and verify after
+- #1882 @dependabot: chore(deps): bump puma from 8.0.0 to 8.0.1 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1883 @dokku-bot: Update nodejs to version v343
+- #1885 @josegonzalez: Retry docker pull in post-install on timeout
+- #1886 @dokku-bot: Update nodejs to version v344
+- #1887 @dependabot: chore(deps): bump gunicorn from 25.3.0 to 26.0.0 in /buildpacks/buildpack-python/tests/python-flask
+- #1888 @dependabot: chore(deps): bump gunicorn from 25.3.0 to 26.0.0 in /buildpacks/buildpack-python/tests/python-django
+- #1889 @dependabot: chore(deps): bump gunicorn from 25.3.0 to 26.0.0 in /buildpacks/buildpack-multi/tests/multi
+- #1890 @dokku-bot: Update nodejs to version v345
+- #1893 @dokku-bot: Update nodejs to version v346
+- #1894 @dokku-bot: Update python to version v344
+- #1895 @dokku-bot: Update nodejs to version v347
+- #1896 @dokku-bot: Update go to version v229
+- #1897 @josegonzalez: Upgrade scala test app to play 3.0.10
+- #1898 @dokku-bot: Update php to version v288
+- #1899 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 287 to 288 in /buildpacks/buildpack-php/tests/php
+- #1900 @dokku-bot: Update nodejs to version v348
+- #1902 @dokku-bot: Update ruby to version v358
+- #1903 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 288 to 289 in /buildpacks/buildpack-php/tests/php
+- #1904 @dokku-bot: Update php to version v289
+- #1905 @dependabot: chore(deps): bump twig/twig from 3.24.0 to 3.26.0 in /buildpacks/buildpack-php/tests/php
+- #1906 @dokku-bot: Update nodejs to version v349
+- #1907 @dependabot: chore(deps): bump slim/slim from 4.15.1 to 4.15.2 in /buildpacks/buildpack-php/tests/php
+- #1908 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 289 to 290 in /buildpacks/buildpack-php/tests/php
+- #1909 @dokku-bot: Update nodejs to version v350
+- #1910 @dokku-bot: Update php to version v290
+
 ## [0.11.11](https://github.com/gliderlabs/herokuish/compare/v0.11.10...v0.11.11) - 2026-04-23
 
 - #1869 @josegonzalez: Bump Python to 3.9 in retag workflow
