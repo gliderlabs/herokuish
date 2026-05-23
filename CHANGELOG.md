@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.11.13](https://github.com/gliderlabs/herokuish/compare/v0.11.12...v0.11.13) - 2026-05-22
+
+- #1912 @josegonzalez: Make extracted OCI layout writable before regctl image mod
+
 ## [0.11.12](https://github.com/gliderlabs/herokuish/compare/v0.11.11...v0.11.12) - 2026-05-22
 
 - #1880 @josegonzalez: Replace docker-copyedit with regctl for image retagging

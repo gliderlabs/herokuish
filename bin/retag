@@ -23,6 +23,7 @@ main() {
   rm -rf "$OCI_DIR"
   mkdir -p "$OCI_DIR"
   tar -xf "$OCI_TAR" -C "$OCI_DIR"
+  chmod -R u+w "$OCI_DIR"
 
   echo "====> Stripping io.buildpacks.stack.id from local OCI layout"
   regctl image mod "ocidir://${OCI_DIR}:${TAG}" --replace \
