@@ -5,16 +5,12 @@ version := "1.0-SNAPSHOT"
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
-scalaVersion := "2.13.10"
+scalaVersion := "2.13.18"
 
 libraryDependencies += guice
 libraryDependencies += jdbc
-libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "5.0.0" % Test
-libraryDependencies ++= Seq(
-  "com.google.inject"            % "guice"                % "5.1.0",
-  "com.google.inject.extensions" % "guice-assistedinject" % "5.1.0",
-  "org.postgresql" % "postgresql" % "42.6.0"
-)
+libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "7.0.1" % Test
+libraryDependencies += "org.postgresql" % "postgresql" % "42.7.10"
 
 // Adds additional packages into Twirl
 //TwirlKeys.templateImports += "com.heroku.controllers._"

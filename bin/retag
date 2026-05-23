@@ -1,62 +1,70 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
+IMAGE=gliderlabs/herokuish
+
 main() {
   declare TAG="$1"
-  IMAGE=gliderlabs/herokuish
+  declare OCI_TAR="${2:-build/oci/herokuish.tar}"
+  local OCI_DIR
+  OCI_DIR="$(dirname "$OCI_TAR")/oci-layout"
 
   if [ -z "$TAG" ]; then
-    echo "Usage: $0 <tag>"
+    echo "Usage: $0 <tag> [oci-tarball-path]"
     exit 1
   fi
 
-  architectures=(amd64 arm64)
+  if [ ! -f "$OCI_TAR" ]; then
+    echo " !    OCI tarball not found at ${OCI_TAR}"
+    exit 1
+  fi
 
-  echo "====> Deleting all existing manifests"
-  tags=("${TAG}" "${TAG}-24" "latest" "latest-24")
+  echo "====> Extracting OCI layout from ${OCI_TAR}"
+  rm -rf "$OCI_DIR"
+  mkdir -p "$OCI_DIR"
+  tar -xf "$OCI_TAR" -C "$OCI_DIR"
+
+  echo "====> Stripping io.buildpacks.stack.id from local OCI layout"
+  regctl image mod "ocidir://${OCI_DIR}:${TAG}" --replace \
+    --label "io.buildpacks.stack.id="
+
+  echo "====> Pushing cleaned image to Docker Hub"
+  local tags=("${TAG}" "${TAG}-24" "latest" "latest-24")
   for tag in "${tags[@]}"; do
-    if docker manifest inspect "${IMAGE}:${tag}" 2>/dev/null; then
-      echo "      Deleting manifest for ${IMAGE}:${tag}"
-      docker manifest rm "${IMAGE}:${tag}" || true
-    fi
+    echo "----> Pushing to ${IMAGE}:${tag}"
+    regctl image copy "ocidir://${OCI_DIR}:${TAG}" "${IMAGE}:${tag}"
   done
 
-  echo "====> Processing $IMAGE:$TAG"
-  for architecture in "${architectures[@]}"; do
-    echo "----> Processing ${architecture}"
-    echo "      Pulling ${IMAGE}:${TAG} for ${architecture}"
-    docker image pull --platform "linux/${architecture}" "${IMAGE}:${TAG}"
-    docker image tag "${IMAGE}:${TAG}" "${IMAGE}:${TAG}-${architecture}"
-    docker image rm "${IMAGE}:${TAG}"
-
-    echo "      Removing label from ${IMAGE}:${TAG}-${architecture}"
-    docker-copyedit.py \
-      FROM "${IMAGE}:${TAG}-${architecture}" \
-      INTO "${IMAGE}:${TAG}-${architecture}-patched" \
-      REMOVE LABEL io.buildpacks.stack.id
-    echo "      Tagging ${IMAGE}:${TAG}-${architecture}-patched as ${IMAGE}:${TAG}-${architecture}"
-    docker image rm "${IMAGE}:${TAG}-${architecture}"
-    docker image tag "${IMAGE}:${TAG}-${architecture}-patched" "${IMAGE}:${TAG}-${architecture}"
-    echo "      Pushing ${IMAGE}:${TAG}-${architecture}"
-    docker image push "${IMAGE}:${TAG}-${architecture}"
-  done
-
-  echo "----> Creating manifests"
-  tags=("${TAG}" "${TAG}-24" "latest" "latest-24")
-  for tag in "${tags[@]}"; do
-    echo "      Creating manifest for ${IMAGE}:${tag}"
-    docker manifest create "${IMAGE}:${tag}" \
-      --amend "${IMAGE}:${TAG}-amd64" \
-      --amend "${IMAGE}:${TAG}-arm64"
-  done
-
-  echo "----> Pushing manifests"
-  for tag in "${tags[@]}"; do
-    echo "      Pushing manifest for ${IMAGE}:${tag}"
-    docker manifest push "${IMAGE}:${tag}"
-  done
-
+  verify_labels "$TAG"
   echo " !    Done!"
+}
+
+verify_labels() {
+  declare TAG="$1"
+  local all_tags=("${TAG}" "${TAG}-24" "latest" "latest-24")
+  local platforms=("linux/amd64" "linux/arm64/v8")
+  local failed=0
+  local label
+
+  echo "====> Verifying io.buildpacks.stack.id is absent on all tags"
+  for tag in "${all_tags[@]}"; do
+    for platform in "${platforms[@]}"; do
+      label=$(regctl image config "${IMAGE}:${tag}" \
+        --platform "${platform}" \
+        --format '{{ index .config.Labels "io.buildpacks.stack.id" }}')
+      if [ -n "${label}" ]; then
+        echo " !    ${IMAGE}:${tag} (${platform}) still has io.buildpacks.stack.id=${label}"
+        failed=1
+      else
+        echo "----> ok: ${IMAGE}:${tag} (${platform})"
+      fi
+    done
+  done
+
+  if [ "${failed}" -ne 0 ]; then
+    echo " !    Label verification failed"
+    exit 1
+  fi
 }
 
 main "$@"

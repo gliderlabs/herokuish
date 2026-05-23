@@ -18,6 +18,24 @@ if [[ -n "$http_proxy" ]] || [[ -n "$https_proxy" ]]; then
 fi
 
 VERSION=$(cat /var/lib/herokuish/VERSION)
+IMAGE="gliderlabs/herokuish:v${VERSION}-24"
 
-sudo docker pull "gliderlabs/herokuish:v${VERSION}-24"
-sudo docker tag "gliderlabs/herokuish:v${VERSION}-24" gliderlabs/herokuish:latest-24
+attempt=1
+max_attempts=5
+delay=10
+while true; do
+  if sudo docker pull "$IMAGE"; then
+    break
+  fi
+  if [[ $attempt -ge $max_attempts ]]; then
+    echo "Failed to pull $IMAGE after $max_attempts attempts." >&2
+    echo "Run 'sudo docker pull $IMAGE && sudo docker tag $IMAGE gliderlabs/herokuish:latest-24' once connectivity returns." >&2
+    exit 1
+  fi
+  echo "docker pull failed; retrying in ${delay}s (attempt ${attempt}/${max_attempts})" >&2
+  sleep "$delay"
+  attempt=$((attempt + 1))
+  delay=$((delay * 2))
+done
+
+sudo docker tag "$IMAGE" gliderlabs/herokuish:latest-24
