@@ -52,7 +52,7 @@ verify_labels() {
     for platform in "${platforms[@]}"; do
       label=$(regctl image config "${IMAGE}:${tag}" \
         --platform "${platform}" \
-        --format '{{ index .config.Labels "io.buildpacks.stack.id" }}')
+        --format '{{ index .Config.Labels "io.buildpacks.stack.id" }}')
       if [ -n "${label}" ]; then
         echo " !    ${IMAGE}:${tag} (${platform}) still has io.buildpacks.stack.id=${label}"
         failed=1
