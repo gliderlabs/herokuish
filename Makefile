@@ -180,6 +180,7 @@ release-packagecloud: package_cloud
 release-packagecloud-deb: package_cloud build/deb/$(NAME)_$(VERSION)_all.deb
 	package_cloud push $(PACKAGECLOUD_REPOSITORY)/ubuntu/jammy   build/deb/$(NAME)_$(VERSION)_all.deb
 	package_cloud push $(PACKAGECLOUD_REPOSITORY)/ubuntu/noble   build/deb/$(NAME)_$(VERSION)_all.deb
+	package_cloud push $(PACKAGECLOUD_REPOSITORY)/ubuntu/resolute build/deb/$(NAME)_$(VERSION)_all.deb
 	package_cloud push $(PACKAGECLOUD_REPOSITORY)/debian/stretch build/deb/$(NAME)_$(VERSION)_all.deb
 	package_cloud push $(PACKAGECLOUD_REPOSITORY)/debian/bullseye build/deb/$(NAME)_$(VERSION)_all.deb
 	package_cloud push $(PACKAGECLOUD_REPOSITORY)/debian/bookworm build/deb/$(NAME)_$(VERSION)_all.deb
