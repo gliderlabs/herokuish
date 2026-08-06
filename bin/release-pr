@@ -1,0 +1,172 @@
+#!/usr/bin/env bash
+set -eo pipefail
+[[ "$TRACE" ]] && set -x
+
+REPO="gliderlabs/herokuish"
+BASE_BRANCH="master"
+RELEASE_BRANCH="release"
+
+usage() {
+  cat <<EOF
+Usage: $0 [--push] [--remote NAME] [version]
+
+Opens a release pull request. Runs 'bin/release-commit --commit' to build the
+"Release X.Y.Z" commit directly on ${BASE_BRANCH} (bumps VERSION, updates
+README.md, prepends the CHANGELOG.md section), then opens a PR from
+${BASE_BRANCH} into '${RELEASE_BRANCH}' whose body is the merged-PR changelog.
+Merging that PR pushes to '${RELEASE_BRANCH}', which builds and tags the release.
+
+  version         Explicit new version (e.g. 0.12.0). Omit to patch-bump the
+                  current Makefile VERSION.
+  --push          Commit on ${BASE_BRANCH}, push it, and open the PR. Without
+                  this flag the commit is created locally on ${BASE_BRANCH} for
+                  review (preview mode) and nothing is pushed.
+  --remote NAME   Remote to push to. Defaults to the remote whose URL points at
+                  ${REPO} (falling back to 'origin').
+EOF
+}
+
+# Print the name of the remote whose URL points at $REPO, else "origin".
+detect_remote() {
+  local name url
+  while read -r name url _; do
+    case "$url" in
+      *"${REPO}"*)
+        echo "$name"
+        return 0
+        ;;
+    esac
+  done < <(git remote -v | awk '$3 == "(push)"')
+  echo "origin"
+}
+
+main() {
+  local DO_PUSH=false VERSION_ARG="" REMOTE=""
+  local arg OLD NEW SCRIPT_DIR TITLE body_file pr_url
+
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      --push) DO_PUSH=true ;;
+      --remote)
+        shift
+        REMOTE="$1"
+        ;;
+      -h | --help)
+        usage
+        exit 0
+        ;;
+      -*)
+        echo " !    Unknown flag: $1" >&2
+        usage
+        exit 1
+        ;;
+      *) VERSION_ARG="$1" ;;
+    esac
+    shift
+  done
+
+  command -v git >/dev/null 2>&1 || {
+    echo " !    git not found"
+    exit 1
+  }
+  command -v gh >/dev/null 2>&1 || {
+    echo " !    gh (GitHub CLI) not found"
+    exit 1
+  }
+  command -v perl >/dev/null 2>&1 || {
+    echo " !    perl not found"
+    exit 1
+  }
+  git rev-parse --is-inside-work-tree >/dev/null 2>&1 || {
+    echo " !    not inside a git repo"
+    exit 1
+  }
+  gh auth status >/dev/null 2>&1 || {
+    echo " !    gh is not authenticated (run: gh auth login)"
+    exit 1
+  }
+
+  cd "$(git rev-parse --show-toplevel)"
+  SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+  [ -x "${SCRIPT_DIR}/release-commit" ] || {
+    echo " !    ${SCRIPT_DIR}/release-commit not found or not executable"
+    exit 1
+  }
+
+  if ! git diff --quiet || ! git diff --cached --quiet; then
+    echo " !    Working tree has uncommitted changes to tracked files; aborting." >&2
+    exit 1
+  fi
+
+  if [ "$(git rev-parse --abbrev-ref HEAD)" != "$BASE_BRANCH" ]; then
+    echo " !    Not on '${BASE_BRANCH}'; check out ${BASE_BRANCH} before releasing." >&2
+    exit 1
+  fi
+
+  [ -n "$REMOTE" ] || REMOTE="$(detect_remote)"
+  git remote get-url "$REMOTE" >/dev/null 2>&1 || {
+    echo " !    Remote '${REMOTE}' does not exist" >&2
+    exit 1
+  }
+
+  echo "====> Fetching ${REMOTE}/${BASE_BRANCH}"
+  git fetch --quiet "$REMOTE" "$BASE_BRANCH"
+  if [ "$(git rev-parse HEAD)" != "$(git rev-parse "${REMOTE}/${BASE_BRANCH}")" ]; then
+    echo " !    Local ${BASE_BRANCH} does not match ${REMOTE}/${BASE_BRANCH}; sync before releasing." >&2
+    exit 1
+  fi
+
+  OLD="$(awk '/^VERSION \?= /{print $3; exit}' Makefile)"
+  [ -n "$OLD" ] || {
+    echo " !    Could not read VERSION from Makefile"
+    exit 1
+  }
+
+  if [ -n "$VERSION_ARG" ] && [ "$VERSION_ARG" != "$OLD" ]; then
+    NEW="$VERSION_ARG"
+  else
+    NEW="${OLD%.*}.$((${OLD##*.} + 1))"
+  fi
+
+  echo "$NEW" | grep -qE '^[0-9]+\.[0-9]+\.[0-9]+$' || {
+    echo " !    Invalid version: $NEW"
+    exit 1
+  }
+
+  if [ -n "$(gh pr list --repo "$REPO" --base "$RELEASE_BRANCH" --head "$BASE_BRANCH" --state open --json number --jq '.[].number' 2>/dev/null)" ]; then
+    echo " !    An open ${BASE_BRANCH} -> ${RELEASE_BRANCH} pull request already exists" >&2
+    exit 1
+  fi
+
+  echo "====> Building release commit on ${BASE_BRANCH} ($OLD -> $NEW)"
+  "${SCRIPT_DIR}/release-commit" --commit --no-push-hint "$NEW"
+
+  TITLE="$(git log -1 --format='%s' HEAD)"
+  body_file="$(mktemp)"
+  trap 'rm -f "$body_file"' EXIT
+  git log -1 --format='%b' HEAD >"$body_file"
+
+  if $DO_PUSH; then
+    echo "====> Pushing ${BASE_BRANCH} to ${REMOTE}"
+    git push "$REMOTE" "$BASE_BRANCH"
+
+    echo "====> Opening pull request (${BASE_BRANCH} -> ${RELEASE_BRANCH})"
+    pr_url="$(gh pr create --repo "$REPO" --base "$RELEASE_BRANCH" --head "$BASE_BRANCH" \
+      --title "$TITLE" --body-file "$body_file")"
+    echo "====> Created pull request:"
+    echo "          ${pr_url}"
+    echo
+    echo " !    Merging this PR into '${RELEASE_BRANCH}' builds and tags v${NEW}."
+  else
+    echo
+    echo "====> Preview only (no push). Created commit on local ${BASE_BRANCH}:"
+    git --no-pager show -s --stat --oneline HEAD
+    echo
+    echo " !    Not pushed. To push ${BASE_BRANCH} and open the PR:"
+    echo "          git push ${REMOTE} ${BASE_BRANCH}"
+    echo "          gh pr create --repo ${REPO} --base ${RELEASE_BRANCH} --head ${BASE_BRANCH} --title \"${TITLE}\" --body-file <(git log -1 --format='%b' ${BASE_BRANCH})"
+    echo " !    To discard: git reset --hard ${REMOTE}/${BASE_BRANCH}"
+  fi
+}
+
+main "$@"
