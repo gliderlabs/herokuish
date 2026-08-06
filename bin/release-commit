@@ -1,0 +1,208 @@
+#!/usr/bin/env bash
+set -eo pipefail
+[[ "$TRACE" ]] && set -x
+
+REPO="gliderlabs/herokuish"
+TMPDIR_RC=""
+
+usage() {
+  cat <<EOF
+Usage: $0 [--commit] [version]
+
+Prepares a "Release X.Y.Z" commit: bumps VERSION in the Makefile, updates the
+version strings in README.md, and prepends a CHANGELOG.md section listing every
+pull request merged since the previous release.
+
+  version    Explicit new version (e.g. 0.12.0). Omit to patch-bump the current
+             Makefile VERSION.
+  --commit   Create the commit. Without this flag the files are edited and left
+             unstaged for review (preview mode); nothing is committed.
+
+The commit is never pushed. To publish, push it to the 'release' branch.
+EOF
+}
+
+# Emit "- #NNNN @login: title" for every PR merged since the baseline commit,
+# ascending by PR number.
+build_pr_list() {
+  local BASELINE="$1"
+  local all_prs numbers n line login title
+  # PR number, author login, and title as tab-separated fields.
+  local jq_tsv='[.number, .author.login, .title] | @tsv'
+
+  numbers="$(git log "${BASELINE}..HEAD" --merges --format='%s' \
+    | grep -oE 'Merge pull request #[0-9]+' \
+    | grep -oE '[0-9]+' \
+    | sort -nu)"
+
+  [ -n "$numbers" ] || return 0
+
+  all_prs="${TMPDIR_RC}/prs.tsv"
+  gh pr list --repo "$REPO" --state merged --limit 500 \
+    --json number,author,title --jq ".[] | $jq_tsv" >"$all_prs" 2>/dev/null || true
+
+  while IFS= read -r n; do
+    [ -n "$n" ] || continue
+    line="$(grep -E "^${n}"$'\t' "$all_prs" | head -n1 || true)"
+    if [ -z "$line" ]; then
+      line="$(gh pr view "$n" --repo "$REPO" --json number,author,title --jq "$jq_tsv" 2>/dev/null || true)"
+    fi
+    if [ -z "$line" ]; then
+      echo " !    Could not resolve PR #${n} via gh" >&2
+      return 1
+    fi
+    IFS=$'\t' read -r _ login title <<<"$line"
+    # gh reports bot authors as "app/dependabot" (pr list) or "dependabot[bot]"
+    # (pr view); the changelog uses the bare handle.
+    login="${login#app/}"
+    login="${login%\[bot\]}"
+    printf -- '- #%s @%s: %s\n' "$n" "$login" "$title"
+  done <<<"$numbers"
+}
+
+main() {
+  local DO_COMMIT=false VERSION_ARG=""
+  local arg OLD NEW BASELINE DATE PR_LIST COMMIT_MSG section_file new_changelog
+
+  for arg in "$@"; do
+    case "$arg" in
+      --commit) DO_COMMIT=true ;;
+      -h | --help)
+        usage
+        exit 0
+        ;;
+      -*)
+        echo " !    Unknown flag: $arg" >&2
+        usage
+        exit 1
+        ;;
+      *) VERSION_ARG="$arg" ;;
+    esac
+  done
+
+  command -v git >/dev/null 2>&1 || {
+    echo " !    git not found"
+    exit 1
+  }
+  command -v gh >/dev/null 2>&1 || {
+    echo " !    gh (GitHub CLI) not found"
+    exit 1
+  }
+  command -v perl >/dev/null 2>&1 || {
+    echo " !    perl not found"
+    exit 1
+  }
+  git rev-parse --is-inside-work-tree >/dev/null 2>&1 || {
+    echo " !    not inside a git repo"
+    exit 1
+  }
+  gh auth status >/dev/null 2>&1 || {
+    echo " !    gh is not authenticated (run: gh auth login)"
+    exit 1
+  }
+
+  if ! git diff --quiet || ! git diff --cached --quiet; then
+    echo " !    Working tree has uncommitted changes to tracked files; aborting." >&2
+    exit 1
+  fi
+
+  OLD="$(awk '/^VERSION \?= /{print $3; exit}' Makefile)"
+  [ -n "$OLD" ] || {
+    echo " !    Could not read VERSION from Makefile"
+    exit 1
+  }
+
+  if [ -n "$VERSION_ARG" ] && [ "$VERSION_ARG" != "$OLD" ]; then
+    NEW="$VERSION_ARG"
+  else
+    NEW="${OLD%.*}.$((${OLD##*.} + 1))"
+  fi
+
+  echo "$NEW" | grep -qE '^[0-9]+\.[0-9]+\.[0-9]+$' || {
+    echo " !    Invalid version: $NEW"
+    exit 1
+  }
+  [ "$NEW" != "$OLD" ] || {
+    echo " !    New version equals current ($OLD)"
+    exit 1
+  }
+
+  if git log --grep="^Release ${NEW}\$" --format='%H' | grep -q .; then
+    echo " !    A 'Release ${NEW}' commit already exists" >&2
+    exit 1
+  fi
+  if git rev-parse -q --verify "refs/tags/v${NEW}" >/dev/null; then
+    echo " !    Tag v${NEW} already exists" >&2
+    exit 1
+  fi
+
+  BASELINE="$(git log --grep='^Release [0-9]' --format='%H' -n 1)"
+  [ -n "$BASELINE" ] || {
+    echo " !    Could not find a previous release commit"
+    exit 1
+  }
+
+  TMPDIR_RC="$(mktemp -d)"
+  trap 'rm -rf "$TMPDIR_RC"' EXIT
+
+  echo "====> Collecting pull requests since $(git log -1 --format='%s' "$BASELINE")"
+  if ! PR_LIST="$(build_pr_list "$BASELINE")"; then
+    echo " !    Failed to build the PR list" >&2
+    exit 1
+  fi
+  if [ -z "$PR_LIST" ]; then
+    echo " !    No merged pull requests since the last release; nothing to do." >&2
+    exit 1
+  fi
+
+  DATE="$(date +%F)"
+
+  echo "====> Updating Makefile, README.md, CHANGELOG.md ($OLD -> $NEW)"
+  NEW="$NEW" perl -i -pe 's/^(VERSION \?= ).*/$1$ENV{NEW}/' Makefile
+  OLD="$OLD" NEW="$NEW" perl -i -pe 's{docker%20hub-v\Q$ENV{OLD}\E-blue}{docker%20hub-v$ENV{NEW}-blue}g' README.md
+  OLD="$OLD" NEW="$NEW" perl -i -pe 's{releases/download/v\Q$ENV{OLD}\E/herokuish_\Q$ENV{OLD}\E_}{releases/download/v$ENV{NEW}/herokuish_$ENV{NEW}_}g' README.md
+
+  section_file="${TMPDIR_RC}/section.md"
+  {
+    printf '## [%s](https://github.com/%s/compare/v%s...v%s) - %s\n\n' "$NEW" "$REPO" "$OLD" "$NEW" "$DATE"
+    printf '%s\n\n' "$PR_LIST"
+  } >"$section_file"
+
+  new_changelog="${TMPDIR_RC}/CHANGELOG.md"
+  awk 'FNR==NR{sec=sec $0 ORS; next}
+       /^## \[/ && !ins {printf "%s", sec; ins=1}
+       {print}
+       END{if(!ins) printf "%s", sec}' "$section_file" CHANGELOG.md >"$new_changelog"
+  mv "$new_changelog" CHANGELOG.md
+
+  grep -q "^VERSION ?= ${NEW}\$" Makefile || echo " !    warning: Makefile VERSION not updated as expected" >&2
+  grep -q "docker%20hub-v${NEW}-blue" README.md || echo " !    warning: README badge not updated as expected" >&2
+  grep -q "releases/download/v${NEW}/herokuish_${NEW}_" README.md || echo " !    warning: README download URL not updated as expected" >&2
+
+  COMMIT_MSG="Release ${NEW}"$'\n\n'"${PR_LIST}"
+
+  echo
+  echo "----> Commit message:"
+  echo
+  printf '%s\n' "$COMMIT_MSG"
+  echo
+
+  if $DO_COMMIT; then
+    git add Makefile README.md CHANGELOG.md
+    printf '%s\n' "$COMMIT_MSG" | git commit -q -F -
+    echo "====> Created commit:"
+    git --no-pager show -s --stat --oneline HEAD
+    echo
+    echo " !    Not pushed. To publish the release, push this commit to the 'release' branch:"
+    echo "          git push <remote> HEAD:release"
+  else
+    echo "====> Preview only (no commit). Edited files left unstaged:"
+    git --no-pager diff --stat -- Makefile README.md CHANGELOG.md
+    echo
+    echo " !    Review with:  git diff"
+    echo " !    To commit:    make release-commit   (or: bin/release-commit --commit ${NEW})"
+    echo " !    To discard:   git checkout -- Makefile README.md CHANGELOG.md"
+  fi
+}
+
+main "$@"

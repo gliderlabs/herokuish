@@ -2,6 +2,55 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.11.14](https://github.com/gliderlabs/herokuish/compare/v0.11.13...v0.11.14) - 2026-08-05
+
+- #1914 @josegonzalez: Use capitalized field in retag verify template
+- #1915 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 290 to 291 in /buildpacks/buildpack-php/tests/php
+- #1916 @dependabot: chore(deps): bump puma from 8.0.1 to 8.0.2 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1917 @dokku-bot: Update php to version v291
+- #1918 @dependabot: chore(deps): bump twig/twig from 3.26.0 to 3.27.0 in /buildpacks/buildpack-php/tests/php
+- #1919 @dokku-bot: Update ruby to version v359
+- #1920 @dependabot: chore(deps): bump twig/twig from 3.27.0 to 3.27.1 in /buildpacks/buildpack-php/tests/php
+- #1921 @dokku-bot: Update go to version v230
+- #1922 @dokku-bot: Update nodejs to version v351
+- #1923 @dependabot: chore(deps-dev): bump test-unit from 3.7.7 to 3.7.8 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #1924 @dokku-bot: Update python to version v345
+- #1925 @dokku-bot: Update ruby to version v360
+- #1926 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 291 to 292 in /buildpacks/buildpack-php/tests/php
+- #1927 @dokku-bot: Update clojure to version v98
+- #1928 @dokku-bot: Update php to version v292
+- #1929 @dokku-bot: Update nodejs to version v352
+- #1930 @dokku-bot: Update python to version v346
+- #1931 @dokku-bot: Update ruby to version v361
+- #1932 @dokku-bot: Update static to version v33
+- #1933 @dokku-bot: Update nodejs to version v353
+- #1934 @dokku-bot: Update nodejs to version v354
+- #1935 @dependabot: chore(deps): bump actions/checkout from 6 to 7
+- #1936 @dokku-bot: Update nodejs to version v355
+- #1937 @dokku-bot: Update nodejs to version v356
+- #1938 @dependabot: chore(deps): bump twig/twig from 3.27.1 to 3.28.0 in /buildpacks/buildpack-php/tests/php
+- #1939 @dokku-bot: Update nodejs to version v357
+- #1940 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 292 to 293 in /buildpacks/buildpack-php/tests/php
+- #1941 @dokku-bot: Update php to version v293
+- #1942 @dokku-bot: Update go to version v231
+- #1943 @dokku-bot: Update nodejs to version v358
+- #1944 @dokku-bot: Update python to version v347
+- #1945 @dependabot: chore(deps): bump actions/setup-node from 6 to 7
+- #1946 @dokku-bot: Update scala to version v107
+- #1948 @dependabot: chore(deps): bump actions/setup-go from 6 to 7
+- #1949 @dependabot: chore(deps): bump actions/setup-python from 6 to 7
+- #1950 @dokku-bot: Update nodejs to version v359
+- #1951 @dokku-bot: Update nodejs to version v360
+- #1953 @dokku-bot: Update python to version v348
+- #1954 @josegonzalez: chore: ignore minor and patch updates for github actions
+- #1955 @dokku-bot: Update php to version v294
+- #1956 @josegonzalez: chore: publish deb to ubuntu/resolute on packagecloud
+- #1957 @josegonzalez: chore(deps): bump django to 6.0.7 to fix CVE-2026-7666
+- #1958 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 293 to 294 in /buildpacks/buildpack-php/tests/php
+- #1959 @dokku-bot: Update nodejs to version v361
+- #1960 @dokku-bot: Update go to version v232
+- #1961 @josegonzalez: feat: add release-commit script and make target
+
 ## [0.11.13](https://github.com/gliderlabs/herokuish/compare/v0.11.12...v0.11.13) - 2026-05-22
 
 - #1912 @josegonzalez: Make extracted OCI layout writable before regctl image mod
