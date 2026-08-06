@@ -161,6 +161,9 @@ ci-report:
 	ruby -v
 	rm -f ~/.gitconfig
 
+release-commit:
+	bin/release-commit --commit $(VERSION)
+
 release: build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm build/deb/$(NAME)_$(VERSION)_all.deb bin/gh-release bin/gh-release-body
 	ls -lah build build/* || true
 	chmod +x build/linux/$(NAME) build/darwin/$(NAME)
