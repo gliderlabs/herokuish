@@ -4,7 +4,7 @@ REPOSITORY = herokuish
 DESCRIPTION = 'Herokuish uses Docker and Buildpacks to build applications like Heroku'
 HARDWARE = $(shell uname -m)
 SYSTEM_NAME  = $(shell uname -s | tr '[:upper:]' '[:lower:]')
-VERSION ?= 0.11.14
+VERSION ?= 0.11.15
 IMAGE_NAME ?= $(NAME)
 BUILD_TAG ?= dev
 PACKAGECLOUD_REPOSITORY ?= dokku/dokku-betafish
@@ -163,6 +163,9 @@ ci-report:
 
 release-commit:
 	bin/release-commit --commit $(VERSION)
+
+release-pr:
+	bin/release-pr --push $(VERSION)
 
 release: build/rpm/$(NAME)-$(VERSION)-1.x86_64.rpm build/deb/$(NAME)_$(VERSION)_all.deb bin/gh-release bin/gh-release-body
 	ls -lah build build/* || true

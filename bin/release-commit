@@ -7,16 +7,18 @@ TMPDIR_RC=""
 
 usage() {
   cat <<EOF
-Usage: $0 [--commit] [version]
+Usage: $0 [--commit] [--no-push-hint] [version]
 
 Prepares a "Release X.Y.Z" commit: bumps VERSION in the Makefile, updates the
 version strings in README.md, and prepends a CHANGELOG.md section listing every
 pull request merged since the previous release.
 
-  version    Explicit new version (e.g. 0.12.0). Omit to patch-bump the current
-             Makefile VERSION.
-  --commit   Create the commit. Without this flag the files are edited and left
-             unstaged for review (preview mode); nothing is committed.
+  version         Explicit new version (e.g. 0.12.0). Omit to patch-bump the
+                  current Makefile VERSION.
+  --commit        Create the commit. Without this flag the files are edited and
+                  left unstaged for review (preview mode); nothing is committed.
+  --no-push-hint  Suppress the "push to the 'release' branch" hint printed after
+                  a commit is created (used when another script drives the push).
 
 The commit is never pushed. To publish, push it to the 'release' branch.
 EOF
@@ -61,12 +63,13 @@ build_pr_list() {
 }
 
 main() {
-  local DO_COMMIT=false VERSION_ARG=""
+  local DO_COMMIT=false VERSION_ARG="" SHOW_PUSH_HINT=true
   local arg OLD NEW BASELINE DATE PR_LIST COMMIT_MSG section_file new_changelog
 
   for arg in "$@"; do
     case "$arg" in
       --commit) DO_COMMIT=true ;;
+      --no-push-hint) SHOW_PUSH_HINT=false ;;
       -h | --help)
         usage
         exit 0
@@ -192,9 +195,11 @@ main() {
     printf '%s\n' "$COMMIT_MSG" | git commit -q -F -
     echo "====> Created commit:"
     git --no-pager show -s --stat --oneline HEAD
-    echo
-    echo " !    Not pushed. To publish the release, push this commit to the 'release' branch:"
-    echo "          git push <remote> HEAD:release"
+    if $SHOW_PUSH_HINT; then
+      echo
+      echo " !    Not pushed. To publish the release, push this commit to the 'release' branch:"
+      echo "          git push <remote> HEAD:release"
+    fi
   else
     echo "====> Preview only (no commit). Edited files left unstaged:"
     git --no-pager diff --stat -- Makefile README.md CHANGELOG.md
