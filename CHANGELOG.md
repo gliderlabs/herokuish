@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.11.15](https://github.com/gliderlabs/herokuish/compare/v0.11.14...v0.11.15) - 2026-08-08
+
+- #1963 @josegonzalez: feat: add release-pr script and make target
+- #1964 @dokku-bot: Update python to version v349
+- #1965 @dokku-bot: Update nodejs to version v362
+
 ## [0.11.14](https://github.com/gliderlabs/herokuish/compare/v0.11.13...v0.11.14) - 2026-08-05
 
 - #1914 @josegonzalez: Use capitalized field in retag verify template
