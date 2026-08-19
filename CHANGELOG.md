@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.11.16](https://github.com/gliderlabs/herokuish/compare/v0.11.15...v0.11.16) - 2026-08-18
+
+- #1967 @dokku-bot: Update python to version v350
+- #1968 @dokku-bot: Update go to version v233
+- #1969 @dependabot: chore(deps): bump rack from 3.2.6 to 3.2.7 in /buildpacks/buildpack-multi/tests/multi
+- #1970 @dependabot: chore(deps): bump rack from 3.2.6 to 3.2.7 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+
 ## [0.11.15](https://github.com/gliderlabs/herokuish/compare/v0.11.14...v0.11.15) - 2026-08-08
 
 - #1963 @josegonzalez: feat: add release-pr script and make target
