@@ -59,6 +59,7 @@ indent() {
 }
 
 unprivileged() {
+  chown "$unprivileged_user" /dev/std*
   setuidgid "$unprivileged_user" "$@"
 }
 
