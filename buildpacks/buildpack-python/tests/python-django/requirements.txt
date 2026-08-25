@@ -1,2 +1,2 @@
 django==6.0.7
-gunicorn==26.0.0
+gunicorn==26.1.0
