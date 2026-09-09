@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.11.17](https://github.com/gliderlabs/herokuish/compare/v0.11.16...v0.11.17) - 2026-09-09
+
+- #1973 @dokku-bot: Update nodejs to version v363
+- #1974 @dokku-bot: Update python to version v351
+- #1975 @dokku-bot: Update go to version v234
+- #1976 @dependabot: chore(deps): bump gunicorn from 26.0.0 to 26.1.0 in /buildpacks/buildpack-python/tests/python-django
+- #1977 @dependabot: chore(deps): bump gunicorn from 26.0.0 to 26.1.0 in /buildpacks/buildpack-python/tests/python-flask
+- #1978 @dependabot: chore(deps): bump gunicorn from 26.0.0 to 26.1.0 in /buildpacks/buildpack-multi/tests/multi
+- #1979 @dependabot: chore(deps): bump golang from 1.26 to 1.27
+- #1980 @dokku-bot: Update go to version v235
+- #1981 @dokku-bot: Update ruby to version v362
+- #1982 @dokku-bot: Update nodejs to version v365
+- #1983 @dependabot: chore(deps): bump gunicorn from 26.1.0 to 26.2.0 in /buildpacks/buildpack-python/tests/python-flask
+- #1984 @dependabot: chore(deps): bump gunicorn from 26.1.0 to 26.2.0 in /buildpacks/buildpack-python/tests/python-django
+- #1985 @dependabot: chore(deps): bump gunicorn from 26.1.0 to 26.2.0 in /buildpacks/buildpack-multi/tests/multi
+- #1986 @dokku-bot: Update python to version v352
+- #1987 @dokku-bot: Update php to version v295
+- #1988 @dokku-bot: Update go to version v236
+- #1989 @dependabot: chore(deps): bump monolog/monolog from 3.10.0 to 3.11.0 in /buildpacks/buildpack-php/tests/php
+- #1990 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 294 to 295 in /buildpacks/buildpack-php/tests/php
+- #1991 @dependabot: chore(deps): bump slim/slim from 4.15.2 to 4.15.3 in /buildpacks/buildpack-php/tests/php
+- #1992 @dokku-bot: Update nodejs to version v366
+
 ## [0.11.16](https://github.com/gliderlabs/herokuish/compare/v0.11.15...v0.11.16) - 2026-08-18
 
 - #1967 @dokku-bot: Update python to version v350
