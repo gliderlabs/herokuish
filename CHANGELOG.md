@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.11.18](https://github.com/gliderlabs/herokuish/compare/v0.11.17...v0.11.18) - 2026-09-25
+
+- #1994 @dokku-bot: Update nodejs to version v367
+- #1995 @dependabot: chore(deps): bump monolog/monolog from 3.11.0 to 3.12.0 in /buildpacks/buildpack-php/tests/php
+- #1996 @dokku-bot: Update nodejs to version v368
+- #1997 @dependabot: chore(deps): bump twig/twig from 3.28.0 to 3.29.0 in /buildpacks/buildpack-php/tests/php
+- #1998 @dokku-bot: Update nodejs to version v369
+- #1999 @dokku-bot: Update nodejs to version v370
+- #2000 @dokku-bot: Update php to version v296
+- #2001 @dokku-bot: Update php to version v297
+
 ## [0.11.17](https://github.com/gliderlabs/herokuish/compare/v0.11.16...v0.11.17) - 2026-09-09
 
 - #1973 @dokku-bot: Update nodejs to version v363
