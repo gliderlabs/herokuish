@@ -5,6 +5,6 @@
     "node": "22.14.x"
   },
   "dependencies": {
-    "express": "5.2.x"
+    "express": "5.3.x"
   }
 }
