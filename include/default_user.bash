@@ -12,7 +12,3 @@ addgroup --quiet --gid "32767" "herokuishuser" \
     --quiet \
     --home "/app" \
     "herokuishuser"
-
-if [ -n "$HEROKUISH_WITH_TTY" ]; then
-  usermod -aG tty herokuishuser
-fi
