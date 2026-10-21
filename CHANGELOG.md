@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.11.20](https://github.com/gliderlabs/herokuish/compare/v0.11.19...v0.11.20) - 2026-10-21
+
+- #2014 @dokku-bot: Update go to version v237
+- #2015 @dokku-bot: Update python to version v355
+- #2016 @dependabot: chore(deps): bump express from 5.2.1 to 5.3.0 in /buildpacks/buildpack-nodejs/tests/nodejs-express
+- #2017 @dependabot: chore(deps): bump express from 5.2.1 to 5.3.0 in /buildpacks/buildpack-multi/tests/multi
+- #2018 @dokku-bot: Update python to version v356
+- #2019 @dokku-bot: Update nodejs to version v374
+- #2020 @dokku-bot: Update ruby to version v363
+- #2021 @dokku-bot: Update go to version v238
+- #2022 @dokku-bot: Update nodejs to version v375
+- #2023 @dokku-bot: Update python to version v357
+
 ## [0.11.19](https://github.com/gliderlabs/herokuish/compare/v0.11.18...v0.11.19) - 2026-10-08
 
 - #2003 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 295 to 297 in /buildpacks/buildpack-php/tests/php
