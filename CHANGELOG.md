@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.11.22](https://github.com/gliderlabs/herokuish/compare/v0.11.21...v0.11.22) - 2026-10-29
+
+- #2029 @dokku-bot: Update go to version v239
+- #2030 @josegonzalez: chore: bump django to 6.1.2 to fix CVE-2026-15830
+- #2031 @dokku-bot: Update ruby to version v364
+- #2032 @dependabot: chore(deps-dev): bump rack-test from 2.2.0 to 2.3.0 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #2033 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 297 to 299 in /buildpacks/buildpack-php/tests/php
+- #2034 @dokku-bot: Update python to version v359
+- #2035 @dokku-bot: Update ruby to version v365
+- #2037 @dokku-bot: Update python to version v360
+- #2038 @dokku-bot: Update nodejs to version v376
+- #2039 @dokku-bot: Update nodejs to version v377
+
 ## [0.11.21](https://github.com/gliderlabs/herokuish/compare/v0.11.20...v0.11.21) - 2026-10-23
 
 - #2025 @dokku-bot: Update python to version v358
