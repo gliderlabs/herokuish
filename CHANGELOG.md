@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.11.23](https://github.com/gliderlabs/herokuish/compare/v0.11.22...v0.11.23) - 2026-10-30
+
+- #2041 @dokku-bot: Update php to version v300
+
 ## [0.11.22](https://github.com/gliderlabs/herokuish/compare/v0.11.21...v0.11.22) - 2026-10-29
 
 - #2029 @dokku-bot: Update go to version v239
