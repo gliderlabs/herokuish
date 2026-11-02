@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.11.24](https://github.com/gliderlabs/herokuish/compare/v0.11.23...v0.11.24) - 2026-11-02
+
+- #1971 @nerg4l: Fix stderr access
+- #2043 @dependabot: chore(deps): bump rack from 3.2.7 to 3.2.8 in /buildpacks/buildpack-multi/tests/multi
+- #2044 @dependabot: chore(deps): bump rack from 3.2.7 to 3.2.8 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #2045 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 299 to 300 in /buildpacks/buildpack-php/tests/php
+- #2046 @dokku-bot: Update python to version v361
+
 ## [0.11.23](https://github.com/gliderlabs/herokuish/compare/v0.11.22...v0.11.23) - 2026-10-30
 
 - #2041 @dokku-bot: Update php to version v300
