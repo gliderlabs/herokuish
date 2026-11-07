@@ -639,3 +639,128 @@ EOF
   }
   rm -f "$marker"
 }
+
+# Helpers for the issue #2050 unprivileged tests. _unprivileged-setup sources
+# herokuish.bash and stubs chown/setuidgid so each test can point stdio at
+# /dev/null, a device node or a regular file without touching real ownership.
+# The chown stub records its args and fails for the fd in $CHOWN_FAIL_FD.
+_unprivileged-setup() {
+  # shellcheck disable=SC1091
+  source "${BATS_TEST_DIRNAME}/../../include/herokuish.bash"
+  _unprivileged_root="$(mktemp -d)"
+  # herokuish.bash declares unprivileged_user, which is local when sourced
+  # from a function, so set it globally for the tests to see
+  # shellcheck disable=SC2034
+  declare -g unprivileged_user="herokuishuser"
+  _unprivileged_chown_args="$_unprivileged_root/chown-args"
+  _unprivileged_setuidgid_args="$_unprivileged_root/setuidgid-args"
+  : >"$_unprivileged_chown_args"
+  unset CHOWN_FAIL_FD
+  # shellcheck disable=SC2317
+  chown() {
+    echo "$*" >>"$_unprivileged_chown_args"
+    [[ -n "$CHOWN_FAIL_FD" && "$2" == */fd/"$CHOWN_FAIL_FD" ]] && return 1
+    return 0
+  }
+  # shellcheck disable=SC2317
+  setuidgid() { echo "$*" >"$_unprivileged_setuidgid_args"; }
+}
+
+@test "unprivileged-stdio-skips-dev-null" {
+  # Issue #2050: rootless docker cannot chown /dev/null, so stdio redirected
+  # there must be skipped rather than failing the build.
+  _unprivileged-setup
+  local status=0
+  unprivileged true </dev/null >/dev/null 2>/dev/null || status=$?
+  local chown_args setuidgid_args
+  chown_args="$(cat "$_unprivileged_chown_args")"
+  setuidgid_args="$(cat "$_unprivileged_setuidgid_args" 2>/dev/null || true)"
+  rm -rf "$_unprivileged_root"
+
+  [[ "$status" -eq 0 ]] || {
+    echo "expected exit 0, got $status"
+    return 1
+  }
+  [[ -z "$chown_args" ]] || {
+    echo "expected /dev/null not to be chowned, got: '$chown_args'"
+    return 2
+  }
+  [[ "$setuidgid_args" == "herokuishuser true" ]] || {
+    echo "expected setuidgid to run the command, got: '$setuidgid_args'"
+    return 3
+  }
+}
+
+@test "unprivileged-stdio-tolerates-device-chown-failure" {
+  # Device nodes such as ttys may be owned by an unmapped uid under rootless
+  # docker; a failed chown on them must not stop the command from running.
+  _unprivileged-setup
+  export CHOWN_FAIL_FD=0
+  local status=0
+  unprivileged true </dev/zero >/dev/null 2>/dev/null || status=$?
+  unset CHOWN_FAIL_FD
+  local chown_args setuidgid_args
+  chown_args="$(cat "$_unprivileged_chown_args")"
+  setuidgid_args="$(cat "$_unprivileged_setuidgid_args" 2>/dev/null || true)"
+  rm -rf "$_unprivileged_root"
+
+  [[ "$status" -eq 0 ]] || {
+    echo "expected exit 0, got $status"
+    return 1
+  }
+  [[ "$chown_args" == "herokuishuser /proc/"*"/fd/0" ]] || {
+    echo "expected chown to be attempted on stdin, got: '$chown_args'"
+    return 2
+  }
+  [[ "$setuidgid_args" == "herokuishuser true" ]] || {
+    echo "expected setuidgid to run the command, got: '$setuidgid_args'"
+    return 3
+  }
+}
+
+@test "unprivileged-stdio-fails-on-file-chown-failure" {
+  # Failures on pipes and regular files are real permission problems and must
+  # still fail before the command runs.
+  _unprivileged-setup
+  export CHOWN_FAIL_FD=1
+  local status=0
+  unprivileged true </dev/null >"$_unprivileged_root/stdout" 2>/dev/null || status=$?
+  unset CHOWN_FAIL_FD
+  local setuidgid_ran=false
+  [[ -f "$_unprivileged_setuidgid_args" ]] && setuidgid_ran=true
+  rm -rf "$_unprivileged_root"
+
+  [[ "$status" -ne 0 ]] || {
+    echo "expected non-zero exit when chown of a file fails, got 0"
+    return 1
+  }
+  [[ "$setuidgid_ran" == false ]] || {
+    echo "expected setuidgid not to run after a failed chown"
+    return 2
+  }
+}
+
+@test "unprivileged-stdio-chowns-regular-stdio" {
+  # Pipes and files are handed to the unprivileged user so buildpacks can
+  # reopen /dev/stdout and /dev/stderr.
+  _unprivileged-setup
+  local status=0
+  unprivileged echo hello </dev/null >"$_unprivileged_root/stdout" 2>/dev/null || status=$?
+  local chown_args setuidgid_args
+  chown_args="$(cat "$_unprivileged_chown_args")"
+  setuidgid_args="$(cat "$_unprivileged_setuidgid_args" 2>/dev/null || true)"
+  rm -rf "$_unprivileged_root"
+
+  [[ "$status" -eq 0 ]] || {
+    echo "expected exit 0, got $status"
+    return 1
+  }
+  [[ "$chown_args" == "herokuishuser /proc/"*"/fd/1" ]] || {
+    echo "expected only stdout to be chowned, got: '$chown_args'"
+    return 2
+  }
+  [[ "$setuidgid_args" == "herokuishuser echo hello" ]] || {
+    echo "expected setuidgid to run the command, got: '$setuidgid_args'"
+    return 3
+  }
+}
