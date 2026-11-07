@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.11.25](https://github.com/gliderlabs/herokuish/compare/v0.11.24...v0.11.25) - 2026-11-06
+
+- #2048 @dokku-bot: Update ruby to version v366
+- #2049 @dokku-bot: Update nodejs to version v378
+- #2051 @josegonzalez: fix: skip /dev/null when chowning stdio for builds
+
 ## [0.11.24](https://github.com/gliderlabs/herokuish/compare/v0.11.23...v0.11.24) - 2026-11-02
 
 - #1971 @nerg4l: Fix stderr access

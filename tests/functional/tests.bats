@@ -243,3 +243,37 @@ teardown_file() {
     echo \"\$output\" | grep -q 'Unable to fetch custom buildpack from ruby'
   "
 }
+
+# Regression test for gliderlabs/herokuish#2050: unprivileged() must not chown
+# /dev/null when a buildpack's stdio is redirected there. Rootless docker
+# rejects that chown with EPERM, and rootful docker would hand /dev/null to the
+# build user. The detect loop over default buildpacks runs with &>/dev/null.
+@test "buildpack-detect-preserves-dev-null-ownership" {
+  herokuish-test "buildpack-detect-preserves-dev-null-ownership" "
+    set -e
+    unset BUILDPACK_URL
+    export USER=herokuishuser
+    export buildpack_path=/tmp/buildpacks
+    export build_path=/tmp/app
+
+    rm -rf \$buildpack_path && mkdir -p \$buildpack_path
+    mkdir -p \$build_path
+
+    for name in 00_buildpack-ruby 01_buildpack-nodejs; do
+      mkdir -p \$buildpack_path/\$name/bin
+      {
+        echo '#!/usr/bin/env bash'
+        echo 'echo Stub'
+      } > \$buildpack_path/\$name/bin/detect
+      chmod +x \$buildpack_path/\$name/bin/detect
+    done
+
+    herokuish buildpack detect >/dev/null
+
+    owner=\$(stat -c %U /dev/null)
+    if [[ \"\$owner\" != root ]]; then
+      echo \"expected /dev/null to stay owned by root, got \$owner\"
+      exit 1
+    fi
+  "
+}
