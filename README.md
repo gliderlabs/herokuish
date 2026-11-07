@@ -79,6 +79,8 @@ buildpacks:
 
 You can install all supported buildpacks with `herokuish buildpack install`, or you can manually install buildpacks individually with `herokuish buildpack install <url> [committish]`. You can also mount a directory containing your platform's supported buildpacks (see Paths, next section), or you could bake your supported buildpacks into an image. These are the types of decisions that are up to you.
 
+Buildpack scripts run as an unprivileged user. Before dropping privileges, herokuish gives that user ownership of its stdin, stdout and stderr so buildpacks can write to `/dev/stdout` and `/dev/stderr`. `/dev/null` is never chowned, and chown failures on device nodes such as ttys are ignored, so builds also work under rootless Docker.
+
 ### Paths
 
 Use `herokuish paths` to see relevant system paths it uses. You can use these to import or mount data for use inside a container. They can also be overridden by setting the appropriate environment variable.

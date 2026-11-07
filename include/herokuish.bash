@@ -58,8 +58,25 @@ indent() {
   done
 }
 
+unprivileged-stdio() {
+  local fd
+  for fd in 0 1 2; do
+    # bash fstat()s /dev/fd/N in-process, so these checks see this shell's fds
+    [[ -e "/dev/fd/$fd" ]] || continue
+    # /dev/null is world-writable and must never be chowned
+    [[ "/dev/fd/$fd" -ef /dev/null ]] && continue
+    # chown through /proc so the target is this shell's fd, not chown's own
+    if [[ -c "/dev/fd/$fd" ]]; then
+      # device nodes (ttys) may be owned by an unmapped uid under rootless docker
+      chown "$unprivileged_user" "/proc/$BASHPID/fd/$fd" 2>/dev/null || true
+    else
+      chown "$unprivileged_user" "/proc/$BASHPID/fd/$fd" || return $?
+    fi
+  done
+}
+
 unprivileged() {
-  chown "$unprivileged_user" /dev/std*
+  unprivileged-stdio || return $?
   setuidgid "$unprivileged_user" "$@"
 }
 
