@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.11.26](https://github.com/gliderlabs/herokuish/compare/v0.11.25...v0.11.26) - 2026-11-11
+
+- #2053 @dokku-bot: Update clojure to version v99
+- #2054 @dokku-bot: Update python to version v362
+- #2055 @dokku-bot: Update clojure to version v100
+- #2056 @dokku-bot: Update go to version v240
+
 ## [0.11.25](https://github.com/gliderlabs/herokuish/compare/v0.11.24...v0.11.25) - 2026-11-06
 
 - #2048 @dokku-bot: Update ruby to version v366
