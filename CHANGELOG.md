@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.11.27](https://github.com/gliderlabs/herokuish/compare/v0.11.26...v0.11.27) - 2026-11-19
+
+- #2058 @dokku-bot: Update ruby to version v367
+- #2059 @dokku-bot: Update nodejs to version v379
+- #2060 @dokku-bot: Update java to version v83
+- #2061 @dokku-bot: Update scala to version v108
+- #2062 @dokku-bot: Update php to version v301
+- #2063 @dokku-bot: Update java to version v84
+- #2064 @dokku-bot: Update gradle to version v50
+- #2065 @dokku-bot: Update scala to version v109
+- #2066 @dependabot: chore(deps-dev): bump heroku/heroku-buildpack-php from 300 to 301 in /buildpacks/buildpack-php/tests/php
+- #2068 @dependabot: chore(deps): bump gunicorn from 26.2.0 to 27.0.1 in /buildpacks/buildpack-multi/tests/multi
+- #2069 @dependabot: chore(deps): bump gunicorn from 26.2.0 to 27.0.1 in /buildpacks/buildpack-python/tests/python-django
+- #2070 @dependabot: chore(deps): bump gunicorn from 26.2.0 to 27.0.1 in /buildpacks/buildpack-python/tests/python-flask
+- #2071 @dokku-bot: Update clojure to version v101
+- #2072 @dependabot: chore(deps): bump puma from 8.0.2 to 8.1.1 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+
 ## [0.11.26](https://github.com/gliderlabs/herokuish/compare/v0.11.25...v0.11.26) - 2026-11-11
 
 - #2053 @dokku-bot: Update clojure to version v99
