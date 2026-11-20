@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.11.28](https://github.com/gliderlabs/herokuish/compare/v0.11.27...v0.11.28) - 2026-11-19
+
+- #2074 @dependabot: chore(deps): bump monolog/monolog from 3.12.1 to 3.13.0 in /buildpacks/buildpack-php/tests/php
+- #2075 @dependabot: chore(deps): bump slim/psr7 from 1.8.0 to 1.8.1 in /buildpacks/buildpack-php/tests/php
+- #2076 @dokku-bot: Update ruby to version v368
+- #2077 @dokku-bot: Update gradle to version v51
+- #2078 @dokku-bot: Update php to version v302
+- #2080 @dependabot: chore(deps): bump puma from 8.1.1 to 8.1.2 in /buildpacks/buildpack-ruby/tests/ruby-sinatra
+- #2081 @dokku-bot: Update nodejs to version v380
+- #2082 @dokku-bot: Update python to version v363
+- #2083 @dokku-bot: Update php to version v303
+
 ## [0.11.27](https://github.com/gliderlabs/herokuish/compare/v0.11.26...v0.11.27) - 2026-11-19
 
 - #2058 @dokku-bot: Update ruby to version v367
