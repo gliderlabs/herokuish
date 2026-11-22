@@ -56,6 +56,7 @@ build: bindata.go
 
 build/docker:
 	$(MAKE) build/docker/24 STACK_VERSION=24
+	$(MAKE) build/docker/26 STACK_VERSION=26
 
 build/docker/$(STACK_VERSION): bindata.go
 ifneq ($(OCI_OUTPUT),)
@@ -131,6 +132,7 @@ clean:
 
 deps: bindata.go
 	docker pull heroku/heroku:24-build
+	docker pull heroku/heroku:26-build
 	$(MAKE) bindata.go
 	go get || true
 
